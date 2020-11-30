@@ -1,4 +1,4 @@
-import ContractsPane from './components/ContractsPane';
+import DocumentsPane from './components/DocumentsPane';
 import DataPane from './components/DataPane';
 import PreviewPane from './components/PreviewPane';
 import { render } from './lit-html/lit-html';
@@ -10,11 +10,16 @@ let waiter = setTimeout(() => null, 1000);
 let state = ls('contractly_user') || {
   savedLocally: false,
   showPreview: false,
-  currentContract: {},
-  currentDataset: {},
+  currentDocument: null,
+  currentDataset: null,
   currentUser: {
-    contracts: [],
-    datasets: []
+    documents: [],
+    datasets: [
+      {
+        id: '',
+        fields: []
+      }
+    ]
   },
 }
 
@@ -28,9 +33,9 @@ export function autoSave() {
 }
 
 export function renderAll() {
-  render(ContractsPane(), $('#left-pane'));
-  render(PreviewPane(), $('#center-pane'));
-  render(DataPane(), $('#right-pane'));
+  render(DocumentsPane(), $('.left-pane'));
+  render(PreviewPane(), $('.center-pane'));
+  render(DataPane(), $('.right-pane'));
 }
 
 export function setState(key, value) {
@@ -40,6 +45,6 @@ export function setState(key, value) {
   autoSave();
 }
 
-export let findContractByID = (id) => state.currentUser.contracts.find(c => c.id == id);
+export let findDocumentByID = (id) => state.currentUser.documents.find(c => c.id == id);
 export let findDatasetByID = (id) => state.currentUser.datasets.find(d => d.id == id);
 export default state;

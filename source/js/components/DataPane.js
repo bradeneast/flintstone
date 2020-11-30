@@ -25,8 +25,7 @@ ${
     </div>
     `
     : nothing
-  }
-<hr />
+}
 <ul class=sets>
   ${state.currentUser.datasets.map((dataset, datasetIndex) => html`
   <li>

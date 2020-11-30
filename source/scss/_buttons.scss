@@ -6,27 +6,27 @@ button {
   border-color: var(--primary-40);
   padding: var(--buttonPadding);
   border-radius: var(--radius);
-  transition: border var(--transition);
 
   & > * {
     color: inherit;
     margin: 0;
   }
 
-  &.icon,
-  &.link {
-    border: none;
+  &.icon {
+    border-color: transparent;
+
+    &:hover {
+      border-color: transparent;
+      background: var(--g8);
+    }
 
     &:focus {
-      outline-color: var(--primary);
+      border-color: var(--primary);
     }
   }
 
-  &.icon:hover {
-    background: var(--g8);
-  }
-
   &.link {
+    border: none;
     padding: 0;
   }
 
@@ -36,7 +36,6 @@ button {
   }
 
   &:focus {
-    outline-color: transparent;
     border-color: var(--primary);
   }
 

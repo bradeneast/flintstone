@@ -1,4 +1,5 @@
 body {
+  line-height: 1;
   color: var(--g1);
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Nueue", sans-serif;
 }
@@ -12,20 +13,20 @@ h6 {
   color: var(--g2);
   letter-spacing: -0.01em;
   margin-bottom: 0.2em;
-  line-height: 1.1;
 
   input {
     display: inline-block;
     width: auto;
+    max-width: 100%;
     padding: 0;
     background: none;
-    font-weight: inherit;
+    border: none;
     border-radius: 0;
     border-bottom: var(--border);
     border-color: transparent;
+    font-weight: inherit;
 
     &:focus {
-      outline: none;
       border-color: currentColor;
     }
   }
@@ -74,8 +75,6 @@ ol {
 
 li {
   padding: 0.2em 0;
-  padding-left: 1em;
-  border-left: var(--border);
   color: var(--g3);
 
   & + button {

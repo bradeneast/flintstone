@@ -1,30 +1,36 @@
-#center-pane {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
+.center-pane {
   max-width: 50em;
-  width: 100%;
   margin: 0 auto;
 
-  .tab {
-    margin-left: 2em;
-    border-radius: var(--radius) var(--radius) 0 0;
-    border-bottom: none;
-    border-color: transparent;
-    background: var(--g6);
+  toolbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: auto;
+    padding: 1em;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 2;
 
-    &:hover,
-    &:focus {
-      border-color: var(--primary-60);
-    }
+    button {
+      margin-right: 0.5em;
+      border-color: transparent;
+      opacity: 0.63;
 
-    & + .tab {
-      margin-left: 0;
-    }
+      &:hover,
+      &:focus {
+        opacity: 1;
+        border-color: transparent;
+        background: var(--g7);
+      }
 
-    &[data-active] {
-      z-index: 2;
-      background: var(--g8);
+      &[data-active] {
+        opacity: 1;
+        border-color: var(--g6);
+        background: var(--g8);
+      }
     }
   }
 
@@ -32,11 +38,9 @@
   .editor {
     resize: none;
     overflow-y: auto;
-    border-radius: var(--radius);
     background: var(--g8);
     padding: 2em;
-    height: calc(100vh - 8em);
-    box-shadow: var(--shadow);
+    height: 100%;
     font-size: calc(0.6rem + 50%);
     line-height: 1.5;
   }
@@ -44,6 +48,10 @@
   .preview {
     --space: 1em;
     color: var(--g2);
+
+    & > :last-child {
+      margin-bottom: 2em;
+    }
 
     * + * {
       margin-top: var(--space);

@@ -1,0 +1,15 @@
+.aside-pane {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 1em;
+
+  & > :nth-child(2) {
+    overflow-y: auto;
+    border-bottom: var(--border);
+    margin-bottom: 2em;
+
+    & > :last-child {
+      margin-bottom: 2em;
+    }
+  }
+}

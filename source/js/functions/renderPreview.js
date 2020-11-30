@@ -19,7 +19,7 @@ export default () => {
   }
 
   let preview = $('.preview');
-  let hydrated = state.currentContract.body.replace(/\{.+?\}/g, hydrate);
+  let hydrated = state.currentDocument.body.replace(/\{.+?\}/g, hydrate);
   let parsed = tinymd(hydrated);
   preview.innerHTML = purify.sanitize(parsed);
 }

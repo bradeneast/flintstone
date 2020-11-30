@@ -13,11 +13,12 @@
   --g6: #c5cacf;
   --g7: #eaebee;
   --g8: white;
+  --headerHeight: 3em;
   --radius: 0.37rem;
-  --buttonPadding: 0.37em 0.63em;
+  --buttonPadding: 0.5em;
   --borderWidth: 2px;
   --border: var(--borderWidth) solid var(--g6);
-  --shadow: 0 0 0.63em -0.12em rgba(0, 0, 50, 0.2);
+  --shadow: 0 0 0.5em -0.1em rgba(0, 0, 50, 0.2);
   --transition: 0.3s ease;
 }
 
@@ -34,12 +35,20 @@
   line-height: inherit;
   border: none;
   outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--g6) transparent;
 }
 
 *:focus {
-  outline: var(--border);
-  outline-color: var(--g4);
-  -moz-outline-radius: var(--radius);
+  border-color: var(--g4);
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+
+  &-thumb {
+    background: var(--g6);
+  }
 }
 
 body {
@@ -51,7 +60,16 @@ body {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+  height: var(--headerHeight);
+  background: var(--g8);
   padding: 0.5em 1em;
+  // border-bottom: var(--border);
+  box-shadow: var(--shadow);
 
   #logo {
     display: inline-block;
@@ -60,26 +78,27 @@ header {
 }
 
 main {
-  height: 100%;
+  top: var(--headerHeight);
   display: flex;
   background: var(--g7);
 
-  #left-pane {
+  .left-pane {
     flex: 1;
   }
 
-  #right-pane {
+  .right-pane {
     flex: 2;
   }
 
-  #center-pane {
+  .center-pane {
     flex: 6;
   }
 
   & > section {
     display: flex;
     flex-direction: column;
-    padding: 1em;
+    height: calc(100vh - var(--headerHeight));
+    overflow-y: auto;
   }
 }
 
@@ -88,4 +107,4 @@ main {
 @import "./typography";
 @import "./buttons";
 @import "./center-pane";
-@import "./right-pane";
+@import "./aside-pane";
