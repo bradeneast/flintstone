@@ -6,7 +6,7 @@ textarea {
 }
 
 input {
-  padding: 0.2em;
+  padding: var(--buttonPadding);
 }
 
 textarea {
@@ -14,4 +14,14 @@ textarea {
   resize: vertical;
   max-height: 100%;
   padding: 1em;
+}
+
+label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+label + input {
+  margin-top: 0.2em;
 }

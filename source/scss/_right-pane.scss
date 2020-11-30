@@ -1,9 +1,21 @@
 #right-pane {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+
+  .sets {
+    justify-self: flex-end;
+    margin-top: auto;
+  }
+
   .fields {
     li {
-      display: inline-block;
-      width: 50%;
-      min-width: 9em;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(8em, 1fr));
+      gap: 0.5em;
+      justify-items: start;
+      justify-content: start;
+      align-items: end;
     }
   }
 }

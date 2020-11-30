@@ -1,6 +1,9 @@
 :root {
   font-size: 15px;
   --primary: #226bff;
+  --primary-80: #4790ff;
+  --primary-60: #60a0ff;
+  --primary-40: #70b3ff;
   --g0: #121518;
   --g1: #1a1f24;
   --g2: #383e46;
@@ -11,6 +14,7 @@
   --g7: #eaebee;
   --g8: white;
   --radius: 0.37rem;
+  --buttonPadding: 0.37em 0.63em;
   --borderWidth: 2px;
   --border: var(--borderWidth) solid var(--g6);
   --shadow: 0 0 0.63em -0.12em rgba(0, 0, 50, 0.2);
@@ -47,13 +51,11 @@ body {
 }
 
 header {
-  padding: 0.2em 1em;
+  padding: 0.5em 1em;
 
   #logo {
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    font-size: 2em;
-    color: var(--primary);
+    display: inline-block;
+    margin: 0;
   }
 }
 
@@ -63,15 +65,15 @@ main {
   background: var(--g7);
 
   #left-pane {
-    flex: 0;
-  }
-
-  #right-pane {
     flex: 1;
   }
 
+  #right-pane {
+    flex: 2;
+  }
+
   #center-pane {
-    flex: 4;
+    flex: 6;
   }
 
   & > section {
@@ -82,8 +84,8 @@ main {
 }
 
 @import "./loader";
+@import "./forms";
 @import "./typography";
 @import "./buttons";
-@import "./forms";
 @import "./center-pane";
 @import "./right-pane";

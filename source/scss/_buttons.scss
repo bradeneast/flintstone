@@ -3,27 +3,55 @@ button {
   cursor: pointer;
   background: none;
   border: var(--border);
-  border-color: transparent;
-  padding: 0.2em 0.63em;
+  border-color: var(--primary-40);
+  padding: var(--buttonPadding);
   border-radius: var(--radius);
+  transition: border var(--transition);
+
+  & > * {
+    color: inherit;
+    margin: 0;
+  }
+
+  &.icon,
+  &.link {
+    border: none;
+
+    &:focus {
+      outline-color: var(--primary);
+    }
+  }
+
+  &.icon:hover {
+    background: var(--g8);
+  }
+
+  &.link {
+    padding: 0;
+  }
 
   &:hover {
     color: var(--g0);
+    border-color: var(--primary);
   }
 
   &:focus {
-    border-color: var(--g4);
+    outline-color: transparent;
+    border-color: var(--primary);
   }
 
   &[data-active] {
     color: var(--g0);
   }
+
+  &[disabled] {
+    color: var(--g5);
+    border-color: currentColor;
+  }
 }
 
 a,
 button.link {
-  padding: 0;
-  border: none;
   text-decoration: underline;
   text-decoration-color: transparent;
 

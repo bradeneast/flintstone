@@ -9,8 +9,14 @@
   .tab {
     margin-left: 2em;
     border-radius: var(--radius) var(--radius) 0 0;
-    border: none;
+    border-bottom: none;
+    border-color: transparent;
     background: var(--g6);
+
+    &:hover,
+    &:focus {
+      border-color: var(--primary-60);
+    }
 
     & + .tab {
       margin-left: 0;

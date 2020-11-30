@@ -6,11 +6,11 @@ import state, { setState } from '../state';
 export default () => html`
 
   <toolbar>
-    <button class="tab" ?data-active=${!state.showPreview} @click=${()=> setState('showPreview', false)}>
-      Editor
+    <button ?data-active=${!state.showPreview} title="Show editor" class="tab" @click=${()=> setState('showPreview', false)}>
+      ✍️
     </button>
-    <button class="tab" ?data-active=${state.showPreview} @click=${renderPreview}>
-      Preview
+    <button ?data-active=${state.showPreview} title="Show preview" class="tab" @click=${renderPreview}>
+      👀
     </button>
   </toolbar>
 

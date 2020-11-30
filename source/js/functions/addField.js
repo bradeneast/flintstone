@@ -1,0 +1,6 @@
+import state, { findDatasetByID, setState } from "../state"
+
+export default () => {
+  state.currentDataset.fields.push(['', '']);
+  setState('currentDataset', state.currentDataset);
+}

@@ -11,6 +11,7 @@ let state = ls('contractly_user') || {
   savedLocally: false,
   showPreview: false,
   currentContract: {},
+  currentDataset: {},
   currentUser: {
     contracts: [],
     datasets: []
@@ -34,6 +35,7 @@ export function renderAll() {
 
 export function setState(key, value) {
   state[key] = value;
+  // console.log(state.currentDataset);
   renderAll();
   autoSave();
 }

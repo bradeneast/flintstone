@@ -1,16 +1,21 @@
 import state, { renderAll, autoSave } from './state';
 
-(async function () {
+
+if (!state.savedLocally) {
   document.documentElement.classList.add('loading');
 
-  if (!state.savedLocally) {
-    let users = await fetch('/db.json').then(r => r.json());
-    state.currentUser = users.find(user => user.name == 'Nathan');
-    state.currentContract = state.currentUser.contracts[0];
-    state.currentDataset = state.currentUser.datasets[0];
-    renderAll();
-    autoSave();
-  }
+  fetch('/db.json')
+    .then(r => r.json())
+    .then(users => users.find(user => user.name == 'Nathan'))
+    .then(user => {
+      state.currentUser = user;
+      state.currentContract = state.currentUser.contracts[0];
+      state.currentDataset = state.currentUser.datasets[0];
+    })
+    .then(renderAll)
+    .then(autoSave)
+    .then(() => document.documentElement.classList.remove('loading'))
+}
 
-  document.documentElement.classList.remove('loading');
-})();
+renderAll();
+autoSave();

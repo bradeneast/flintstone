@@ -4,9 +4,12 @@
     "datasets": [
       {
         "id": "Fantastic Mr. Fox",
-        "fields": {
-          "price": "$20,000"
-        }
+        "fields": [
+          [
+            "price",
+            "$20,000"
+          ]
+        ]
       }
     ],
     "contracts": [

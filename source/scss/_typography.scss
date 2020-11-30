@@ -9,79 +9,86 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--g3);
+  color: var(--g2);
   letter-spacing: -0.01em;
   margin-bottom: 0.2em;
+  line-height: 1.1;
+
+  input {
+    display: inline-block;
+    width: auto;
+    padding: 0;
+    background: none;
+    font-weight: inherit;
+    border-radius: 0;
+    border-bottom: var(--border);
+    border-color: transparent;
+
+    &:focus {
+      outline: none;
+      border-color: currentColor;
+    }
+  }
 }
 
 h1 {
   font-size: 1.63em;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--primary-80);
+  background: linear-gradient(to right, var(--primary), var(--primary-40));
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 h2 {
+  color: var(--g4);
   font-size: 1.37em;
+  margin-bottom: 1rem;
 }
 
 h3 {
-  font-size: 1.2em;
-}
-
-h4 {
   font-size: 1.12em;
 }
 
-h5 {
-  text-transform: uppercase;
+h4 {
   font-size: 1em;
+}
+
+h5 {
+  font-size: 0.8em;
+  text-transform: uppercase;
 }
 
 h6 {
   text-transform: uppercase;
-  font-size: 0.85em;
+  font-weight: inherit;
+  font-size: 0.8em;
 }
 
 ul,
 ol {
   list-style: none;
-  padding-left: 1em;
+  padding-top: 0.5em;
 }
 
 li {
-  margin-left: 0.5em;
   padding: 0.2em 0;
+  padding-left: 1em;
+  border-left: var(--border);
   color: var(--g3);
+
+  & + button {
+    margin-top: 1em;
+  }
 
   button {
     color: inherit;
   }
 
-  &:first-of-type::before {
-    height: 50%;
-  }
-
   &[data-active],
   &:focus-within {
     color: var(--g0);
-    border-color: currentColor;
-
-    &::before {
-      border-bottom: var(--border);
-      border-color: currentColor;
-    }
-
-    & ~ li::before {
-      border-color: transparent;
-    }
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    right: calc(100% + 0.5em);
-    bottom: 44%;
-    height: 100%;
-    width: 0.5em;
-    border-left: var(--border);
-    border-color: var(--g0);
+    border-color: var(--primary);
   }
 }
