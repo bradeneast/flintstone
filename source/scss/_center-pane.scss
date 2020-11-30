@@ -1,0 +1,46 @@
+#center-pane {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  max-width: 50em;
+  width: 100%;
+  margin: 0 auto;
+
+  .tab {
+    margin-left: 2em;
+    border-radius: var(--radius) var(--radius) 0 0;
+    border: none;
+    background: var(--g6);
+
+    & + .tab {
+      margin-left: 0;
+    }
+
+    &[data-active] {
+      z-index: 2;
+      background: var(--g8);
+    }
+  }
+
+  .preview,
+  .editor {
+    resize: none;
+    overflow-y: auto;
+    border-radius: var(--radius);
+    background: var(--g8);
+    padding: 2em;
+    height: calc(100vh - 8em);
+    box-shadow: var(--shadow);
+    font-size: calc(0.6rem + 50%);
+    line-height: 1.5;
+  }
+
+  .preview {
+    --space: 1em;
+    color: var(--g2);
+
+    * + * {
+      margin-top: var(--space);
+    }
+  }
+}

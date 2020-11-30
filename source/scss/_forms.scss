@@ -1,0 +1,17 @@
+input,
+textarea {
+  background: var(--g8);
+  border-radius: var(--radius);
+  width: 100%;
+}
+
+input {
+  padding: 0.2em;
+}
+
+textarea {
+  display: block;
+  resize: vertical;
+  max-height: 100%;
+  padding: 1em;
+}

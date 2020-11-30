@@ -1,0 +1,20 @@
+{
+  "liveServer.settings.root": "/public",
+  "liveServer.settings.file": "/index.html",
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "compressed",
+      "extensionName": ".css",
+      "savePath": "/public"
+    }
+  ],
+  "saveAndRun": {
+    "commands": [
+      {
+        "cmd": "esbuild --target=es6 --bundle --minify ./source/js/app.js --outfile=./public/app.js",
+        "silent": true,
+        "match": ".*source.*.js"
+      }
+    ]
+  }
+}

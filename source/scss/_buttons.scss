@@ -1,0 +1,35 @@
+button {
+  color: var(--g3);
+  cursor: pointer;
+  background: none;
+  border: var(--border);
+  border-color: transparent;
+  padding: 0.2em 0.63em;
+  border-radius: var(--radius);
+
+  &:hover {
+    color: var(--g0);
+  }
+
+  &:focus {
+    border-color: var(--g4);
+  }
+
+  &[data-active] {
+    color: var(--g0);
+  }
+}
+
+a,
+button.link {
+  padding: 0;
+  border: none;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+
+  &:hover,
+  &:focus {
+    text-decoration-color: currentColor;
+    color: var(--primary);
+  }
+}

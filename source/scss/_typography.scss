@@ -1,0 +1,87 @@
+body {
+  color: var(--g1);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Nueue", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--g3);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.2em;
+}
+
+h1 {
+  font-size: 1.63em;
+}
+
+h2 {
+  font-size: 1.37em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4 {
+  font-size: 1.12em;
+}
+
+h5 {
+  text-transform: uppercase;
+  font-size: 1em;
+}
+
+h6 {
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding-left: 1em;
+}
+
+li {
+  margin-left: 0.5em;
+  padding: 0.2em 0;
+  color: var(--g3);
+
+  button {
+    color: inherit;
+  }
+
+  &:first-of-type::before {
+    height: 50%;
+  }
+
+  &[data-active],
+  &:focus-within {
+    color: var(--g0);
+    border-color: currentColor;
+
+    &::before {
+      border-bottom: var(--border);
+      border-color: currentColor;
+    }
+
+    & ~ li::before {
+      border-color: transparent;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    right: calc(100% + 0.5em);
+    bottom: 44%;
+    height: 100%;
+    width: 0.5em;
+    border-left: var(--border);
+    border-color: var(--g0);
+  }
+}
