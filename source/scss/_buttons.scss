@@ -7,6 +7,16 @@ button {
   padding: var(--buttonPadding);
   border-radius: var(--radius);
 
+  &:hover,
+  &:focus {
+    background: var(--g8);
+    border-color: var(--primary);
+  }
+
+  &:hover {
+    color: var(--g0);
+  }
+
   & > * {
     color: inherit;
     margin: 0;
@@ -17,7 +27,6 @@ button {
 
     &:hover {
       border-color: transparent;
-      background: var(--g8);
     }
 
     &:focus {
@@ -28,15 +37,11 @@ button {
   &.link {
     border: none;
     padding: 0;
-  }
 
-  &:hover {
-    color: var(--g0);
-    border-color: var(--primary);
-  }
-
-  &:focus {
-    border-color: var(--primary);
+    &:hover,
+    &:focus {
+      background: none;
+    }
   }
 
   &[data-active] {

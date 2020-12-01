@@ -7,7 +7,7 @@ if (!state.savedLocally) {
 
   fetch('/db.json')
     .then(r => r.json())
-    .then(users => users.find(user => user.name == 'Nathan'))
+    .then(users => users[0])
     .then(user => {
       state.currentUser = user;
       state.currentDocument = state.currentUser.documents[0];

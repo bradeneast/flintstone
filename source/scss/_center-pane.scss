@@ -39,22 +39,16 @@
     resize: none;
     overflow-y: auto;
     background: var(--g8);
+    border: var(--border);
+    border-color: transparent;
     padding: 2em;
     height: 100%;
     font-size: calc(0.6rem + 50%);
     line-height: 1.5;
-  }
 
-  .preview {
-    --space: 1em;
-    color: var(--g2);
-
-    & > :last-child {
-      margin-bottom: 2em;
-    }
-
-    * + * {
-      margin-top: var(--space);
+    &:focus,
+    &:focus-within {
+      border-color: currentColor;
     }
   }
 }

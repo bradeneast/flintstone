@@ -10,8 +10,8 @@ export default () => html`
 ${
   state.currentDocument
     ? html`
-    <div data-active=true>
-      <h3>
+    <div>
+      <h3 data-active=true>
         <input type=text .value=${state.currentDocument.id} @input=${event => renameDocument(event.target.value)} />
       </h3>
     </div>

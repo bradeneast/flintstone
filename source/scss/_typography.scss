@@ -4,12 +4,17 @@ body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Nueue", sans-serif;
 }
 
+[data-active] {
+  font-weight: bold;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
+  font-weight: inherit;
   color: var(--g2);
   letter-spacing: -0.01em;
   margin-bottom: 0.2em;
@@ -37,9 +42,6 @@ h1 {
   font-weight: 900;
   letter-spacing: -0.03em;
   color: var(--primary-80);
-  background: linear-gradient(to right, var(--primary), var(--primary-40));
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
 }
 
 h2 {

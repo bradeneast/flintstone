@@ -3,6 +3,8 @@ import renderPreview from "./renderPreview";
 
 export default (index) => {
 
+  if (!confirm('Are you sure you want to delete this document?')) return;
+
   let docs = state.currentUser.documents;
   docs.splice(index, 1);
   state.currentUser.documents = docs;

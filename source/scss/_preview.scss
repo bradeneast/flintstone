@@ -1,0 +1,90 @@
+.center-pane .preview {
+  --space: 1rem;
+  --line_height: 1.5;
+  color: var(--g1);
+  line-height: var(--line_height);
+  font-size: var(--font_size);
+
+  /************************/
+  /** STYLEABLE ELEMENTS **/
+  /************************/
+
+  & > :last-child {
+    margin-bottom: 2em;
+  }
+
+  * {
+    color: inherit;
+    font-weight: inherit;
+    background: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  * + * {
+    margin-top: var(--space);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    margin-bottom: 0;
+    margin-left: -0.03em;
+  }
+
+  ul,
+  ol {
+    list-style: disc;
+    padding-left: 1em;
+  }
+
+  li {
+    margin-top: 0;
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+
+  del {
+    color: var(--g3);
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  blockquote {
+    padding-left: var(--space);
+    border-left: var(--border);
+    color: var(--g3);
+  }
+
+  /****************************/
+  /** NON-STYLEABLE ELEMENTS **/
+  /****************************/
+
+  br,
+  hr {
+    display: block;
+
+    & + * {
+      margin-top: 0;
+    }
+  }
+
+  br {
+    height: 0;
+  }
+
+  hr {
+    margin-top: 3em;
+    padding-top: 3em;
+    border-top: var(--border);
+  }
+}

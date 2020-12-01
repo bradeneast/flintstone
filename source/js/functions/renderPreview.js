@@ -1,7 +1,7 @@
 import state, { setState } from '../state';
 import { $ } from '../utils';
 import purify from '../dom-purify/purify';
-import tinymd from '../tiny-markdown/tiny-markdown';
+import marked from '../marked/marked';
 
 export default () => {
 
@@ -15,11 +15,11 @@ export default () => {
   }
 
   function hydrate(string) {
-    return getProp(string.slice(1, -1), fields)
+    return getProp(string.slice(1, -1).trim(), fields)
   }
 
   let preview = $('.preview');
   let hydrated = state.currentDocument.body.replace(/\{.+?\}/g, hydrate);
-  let parsed = tinymd(hydrated);
+  let parsed = marked(hydrated);
   preview.innerHTML = purify.sanitize(parsed);
 }

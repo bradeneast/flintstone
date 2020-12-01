@@ -28,14 +28,17 @@ label {
   li {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(8em, 1fr));
-    gap: 0.5em;
-    justify-items: start;
-    padding-top: 2em;
-  }
+    gap: 0.4em;
+    place-content: start;
+    place-items: start;
 
-  label {
-    position: absolute;
-    bottom: calc(100% + 0.5em);
-    left: 0;
+    input,
+    button {
+      height: 2.5em;
+    }
+
+    button {
+      align-self: end;
+    }
   }
 }

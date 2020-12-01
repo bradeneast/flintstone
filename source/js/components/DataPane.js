@@ -12,11 +12,16 @@ export default () => html`
 ${
   state.currentDataset
     ? html`
-    <div data-active=true>
-      <h3>
+    <div>
+      <h3 data-active=true>
         <input type=text .value=${state.currentDataset.id} @input=${event => renameDataset(event.target.value)} />
       </h3>
       <ul class=fields>
+        <li>
+          <label>Name</label>
+          <label>Value</label>
+          <span></span>
+        </li>
         ${state.currentDataset.fields.map((field, index) =>
         Field(field, index, state.currentDataset.id)
         )}

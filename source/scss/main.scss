@@ -68,12 +68,15 @@ header {
   height: var(--headerHeight);
   background: var(--g8);
   padding: 0.5em 1em;
-  // border-bottom: var(--border);
   box-shadow: var(--shadow);
 
   #logo {
     display: inline-block;
     margin: 0;
+    line-height: 1.2;
+    background: linear-gradient(to right, var(--primary), var(--primary-40));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
   }
 }
 
@@ -108,3 +111,5 @@ main {
 @import "./buttons";
 @import "./center-pane";
 @import "./aside-pane";
+@import "./preview";
+@import "./print";

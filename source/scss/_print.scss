@@ -1,0 +1,40 @@
+@media print {
+  body {
+    padding: 0;
+    overflow: visible;
+    height: auto;
+    display: block;
+  }
+
+  header,
+  toolbar,
+  .editor,
+  .aside-pane {
+    display: none !important;
+  }
+
+  main {
+    height: auto;
+    display: block;
+    top: 0;
+
+    section.center-pane {
+      all: unset;
+      height: auto;
+      max-height: none;
+      max-width: none;
+
+      .preview {
+        height: auto !important;
+
+        hr {
+          page-break-after: always;
+          page-break-before: always;
+          border: none;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
