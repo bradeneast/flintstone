@@ -1,3 +1,10 @@
+@font-face {
+  src: url("/Inter.woff2") format("woff2-variations");
+  font-family: "Inter";
+  font-weight: 100 1000;
+  font-display: swap;
+}
+
 body {
   line-height: 1;
   color: var(--g1);
