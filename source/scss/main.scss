@@ -1,18 +1,28 @@
+$g0: #121518;
+$g1: #1a1f24;
+$g2: #383e46;
+$g3: #5a6677;
+$g4: #828b9c;
+$g5: #9faabd;
+$g6: #c5cacf;
+$g7: #eaebee;
+$g8: white;
+
 :root {
   font-size: 15px;
-  --primary: #226bff;
-  --primary-80: #4790ff;
-  --primary-60: #60a0ff;
+  --primary: #5768ff;
+  --primary-80: #678bff;
+  --primary-60: #6da0ff;
   --primary-40: #70b3ff;
-  --g0: #121518;
-  --g1: #1a1f24;
-  --g2: #383e46;
-  --g3: #5a6677;
-  --g4: #828b9c;
-  --g5: #9faabd;
-  --g6: #c5cacf;
-  --g7: #eaebee;
-  --g8: white;
+  --g0: #{$g0};
+  --g1: #{$g1};
+  --g2: #{$g2};
+  --g3: #{$g3};
+  --g4: #{$g4};
+  --g5: #{$g5};
+  --g6: #{$g6};
+  --g7: #{$g7};
+  --g8: #{$g8};
   --headerHeight: 3em;
   --radius: 0.37rem;
   --buttonPadding: 0.5em;
@@ -51,6 +61,18 @@
   }
 }
 
+html.dark {
+  --g0: #{$g8};
+  --g1: #{$g7};
+  --g2: #{$g6};
+  --g3: #{$g5};
+  --g4: #{$g4};
+  --g5: #{$g3};
+  --g6: #{$g2};
+  --g7: #{$g1};
+  --g8: #{$g0};
+}
+
 body {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -61,6 +83,7 @@ body {
 
 header {
   position: fixed;
+  display: flex;
   top: 0;
   left: 0;
   z-index: 9;
@@ -77,6 +100,10 @@ header {
     background: linear-gradient(to right, var(--primary), var(--primary-40));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+  }
+
+  nav {
+    margin-left: auto;
   }
 }
 

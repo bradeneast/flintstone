@@ -3,6 +3,7 @@ import DataPane from './components/DataPane';
 import PreviewPane from './components/PreviewPane';
 import { render } from './lit-html/lit-html';
 import { $, ls } from './utils';
+import Header from './components/Header';
 
 
 let waiter = setTimeout(() => null, 1000);
@@ -10,6 +11,7 @@ let waiter = setTimeout(() => null, 1000);
 let state = ls('contractly_user') || {
   savedLocally: false,
   showPreview: false,
+  dark: false,
   currentDocument: null,
   currentDataset: null,
   currentUser: {
@@ -36,6 +38,7 @@ export function renderAll() {
   render(DocumentsPane(), $('.left-pane'));
   render(PreviewPane(), $('.center-pane'));
   render(DataPane(), $('.right-pane'));
+  render(Header(), $('header'));
 }
 
 export function setState(key, value) {
