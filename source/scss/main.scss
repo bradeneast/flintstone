@@ -19,7 +19,7 @@
   --borderWidth: 2px;
   --border: var(--borderWidth) solid var(--g6);
   --shadow: 0 0 0.5em -0.1em rgba(0, 0, 50, 0.2);
-  --transition: 0.3s ease;
+  --transition: 0.3s cubic-bezier(0.3, 0.6, 0.1, 1);
 }
 
 *,

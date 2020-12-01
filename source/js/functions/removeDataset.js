@@ -3,9 +3,11 @@ import renderPreview from "./renderPreview";
 
 export default (index) => {
 
-  if (!confirm('Are you sure you want to delete this data set?')) return;
-
   let sets = state.currentUser.datasets;
+  let currentSet = sets[index];
+
+  if (!confirm(`Are you sure you want to delete ${currentSet.id}?`)) return;
+
   sets.splice(index, 1);
   state.currentUser.datasets = sets;
 

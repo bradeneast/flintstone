@@ -1,5 +1,6 @@
 import addDataset from "../functions/addDataset";
 import addField from "../functions/addField";
+import duplicateDataset from "../functions/duplicateDataset";
 import removeDataset from "../functions/removeDataset";
 import renameDataset from "../functions/renameDataset";
 import setCurrentDataset from "../functions/setCurrentDataset";
@@ -37,7 +38,8 @@ ${
     <button class=link @click=${() => setCurrentDataset(datasetIndex)}>
       <h4>${dataset.id}</h4>
     </button>
-    <button class=icon @click=${()=> removeDataset(datasetIndex)}>🗑️</button>
+    <button title="Delete ${dataset.id}" class=icon @click=${() => removeDataset(datasetIndex)}>🗑️</button>
+    <button title="Duplicate ${dataset.id}" class=icon @click=${() => duplicateDataset(datasetIndex)}>📄</button>
   </li>
   `)}
   <button @click=${addDataset}>Add Data</button>

@@ -2,12 +2,14 @@ input {
   background: var(--g8);
   border-radius: var(--radius);
   width: 100%;
+  max-width: none;
 }
 
 input,
 textarea {
   border: var(--border);
   border-color: transparent;
+  transition: var(--transition);
 
   &:focus {
     border-color: currentColor;
@@ -27,8 +29,9 @@ label {
 .fields {
   li {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(8em, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
     gap: 0.4em;
+    padding: 0.2em 0;
     place-content: start;
     place-items: start;
 

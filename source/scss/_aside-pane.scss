@@ -12,4 +12,14 @@
       margin-bottom: 2em;
     }
   }
+
+  .sets li {
+    display: flex;
+    align-items: center;
+    align-content: center;
+
+    & > :first-child {
+      margin-right: 0.5em;
+    }
+  }
 }

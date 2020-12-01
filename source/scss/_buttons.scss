@@ -6,6 +6,7 @@ button {
   border-color: var(--primary-40);
   padding: var(--buttonPadding);
   border-radius: var(--radius);
+  transition: var(--transition);
 
   &:hover,
   &:focus {
@@ -23,6 +24,8 @@ button {
   }
 
   &.icon {
+    padding-left: 0.2em;
+    padding-right: 0.2em;
     border-color: transparent;
 
     &:hover {
