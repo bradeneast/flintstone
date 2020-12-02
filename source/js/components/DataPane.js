@@ -6,6 +6,7 @@ import renameDataset from "../functions/renameDataset";
 import setCurrentDataset from "../functions/setCurrentDataset";
 import { html, nothing } from "../lit-html/lit-html";
 import state from "../state";
+import Button from "./Button";
 import Field from "./Field";
 
 export default () => html`
@@ -41,11 +42,30 @@ ${
   ${
     state.currentUser.datasets.map((dataset, datasetIndex) => html`
     <li>
-      <button class=link @click=${() => setCurrentDataset(datasetIndex)}>
-        <h4>${dataset.id}</h4>
-      </button>
-      <button title="Duplicate ${dataset.id}" class=icon @click=${()=> duplicateDataset(datasetIndex)}>📄</button>
-      <button title="Delete ${dataset.id}" class=icon @click=${() => removeDataset(datasetIndex)}>🗑️</button>
+    ${
+      Button({
+        title: `Select ${dataset.id}`,
+        className: 'link',
+        action: ()=> setCurrentDataset(datasetIndex),
+        content: html`<h4>${dataset.id}</h4>`
+      })
+    }
+    ${
+      Button({
+        title: `Duplicate ${dataset.id}`,
+        className: 'icon',
+        action: () => duplicateDataset(datasetIndex),
+        content: '📄'
+      })
+    }
+    ${
+      Button({
+        title: `Delete ${dataset.id}`,
+        className: 'icon',
+        action: () => removeDataset(datasetIndex),
+        content: '🗑️'
+      })
+    }
     </li>
     `)
   }

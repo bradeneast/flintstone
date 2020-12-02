@@ -68,3 +68,21 @@ button.link {
     color: var(--primary);
   }
 }
+
+.join-buttons {
+  display: inline-flex;
+  border: var(--border);
+  border-radius: var(--radius);
+  border-color: transparent;
+  overflow: hidden;
+
+  &:hover,
+  &:focus-within {
+    border-color: var(--g6);
+  }
+
+  & > button {
+    margin: 0;
+    border-radius: 0;
+  }
+}

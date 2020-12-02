@@ -2,22 +2,51 @@ import { html } from "../lit-html/lit-html";
 import removeField from "../functions/removeField";
 import renameField from '../functions/renameField';
 import updateFieldValue from '../functions/updateFieldValue';
+import Button from "./Button";
+import moveField from "../functions/moveField";
 
-export default ([key, value], index, datasetID) => {
+export default ([key, value], fieldIndex, datasetIndex) => {
 
-  let keyID = `${index}_${datasetID}_key`;
-  let valueID = `${index}_${datasetID}_value`;
+  let keyID = `${datasetIndex}_${fieldIndex}_key`;
+  let valueID = `${datasetIndex}_${fieldIndex}_value`;
 
   return html`
-  <li>
+  <li data-index=${fieldIndex}>
     <key>
-      <input @input=${event => renameField(index, event.target.value, datasetID)} .value=${key} type=text id=${keyID} />
+      <input @input=${event => renameField(fieldIndex, event.target.value)} .value=${key} type=text id=${keyID} />
     </key>
     <value>
-      <input @input=${event => updateFieldValue(index, event.target.value, datasetID)} .value=${value} type=text
+      <input @input=${event => updateFieldValue(fieldIndex, event.target.value)} .value=${value} type=text
       id=${valueID} />
     </value>
-    <button class=icon title="Delete Field" @click=${removeField.bind(this, index, datasetID)}>🗑️</button>
+    <actions>
+      <div class=join-buttons>
+        ${
+          Button({
+            title: 'Move field up',
+            className: 'icon',
+            content: '⬆️',
+            action: () => moveField(fieldIndex, -1)
+          })
+        }
+        ${
+          Button({
+            title: 'Move field down',
+            className: 'icon',
+            content: '⬇️',
+            action: () => moveField(fieldIndex, 1)
+          })
+        }
+      </div>
+      ${
+        Button({
+          title: 'Delete field',
+          className: 'icon',
+          content: '🗑️',
+          action: () => removeField(fieldIndex)
+        })
+      }
+    </actions>
   </li>
   `;
 }
