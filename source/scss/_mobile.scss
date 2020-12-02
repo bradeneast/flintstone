@@ -22,6 +22,7 @@
     .center-pane {
       order: 3;
       min-height: calc(100vh - var(--headerHeight));
+      min-height: -webkit-fill-available;
       margin: 0;
     }
 
