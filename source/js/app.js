@@ -1,4 +1,5 @@
 import renderPreview from './functions/renderPreview';
+import toggleDarkMode from './functions/toggleDarkMode';
 import state, { renderAll, autoSave } from './state';
 
 
@@ -18,8 +19,10 @@ if (!state.savedLocally) {
     .then(() => document.documentElement.classList.remove('loading'))
 }
 else {
+
   state.currentDataset = state.currentUser.datasets[0];
   state.currentDocument = state.currentUser.documents[0];
+  document.documentElement.classList.toggle('dark', state.dark);
 
   state.showPreview
     ? renderPreview()
