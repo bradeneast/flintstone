@@ -6,16 +6,20 @@ import { $, ls } from './utils';
 import Header from './components/Header';
 
 
-let waiter = setTimeout(() => null, 1000);
-
+// Default state
 let state = ls('contractly_user') || {
-  savedLocally: false,
-  showPreview: false,
-  dark: false,
+  savedLocally: false, // Saved locally
+  showPreview: false, // Preview pane is shown
+  dark: false, // Dark mode
   currentDocument: null,
   currentDataset: null,
   currentUser: {
-    documents: [],
+    documents: [
+      {
+        id: '',
+        body: ''
+      }
+    ],
     datasets: [
       {
         id: '',
@@ -25,6 +29,8 @@ let state = ls('contractly_user') || {
   },
 }
 
+
+let waiter = setTimeout(() => null, 1000);
 /**Auto-save to local storage */
 export function autoSave() {
   clearTimeout(waiter);
@@ -34,6 +40,8 @@ export function autoSave() {
   }, 1000);
 }
 
+
+/**Render the whole app */
 export function renderAll() {
   render(DocumentsPane(), $('.left-pane'));
   render(PreviewPane(), $('.center-pane'));
@@ -41,13 +49,13 @@ export function renderAll() {
   render(Header(), $('header'));
 }
 
+
+/**Acts like a proxy to render and save when a stateful value is changed */
 export function setState(key, value) {
   state[key] = value;
-  // console.log(state.currentDataset);
   renderAll();
   autoSave();
 }
 
-export let findDocumentByID = (id) => state.currentUser.documents.find(c => c.id == id);
-export let findDatasetByID = (id) => state.currentUser.datasets.find(d => d.id == id);
+
 export default state;

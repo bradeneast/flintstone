@@ -13,35 +13,42 @@ export default () => html`
 ${
   state.currentDataset
     ? html`
-    <div>
+    <div class=mount-children>
+
       <h3 data-active=true>
         <input type=text .value=${state.currentDataset.id} @input=${event => renameDataset(event.target.value)} />
       </h3>
-      <ul class=fields>
+
+      <ul class="fields mount-children">  
         <li>
           <label>Name</label>
           <label>Value</label>
           <span></span>
         </li>
-        ${state.currentDataset.fields.map((field, index) =>
-        Field(field, index, state.currentDataset.id)
-        )}
+        ${
+          state.currentDataset.fields.map((field, index) =>
+            Field(field, index, state.currentDataset.id)
+          )
+        }
         <button @click=${addField}>Add Field</button>
       </ul>
-    </div>
-    `
+
+    </div>`
     : nothing
 }
-<ul class=sets>
-  ${state.currentUser.datasets.map((dataset, datasetIndex) => html`
-  <li>
-    <button class=link @click=${() => setCurrentDataset(datasetIndex)}>
-      <h4>${dataset.id}</h4>
-    </button>
-    <button title="Duplicate ${dataset.id}" class=icon @click=${()=> duplicateDataset(datasetIndex)}>📄</button>
-    <button title="Delete ${dataset.id}" class=icon @click=${() => removeDataset(datasetIndex)}>🗑️</button>
-  </li>
-  `)}
+
+<ul class="sets mount-children">
+  ${
+    state.currentUser.datasets.map((dataset, datasetIndex) => html`
+    <li>
+      <button class=link @click=${() => setCurrentDataset(datasetIndex)}>
+        <h4>${dataset.id}</h4>
+      </button>
+      <button title="Duplicate ${dataset.id}" class=icon @click=${()=> duplicateDataset(datasetIndex)}>📄</button>
+      <button title="Delete ${dataset.id}" class=icon @click=${() => removeDataset(datasetIndex)}>🗑️</button>
+    </li>
+    `)
+  }
   <button @click=${addDataset}>Add Data</button>
 </ul>
 `

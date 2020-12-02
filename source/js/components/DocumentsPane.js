@@ -11,28 +11,30 @@ export default () => html`
 ${
   state.currentDocument
     ? html`
-    <div>
+    <div class=mount-children>
       <h3 data-active=true>
         <input type=text .value=${state.currentDocument.id} @input=${event => renameDocument(event.target.value)} />
       </h3>
     </div>
-    `
-    : nothing
+    ` : nothing
 }
-<ul class=sets>
-  ${state.currentUser.documents.map((document, documentIndex) => html`
-  <li>
-    <button class=link @click=${() => setCurrentDocument(documentIndex)}>
-      <h4>${document.id}</h4>
-    </button>
-    <button title="Duplicate ${document.id}" class=icon @click=${() => duplicateDocument(documentIndex)}>📄</button>
-    ${
-      state.currentUser.documents.length > 1
-        ? html`<button title="Delete ${document.id}" class=icon @click=${() => removeDocument(documentIndex)}>🗑️</button>`
-        : nothing
-    }
-  </li>
-  `)}
+
+<ul class="sets mount-children">
+  ${
+    state.currentUser.documents.map((document, documentIndex) => html`
+    <li>
+      <button class=link @click=${() => setCurrentDocument(documentIndex)}>
+        <h4>${document.id}</h4>
+      </button>
+      <button title="Duplicate ${document.id}" class=icon @click=${() => duplicateDocument(documentIndex)}>📄</button>
+      ${
+        state.currentUser.documents.length > 1
+          ? html`<button title="Delete ${document.id}" class=icon @click=${() => removeDocument(documentIndex)}>🗑️</button>`
+          : nothing
+      }
+    </li>
+    `)
+  }
   <button @click=${addDocument}>Add Document</button>
 </ul>
 `

@@ -1,10 +1,9 @@
-import { findDatasetByID, setState } from "../state"
+import state, { setState } from "../state"
 
-export default (index, newValue, datasetID) => {
+export default (index, newValue) => {
 
-  let dataset = findDatasetByID(datasetID);
-  let [key, value] = dataset.fields[index];
-  dataset.fields[index] = [key, newValue];
+  let [key, value] = state.currentDataset.fields[index];
+  state.currentDataset.fields[index] = [key, newValue];
 
-  setState('currentDataset', dataset);
+  setState('currentDataset', state.currentDataset);
 }

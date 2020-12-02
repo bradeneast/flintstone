@@ -1,3 +1,5 @@
+import { directive } from "./lit-html/lit-html";
+
 /**A shorthand for `querySelector`*/
 export let $ = (selector, context = document) => context.querySelector(selector);
 

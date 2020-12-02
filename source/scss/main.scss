@@ -101,7 +101,7 @@ header {
     display: inline-block;
     margin: 0;
     line-height: 1.2;
-    background: linear-gradient(to right, var(--primary), var(--primary-40));
+    background: linear-gradient(-37deg, var(--primary-80), var(--primary));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
   }
@@ -145,3 +145,4 @@ main {
 @import "./preview";
 @import "./print";
 @import "./mobile";
+@import "./animations";
