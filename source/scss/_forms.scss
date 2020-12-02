@@ -7,6 +7,7 @@ input {
 
 input,
 textarea {
+  font-family: Consolas, monospace;
   border: var(--border);
   border-color: transparent;
   transition: var(--transition);
@@ -34,6 +35,10 @@ label {
     padding: 0.2em 0;
     place-content: start;
     place-items: start;
+
+    actions {
+      display: flex;
+    }
 
     input,
     button {

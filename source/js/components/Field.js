@@ -1,9 +1,10 @@
-import { html } from "../lit-html/lit-html";
+import { html, svg } from "../lit-html/lit-html";
 import removeField from "../functions/removeField";
 import renameField from '../functions/renameField';
 import updateFieldValue from '../functions/updateFieldValue';
 import Button from "./Button";
 import moveField from "../functions/moveField";
+import Icon from "./Icon";
 
 export default ([key, value], fieldIndex, datasetIndex) => {
 
@@ -25,7 +26,7 @@ export default ([key, value], fieldIndex, datasetIndex) => {
           Button({
             title: 'Move field up',
             className: 'icon',
-            content: '⬆️',
+            content: Icon(svg`<polyline points="184.69 146.81 108 70.12 31.31 146.81" />`, 'line'),
             action: () => moveField(fieldIndex, -1)
           })
         }
@@ -33,7 +34,7 @@ export default ([key, value], fieldIndex, datasetIndex) => {
           Button({
             title: 'Move field down',
             className: 'icon',
-            content: '⬇️',
+            content: Icon(svg`<polyline points="184.69 70.12 108 146.81 31.31 70.12" />`, 'line'),
             action: () => moveField(fieldIndex, 1)
           })
         }

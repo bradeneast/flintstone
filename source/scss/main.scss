@@ -23,12 +23,12 @@ $g8: white;
   --g6: #{$g6};
   --g7: #{$g7};
   --g8: #{$g8};
-  --headerHeight: 3em;
+  --headerHeight: 3rem;
   --radius: 0.37rem;
-  --buttonPadding: 0.5em;
+  --buttonPadding: 0.5rem;
   --borderWidth: 2px;
   --border: var(--borderWidth) solid var(--g6);
-  --shadow: 0 0 0.5em -0.1em rgba(0, 0, 50, 0.2);
+  --shadow: 0 0 0.5rem -0.1rem rgba(0, 0, 50, 0.2);
   --transition: 0.3s cubic-bezier(0.3, 0.6, 0.1, 1);
 }
 
