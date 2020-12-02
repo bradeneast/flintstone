@@ -73,6 +73,10 @@ html.dark {
   --g8: #{$g0};
 }
 
+html {
+  background: var(--g8);
+}
+
 body {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -113,15 +117,15 @@ main {
   background: var(--g7);
 
   .left-pane {
-    flex: 1;
-  }
-
-  .right-pane {
     flex: 2;
   }
 
+  .right-pane {
+    flex: 3;
+  }
+
   .center-pane {
-    flex: 6;
+    flex: 8;
   }
 
   & > section {
@@ -140,3 +144,4 @@ main {
 @import "./aside-pane";
 @import "./preview";
 @import "./print";
+@import "./mobile";
