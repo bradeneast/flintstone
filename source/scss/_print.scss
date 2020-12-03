@@ -1,4 +1,10 @@
 @media print {
+  html,
+  body {
+    background: none;
+    color: var(--g1);
+  }
+
   body {
     padding: 0;
     overflow: visible;
@@ -26,14 +32,17 @@
       max-width: none;
 
       .preview {
+        background: $g8;
+        color: $g0;
+        padding: 0 !important;
         height: auto !important;
 
-        hr {
-          page-break-after: always;
-          page-break-before: always;
-          border: none;
-          margin: 0;
-          padding: 0;
+        &__page {
+          break-inside: avoid;
+
+          & + .preview__page {
+            break-before: always;
+          }
         }
       }
     }

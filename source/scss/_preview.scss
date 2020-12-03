@@ -12,6 +12,15 @@
 /*************************/
 
 .preview {
+  &__page {
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
   * {
     color: inherit;
     font-weight: inherit;

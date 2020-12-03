@@ -23,6 +23,7 @@ input {
 }
 
 label {
+  line-height: 1.2;
   display: grid;
   align-items: center;
   grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));

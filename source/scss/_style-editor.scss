@@ -7,6 +7,8 @@
   grid-template-rows: auto 1fr;
   padding: 0;
   width: calc(100% - 4em);
+  min-width: 15em;
+  max-width: 28em;
   height: 100%;
   top: 0;
   right: 0;
@@ -70,6 +72,18 @@
       label {
         margin-bottom: 0.5rem;
         transition: var(--transition);
+
+        .label {
+          display: flex;
+
+          &__value {
+            font-family: Consolas, monospace;
+            position: absolute;
+            right: 0;
+            background: var(--g7);
+            box-shadow: -0.63em 0 0.63em 0.37em var(--g7);
+          }
+        }
 
         &:hover,
         &:focus-within {
