@@ -60,14 +60,15 @@
       padding: 1em;
       margin-bottom: 2em;
       border: var(--border);
-
-      label {
-        margin-bottom: 0.5rem;
-      }
+      transition: box-shadow var(--transition);
 
       &:hover,
       &:focus-within {
         box-shadow: var(--shadow);
+      }
+
+      label {
+        margin-bottom: 0.5rem;
       }
     }
 

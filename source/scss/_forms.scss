@@ -50,7 +50,7 @@ select {
   padding: var(--buttonPadding);
   padding-right: 1.5em;
   padding-left: 0.2em;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 216 216'%3E%3Cpolygon points='11.44 63.46 108 167.96 204.56 63.46 11.44 63.46' style='fill:none;stroke:%236b7183;stroke-linejoin:round;stroke-width:20px'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 216 216' class='line'%3E%3Cpolyline style='stroke-width: 20; fill: none; stroke: %235b6677; stroke-linecap: round; stroke-linejoin: round;' points='184.69 70.12 108 146.81 31.31 70.12'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.5em top 50%;
   background-size: 1em auto;
