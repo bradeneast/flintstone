@@ -1,8 +1,11 @@
+import highlightElements from "../functions/highlightElements";
 import { html } from "../lit-html/lit-html";
 import state, { setState } from "../state";
 import { adjustments, tags } from "../style_data";
+import { $ } from "../utils";
 import Button from "./Button";
 import {range, select, text} from "./StyleAdjustment";
+
 
 export default () => html`
 <div ?data-active=${state.showStyles} class="styles">
@@ -17,7 +20,7 @@ export default () => html`
   }
   <div class=adjustments>
   ${Object.entries(tags).map(([tagName, {normieName, useAdjustments}]) => html`
-    <div class=adjustment>
+    <div class=adjustment @mouseenter=${() => highlightElements(tagName)} @mouseleave=${() => $('#temp')?.remove()}>
       <h3>${normieName}</h3>
       ${Object.entries(adjustments).map(([propName, propData]) => {
 

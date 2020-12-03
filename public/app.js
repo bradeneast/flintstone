@@ -1159,25 +1159,39 @@
 </nav>
 `;
 
+  // source/js/functions/highlightElements.js
+  var highlightElements_default = (tagName) => {
+    let style = document.createElement("style");
+    style.id = "temp";
+    style.innerHTML = `\r
+  .preview ${tagName} {\r
+    box-shadow: 0 0 0 2px var(--primary-60);\r
+    border-radius: var(--radius);\r
+    transition: box-shadow var(--transition);\r
+  }`;
+    document.body.appendChild(style);
+  };
+
   // source/js/style_data.js
   let headingAdjustments = ["font-size", "font-weight", "line-height", "letter-spacing", "text-transform", "color"];
   let inlineElementAdjustments = ["font-weight", "letter-spacing", "text-transform", "color"];
-  let headerFooterAdjustments = ["content", "color", "font-size", "font-weight", "text-transform", "letter-spacing"];
+  let headerFooterAdjustments = ["content", "color", "font-size", "font-weight", "text-transform", "letter-spacing", "text-align"];
+  let listAdjustments = ["padding-left", "padding-right", "color", "list-style"];
   let tags = {
     ".preview__wrapper": {
       normieName: "Global",
-      useAdjustments: ["font-size", "line-height", "--space"]
+      useAdjustments: ["font-size", "line-height", "--vertical-space"]
     },
     ".preview__page": {
       normieName: "Pages",
       useAdjustments: ["padding-top", "padding-bottom", "padding-left", "padding-right"]
     },
     ".preview__page::before": {
-      normieName: "Headers",
+      normieName: "Header",
       useAdjustments: headerFooterAdjustments
     },
     ".preview__page::after": {
-      normieName: "Footers",
+      normieName: "Footer",
       useAdjustments: headerFooterAdjustments
     },
     h1: {
@@ -1216,13 +1230,21 @@
       normieName: "Italic Text",
       useAdjustments: inlineElementAdjustments
     },
+    ul: {
+      normieName: "Unordered Lists",
+      useAdjustments: listAdjustments
+    },
+    ol: {
+      normieName: "Ordered Lists",
+      useAdjustments: listAdjustments
+    },
     del: {
       normieName: "Strikethroughs",
       useAdjustments: inlineElementAdjustments
     },
     blockquote: {
       normieName: "Block Quotes",
-      useAdjustments: ["color", "padding-top", "padding-bottom", "padding-left", "padding-right", "border-width", "border-color"]
+      useAdjustments: ["color", "padding-left", "padding-right", "border-width", "border-color"]
     }
   };
   class Adjustment {
@@ -1286,7 +1308,7 @@
       max: 3,
       step: 0.1
     }),
-    "--space": new Range({
+    "--vertical-space": new Range({
       min: 0,
       max: 56,
       step: 1,
@@ -1298,6 +1320,28 @@
         "capitalize",
         "uppercase",
         "lowercase",
+        "none"
+      ]
+    }),
+    "text-align": new Select({
+      defaultValue: "left",
+      options: [
+        "left",
+        "center",
+        "right"
+      ]
+    }),
+    "list-style": new Select({
+      defaultValue: "disc",
+      options: [
+        "disc",
+        "circle",
+        "square",
+        "decimal",
+        "lower-alpha",
+        "upper-alpha",
+        "lower-roman",
+        "upper-roman",
         "none"
       ]
     }),
@@ -1346,37 +1390,41 @@
   };
 
   // source/js/components/StyleAdjustment.js
+  let clean = (string) => string.replace(/-+/g, " ").trim();
   let range = ([tagName, {normieName}], [propName, {min, max, step, unit}]) => {
     let unitValue = state_default.styles[tagName][propName];
+    let cleanPropName = clean(propName);
     return html`
   <label>
     <span class=label>
-      <span class=label__name>${propName.replace(/-/g, " ")}</span>
+      <span class=label__name>${cleanPropName}</span>
       <span class=label__value>${unitValue || ""}</span>
     </span>
-    <input value=${parseFloat(unitValue)} title='${normieName} ${propName}' min=${min} max=${max} step=${step} type=range
+    <input value=${parseFloat(unitValue)} title='${normieName} ${cleanPropName}' min=${min} max=${max} step=${step} type=range
       @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value + unit)} />
   </label>`;
   };
   let text = ([tagName, {normieName}], [propName, {placeholder}]) => {
     let unitValue = state_default.styles[tagName][propName];
+    let cleanPropName = clean(propName);
     return html`
   <label>
     <span class=label>
-      <span class=label__name>${propName.replace(/-/g, " ")}</span>
+      <span class=label__name>${cleanPropName}</span>
     </span>
-    <input placeholder=${placeholder} value=${unitValue || ""} title='${normieName} ${propName}' type=text
+    <input placeholder=${placeholder} value=${unitValue || ""} title='${normieName} ${cleanPropName}' type=text
       @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)} />
   </label>`;
   };
   let select = ([tagName, {normieName}], [propName, {options, defaultValue}]) => {
     let unitValue = state_default.styles[tagName][propName] || defaultValue;
+    let cleanPropName = clean(propName);
     return html`
   <label>
     <span class=label>
-      <span class=label__name>${propName.replace(/-/g, " ")}</span>
+      <span class=label__name>${cleanPropName}</span>
     </span>
-    <select title='${normieName} ${propName}' value=${unitValue || ""} @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)}>
+    <select title='${normieName} ${cleanPropName}' value=${unitValue || ""} @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)}>
       ${options.map((opt) => html`<option ?selected=${opt == unitValue}>${opt}</option>`)}
     </select>
   </label>`;
@@ -1394,7 +1442,10 @@
   })}
   <div class=adjustments>
   ${Object.entries(tags).map(([tagName, {normieName, useAdjustments}]) => html`
-    <div class=adjustment>
+    <div class=adjustment @mouseenter=${() => highlightElements_default(tagName)} @mouseleave=${() => {
+    var _a;
+    return (_a = $("#temp")) == null ? void 0 : _a.remove();
+  }}>
       <h3>${normieName}</h3>
       ${Object.entries(adjustments).map(([propName, propData]) => {
     if (!useAdjustments.includes(propName))

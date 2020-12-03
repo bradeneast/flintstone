@@ -62,11 +62,12 @@
       padding: 1em;
       margin-bottom: 2em;
       border: var(--border);
-      transition: box-shadow var(--transition);
+      transition: border var(--transition), box-shadow var(--transition);
 
       &:hover,
       &:focus-within {
         box-shadow: var(--shadow);
+        border-color: var(--primary-60);
       }
 
       label {

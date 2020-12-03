@@ -1,6 +1,6 @@
 .preview {
   // MAIN
-  --space: 1em;
+  --vertical-space: 1em;
   --line-height: 1.5;
   font-size: 16px;
   line-height: var(--line-height);
@@ -15,9 +15,20 @@
   &__page {
     &::before,
     &::after {
+      content: "";
       position: absolute;
-      top: 0;
+      display: block;
+      width: 100%;
       left: 0;
+      right: 0;
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
     }
   }
 
@@ -30,7 +41,7 @@
   }
 
   * + *:not(li) {
-    margin-top: var(--space);
+    margin-top: var(--vertical-space);
   }
 
   & > :last-child {
