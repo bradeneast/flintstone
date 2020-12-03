@@ -57,6 +57,10 @@ export let tags = {
     normieName: 'Italic Text',
     useAdjustments: inlineElementAdjustments,
   },
+  del: {
+    normieName: 'Strikethroughs',
+    useAdjustments: inlineElementAdjustments,
+  },
   ul: {
     normieName: 'Unordered Lists',
     useAdjustments: listAdjustments,
@@ -64,10 +68,6 @@ export let tags = {
   ol: {
     normieName: 'Ordered Lists',
     useAdjustments: listAdjustments,
-  },
-  del: {
-    normieName: 'Strikethroughs',
-    useAdjustments: inlineElementAdjustments,
   },
   blockquote: {
     normieName: 'Block Quotes',
