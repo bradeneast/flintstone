@@ -28,7 +28,7 @@ $g8: white;
   --buttonPadding: 0.5rem;
   --borderWidth: 2px;
   --border: var(--borderWidth) solid var(--g6);
-  --shadow: 0 0 0.5rem -0.1rem var(--g6);
+  --shadow: 0 0.2rem 0.5rem -0.1rem var(--g5);
   --transition: 0.3s cubic-bezier(0.3, 0.6, 0.1, 1);
 }
 
@@ -94,8 +94,9 @@ header {
   width: 100%;
   height: var(--headerHeight);
   background: var(--g8);
+  border-bottom: var(--border);
+  border-color: var(--g7);
   padding: 0.5em 1em;
-  box-shadow: var(--shadow);
 
   #logo {
     display: inline-block;
