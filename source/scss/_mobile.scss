@@ -1,7 +1,7 @@
 @media screen and (max-width: 960px) {
-  // :root {
-  //   font-size: 12px;
-  // }
+  :root {
+    font-size: 12px;
+  }
 
   body {
     padding: 0;
@@ -17,23 +17,28 @@
     section {
       height: auto;
       max-height: none;
+
+      &.aside {
+        padding: 3em 1em;
+        border-bottom: var(--border);
+
+        .pane > :nth-child(2) {
+          border: none;
+          margin: 0;
+        }
+      }
     }
 
-    .center-pane {
+    .styles {
+      position: fixed;
+      top: var(--headerHeight);
+    }
+
+    .center {
       order: 3;
       min-height: calc(100vh - var(--headerHeight));
       min-height: -webkit-fill-available;
       margin: 0;
-    }
-
-    .aside-pane {
-      padding: 3em 1em;
-      border-bottom: var(--border);
-
-      & > :nth-child(2) {
-        border: none;
-        margin: 0;
-      }
     }
   }
 }

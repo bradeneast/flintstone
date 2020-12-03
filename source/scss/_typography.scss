@@ -27,12 +27,12 @@ h6 {
   margin-bottom: 0.2em;
 
   input {
-    font-size: 1.1em;
+    font-family: inherit;
     display: inline-block;
-    padding: 0;
     background: none;
-    border: none;
+    padding: 0;
     border-radius: 0;
+    border: none;
     border-bottom: var(--border);
     border-color: transparent;
     font-weight: inherit;
