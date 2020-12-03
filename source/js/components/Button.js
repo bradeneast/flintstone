@@ -5,4 +5,5 @@ export default ({
   action = null,
   content = '',
   className = '',
-}) => html`<button title=${title} class=${className} @click=${action}>${content}</button>`;
+  disabled = false,
+}) => html`<button ?disabled=${disabled} title=${title} class=${className} @click=${action}>${content}</button>`;

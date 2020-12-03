@@ -5,6 +5,7 @@ import updateFieldValue from '../functions/updateFieldValue';
 import Button from "./Button";
 import moveField from "../functions/moveField";
 import Icon from "./Icon";
+import state from "../state";
 
 export default ([key, value], fieldIndex, datasetIndex) => {
 
@@ -26,6 +27,7 @@ export default ([key, value], fieldIndex, datasetIndex) => {
           Button({
             title: 'Move field up',
             className: 'icon',
+            disabled: fieldIndex == 0,
             content: Icon(svg`<polyline points="184.69 146.81 108 70.12 31.31 146.81" />`, 'line'),
             action: () => moveField(fieldIndex, -1)
           })
@@ -34,6 +36,7 @@ export default ([key, value], fieldIndex, datasetIndex) => {
           Button({
             title: 'Move field down',
             className: 'icon',
+            disabled: fieldIndex == state.currentDataset.fields.length - 1,
             content: Icon(svg`<polyline points="184.69 70.12 108 146.81 31.31 70.12" />`, 'line'),
             action: () => moveField(fieldIndex, 1)
           })
