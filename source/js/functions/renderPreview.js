@@ -3,22 +3,39 @@ import { $ } from '../utils';
 import purify from '../dom-purify/purify';
 import marked from '../marked/marked';
 
+
+export function getFieldValue(prop) {
+  for (let [key, value] of state.currentDataset.fields)
+    if (key == prop)
+      return value;
+}
+
+
+export function hydrateFromDataset(string) {
+  return getFieldValue(
+    string.slice(1, -1).trim(),
+    state.currentDataset.fields
+  )
+}
+
+
+export let dataMatcher = /\{.+?\}/g;
+
+
 export default () => {
 
   setState('showPreview', true);
-  let fields = state.currentDataset.fields;
-
-  function getProp(prop) {
-    for (let [key, value] of fields)
-      if (key == prop)
-        return value;
-  }
-
-  function hydrate(string) {
-    return getProp(string.slice(1, -1).trim(), fields)
-  }
 
   let previewWrapper = $('.preview__wrapper');
-  let hydrated = state.currentDocument.body.replace(/\{.+?\}/g, hydrate);
-  previewWrapper.innerHTML = purify.sanitize(marked(hydrated));
+  let hydrated = state.currentDocument.body.replace(dataMatcher, hydrateFromDataset);
+  let sanitized = purify.sanitize(marked(hydrated));
+
+  previewWrapper.innerHTML = '';
+
+  for (let pageContent of sanitized.split('<hr>')) {
+    let pageElement = document.createElement('div');
+    pageElement.classList.add('preview__page');
+    pageElement.innerHTML = pageContent;
+    previewWrapper.append(pageElement);
+  }
 }

@@ -1104,7 +1104,11 @@
     let previewStyles = `<style>\r
   ${Object.entries(state_default.styles).map(([tagName, prop]) => `\r
       .preview ${tagName} {\r
-        ${Object.entries(prop).map(([prop2, value]) => `${prop2}: ${value}`).join(";")}\r
+        ${Object.entries(prop).map(([propName, propValue]) => {
+      if (propName == "content")
+        propValue = `"${propValue.replace(/"/g, '\\"')}"`;
+      return [propName, propValue.replace(dataMatcher, hydrateFromDataset)].join(":");
+    }).join(";")}\r
       }`).join("")}\r
   </style>`;
     return html`
@@ -1158,10 +1162,23 @@
   // source/js/style_data.js
   let headingAdjustments = ["font-size", "font-weight", "line-height", "letter-spacing", "text-transform", "color"];
   let inlineElementAdjustments = ["font-weight", "letter-spacing", "text-transform", "color"];
+  let headerFooterAdjustments = ["content", "color", "font-size", "font-weight", "text-transform", "letter-spacing"];
   let tags = {
     ".preview__wrapper": {
       normieName: "Global",
       useAdjustments: ["font-size", "line-height", "--space"]
+    },
+    ".preview__page": {
+      normieName: "Pages",
+      useAdjustments: ["padding-top", "padding-bottom", "padding-left", "padding-right"]
+    },
+    ".preview__page::before": {
+      normieName: "Headers",
+      useAdjustments: headerFooterAdjustments
+    },
+    ".preview__page::after": {
+      normieName: "Footers",
+      useAdjustments: headerFooterAdjustments
     },
     h1: {
       normieName: "Level 1 Headings",
@@ -1202,6 +1219,10 @@
     del: {
       normieName: "Strikethroughs",
       useAdjustments: inlineElementAdjustments
+    },
+    blockquote: {
+      normieName: "Block Quotes",
+      useAdjustments: ["color", "padding-top", "padding-bottom", "padding-left", "padding-right", "border-width", "border-color"]
     }
   };
   class Adjustment {
@@ -1240,6 +1261,9 @@
     }
   }
   let adjustments = {
+    content: new Text({
+      placeholder: "{ date }"
+    }),
     "font-size": new Range({
       min: 8,
       max: 72,
@@ -1249,32 +1273,26 @@
     "font-weight": new Range({
       min: 300,
       max: 900,
-      step: 50,
-      unit: ""
+      step: 50
     }),
     "letter-spacing": new Range({
-      type: "range",
       min: -5,
       max: 5,
       step: 0.2,
       unit: "px"
     }),
     "line-height": new Range({
-      type: "range",
       min: 0.5,
-      max: 2.5,
-      step: 0.1,
-      unit: ""
+      max: 3,
+      step: 0.1
     }),
     "--space": new Range({
-      type: "range",
       min: 0,
       max: 56,
       step: 1,
       unit: "px"
     }),
     "text-transform": new Select({
-      type: "select",
       defaultValue: "none",
       options: [
         "capitalize",
@@ -1284,8 +1302,40 @@
       ]
     }),
     color: new Text({
-      type: "text",
       placeholder: "tomato"
+    }),
+    "border-color": new Text({
+      placeholder: "dodgerblue"
+    }),
+    "border-width": new Range({
+      min: 0,
+      max: 10,
+      step: 0.5,
+      unit: "px"
+    }),
+    "padding-top": new Range({
+      min: 0,
+      max: 56,
+      step: 1,
+      unit: "px"
+    }),
+    "padding-bottom": new Range({
+      min: 0,
+      max: 56,
+      step: 1,
+      unit: "px"
+    }),
+    "padding-left": new Range({
+      min: 0,
+      max: 56,
+      step: 1,
+      unit: "px"
+    }),
+    "padding-right": new Range({
+      min: 0,
+      max: 56,
+      step: 1,
+      unit: "px"
     })
   };
 
@@ -1296,29 +1346,36 @@
   };
 
   // source/js/components/StyleAdjustment.js
-  let range = ([tagName, normieName], [propName, {min, max, step, unit}]) => {
+  let range = ([tagName, {normieName}], [propName, {min, max, step, unit}]) => {
     let unitValue = state_default.styles[tagName][propName];
     return html`
   <label>
-    ${propName.replace(/-/g, " ")} ${unitValue ? `(${unitValue})` : ""}
+    <span class=label>
+      <span class=label__name>${propName.replace(/-/g, " ")}</span>
+      <span class=label__value>${unitValue || ""}</span>
+    </span>
     <input value=${parseFloat(unitValue)} title='${normieName} ${propName}' min=${min} max=${max} step=${step} type=range
       @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value + unit)} />
   </label>`;
   };
-  let text = ([tagName, normieName], [propName, {placeholder}]) => {
+  let text = ([tagName, {normieName}], [propName, {placeholder}]) => {
     let unitValue = state_default.styles[tagName][propName];
     return html`
   <label>
-    ${propName.replace(/-/g, " ")}
+    <span class=label>
+      <span class=label__name>${propName.replace(/-/g, " ")}</span>
+    </span>
     <input placeholder=${placeholder} value=${unitValue || ""} title='${normieName} ${propName}' type=text
       @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)} />
   </label>`;
   };
-  let select = ([tagName, normieName], [propName, {options, defaultValue}]) => {
+  let select = ([tagName, {normieName}], [propName, {options, defaultValue}]) => {
     let unitValue = state_default.styles[tagName][propName] || defaultValue;
     return html`
   <label>
-    ${propName.replace(/-/g, " ")}
+    <span class=label>
+      <span class=label__name>${propName.replace(/-/g, " ")}</span>
+    </span>
     <select title='${normieName} ${propName}' value=${unitValue || ""} @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)}>
       ${options.map((opt) => html`<option ?selected=${opt == unitValue}>${opt}</option>`)}
     </select>
@@ -3904,20 +3961,27 @@
   var marked_default = marked_1;
 
   // source/js/functions/renderPreview.js
+  function getFieldValue(prop) {
+    for (let [key, value] of state_default.currentDataset.fields)
+      if (key == prop)
+        return value;
+  }
+  function hydrateFromDataset(string) {
+    return getFieldValue(string.slice(1, -1).trim(), state_default.currentDataset.fields);
+  }
+  let dataMatcher = /\{.+?\}/g;
   var renderPreview_default = () => {
     setState("showPreview", true);
-    let fields = state_default.currentDataset.fields;
-    function getProp(prop) {
-      for (let [key, value] of fields)
-        if (key == prop)
-          return value;
-    }
-    function hydrate(string) {
-      return getProp(string.slice(1, -1).trim(), fields);
-    }
     let previewWrapper = $(".preview__wrapper");
-    let hydrated = state_default.currentDocument.body.replace(/\{.+?\}/g, hydrate);
-    previewWrapper.innerHTML = purify_default.sanitize(marked_default(hydrated));
+    let hydrated = state_default.currentDocument.body.replace(dataMatcher, hydrateFromDataset);
+    let sanitized = purify_default.sanitize(marked_default(hydrated));
+    previewWrapper.innerHTML = "";
+    for (let pageContent of sanitized.split("<hr>")) {
+      let pageElement = document.createElement("div");
+      pageElement.classList.add("preview__page");
+      pageElement.innerHTML = pageContent;
+      previewWrapper.append(pageElement);
+    }
   };
 
   // source/js/app.js

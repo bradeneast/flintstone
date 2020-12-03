@@ -1,6 +1,7 @@
 import renderPreview from "../functions/renderPreview";
 import { html } from "../lit-html/lit-html";
-import {unsafeHTML} from '../lit-html/directives/unsafe-html';
+import { unsafeHTML } from '../lit-html/directives/unsafe-html';
+import { dataMatcher, hydrateFromDataset } from "../functions/renderPreview";
 import state, { setState } from '../state';
 
 
@@ -11,7 +12,11 @@ export default () => {
     .map(([tagName, prop]) => `
       .preview ${tagName} {
         ${Object.entries(prop)
-          .map(([prop, value]) => `${prop}: ${value}`)
+          .map(([propName, propValue]) => {
+            if (propName == 'content')
+              propValue = `"${propValue.replace(/"/g, '\\"')}"`;
+              return [propName, propValue.replace(dataMatcher, hydrateFromDataset)].join(':')
+          })
           .join(';')
         }
       }`)

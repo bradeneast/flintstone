@@ -1,10 +1,23 @@
 let headingAdjustments = ['font-size', 'font-weight', 'line-height', 'letter-spacing', 'text-transform', 'color'];
 let inlineElementAdjustments = ['font-weight', 'letter-spacing', 'text-transform', 'color'];
+let headerFooterAdjustments = ['content', 'color', 'font-size', 'font-weight', 'text-transform', 'letter-spacing'];
 
 export let tags = {
   '.preview__wrapper': {
     normieName: 'Global',
     useAdjustments: ['font-size', 'line-height', '--space']
+  },
+  '.preview__page': {
+    normieName: 'Pages',
+    useAdjustments: ['padding-top', 'padding-bottom', 'padding-left', 'padding-right']
+  },
+  '.preview__page::before': {
+    normieName: 'Headers',
+    useAdjustments: headerFooterAdjustments
+  },
+  '.preview__page::after': {
+    normieName: 'Footers',
+    useAdjustments: headerFooterAdjustments
   },
   h1: {
     normieName: 'Level 1 Headings',
@@ -46,6 +59,10 @@ export let tags = {
     normieName: 'Strikethroughs',
     useAdjustments: inlineElementAdjustments,
   },
+  blockquote: {
+    normieName: 'Block Quotes',
+    useAdjustments: ['color', 'padding-top', 'padding-bottom', 'padding-left', 'padding-right', 'border-width', 'border-color']
+  }
 }
 
 
@@ -86,6 +103,9 @@ class Select extends Adjustment {
 
 
 export let adjustments = {
+  'content': new Text({
+    placeholder: '{ date }',
+  }),
   'font-size': new Range({
     min: 8,
     max: 72,
@@ -96,31 +116,25 @@ export let adjustments = {
     min: 300,
     max: 900,
     step: 50,
-    unit: ''
   }),
   'letter-spacing': new Range({
-    type: 'range',
     min: -5,
     max: 5,
     step: .2,
     unit: 'px'
   }),
   'line-height': new Range({
-    type: 'range',
     min: .5,
-    max: 2.5,
+    max: 3,
     step: .1,
-    unit: ''
   }),
   '--space': new Range({
-    type: 'range',
     min: 0,
     max: 56,
     step: 1,
     unit: 'px'
   }),
   'text-transform': new Select({
-    type: 'select',
     defaultValue: 'none',
     options: [
       'capitalize',
@@ -130,7 +144,39 @@ export let adjustments = {
     ]
   }),
   'color': new Text({
-    type: 'text',
     placeholder: 'tomato'
+  }),
+  'border-color': new Text({
+    placeholder: 'dodgerblue'
+  }),
+  'border-width': new Range({
+    min: 0,
+    max: 10,
+    step: .5,
+    unit: 'px'
+  }),
+  'padding-top': new Range({
+    min: 0,
+    max: 56,
+    step: 1,
+    unit: 'px'
+  }),
+  'padding-bottom': new Range({
+    min: 0,
+    max: 56,
+    step: 1,
+    unit: 'px'
+  }),
+  'padding-left': new Range({
+    min: 0,
+    max: 56,
+    step: 1,
+    unit: 'px'
+  }),
+  'padding-right': new Range({
+    min: 0,
+    max: 56,
+    step: 1,
+    unit: 'px'
   }),
 }
