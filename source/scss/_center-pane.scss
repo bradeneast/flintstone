@@ -1,4 +1,4 @@
-.center-pane {
+.center {
   max-width: 50em;
   margin: 0 auto;
 
@@ -34,17 +34,20 @@
     }
   }
 
+  .editor {
+    font-size: calc(0.6rem + 50%);
+    line-height: 1.5;
+  }
+
   .preview,
   .editor {
     resize: none;
     overflow-y: auto;
-    background: var(--g8);
     border: var(--border);
     border-color: transparent;
+    background: var(--g8);
     padding: 2em;
     height: 100%;
-    font-size: calc(0.6rem + 50%);
-    line-height: 1.5;
 
     &:focus,
     &:focus-within {

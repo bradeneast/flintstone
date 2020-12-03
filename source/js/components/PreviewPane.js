@@ -1,9 +1,25 @@
 import renderPreview from "../functions/renderPreview";
 import { html } from "../lit-html/lit-html";
+import {unsafeHTML} from '../lit-html/directives/unsafe-html';
 import state, { setState } from '../state';
 
 
-export default () => html`
+export default () => {
+
+  let previewStyles = `<style>
+  ${Object.entries(state.styles)
+    .map(([tagName, prop]) => `
+      .preview ${tagName} {
+        ${Object.entries(prop)
+          .map(([prop, value]) => `${prop}: ${value}`)
+          .join(';')
+        }
+      }`)
+    .join('')
+  }
+  </style>`;
+
+  return html`
 
   <toolbar>
     <button 
@@ -24,7 +40,8 @@ export default () => html`
 
   ${
     state.showPreview
-      ? html`<div class=preview></div>`
+      ? html`<div class=preview></div>${unsafeHTML(previewStyles)}`
       : html`<textarea class=editor @input=${event=> state.currentDocument.body = event.target.value}>${state.currentDocument.body}</textarea>`
   }
-`
+`;
+}

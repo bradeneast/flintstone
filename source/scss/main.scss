@@ -28,7 +28,7 @@ $g8: white;
   --buttonPadding: 0.5rem;
   --borderWidth: 2px;
   --border: var(--borderWidth) solid var(--g6);
-  --shadow: 0 0 0.5rem -0.1rem rgba(0, 0, 50, 0.2);
+  --shadow: 0 0 0.5rem -0.1rem var(--g6);
   --transition: 0.3s cubic-bezier(0.3, 0.6, 0.1, 1);
 }
 
@@ -90,7 +90,7 @@ header {
   display: flex;
   top: 0;
   left: 0;
-  z-index: 9;
+  z-index: 10;
   width: 100%;
   height: var(--headerHeight);
   background: var(--g8);
@@ -111,37 +111,13 @@ header {
   }
 }
 
-main {
-  top: var(--headerHeight);
-  display: flex;
-  background: var(--g7);
-
-  .left-pane {
-    flex: 2;
-  }
-
-  .right-pane {
-    flex: 3;
-  }
-
-  .center-pane {
-    flex: 8;
-  }
-
-  & > section {
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - var(--headerHeight));
-    overflow-y: auto;
-  }
-}
-
 @import "./loader";
 @import "./forms";
 @import "./typography";
 @import "./buttons";
 @import "./center-pane";
-@import "./aside-pane";
+@import "./layout";
+@import "./style-editor";
 @import "./preview";
 @import "./print";
 @import "./mobile";

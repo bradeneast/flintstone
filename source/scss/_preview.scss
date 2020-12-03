@@ -1,18 +1,17 @@
-.center-pane .preview {
-  --space: 1rem;
-  --line_height: 1.5;
-  color: var(--g1);
-  line-height: var(--line_height);
-  font-size: var(--font_size);
+.preview {
+  // MAIN
+  --space: 1em;
+  --line-height: 1.5;
+  font-size: 16px;
+  line-height: var(--line-height);
+  font-size: var(--font-size);
+}
 
-  /************************/
-  /** STYLEABLE ELEMENTS **/
-  /************************/
+/*************************/
+/** NON-EDITABLE STYLES **/
+/*************************/
 
-  & > :last-child {
-    margin-bottom: 2em;
-  }
-
+.preview {
   * {
     color: inherit;
     font-weight: inherit;
@@ -21,19 +20,28 @@
     padding: 0;
   }
 
-  * + * {
-    margin-top: var(--space);
+  h1 {
+    font-size: 2.37em;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
+  h2 {
+    font-size: 1.63em;
+  }
+
+  h3 {
+    font-size: 1.37em;
+  }
+
+  h4 {
+    font-size: 1.2em;
+  }
+
+  h5 {
+    font-size: 1.1em;
+  }
+
   h6 {
-    font-weight: 700;
-    margin-bottom: 0;
-    margin-left: -0.03em;
+    font-size: 1em;
   }
 
   ul,
@@ -42,32 +50,22 @@
     padding-left: 1em;
   }
 
-  li {
-    margin-top: 0;
-  }
-
   a {
-    color: var(--primary);
     text-decoration: underline;
-  }
-
-  del {
-    color: var(--g3);
-  }
-
-  strong {
-    font-weight: 700;
   }
 
   blockquote {
     padding-left: var(--space);
     border-left: var(--border);
-    color: var(--g3);
   }
 
-  /****************************/
-  /** NON-STYLEABLE ELEMENTS **/
-  /****************************/
+  * + *:not(li) {
+    margin-top: var(--space);
+  }
+
+  & > :last-child {
+    margin-bottom: 2em;
+  }
 
   br,
   hr {

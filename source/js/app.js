@@ -1,6 +1,6 @@
 import renderPreview from './functions/renderPreview';
-import toggleDarkMode from './functions/toggleDarkMode';
 import state, { renderAll, autoSave } from './state';
+import { tags } from './style_data';
 
 
 if (!state.savedLocally) {
@@ -13,6 +13,7 @@ if (!state.savedLocally) {
       state.currentUser = user;
       state.currentDocument = state.currentUser.documents[0];
       state.currentDataset = state.currentUser.datasets[0];
+      Object.keys(tags).map(tagName => state.styles[tagName] = {});
     })
     .then(renderAll)
     .then(autoSave)

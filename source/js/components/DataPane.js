@@ -10,65 +10,65 @@ import Button from "./Button";
 import Field from "./Field";
 
 export default () => html`
-<h2>Data</h2>
-${
-  state.currentDataset
+<div class=pane>
+  <h2>Data</h2>
+  ${
+    state.currentDataset
     ? html`
     <div class=mount-children>
 
       <h3 data-active=true>
-        <input type=text .value=${state.currentDataset.id} @input=${event => renameDataset(event.target.value)} />
+        <input type=text .value=${state.currentDataset.id} @input=${event=> renameDataset(event.target.value)} />
       </h3>
 
-      <ul class="fields mount-children">  
+      <ul class="fields mount-children">
         <li>
           <label>Name</label>
           <label>Value</label>
           <span></span>
         </li>
-        ${
-          state.currentDataset.fields.map((field, index) =>
-            Field(field, index, state.currentDataset.id)
-          )
+        ${state.currentDataset.fields.map((field, index) =>
+        Field(field, index, state.currentDataset.id)
+        )
         }
         <button @click=${addField}>Add Field</button>
       </ul>
 
     </div>`
     : nothing
-}
+  }
 
-<ul class="sets mount-children">
-  ${
-    state.currentUser.datasets.map((dataset, datasetIndex) => html`
+  <ul class="sets mount-children">
+    ${state.currentUser.datasets.map((dataset, datasetIndex) => html`
     <li>
-    ${
-      Button({
-        title: `Select ${dataset.id}`,
-        className: 'link',
-        action: ()=> setCurrentDataset(datasetIndex),
-        content: html`<h4>${dataset.id}</h4>`
-      })
-    }
-    ${
-      Button({
-        title: `Duplicate ${dataset.id}`,
-        className: 'icon',
-        action: () => duplicateDataset(datasetIndex),
-        content: '📄'
-      })
-    }
-    ${
-      Button({
-        title: `Delete ${dataset.id}`,
-        className: 'icon',
-        action: () => removeDataset(datasetIndex),
-        content: '🗑️'
-      })
-    }
+      ${
+        Button({
+          title: `Select ${dataset.id}`,
+          className: 'link',
+          action: () => setCurrentDataset(datasetIndex),
+          content: html`<h4>${dataset.id}</h4>`
+        })
+      }
+      ${
+        Button({
+          title: `Duplicate ${dataset.id}`,
+          className: 'icon',
+          action: () => duplicateDataset(datasetIndex),
+          content: '📄'
+        })
+      }
+      ${
+        Button({
+          title: `Delete ${dataset.id}`,
+          className: 'icon',
+          action: () => removeDataset(datasetIndex),
+          content: '🗑️'
+        })
+      }
     </li>
     `)
-  }
-  <button @click=${addDataset}>Add Data</button>
-</ul>
+    }
+    <button @click=${addDataset}>Add Data</button>
+  </ul>
+</div>
 `

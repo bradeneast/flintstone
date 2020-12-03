@@ -9,7 +9,8 @@
   header,
   toolbar,
   .editor,
-  .aside-pane {
+  .left,
+  .right {
     display: none !important;
   }
 
@@ -18,7 +19,7 @@
     display: block;
     top: 0;
 
-    section.center-pane {
+    section.center {
       all: unset;
       height: auto;
       max-height: none;

@@ -1,4 +1,4 @@
-import state, { findDatasetByID, setState } from "../state"
+import state, { setState } from "../state"
 import renderPreview from "./renderPreview";
 
 export default index => {

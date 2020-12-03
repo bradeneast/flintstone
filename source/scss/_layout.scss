@@ -1,0 +1,55 @@
+main {
+  top: var(--headerHeight);
+  display: flex;
+  background: var(--g7);
+
+  section {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--headerHeight));
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &.aside {
+      padding: 1em;
+    }
+
+    &.left {
+      flex: 2;
+    }
+
+    &.right {
+      flex: 3;
+    }
+
+    &.center {
+      flex: 8;
+    }
+  }
+}
+
+.aside .pane {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  & > :nth-child(2) {
+    overflow-y: auto;
+    border-bottom: var(--border);
+    margin-bottom: 2em;
+
+    & > :last-child {
+      margin-bottom: 2em;
+    }
+  }
+
+  .sets li {
+    display: flex;
+    align-items: center;
+    align-content: center;
+
+    & > :first-child {
+      margin-right: 0.5em;
+    }
+  }
+}
