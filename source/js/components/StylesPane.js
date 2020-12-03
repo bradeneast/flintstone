@@ -1,6 +1,6 @@
 import { html } from "../lit-html/lit-html";
 import state, { setState } from "../state";
-import { properties, tags } from "../style_data";
+import { adjustments, tags } from "../style_data";
 import Button from "./Button";
 import {range, select, text} from "./StyleAdjustment";
 
@@ -16,14 +16,19 @@ export default () => html`
     })
   }
   <div class=adjustments>
-  ${Object.entries(tags).map(tag => html`
+  ${Object.entries(tags).map(([tagName, {normieName, useAdjustments}]) => html`
     <div class=adjustment>
-      <h3>${tag[1]}</h3>
-      ${properties.map(prop => {
-        switch (prop.type) {
-          case 'range': return range(tag, prop);
-          case 'text': return text(tag, prop);
-          case 'select': return select(tag, prop);
+      <h3>${normieName}</h3>
+      ${Object.entries(adjustments).map(([propName, propData]) => {
+
+        if (!useAdjustments.includes(propName)) return;
+        let tagArgument = [tagName, { normieName, useAdjustments }];
+        let propArgument = [propName, propData];
+        
+        switch (propData.type) {
+          case 'range': return range(tagArgument, propArgument);
+          case 'text': return text(tagArgument, propArgument);
+          case 'select': return select(tagArgument, propArgument);
         }
       })}
     </div>

@@ -40,8 +40,13 @@ export default () => {
 
   ${
     state.showPreview
-      ? html`<div class=preview></div>${unsafeHTML(previewStyles)}`
-      : html`<textarea class=editor @input=${event=> state.currentDocument.body = event.target.value}>${state.currentDocument.body}</textarea>`
+      ? html`
+      <div class=preview>
+        <div class=preview__wrapper></div>
+      </div>
+      ${unsafeHTML(previewStyles)}`
+      : html`
+      <textarea class=editor @input=${event=> state.currentDocument.body = event.target.value}>${state.currentDocument.body}</textarea>`
   }
 `;
 }

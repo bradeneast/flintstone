@@ -18,8 +18,7 @@ export default () => {
     return getProp(string.slice(1, -1).trim(), fields)
   }
 
-  let preview = $('.preview');
+  let previewWrapper = $('.preview__wrapper');
   let hydrated = state.currentDocument.body.replace(/\{.+?\}/g, hydrate);
-  let parsed = marked(hydrated);
-  preview.innerHTML = purify.sanitize(parsed);
+  previewWrapper.innerHTML = purify.sanitize(marked(hydrated));
 }

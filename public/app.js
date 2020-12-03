@@ -841,8 +841,9 @@
     title = "",
     action = null,
     content = "",
-    className = ""
-  }) => html`<button title=${title} class=${className} @click=${action}>${content}</button>`;
+    className = "",
+    disabled = false
+  }) => html`<button ?disabled=${disabled} title=${title} class=${className} @click=${action}>${content}</button>`;
 
   // source/js/components/DocumentsPane.js
   var DocumentsPane_default = () => html`
@@ -994,12 +995,14 @@
         ${Button_default({
       title: "Move field up",
       className: "icon",
+      disabled: fieldIndex == 0,
       content: Icon_default(svg`<polyline points="184.69 146.81 108 70.12 31.31 146.81" />`, "line"),
       action: () => moveField_default(fieldIndex, -1)
     })}
         ${Button_default({
       title: "Move field down",
       className: "icon",
+      disabled: fieldIndex == state_default.currentDataset.fields.length - 1,
       content: Icon_default(svg`<polyline points="184.69 70.12 108 146.81 31.31 70.12" />`, "line"),
       action: () => moveField_default(fieldIndex, 1)
     })}
@@ -1123,7 +1126,12 @@
     </button>
   </toolbar>
 
-  ${state_default.showPreview ? html`<div class=preview></div>${unsafeHTML(previewStyles)}` : html`<textarea class=editor @input=${(event) => state_default.currentDocument.body = event.target.value}>${state_default.currentDocument.body}</textarea>`}
+  ${state_default.showPreview ? html`
+      <div class=preview>
+        <div class=preview__wrapper></div>
+      </div>
+      ${unsafeHTML(previewStyles)}` : html`
+      <textarea class=editor @input=${(event) => state_default.currentDocument.body = event.target.value}>${state_default.currentDocument.body}</textarea>`}
 `;
   };
 
@@ -1148,53 +1156,124 @@
 `;
 
   // source/js/style_data.js
+  let headingAdjustments = ["font-size", "font-weight", "line-height", "letter-spacing", "text-transform", "color"];
+  let inlineElementAdjustments = ["font-weight", "letter-spacing", "text-transform", "color"];
   let tags = {
-    h1: "Level 1 Headings",
-    h2: "Level 2 Headings",
-    h3: "Level 3 Headings",
-    h4: "Level 4 Headings",
-    h5: "Level 5 Headings",
-    h6: "Level 6 Headings",
-    a: "Links",
-    strong: "Bold Text",
-    del: "Strikethroughs",
-    em: "Italic Text"
+    ".preview__wrapper": {
+      normieName: "Global",
+      useAdjustments: ["font-size", "line-height", "--space"]
+    },
+    h1: {
+      normieName: "Level 1 Headings",
+      useAdjustments: headingAdjustments
+    },
+    h2: {
+      normieName: "Level 2 Headings",
+      useAdjustments: headingAdjustments
+    },
+    h3: {
+      normieName: "Level 3 Headings",
+      useAdjustments: headingAdjustments
+    },
+    h4: {
+      normieName: "Level 4 Headings",
+      useAdjustments: headingAdjustments
+    },
+    h5: {
+      normieName: "Level 5 Headings",
+      useAdjustments: headingAdjustments
+    },
+    h6: {
+      normieName: "Level 6 Headings",
+      useAdjustments: headingAdjustments
+    },
+    a: {
+      normieName: "Links",
+      useAdjustments: inlineElementAdjustments
+    },
+    strong: {
+      normieName: "Bold Text",
+      useAdjustments: inlineElementAdjustments
+    },
+    em: {
+      normieName: "Italic Text",
+      useAdjustments: inlineElementAdjustments
+    },
+    del: {
+      normieName: "Strikethroughs",
+      useAdjustments: inlineElementAdjustments
+    }
   };
-  let properties = [
-    {
-      name: "font-size",
-      type: "range",
+  class Adjustment {
+    constructor(type) {
+      this.type = type;
+    }
+  }
+  class Text extends Adjustment {
+    constructor({placeholder}) {
+      super("text");
+      this.placeholder = placeholder || "";
+    }
+  }
+  class Range extends Adjustment {
+    constructor({
+      min,
+      max,
+      step,
+      unit
+    }) {
+      super("range");
+      this.min = min || 0;
+      this.max = max || 100;
+      this.step = step || 1;
+      this.unit = unit || "";
+    }
+  }
+  class Select extends Adjustment {
+    constructor({
+      options,
+      defaultValue
+    }) {
+      super("select");
+      this.options = options || [];
+      this.defaultValue = defaultValue || "";
+    }
+  }
+  let adjustments = {
+    "font-size": new Range({
       min: 8,
       max: 72,
       step: 1,
       unit: "px"
-    },
-    {
-      name: "font-weight",
-      type: "range",
+    }),
+    "font-weight": new Range({
       min: 300,
       max: 900,
       step: 50,
       unit: ""
-    },
-    {
-      name: "letter-spacing",
+    }),
+    "letter-spacing": new Range({
       type: "range",
       min: -5,
       max: 5,
       step: 0.2,
       unit: "px"
-    },
-    {
-      name: "line-height",
+    }),
+    "line-height": new Range({
       type: "range",
       min: 0.5,
       max: 2.5,
       step: 0.1,
       unit: ""
-    },
-    {
-      name: "text-transform",
+    }),
+    "--space": new Range({
+      type: "range",
+      min: 0,
+      max: 56,
+      step: 1,
+      unit: "px"
+    }),
+    "text-transform": new Select({
       type: "select",
       defaultValue: "none",
       options: [
@@ -1203,13 +1282,12 @@
         "lowercase",
         "none"
       ]
-    },
-    {
-      name: "color",
+    }),
+    color: new Text({
       type: "text",
       placeholder: "tomato"
-    }
-  ];
+    })
+  };
 
   // source/js/functions/setPreviewStyle.js
   var setPreviewStyle_default = (tagName, propName, propValue) => {
@@ -1218,29 +1296,30 @@
   };
 
   // source/js/components/StyleAdjustment.js
-  let range = ([tagName, normieName], {name, min, max, step, unit}) => {
-    let unitValue = state_default.styles[tagName][name];
+  let range = ([tagName, normieName], [propName, {min, max, step, unit}]) => {
+    let unitValue = state_default.styles[tagName][propName];
     return html`
   <label>
-    ${name.replace(/-/g, " ")} ${unitValue ? `(${unitValue})` : ""}
-    <input value=${parseFloat(unitValue)} title='${normieName} ${name}' min=${min} max=${max} step=${step} type=range
-      @input=${(event) => setPreviewStyle_default(tagName, name, event.target.value + unit)} />
+    ${propName.replace(/-/g, " ")} ${unitValue ? `(${unitValue})` : ""}
+    <input value=${parseFloat(unitValue)} title='${normieName} ${propName}' min=${min} max=${max} step=${step} type=range
+      @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value + unit)} />
   </label>`;
   };
-  let text = ([tagName, normieName], {name, placeholder = ""}) => {
-    let unitValue = state_default.styles[tagName][name];
+  let text = ([tagName, normieName], [propName, {placeholder}]) => {
+    let unitValue = state_default.styles[tagName][propName];
     return html`
   <label>
-    ${name.replace(/-/g, " ")}
-    <input placeholder=${placeholder} value=${unitValue || ""} title='${normieName} ${name}' type=text @input=${(event) => setPreviewStyle_default(tagName, name, event.target.value)} />
+    ${propName.replace(/-/g, " ")}
+    <input placeholder=${placeholder} value=${unitValue || ""} title='${normieName} ${propName}' type=text
+      @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)} />
   </label>`;
   };
-  let select = ([tagName, normieName], {name, options = [], defaultValue}) => {
-    let unitValue = state_default.styles[tagName][name] || defaultValue;
+  let select = ([tagName, normieName], [propName, {options, defaultValue}]) => {
+    let unitValue = state_default.styles[tagName][propName] || defaultValue;
     return html`
   <label>
-    ${name.replace(/-/g, " ")}
-    <select title='${normieName} ${name}' value=${unitValue || ""} @input=${(event) => setPreviewStyle_default(tagName, name, event.target.value)}>
+    ${propName.replace(/-/g, " ")}
+    <select title='${normieName} ${propName}' value=${unitValue || ""} @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)}>
       ${options.map((opt) => html`<option ?selected=${opt == unitValue}>${opt}</option>`)}
     </select>
   </label>`;
@@ -1257,17 +1336,21 @@
     action: () => setState("showStyles", !state_default.showStyles)
   })}
   <div class=adjustments>
-  ${Object.entries(tags).map((tag) => html`
+  ${Object.entries(tags).map(([tagName, {normieName, useAdjustments}]) => html`
     <div class=adjustment>
-      <h3>${tag[1]}</h3>
-      ${properties.map((prop) => {
-    switch (prop.type) {
+      <h3>${normieName}</h3>
+      ${Object.entries(adjustments).map(([propName, propData]) => {
+    if (!useAdjustments.includes(propName))
+      return;
+    let tagArgument = [tagName, {normieName, useAdjustments}];
+    let propArgument = [propName, propData];
+    switch (propData.type) {
       case "range":
-        return range(tag, prop);
+        return range(tagArgument, propArgument);
       case "text":
-        return text(tag, prop);
+        return text(tagArgument, propArgument);
       case "select":
-        return select(tag, prop);
+        return select(tagArgument, propArgument);
     }
   })}
     </div>
@@ -1276,7 +1359,7 @@
 </div>`;
 
   // source/js/state.js
-  let state26 = ls("contractly_user") || {
+  let state27 = ls("contractly_user") || {
     savedLocally: false,
     showPreview: false,
     showStyles: false,
@@ -1303,8 +1386,8 @@
   function autoSave() {
     clearTimeout(autoSaveWaiter);
     autoSaveWaiter = setTimeout(() => {
-      state26.savedLocally = true;
-      ls("contractly_user", state26);
+      state27.savedLocally = true;
+      ls("contractly_user", state27);
     }, 1e3);
   }
   function renderAll() {
@@ -1314,11 +1397,11 @@
     render(Header_default(), $("header"));
   }
   function setState(key, value) {
-    state26[key] = value;
+    state27[key] = value;
     renderAll();
     autoSave();
   }
-  var state_default = state26;
+  var state_default = state27;
 
   // source/js/dom-purify/purify.js
   /*! @license DOMPurify | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.2.2/LICENSE */
@@ -1485,7 +1568,7 @@
     }
     var originalDocument = window2.document;
     var document2 = window2.document;
-    var DocumentFragment = window2.DocumentFragment, HTMLTemplateElement = window2.HTMLTemplateElement, Node2 = window2.Node, NodeFilter = window2.NodeFilter, _window$NamedNodeMap = window2.NamedNodeMap, NamedNodeMap = _window$NamedNodeMap === void 0 ? window2.NamedNodeMap || window2.MozNamedAttrMap : _window$NamedNodeMap, Text = window2.Text, Comment = window2.Comment, DOMParser = window2.DOMParser, trustedTypes = window2.trustedTypes;
+    var DocumentFragment = window2.DocumentFragment, HTMLTemplateElement = window2.HTMLTemplateElement, Node2 = window2.Node, NodeFilter = window2.NodeFilter, _window$NamedNodeMap = window2.NamedNodeMap, NamedNodeMap = _window$NamedNodeMap === void 0 ? window2.NamedNodeMap || window2.MozNamedAttrMap : _window$NamedNodeMap, Text2 = window2.Text, Comment = window2.Comment, DOMParser = window2.DOMParser, trustedTypes = window2.trustedTypes;
     if (typeof HTMLTemplateElement === "function") {
       var template6 = document2.createElement("template");
       if (template6.content && template6.content.ownerDocument) {
@@ -1674,7 +1757,7 @@
       }, false);
     };
     var _isClobbered = function _isClobbered2(elm) {
-      if (elm instanceof Text || elm instanceof Comment) {
+      if (elm instanceof Text2 || elm instanceof Comment) {
         return false;
       }
       if (typeof elm.nodeName !== "string" || typeof elm.textContent !== "string" || typeof elm.removeChild !== "function" || !(elm.attributes instanceof NamedNodeMap) || typeof elm.removeAttribute !== "function" || typeof elm.setAttribute !== "function" || typeof elm.namespaceURI !== "string") {
@@ -3832,10 +3915,9 @@
     function hydrate(string) {
       return getProp(string.slice(1, -1).trim(), fields);
     }
-    let preview = $(".preview");
+    let previewWrapper = $(".preview__wrapper");
     let hydrated = state_default.currentDocument.body.replace(/\{.+?\}/g, hydrate);
-    let parsed = marked_default(hydrated);
-    preview.innerHTML = purify_default.sanitize(parsed);
+    previewWrapper.innerHTML = purify_default.sanitize(marked_default(hydrated));
   };
 
   // source/js/app.js
@@ -3851,9 +3933,8 @@
     state_default.currentDataset = state_default.currentUser.datasets[0];
     state_default.currentDocument = state_default.currentUser.documents[0];
     document.documentElement.classList.toggle("dark", state_default.dark);
-    if (!state_default.styles)
-      state_default.styles = {};
-    Object.keys(tags).map((tagName) => state_default.styles[tagName] = {});
+    state_default.styles = state_default.styles || {};
+    Object.keys(tags).map((tagName) => state_default.styles[tagName] = state_default.styles[tagName] || {});
     state_default.showPreview ? renderPreview_default() : renderAll();
     autoSave();
   }
