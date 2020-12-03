@@ -3851,6 +3851,9 @@
     state_default.currentDataset = state_default.currentUser.datasets[0];
     state_default.currentDocument = state_default.currentUser.documents[0];
     document.documentElement.classList.toggle("dark", state_default.dark);
+    if (!state_default.styles)
+      state_default.styles = {};
+    Object.keys(tags).map((tagName) => state_default.styles[tagName] = {});
     state_default.showPreview ? renderPreview_default() : renderAll();
     autoSave();
   }

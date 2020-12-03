@@ -25,6 +25,10 @@ else {
   state.currentDocument = state.currentUser.documents[0];
   document.documentElement.classList.toggle('dark', state.dark);
 
+  if (!state.styles)
+    state.styles = {};
+  Object.keys(tags).map(tagName => state.styles[tagName] = {});
+
   state.showPreview
     ? renderPreview()
     : renderAll();
