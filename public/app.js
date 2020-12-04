@@ -1179,72 +1179,76 @@
   let listAdjustments = ["padding-left", "padding-right", "color", "list-style"];
   let tags = {
     ".preview__wrapper": {
-      normieName: "Global",
+      normieName: "global",
       useAdjustments: ["font-size", "line-height", "--vertical-space"]
     },
     ".preview__page": {
-      normieName: "Pages",
+      normieName: "pages",
       useAdjustments: ["padding-top", "padding-bottom", "padding-left", "padding-right"]
     },
     ".preview__wrapper::before": {
-      normieName: "Header",
+      normieName: "header",
       useAdjustments: headerFooterAdjustments
     },
     ".preview__wrapper::after": {
-      normieName: "Footer",
+      normieName: "footer",
       useAdjustments: headerFooterAdjustments
     },
     h1: {
-      normieName: "Level 1 Headings",
+      normieName: "level 1 headings",
       useAdjustments: headingAdjustments
     },
     h2: {
-      normieName: "Level 2 Headings",
+      normieName: "level 2 headings",
       useAdjustments: headingAdjustments
     },
     h3: {
-      normieName: "Level 3 Headings",
+      normieName: "level 3 headings",
       useAdjustments: headingAdjustments
     },
     h4: {
-      normieName: "Level 4 Headings",
+      normieName: "level 4 headings",
       useAdjustments: headingAdjustments
     },
     h5: {
-      normieName: "Level 5 Headings",
+      normieName: "level 5 headings",
       useAdjustments: headingAdjustments
     },
     h6: {
-      normieName: "Level 6 Headings",
+      normieName: "level 6 headings",
       useAdjustments: headingAdjustments
     },
     a: {
-      normieName: "Links",
+      normieName: "links",
       useAdjustments: inlineElementAdjustments
     },
     strong: {
-      normieName: "Bold Text",
+      normieName: "bold text",
       useAdjustments: inlineElementAdjustments
     },
     em: {
-      normieName: "Italic Text",
+      normieName: "italic Text",
       useAdjustments: inlineElementAdjustments
     },
     del: {
-      normieName: "Strikethroughs",
+      normieName: "strikethroughs",
       useAdjustments: inlineElementAdjustments
     },
     ul: {
-      normieName: "Unordered Lists",
+      normieName: "unordered lists",
       useAdjustments: listAdjustments
     },
     ol: {
-      normieName: "Ordered Lists",
+      normieName: "ordered lists",
       useAdjustments: listAdjustments
     },
     blockquote: {
-      normieName: "Block Quotes",
+      normieName: "block quotes",
       useAdjustments: ["color", "padding-left", "padding-right", "border-width", "border-color"]
+    },
+    img: {
+      normieName: "images",
+      useAdjustments: ["width"]
     }
   };
   class Adjustment {
@@ -1283,6 +1287,12 @@
     }
   }
   let adjustments = {
+    width: new Range({
+      min: 0,
+      max: 100,
+      step: 1,
+      unit: "%"
+    }),
     content: new Text({
       placeholder: "{ date }"
     }),
@@ -1402,7 +1412,7 @@
       <span class=label__name>${cleanedName}</span>
       <span class=label__value>${unitValue || ""}</span>
     </span>
-    <input title='${normieName} ${cleanedName}' min=${min} max=${max} step=${step} value=${cleanedValue} type=range
+    <input title='Change ${normieName} ${cleanedName}' min=${min} max=${max} step=${step} value=${cleanedValue} type=range
       @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value + unit)} />
   </label>`;
   };
@@ -1414,7 +1424,7 @@
     <span class=label>
       <span class=label__name>${cleanedName}</span>
     </span>
-    <input placeholder=${placeholder} value=${unitValue || ""} title='${normieName} ${cleanedName}' type=text
+    <input title='Change ${normieName} ${cleanedName}' placeholder=${placeholder} value=${unitValue || ""} type=text
       @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)} />
   </label>`;
   };
@@ -1426,7 +1436,7 @@
     <span class=label>
       <span class=label__name>${cleanedName}</span>
     </span>
-    <select title='${normieName} ${cleanedName}' value=${unitValue || ""} @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)}>
+    <select title='Change ${normieName} ${cleanedName}' value=${unitValue || ""} @input=${(event) => setPreviewStyle_default(tagName, propName, event.target.value)}>
       ${options.map((opt) => html`<option ?selected=${opt == unitValue}>${opt}</option>`)}
     </select>
   </label>`;

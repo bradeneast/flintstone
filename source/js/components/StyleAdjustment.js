@@ -18,7 +18,7 @@ export let range = ([tagName, { normieName }], [propName, { min, max, step, unit
       <span class=label__name>${cleanedName}</span>
       <span class=label__value>${unitValue || ''}</span>
     </span>
-    <input title='${normieName} ${cleanedName}' min=${min} max=${max} step=${step} value=${cleanedValue} type=range
+    <input title='Change ${normieName} ${cleanedName}' min=${min} max=${max} step=${step} value=${cleanedValue} type=range
       @input=${event =>
       setPreviewStyle(tagName, propName, event.target.value + unit)} />
   </label>`;
@@ -36,7 +36,7 @@ export let text = ([tagName, { normieName }], [propName, { placeholder }]) => {
     <span class=label>
       <span class=label__name>${cleanedName}</span>
     </span>
-    <input placeholder=${placeholder} value=${unitValue || ''} title='${normieName} ${cleanedName}' type=text
+    <input title='Change ${normieName} ${cleanedName}' placeholder=${placeholder} value=${unitValue || ''} type=text
       @input=${event=>
       setPreviewStyle(tagName, propName, event.target.value)} />
   </label>`;
@@ -54,7 +54,7 @@ export let select = ([tagName, { normieName }], [propName, { options, defaultVal
     <span class=label>
       <span class=label__name>${cleanedName}</span>
     </span>
-    <select title='${normieName} ${cleanedName}' value=${unitValue || '' } @input=${event=>
+    <select title='Change ${normieName} ${cleanedName}' value=${unitValue || '' } @input=${event=>
         setPreviewStyle(tagName, propName, event.target.value)}>
       ${options.map(opt => html`<option ?selected=${opt==unitValue}>${opt}</option>`)}
     </select>
