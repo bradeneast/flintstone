@@ -1,4 +1,8 @@
 @media screen and (max-width: 960px) {
+  :root {
+    font-size: 14px;
+  }
+
   body {
     padding: 0;
     overflow: visible;
@@ -32,9 +36,15 @@
 
     .center {
       order: 3;
-      min-height: calc(100vh - var(--headerHeight));
-      min-height: -webkit-fill-available;
+      height: calc(100vh - var(--headerHeight));
+      height: -webkit-fill-available;
       margin: 0;
+
+      .preview,
+      .editor {
+        padding: 1em;
+        height: inherit;
+      }
     }
   }
 }

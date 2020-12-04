@@ -37,6 +37,13 @@
         padding: 0 !important;
         height: auto !important;
 
+        &__wrapper {
+          &::before,
+          &::after {
+            position: fixed;
+          }
+        }
+
         &__page {
           break-inside: avoid;
 

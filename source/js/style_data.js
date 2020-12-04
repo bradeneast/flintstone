@@ -1,5 +1,5 @@
-let headingAdjustments = ['font-size', 'font-weight', 'line-height', 'letter-spacing', 'text-transform', 'color'];
-let inlineElementAdjustments = ['font-weight', 'letter-spacing', 'text-transform', 'color'];
+let headingAdjustments = ['font-size', 'font-weight', 'line-height', 'letter-spacing', 'text-transform', 'text-align', 'color'];
+let inlineElementAdjustments = ['font-weight', 'text-transform', 'color'];
 let headerFooterAdjustments = ['content', 'color', 'font-size', 'font-weight', 'text-transform', 'letter-spacing', 'text-align'];
 let listAdjustments = ['padding-left', 'padding-right', 'color', 'list-style']
 
@@ -13,11 +13,11 @@ export let tags = {
     normieName: 'Pages',
     useAdjustments: ['padding-top', 'padding-bottom', 'padding-left', 'padding-right']
   },
-  '.preview__page::before': {
+  '.preview__wrapper::before': {
     normieName: 'Header',
     useAdjustments: headerFooterAdjustments
   },
-  '.preview__page::after': {
+  '.preview__wrapper::after': {
     normieName: 'Footer',
     useAdjustments: headerFooterAdjustments
   },

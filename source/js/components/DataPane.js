@@ -58,12 +58,14 @@ export default () => html`
         })
       }
       ${
-        Button({
-          title: `Delete ${dataset.id}`,
-          className: 'icon',
-          action: () => removeDataset(datasetIndex),
-          content: '🗑️'
-        })
+        state.currentUser.datasets.length > 1
+          ? Button({
+            title: `Delete ${dataset.id}`,
+            className: 'icon',
+            action: () => removeDataset(datasetIndex),
+            content: '🗑️'
+          })
+          : nothing
       }
     </li>
     `)

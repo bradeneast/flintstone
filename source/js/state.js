@@ -17,19 +17,9 @@ let state = ls('contractly_user') || {
   currentDataset: null,
   styles: {},
   currentUser: {
-    documents: [
-      {
-        id: '',
-        body: ''
-      }
-    ],
-    datasets: [
-      {
-        id: '',
-        fields: []
-      }
-    ]
-  },
+    documents: [],
+    datasets: []
+  }
 }
 
 
