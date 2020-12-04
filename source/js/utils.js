@@ -1,3 +1,6 @@
+import { unsafeHTML } from "./lit-html/directives/unsafe-html";
+import { directive } from "./lit-html/lit-html";
+
 /**A shorthand for `querySelector`*/
 export let $ = (selector, context = document) => context.querySelector(selector);
 
@@ -21,3 +24,12 @@ export let setCustomProp = (elem, propertyName, value) => elem.style.setProperty
 export let ls = (key, value) => value == undefined
   ? JSON.parse(localStorage.getItem(key))
   : localStorage.setItem(key, JSON.stringify(value));
+
+
+export let resolvePromise = directive(promise => part => {
+  part.setValue(unsafeHTML('<loader></loader>'));
+  Promise.resolve(promise).then(resolvedValue => {
+    part.setValue(resolvedValue);
+    part.commit();
+  })
+})

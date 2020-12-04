@@ -1,7 +1,8 @@
 import state from '../state';
-import { $ } from '../utils';
 import purify from '../dom-purify/purify';
 import marked from '../marked/marked';
+import { html } from '../lit-html/lit-html';
+import { unsafeHTML } from '../lit-html/directives/unsafe-html';
 
 
 export function getFieldValue(prop) {
@@ -24,17 +25,10 @@ export let dataMatcher = /\{.+?\}/g;
 
 export default async () => {
 
-  let previewWrapper = $('.preview__wrapper');
   let hydrated = state.currentDocument.body.replace(dataMatcher, hydrateFromDataset);
   let sanitized = purify.sanitize(marked(hydrated));
 
-  previewWrapper.innerHTML = '';
-
-  for (let pageContent of sanitized.split('<hr>')) {
-    let pageElement = document.createElement('div');
-    pageElement.classList.add('preview__page');
-    pageElement.innerHTML = pageContent;
-    previewWrapper.append(pageElement);
-  }
-
+  return sanitized
+    .split('<hr>')
+    .map(pageContent => html`<div class=preview__page>${unsafeHTML(pageContent)}</div>`)
 }
