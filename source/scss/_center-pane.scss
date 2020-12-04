@@ -39,11 +39,6 @@
     }
   }
 
-  .editor {
-    font-size: calc(0.6rem + 50%);
-    line-height: 1.5;
-  }
-
   .preview,
   .editor {
     resize: none;
@@ -58,5 +53,14 @@
     &:focus-within {
       border-color: currentColor;
     }
+  }
+
+  .editor {
+    font-size: calc(0.6rem + 50%);
+    line-height: 1.5;
+  }
+
+  .preview {
+    padding-top: 4em;
   }
 }
