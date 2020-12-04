@@ -1,7 +1,7 @@
 let headingAdjustments = ['font-size', 'font-weight', 'line-height', 'letter-spacing', 'text-transform', 'text-align', 'color'];
 let inlineElementAdjustments = ['font-weight', 'text-transform', 'color'];
 let headerFooterAdjustments = ['content', 'color', 'font-size', 'font-weight', 'text-transform', 'letter-spacing', 'text-align'];
-let listAdjustments = ['padding-left', 'padding-right', 'color', 'list-style']
+let listAdjustments = ['padding-left', 'padding-right', 'color', 'list-style'];
 
 
 export let tags = {

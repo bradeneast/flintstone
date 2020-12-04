@@ -8,19 +8,7 @@ import StylesPane from './components/StylesPane';
 
 
 // Default state
-let state = ls('contractly_user') || {
-  savedLocally: false, // Saved locally
-  showPreview: false, // Document preview shown
-  showStyles: false, // Style editor is shown
-  dark: false, // Dark mode
-  currentDocument: null,
-  currentDataset: null,
-  styles: {},
-  currentUser: {
-    documents: [],
-    datasets: []
-  }
-}
+let state = ls('contractly_user') || {};
 
 
 let autoSaveWaiter = setTimeout(() => null, 0);
