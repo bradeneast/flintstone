@@ -15,16 +15,21 @@
     flex-flow: column;
 
     section {
-      height: auto;
       max-height: none;
+      display: block;
 
       &.aside {
+        height: auto;
         padding: 3em 1em;
         border-bottom: var(--border);
 
-        .pane > :nth-child(2) {
-          border: none;
-          margin: 0;
+        .pane {
+          height: auto;
+
+          & > :nth-child(2) {
+            border: none;
+            margin: 0;
+          }
         }
       }
     }
@@ -32,18 +37,24 @@
     .styles {
       position: fixed;
       top: var(--headerHeight);
+
+      .adjustments .adjustment label {
+        margin-bottom: 1rem;
+      }
     }
 
     .center {
       order: 3;
-      height: calc(100vh - var(--headerHeight));
-      height: -webkit-fill-available;
+      min-height: 0;
+      max-height: none;
       margin: 0;
 
       .preview,
       .editor {
-        padding: 1em;
-        height: inherit;
+        padding-left: 1em;
+        padding-right: 1em;
+        height: calc(100vh - var(--headerHeight));
+        width: 100%;
       }
     }
   }
