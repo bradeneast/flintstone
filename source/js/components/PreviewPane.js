@@ -45,6 +45,13 @@ export default () => {
     @click=${renderPreview}>
       👀
     </button>
+    <a 
+    title="Format your text like a pro with the Markdown cheatsheet."
+    class="button icon" 
+    target=_blank 
+    href="https://www.markdownguide.org/cheat-sheet/">
+      ❓
+    </a>
   </toolbar>
 
   ${

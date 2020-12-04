@@ -1,4 +1,6 @@
-button {
+button,
+a.button {
+  text-decoration: none;
   color: var(--g3);
   cursor: pointer;
   background: none;
