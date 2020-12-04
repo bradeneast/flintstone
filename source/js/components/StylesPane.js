@@ -21,7 +21,12 @@ export default () => html`
   }
   <div class=adjustments>
   ${Object.entries(tags).map(([tagName, {normieName, useAdjustments}]) => html`
-    <div class=adjustment @mouseenter=${() => highlightElements(tagName)} @mouseleave=${() => $('#temp')?.remove()}>
+    <div 
+    class=adjustment 
+    @mouseenter=${() => highlightElements(tagName)} 
+    @touchstart=${() => highlightElements(tagName)}
+    @mouseleave=${() => $('#temp')?.remove()}
+    @touchend=${() => $('#temp')?.remove()}>
       <div class=adjustment__header>
         <h3>${normieName}</h3>
         <div class=adjustment__header--actions>

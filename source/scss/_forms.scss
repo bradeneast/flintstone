@@ -94,13 +94,15 @@ select {
   width: 100%;
   height: 0.2em;
   cursor: pointer;
+  background: var(--g6);
+  border-radius: var(--radius);
 }
 
-@mixin thumb() {
+@mixin thumb($size) {
   border: var(--border);
   border-color: var(--g7);
-  height: 1em;
-  width: 1em;
+  height: $size;
+  width: $size;
   border-radius: var(--radius);
   background: var(--thumb-color);
   cursor: pointer;
@@ -124,48 +126,48 @@ input[type="range"] {
     --thumb-color: var(--primary);
   }
 
-  &::-webkit-slider-runnable-track {
-    @include track();
-    background: var(--g5);
-    border-radius: var(--radius);
-  }
-
   &::-webkit-slider-thumb {
-    @include thumb();
+    @include thumb(1em);
     -webkit-appearance: none;
     margin-top: -0.4em;
   }
+  &::-moz-range-thumb {
+    @include thumb(1em);
+  }
+  &::-ms-thumb {
+    @include thumb(1em);
+  }
 
-  &:focus::-webkit-slider-runnable-track {
-    background: var(--g6);
+  &::-webkit-slider-runnable-track {
+    @include track();
+    border-radius: var(--radius);
   }
 
   &::-moz-range-track {
     @include track();
-    background: var(--g6);
-    border-radius: var(--radius);
-  }
-  &::-moz-range-thumb {
-    @include thumb();
   }
 
   &::-ms-track {
     @include track();
-    background: transparent;
     border-color: transparent;
     border-width: 1em 0;
     color: transparent;
   }
+}
 
-  &::-ms-thumb {
-    @include thumb();
-  }
+@media screen and (max-width: $mobile) {
+  input[type="range"] {
+    margin-top: 0.5em;
 
-  &:focus::-ms-fill-lower {
-    background: var(--g5);
-  }
-
-  &:focus::-ms-fill-upper {
-    background: var(--g6);
+    &::-webkit-slider-thumb {
+      @include thumb(1.5em);
+      margin-top: -0.6em;
+    }
+    &::-moz-range-thumb {
+      @include thumb(1.5em);
+    }
+    &::-ms-thumb {
+      @include thumb(1.5em);
+    }
   }
 }
