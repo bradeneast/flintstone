@@ -1,13 +1,14 @@
-let headingAdjustments = ['font-size', 'font-weight', 'line-height', 'letter-spacing', 'text-transform', 'text-align', 'color'];
+let headingAdjustments = ['font-family', 'font-size', 'font-weight', 'line-height', 'letter-spacing', 'text-transform', 'text-align', 'color'];
 let inlineElementAdjustments = ['font-weight', 'text-transform', 'color'];
 let headerFooterAdjustments = ['content', 'color', 'font-size', 'font-weight', 'text-transform', 'letter-spacing', 'text-align'];
 let listAdjustments = ['padding-left', 'padding-right', 'color', 'list-style'];
+let tableAdjustments = ['font-size', 'font-weight', 'text-transform', 'text-align', 'color'];
 
 
 export let tags = {
   '.preview__wrapper': {
     normieName: 'global',
-    useAdjustments: ['font-size', 'line-height', '--vertical-space']
+    useAdjustments: ['font-family', 'font-size', 'line-height', '--vertical-space']
   },
   '.preview__page': {
     normieName: 'pages',
@@ -76,7 +77,15 @@ export let tags = {
   img: {
     normieName: 'images',
     useAdjustments: ['width']
-  }
+  },
+  th: {
+    normieName: 'table headings',
+    useAdjustments: tableAdjustments
+  },
+  td: {
+    normieName: 'table cells',
+    useAdjustments: tableAdjustments
+  },
 }
 
 
@@ -117,14 +126,11 @@ class Select extends Adjustment {
 
 
 export let adjustments = {
-  'width': new Range({
-    min: 0,
-    max: 100,
-    step: 1,
-    unit: '%'
-  }),
   'content': new Text({
     placeholder: '{ date }',
+  }),
+  'font-family': new Text({
+    placeholder: 'Helvetica'
   }),
   'font-size': new Range({
     min: 8,
@@ -171,6 +177,12 @@ export let adjustments = {
       'right'
     ]
   }),
+  'width': new Range({
+    min: 0,
+    max: 100,
+    step: 1,
+    unit: '%'
+  }),
   'list-style': new Select({
     defaultValue: 'disc',
     options: [
@@ -186,10 +198,10 @@ export let adjustments = {
     ]
   }),
   'color': new Text({
-    placeholder: 'tomato'
+    placeholder: 'Tomato'
   }),
   'border-color': new Text({
-    placeholder: 'dodgerblue'
+    placeholder: 'DodgerBlue'
   }),
   'border-width': new Range({
     min: 0,

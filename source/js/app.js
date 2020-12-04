@@ -1,7 +1,6 @@
 import renderPreview from './functions/renderPreview';
-import state, { renderAll, autoSave, setState } from './state';
+import state, { renderAll, autoSave } from './state';
 import { tags } from './style_data';
-import { $$ } from './utils';
 
 
 if (!state.savedLocally) {

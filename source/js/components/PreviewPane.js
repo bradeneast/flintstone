@@ -7,20 +7,24 @@ import state, { setState } from '../state';
 
 export default () => {
 
-  let previewStyles = `<style>
-  ${Object.entries(state.styles)
-    .map(([tagName, prop]) => `
-      .preview ${tagName} {
-        ${Object.entries(prop)
-          .map(([propName, propValue]) => {
-            if (propName == 'content')
-              propValue = `"${propValue.replace(/"/g, '\\"')}"`;
-              return [propName, propValue.replace(dataMatcher, hydrateFromDataset)].join(':')
-          })
-          .join(';')
-        }
-      }`)
-    .join('')
+  let makeStyleRule = ([propName, propValue]) => {
+    if (/content|font-family/i.test(propName)) {
+      if (propValue.length)
+        propValue = `"${propValue.replace(/"/g, '\\"')}"`;
+      else return;
+    }
+    propValue = propValue.replace(dataMatcher, hydrateFromDataset);
+    return [propName, propValue].join(':')
+  }
+
+  let previewStyles = `
+  <style>
+  ${
+    Object.entries(state.styles)
+      .map(([tagName, prop]) => 
+        `.preview ${tagName} { ${Object.entries(prop).map(makeStyleRule).join(';')} }`
+      )
+      .join('')
   }
   </style>`;
 

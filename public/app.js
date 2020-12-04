@@ -1101,15 +1101,19 @@
 
   // source/js/components/PreviewPane.js
   var PreviewPane_default = () => {
-    let previewStyles = `<style>\r
-  ${Object.entries(state_default.styles).map(([tagName, prop]) => `\r
-      .preview ${tagName} {\r
-        ${Object.entries(prop).map(([propName, propValue]) => {
-      if (propName == "content")
-        propValue = `"${propValue.replace(/"/g, '\\"')}"`;
-      return [propName, propValue.replace(dataMatcher, hydrateFromDataset)].join(":");
-    }).join(";")}\r
-      }`).join("")}\r
+    let makeStyleRule = ([propName, propValue]) => {
+      if (/content|font-family/i.test(propName)) {
+        if (propValue.length)
+          propValue = `"${propValue.replace(/"/g, '\\"')}"`;
+        else
+          return;
+      }
+      propValue = propValue.replace(dataMatcher, hydrateFromDataset);
+      return [propName, propValue].join(":");
+    };
+    let previewStyles = `\r
+  <style>\r
+  ${Object.entries(state_default.styles).map(([tagName, prop]) => `.preview ${tagName} { ${Object.entries(prop).map(makeStyleRule).join(";")} }`).join("")}\r
   </style>`;
     return html`
 
@@ -1173,14 +1177,15 @@
   };
 
   // source/js/style_data.js
-  let headingAdjustments = ["font-size", "font-weight", "line-height", "letter-spacing", "text-transform", "text-align", "color"];
+  let headingAdjustments = ["font-family", "font-size", "font-weight", "line-height", "letter-spacing", "text-transform", "text-align", "color"];
   let inlineElementAdjustments = ["font-weight", "text-transform", "color"];
   let headerFooterAdjustments = ["content", "color", "font-size", "font-weight", "text-transform", "letter-spacing", "text-align"];
   let listAdjustments = ["padding-left", "padding-right", "color", "list-style"];
+  let tableAdjustments = ["font-size", "font-weight", "text-transform", "text-align", "color"];
   let tags = {
     ".preview__wrapper": {
       normieName: "global",
-      useAdjustments: ["font-size", "line-height", "--vertical-space"]
+      useAdjustments: ["font-family", "font-size", "line-height", "--vertical-space"]
     },
     ".preview__page": {
       normieName: "pages",
@@ -1249,6 +1254,14 @@
     img: {
       normieName: "images",
       useAdjustments: ["width"]
+    },
+    th: {
+      normieName: "table headings",
+      useAdjustments: tableAdjustments
+    },
+    td: {
+      normieName: "table cells",
+      useAdjustments: tableAdjustments
     }
   };
   class Adjustment {
@@ -1287,14 +1300,11 @@
     }
   }
   let adjustments = {
-    width: new Range({
-      min: 0,
-      max: 100,
-      step: 1,
-      unit: "%"
-    }),
     content: new Text({
       placeholder: "{ date }"
+    }),
+    "font-family": new Text({
+      placeholder: "Helvetica"
     }),
     "font-size": new Range({
       min: 8,
@@ -1341,6 +1351,12 @@
         "right"
       ]
     }),
+    width: new Range({
+      min: 0,
+      max: 100,
+      step: 1,
+      unit: "%"
+    }),
     "list-style": new Select({
       defaultValue: "disc",
       options: [
@@ -1356,10 +1372,10 @@
       ]
     }),
     color: new Text({
-      placeholder: "tomato"
+      placeholder: "Tomato"
     }),
     "border-color": new Text({
-      placeholder: "dodgerblue"
+      placeholder: "DodgerBlue"
     }),
     "border-width": new Range({
       min: 0,
