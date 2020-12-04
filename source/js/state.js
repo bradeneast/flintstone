@@ -9,8 +9,6 @@ import StylesPane from './components/StylesPane';
 
 // Default state
 let state = ls('contractly_user') || {};
-
-
 let autoSaveWaiter = setTimeout(() => null, 0);
 
 /**Auto-save to local storage */

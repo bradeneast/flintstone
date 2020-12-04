@@ -32,6 +32,10 @@
         border-color: var(--g6);
         background: var(--g8);
       }
+
+      &:focus {
+        border-color: var(--primary-60);
+      }
     }
   }
 

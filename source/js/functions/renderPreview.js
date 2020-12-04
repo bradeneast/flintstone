@@ -1,4 +1,4 @@
-import state, { setState } from '../state';
+import state from '../state';
 import { $ } from '../utils';
 import purify from '../dom-purify/purify';
 import marked from '../marked/marked';
@@ -23,8 +23,6 @@ export let dataMatcher = /\{.+?\}/g;
 
 
 export default () => {
-
-  setState('showPreview', true);
 
   let previewWrapper = $('.preview__wrapper');
   let hydrated = state.currentDocument.body.replace(dataMatcher, hydrateFromDataset);

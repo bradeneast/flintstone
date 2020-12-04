@@ -8,7 +8,7 @@ import duplicateDocument from "../functions/duplicateDocument";
 import Button from "./Button";
 
 export default () => html`
-<div class=pane>
+<div class="pane documents">
   <h2>Documents</h2>
   ${
     state.currentDocument

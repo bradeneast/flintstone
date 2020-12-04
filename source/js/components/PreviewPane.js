@@ -42,7 +42,7 @@ export default () => {
     ?data-active=${state.showPreview} 
     title="Show preview" 
     class=icon
-    @click=${renderPreview}>
+    @click=${() => { setState('showPreview', true); renderPreview() }}>
       👀
     </button>
     <a 
@@ -62,7 +62,10 @@ export default () => {
       </div>
       ${unsafeHTML(previewStyles)}`
       : html`
-      <textarea class=editor @input=${event=> state.currentDocument.body = event.target.value}>${state.currentDocument.body}</textarea>`
+      <textarea 
+      class=editor 
+      placeholder="Begin writing here..."
+      @input=${event=> state.currentDocument.body = event.target.value}>${state.currentDocument.body}</textarea>`
   }
 `;
 }
