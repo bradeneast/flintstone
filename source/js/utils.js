@@ -21,15 +21,3 @@ export let setCustomProp = (elem, propertyName, value) => elem.style.setProperty
 export let ls = (key, value) => value == undefined
   ? JSON.parse(localStorage.getItem(key))
   : localStorage.setItem(key, JSON.stringify(value));
-
-
-let frameLength = 60;
-let lastFrame = 0;
-/**Debaunces a callback function */
-export let debounce = (callback) =>
-  requestAnimationFrame(thisFrame => {
-    if (thisFrame - lastFrame > frameLength) {
-      callback();
-      lastFrame = thisFrame;
-    }
-  });
