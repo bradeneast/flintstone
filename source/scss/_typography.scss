@@ -98,3 +98,28 @@ li {
     border-color: var(--primary);
   }
 }
+
+table {
+  text-align: left;
+  border-collapse: collapse;
+  min-width: 100%;
+
+  td:first-of-type,
+  thead {
+    color: var(--g2);
+  }
+
+  thead {
+    padding: 1em 0;
+    border-bottom: var(--border);
+  }
+
+  td,
+  th {
+    padding: 0.37em;
+  }
+
+  tr:nth-of-type(2n) {
+    background: var(--g7);
+  }
+}
