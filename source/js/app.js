@@ -1,13 +1,12 @@
 import renderPreview from './functions/renderPreview';
-import state, { renderAll, autoSave } from './state';
+import state, { renderAll, autoSave, defaultState } from './state';
 import { tags } from './style_data';
 
 
 if (!state.savedLocally) {
   document.documentElement.classList.add('loading');
 
-  fetch('/defaults.json')
-    .then(r => r.json())
+  defaultState
     .then(defaultState => {
 
       Object.keys(defaultState).map(key => state[key] = defaultState[key]);
@@ -31,9 +30,8 @@ else {
     state.styles[tagName] = state.styles[tagName] || {}
   );
 
-  state.showPreview
-    ? renderPreview()
-    : renderAll();
-
+  renderAll();
   autoSave();
+  if (state.showPreview)
+    renderPreview();
 }

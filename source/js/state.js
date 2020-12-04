@@ -7,11 +7,15 @@ import Header from './components/Header';
 import StylesPane from './components/StylesPane';
 
 
-// Default state
+// Get local state and default state
 let state = ls('contractly_user') || {};
-let autoSaveWaiter = setTimeout(() => null, 0);
+
+export default state;
+export let defaultState = fetch('/defaults.json').then(r => r.json());
+
 
 /**Auto-save to local storage */
+let autoSaveWaiter = setTimeout(() => null, 0);
 export function autoSave() {
 
   clearTimeout(autoSaveWaiter);
@@ -39,6 +43,3 @@ export function setState(key, value) {
   renderAll();
   autoSave();
 }
-
-
-export default state;

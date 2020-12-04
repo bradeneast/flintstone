@@ -1,4 +1,5 @@
 import highlightElements from "../functions/highlightElements";
+import resetAdjustmentStyles from "../functions/resetAdjustmentStyles";
 import { html } from "../lit-html/lit-html";
 import state, { setState } from "../state";
 import { adjustments, tags } from "../style_data";
@@ -21,7 +22,19 @@ export default () => html`
   <div class=adjustments>
   ${Object.entries(tags).map(([tagName, {normieName, useAdjustments}]) => html`
     <div class=adjustment @mouseenter=${() => highlightElements(tagName)} @mouseleave=${() => $('#temp')?.remove()}>
-      <h3>${normieName}</h3>
+      <div class=adjustment__header>
+        <h3>${normieName}</h3>
+        <div class=adjustment__header--actions>
+        ${
+          Button({
+            title: `Reset ${normieName.replace(/s$/, '')} styles`,
+            className: 'icon',
+            content: '↩',
+            action: () => resetAdjustmentStyles(tagName),
+          })
+        }
+        </div>
+      </div>
       ${Object.entries(adjustments).map(([propName, propData]) => {
 
         if (!useAdjustments.includes(propName)) return;
