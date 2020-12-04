@@ -30,10 +30,10 @@ export function autoSave() {
 
 /**Render the whole app */
 export function renderAll() {
+  render(Header(), $('header'));
   render(DocumentsPane(), $('section.left'));
   render(PreviewPane(), $('section.center'));
   render(html`${DataPane()}${StylesPane()}`, $('section.right'));
-  render(Header(), $('header'));
 }
 
 

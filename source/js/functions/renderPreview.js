@@ -22,7 +22,7 @@ export function hydrateFromDataset(string) {
 export let dataMatcher = /\{.+?\}/g;
 
 
-export default () => {
+export default async () => {
 
   let previewWrapper = $('.preview__wrapper');
   let hydrated = state.currentDocument.body.replace(dataMatcher, hydrateFromDataset);
@@ -36,4 +36,5 @@ export default () => {
     pageElement.innerHTML = pageContent;
     previewWrapper.append(pageElement);
   }
+
 }
