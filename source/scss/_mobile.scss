@@ -55,6 +55,7 @@
 
     .styles {
       position: fixed;
+      height: calc(100vh - var(--headerHeight));
       top: var(--headerHeight);
 
       .adjustment label {

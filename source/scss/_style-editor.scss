@@ -65,6 +65,10 @@
     border: var(--border);
     transition: var(--transition);
 
+    &:last-child {
+      margin-bottom: 2em;
+    }
+
     &:hover,
     &:focus-within {
       box-shadow: var(--shadow);
