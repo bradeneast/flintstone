@@ -12,12 +12,9 @@ header {
   padding: 0.5em 1em;
 
   #logo {
-    display: inline-block;
-    margin: 0;
-    line-height: 1.2;
-    background: linear-gradient(-37deg, var(--primary-80), var(--primary));
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
+    img {
+      height: 100%;
+    }
   }
 
   nav {

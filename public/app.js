@@ -116,7 +116,9 @@
       placeholder="Start typing when you're ready..."
       @input=${b=>g.currentDocument.body=b.target.value}>${g.currentDocument.body}</textarea>`}
 `};var fc=()=>{document.documentElement.classList.toggle("dark",!g.dark),r("dark",!g.dark)};var gc=()=>v`
-<h1 id="logo">Contractly</h1>
+<div id=logo>
+  <img alt="Flintstone logo" src="logo${g.dark?"-white":""}.svg" />
+</div>
 <nav>
   ${F({title:`${g.showStyles?"Close":"Open"} style editor`,content:"✨",className:"icon",action:()=>r("showStyles",!g.showStyles)})}
   ${F({title:"Print the current document",className:"icon",content:"🖨️",action:()=>{document.documentElement.classList.add("loading"),r("showPreview",!0),setTimeout(()=>{print(),document.documentElement.classList.remove("loading")},500)}})}

@@ -72,6 +72,14 @@ html.dark {
   --g6: #{$g2};
   --g7: #{$g1};
   --g8: #{$g0};
+
+  .dark-show {
+    display: block;
+  }
+
+  .light-show {
+    display: none;
+  }
 }
 
 html {

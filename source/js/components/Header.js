@@ -4,7 +4,9 @@ import state, { setState } from "../state";
 import Button from "./Button";
 
 export default () => html`
-<h1 id="logo">Contractly</h1>
+<div id=logo>
+  <img alt="Flintstone logo" src="logo${state.dark ? '-white' : ''}.svg" />
+</div>
 <nav>
   ${
     Button({
