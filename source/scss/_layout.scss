@@ -59,15 +59,32 @@ main {
 
 .aside .pane {
   height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  display: flex;
+  flex-flow: column;
   overflow-y: auto;
   overflow-x: hidden;
+
+  & > :first-child {
+    flex: 0;
+  }
+
+  &.data {
+    .sets {
+      flex: 1;
+    }
+    .selection {
+      flex: 2;
+    }
+  }
+
+  .selection,
+  .sets {
+    overflow-y: auto;
+  }
 
   .selection {
     width: 100%;
     max-width: 32em;
-    overflow-y: auto;
     border-bottom: var(--border);
     margin-bottom: 2em;
 
@@ -76,13 +93,15 @@ main {
     }
   }
 
-  .sets li {
-    display: flex;
-    align-items: center;
-    align-content: center;
+  .sets {
+    li {
+      display: flex;
+      align-items: center;
+      align-content: center;
 
-    & > :first-child {
-      margin-right: 0.5em;
+      & > :first-child {
+        margin-right: 0.5em;
+      }
     }
   }
 }
