@@ -46,10 +46,12 @@ main {
 
     &.left {
       flex: 2;
+      min-width: 12em;
     }
 
     &.right {
       flex: 3;
+      min-width: 24em;
     }
 
     &.center {
@@ -65,7 +67,9 @@ main {
   overflow-y: auto;
   overflow-x: hidden;
 
-  & > :nth-child(2) {
+  .selection {
+    width: 100%;
+    max-width: 32em;
     overflow-y: auto;
     border-bottom: var(--border);
     margin-bottom: 2em;

@@ -1,3 +1,26 @@
+.fields {
+  li {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 0.4em;
+    padding: 0.2em 0;
+    place-content: start;
+
+    actions {
+      display: inline-flex;
+    }
+
+    input,
+    button {
+      height: 2.5em;
+    }
+
+    button {
+      align-self: center;
+    }
+  }
+}
+
 input {
   background: var(--g8);
   border-radius: var(--radius);
@@ -63,30 +86,6 @@ select {
     padding: var(--buttonPadding);
     color: inherit;
     background: inherit;
-  }
-}
-
-.fields {
-  li {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(9em, 1fr));
-    gap: 0.4em;
-    padding: 0.2em 0;
-    place-content: start;
-    place-items: start;
-
-    actions {
-      display: flex;
-    }
-
-    input,
-    button {
-      height: 2.5em;
-    }
-
-    button {
-      align-self: end;
-    }
   }
 }
 
