@@ -1,7 +1,6 @@
 .styles {
-  position: absolute;
   z-index: 9;
-  background: var(--g7);
+  position: absolute;
   display: grid;
   grid-template-rows: auto 1fr;
   padding: 0;
@@ -11,39 +10,17 @@
   height: 100%;
   top: 0;
   right: 0;
+  background: var(--g7);
   border: var(--border);
   border-right: none;
-  border-radius: 0 0 0 var(--radius);
+  border-radius: var(--radius);
   transform: translate3d(100%, 0, 0);
-  transition: var(--transition);
+  transition: transform var(--transition);
 
   &[data-active] {
     font-weight: inherit;
     box-shadow: var(--shadow);
     transform: translate3d(0, 0, 0);
-
-    button.style-editor-toggle {
-      background: inherit;
-      box-shadow: none;
-    }
-  }
-
-  button.style-editor-toggle {
-    position: absolute;
-    box-shadow: var(--shadow);
-    background: var(--g8);
-    border: var(--border);
-    border-right: none;
-    top: 0;
-    right: 100%;
-    height: 5em;
-    transform: translateY(calc(var(--borderWidth) * -1));
-    border-radius: var(--radius) 0 0 var(--radius);
-
-    &:hover,
-    &:focus {
-      border-color: var(--primary-80);
-    }
   }
 
   h2 {

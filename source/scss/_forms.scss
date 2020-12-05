@@ -55,7 +55,7 @@ label {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--g4);
+  color: var(--g3);
 
   input,
   select {
@@ -64,7 +64,7 @@ label {
     font-size: 1rem;
 
     &:focus {
-      color: var(--g1);
+      color: var(--g0);
     }
   }
 }

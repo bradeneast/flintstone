@@ -38,6 +38,7 @@ h6 {
     font-weight: inherit;
 
     &:focus {
+      color: var(--g0);
       border-color: currentColor;
     }
   }
@@ -51,7 +52,7 @@ h1 {
 }
 
 h2 {
-  color: var(--g4);
+  color: var(--g3);
   font-size: 1.37em;
   margin-bottom: 1rem;
 }
