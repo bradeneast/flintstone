@@ -1,62 +1,57 @@
-import setPreviewStyle from "../functions/setPreviewStyle";
-import { html } from "../lit-html/lit-html";
+import { html, nothing } from "../lit-html/lit-html";
+import { adjustments } from "../style_data";
 import state from "../state";
-
-let cleanPropName = string => string.replace(/-+/g, ' ').trim();
-let cleanPropValue = string => parseFloat(string.replace(/turn|deg|pt|px|rem|em|ch|in|vw|vh|%/g, '').trim());
-
-/**Returns a lit-html label and range input */
-export let range = ([tagName, { normieName }], [propName, { min, max, step, unit }]) => {
-
-  let unitValue = state.styles[tagName][propName] || '';
-  let cleanedValue = cleanPropValue(unitValue);
-  let cleanedName = cleanPropName(propName);
-
-  return html`
-  <label>
-    <span class=label>
-      <span class=label__name>${cleanedName}</span>
-      <span class=label__value>${unitValue || ''}</span>
-    </span>
-    <input title='Change ${normieName} ${cleanedName}' min=${min} max=${max} step=${step} .value=${cleanedValue} type=range
-      @input=${event =>
-      setPreviewStyle(tagName, propName, event.target.value + unit)} />
-  </label>`;
-}
+import { $ } from "../utils";
+import Button from "./Button";
+import { range, select, text } from "./StyleAdjustmentInput";
+import highlightElements from "../functions/highlightElements";
+import resetAdjustmentStyles from "../functions/resetAdjustmentStyles";
+import toggleExpanded from "../functions/toggleExpanded";
 
 
-/**Returns a lit-html label and text input */
-export let text = ([tagName, { normieName }], [propName, { placeholder }]) => {
-
-  let unitValue = state.styles[tagName][propName];
-  let cleanedName = cleanPropName(propName);
+export default ([tagName, { normieName, useAdjustments }]) => {
+  
+  let isExpanded = state.expandedAdjustments.includes(normieName);
 
   return html`
-  <label>
-    <span class=label>
-      <span class=label__name>${cleanedName}</span>
-    </span>
-    <input title='Change ${normieName} ${cleanedName}' placeholder=${placeholder} .value=${unitValue || ''} type=text
-      @input=${event=>
-      setPreviewStyle(tagName, propName, event.target.value)} />
-  </label>`;
-}
+  <div 
+  class=adjustment 
+  ?data-expanded=${isExpanded}
+  @mouseenter=${() => highlightElements(tagName)} 
+  @touchstart=${() => highlightElements(tagName)}
+  @mouseleave=${() => $('#temp')?.remove()}
+  @touchend=${() => $('#temp')?.remove()}>
 
-
-/**Returns a lit-html label and select input */
-export let select = ([tagName, { normieName }], [propName, { options, defaultValue }]) => {
-
-  let unitValue = state.styles[tagName][propName] || defaultValue;
-  let cleanedName = cleanPropName(propName);
-
-  return html`
-  <label>
-    <span class=label>
-      <span class=label__name>${cleanedName}</span>
-    </span>
-    <select title='Change ${normieName} ${cleanedName}' .value=${unitValue || '' } @input=${event=>
-        setPreviewStyle(tagName, propName, event.target.value)}>
-      ${options.map(opt => html`<option ?selected=${opt==unitValue}>${opt}</option>`)}
-    </select>
-  </label>`;
+    <div class=adjustment__header>
+      <button class=link @click=${() => toggleExpanded(normieName)}>
+        <h3 class=adjustment__header--title>${normieName}</h3>
+      </button>
+      <div class=adjustment__header--actions>
+      ${
+        Button({
+          title: `Reset ${normieName.replace(/s$/, '')} styles`,
+          className: 'icon',
+          disabled: !isExpanded,
+          content: '↩',
+          action: () => resetAdjustmentStyles(tagName),
+        })
+      }
+      </div>
+    </div>
+    
+    ${
+      isExpanded    
+        ? Object.entries(adjustments).map(([propName, propData]) => {
+            if (!useAdjustments.includes(propName)) return;
+            let tagArgument = [tagName, { normieName, useAdjustments }];
+            let propArgument = [propName, propData];  
+            switch (propData.type) {
+              case 'range': return range(tagArgument, propArgument);
+              case 'text': return text(tagArgument, propArgument);
+              case 'select': return select(tagArgument, propArgument);
+            }
+          })
+        : nothing
+    }
+  </div>`;
 }

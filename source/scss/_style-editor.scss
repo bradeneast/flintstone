@@ -56,53 +56,72 @@
 
   .adjustments {
     overflow-y: auto;
+  }
 
-    .adjustment {
-      border-radius: var(--radius);
+  .adjustment {
+    border-radius: var(--radius);
+    padding: 0.5em 1em;
+    margin-bottom: 0.5em;
+    border: var(--border);
+    transition: var(--transition);
+
+    &:hover,
+    &:focus-within {
+      box-shadow: var(--shadow);
+      border-color: var(--primary-60);
+    }
+
+    &[data-expanded] {
       padding: 1em;
       margin-bottom: 2em;
-      border: var(--border);
-      transition: border var(--transition), box-shadow var(--transition);
 
-      &:hover,
-      &:focus-within {
-        box-shadow: var(--shadow);
-        border-color: var(--primary-60);
-      }
-
-      &__header {
-        display: flex;
-        align-items: center;
-        text-transform: capitalize;
-        font-weight: bold;
+      .adjustment__header {
         margin-bottom: 1em;
 
         &--actions {
-          margin-left: auto;
-          justify-self: flex-end;
+          opacity: 1;
+          pointer-events: all;
+        }
+      }
+    }
+
+    &__header {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+
+      &--title {
+        text-transform: capitalize;
+      }
+
+      &--actions {
+        opacity: 0;
+        pointer-events: none;
+        margin-left: auto;
+        justify-self: flex-end;
+        transition: opacity var(--transition);
+      }
+    }
+
+    label {
+      margin-bottom: 0.5rem;
+      transition: var(--transition);
+
+      .label {
+        display: flex;
+
+        &__value {
+          font-family: Consolas, monospace;
+          position: absolute;
+          right: 0;
+          background: var(--g7);
+          box-shadow: -0.63em 0 0.63em 0.37em var(--g7);
         }
       }
 
-      label {
-        margin-bottom: 0.5rem;
-        transition: var(--transition);
-
-        .label {
-          display: flex;
-
-          &__value {
-            font-family: Consolas, monospace;
-            position: absolute;
-            right: 0;
-            background: var(--g7);
-            box-shadow: -0.63em 0 0.63em 0.37em var(--g7);
-          }
-        }
-
-        &:hover,
-        &:focus-within {
-          color: var(--g0);
-        }
+      &:hover,
+      &:focus-within {
+        color: var(--g0);
       }
     }
   }

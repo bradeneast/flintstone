@@ -5,6 +5,10 @@
   "dark": false,
   "currentDocument": null,
   "currentDataset": null,
+  "expandedAdjustments": [
+    "global",
+    "pages"
+  ],
   "styles": {
     ".preview__wrapper": {
       "font-size": "14px",

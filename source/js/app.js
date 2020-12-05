@@ -23,9 +23,15 @@ else {
 
   state.currentDataset = state.currentUser.datasets[0];
   state.currentDocument = state.currentUser.documents[0];
+  state.savedLocally = state.savedLocally || false;
+  state.showPreview = state.showPreview || false;
+  state.showStyles = state.showStyles || false;
+  state.dark = state.dark || false;
+  state.styles = state.styles || {};
+  state.expandedAdjustments = state.expandedAdjustments || ["global", "pages"];
+
   document.documentElement.classList.toggle('dark', state.dark);
 
-  state.styles = state.styles || {};
   Object.keys(tags).map(tagName =>
     state.styles[tagName] = state.styles[tagName] || {}
   );

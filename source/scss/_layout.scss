@@ -1,3 +1,35 @@
+header {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: var(--headerHeight);
+  background: var(--g8);
+  border-bottom: var(--border);
+  border-color: var(--g7);
+  padding: 0.5em 1em;
+
+  #logo {
+    display: inline-block;
+    margin: 0;
+    line-height: 1.2;
+    background: linear-gradient(-37deg, var(--primary-80), var(--primary));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+
+  nav {
+    margin-left: auto;
+  }
+
+  button:hover,
+  button:focus {
+    background: var(--g7);
+  }
+}
+
 main {
   top: var(--headerHeight);
   display: flex;

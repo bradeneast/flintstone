@@ -24,7 +24,7 @@ $mobile: 960px;
   --g6: #{$g6};
   --g7: #{$g7};
   --g8: #{$g8};
-  --headerHeight: 3rem;
+  --headerHeight: 3.3rem;
   --radius: 0.37rem;
   --buttonPadding: 0.5rem;
   --borderWidth: 2px;
@@ -84,33 +84,6 @@ body {
   height: 100vh;
   height: -webkit-fill-available;
   overflow: hidden;
-}
-
-header {
-  position: fixed;
-  display: flex;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  width: 100%;
-  height: var(--headerHeight);
-  background: var(--g8);
-  border-bottom: var(--border);
-  border-color: var(--g7);
-  padding: 0.5em 1em;
-
-  #logo {
-    display: inline-block;
-    margin: 0;
-    line-height: 1.2;
-    background: linear-gradient(-37deg, var(--primary-80), var(--primary));
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-  }
-
-  nav {
-    margin-left: auto;
-  }
 }
 
 @import "./loader";

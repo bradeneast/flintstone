@@ -8,19 +8,19 @@ let tableAdjustments = ['font-size', 'font-weight', 'text-transform', 'text-alig
 export let tags = {
   '.preview__wrapper': {
     normieName: 'global',
-    useAdjustments: ['font-family', 'font-size', 'line-height', '--vertical-space']
+    useAdjustments: ['font-family', 'font-size', 'line-height', '--vertical-space'],
   },
   '.preview__page': {
     normieName: 'pages',
-    useAdjustments: ['padding-top', 'padding-bottom', 'padding-left', 'padding-right']
+    useAdjustments: ['padding-top', 'padding-bottom', 'padding-left', 'padding-right'],
   },
   '.preview__wrapper::before': {
     normieName: 'header',
-    useAdjustments: headerFooterAdjustments
+    useAdjustments: headerFooterAdjustments,
   },
   '.preview__wrapper::after': {
     normieName: 'footer',
-    useAdjustments: headerFooterAdjustments
+    useAdjustments: headerFooterAdjustments,
   },
   h1: {
     normieName: 'level 1 headings',
@@ -72,19 +72,19 @@ export let tags = {
   },
   blockquote: {
     normieName: 'block quotes',
-    useAdjustments: ['color', 'padding-left', 'padding-right', 'border-width', 'border-color']
+    useAdjustments: ['color', 'padding-left', 'padding-right', 'border-width', 'border-color'],
   },
   img: {
     normieName: 'images',
-    useAdjustments: ['width']
+    useAdjustments: ['width'],
   },
   th: {
     normieName: 'table headings',
-    useAdjustments: tableAdjustments
+    useAdjustments: tableAdjustments,
   },
   td: {
     normieName: 'table cells',
-    useAdjustments: tableAdjustments
+    useAdjustments: tableAdjustments,
   },
 }
 
