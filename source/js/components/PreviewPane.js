@@ -70,8 +70,10 @@ export default () => {
       : html`
       <textarea 
       class=editor 
-      placeholder="Begin writing here..."
-      @input=${event=> state.currentDocument.body = event.target.value}>${state.currentDocument.body}</textarea>`
+      placeholder="Start typing when you're ready..."
+      @input=${event=> 
+        state.currentDocument.body = event.target.value
+      }>${state.currentDocument.body}</textarea>`
   }
 `;
 }

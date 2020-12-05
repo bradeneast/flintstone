@@ -25,10 +25,17 @@ export let dataMatcher = /\{.+?\}/g;
 
 export default async () => {
 
+  if (!state.currentDocument.body.length)
+    return html`
+    <div class=preview__page>
+      Write something in the editor to see it show up here. 😎
+    </div>`
+
   let hydrated = state.currentDocument.body.replace(dataMatcher, hydrateFromDataset);
   let sanitized = purify.sanitize(marked(hydrated));
-
   return sanitized
     .split('<hr>')
-    .map(pageContent => html`<div class=preview__page>${unsafeHTML(pageContent)}</div>`)
+    .map(pageContent =>
+      html`<div class=preview__page>${unsafeHTML(pageContent)}</div>`
+    );
 }
