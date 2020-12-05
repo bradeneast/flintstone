@@ -162,7 +162,7 @@
     </select>
   </label>`};var kb=c=>{let a=document.createElement("style");a.id="temp",a.innerHTML=`\r
   .preview ${c} {\r
-    box-shadow: 0 0 0 2px var(--primary-80);\r
+    box-shadow: 0 0 0 var(--borderWidth) var(--primary-80);\r
     border-radius: var(--radius);\r
     transition: box-shadow var(--transition);\r
   }`,document.body.appendChild(a)};var oc=c=>{Na.then(a=>{g.styles[c]=ja(a.styles[c]),r("styles",g.styles)})};var pc=c=>{let a=g.expandedAdjustments,b=a.includes(c);b?a.splice(a.indexOf(c),1):a.push(c),r("expandedAdjustments",a)};var qc=([c,{normieName:a,useAdjustments:b}])=>{let d=g.expandedAdjustments.includes(a);return v`

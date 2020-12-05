@@ -52,16 +52,6 @@ a.button {
     }
   }
 
-  &.link {
-    border: none;
-    padding: 0;
-
-    &:hover,
-    &:focus {
-      background: none;
-    }
-  }
-
   &[data-active] {
     color: var(--g0);
   }
@@ -79,12 +69,19 @@ a.button {
 
 a,
 button.link {
+  border: none;
+  padding: 0;
   text-decoration: underline;
   text-decoration-color: transparent;
 
   &:hover,
   &:focus {
+    background: none;
     color: var(--g0);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 var(--borderWidth) currentColor;
   }
 }
 

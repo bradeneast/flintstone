@@ -5,7 +5,7 @@ export default (tagName) => {
   style.id = 'temp';
   style.innerHTML = `
   .preview ${tagName} {
-    box-shadow: 0 0 0 2px var(--primary-80);
+    box-shadow: 0 0 0 var(--borderWidth) var(--primary-80);
     border-radius: var(--radius);
     transition: box-shadow var(--transition);
   }`;
