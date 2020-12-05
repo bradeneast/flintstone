@@ -3,8 +3,7 @@ import { html } from "../lit-html/lit-html";
 import { unsafeHTML } from '../lit-html/directives/unsafe-html';
 import { dataMatcher, hydrateFromDataset } from "../functions/renderPreview";
 import state, { setState } from '../state';
-import { resolvePromise } from "../utils";
-
+import { resolvePromise, sanitizeCSS } from "../utils";
 
 export default () => {
 
@@ -16,7 +15,7 @@ export default () => {
       else return;
     }
     propValue = propValue.replace(dataMatcher, hydrateFromDataset);
-    return [propName, propValue].join(':')
+    return [propName, sanitizeCSS(propValue)].join(':')
   }
 
   let previewStyles = `

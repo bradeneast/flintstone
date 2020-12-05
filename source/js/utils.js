@@ -14,7 +14,10 @@ export let deepCopy = obj => JSON.parse(JSON.stringify(obj));
 
 
 /**A shorthand for setting CSS custom properties */
-export let setCustomProp = (elem, propertyName, value) => elem.style.setProperty(`--${propertyName}`, value);
+export let sanitizeCSS = string => string
+  .replace(/</g, '%3C')
+  .replace(/{/g, '\007B')
+  .replace(/expression\(.+?\)/g, '');
 
 
 /**A shorthand for `localStorage`
