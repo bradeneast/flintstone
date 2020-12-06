@@ -38,7 +38,7 @@
           height: auto;
           display: grid;
           gap: 2em;
-          grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
 
           h2 {
             grid-column: 1 / -1;
