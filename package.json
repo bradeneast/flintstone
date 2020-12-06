@@ -1,0 +1,7 @@
+{
+  "name": "flintstone",
+  "version": "1.0.0",
+  "dependencies": {
+    "gotrue-js": "^0.9.27"
+  }
+}

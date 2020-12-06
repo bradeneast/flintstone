@@ -13,6 +13,20 @@ export let $$ = (selector, context = document) => context.querySelectorAll(selec
 export let deepCopy = obj => JSON.parse(JSON.stringify(obj));
 
 
+/**Validates an input */
+export let validate = event => {
+
+  let targetInput = event.target;
+  let currentForm = targetInput.closest('form');
+
+  window.forms = window.forms || {};
+  window.forms[currentForm.id] = window.forms[currentForm.id] || {};
+  window.forms[currentForm.id][targetInput.name] = targetInput.value;
+
+  currentForm.reportValidity();
+}
+
+
 /**A shorthand for setting CSS custom properties */
 export let sanitizeCSS = string => string
   .replace(/</g, '%3C')

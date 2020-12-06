@@ -1,5 +1,6 @@
 import renderPreview from "../functions/renderPreview";
 import { html } from "../lit-html/lit-html";
+import {cache} from '../lit-html/directives/cache';
 import { unsafeHTML } from '../lit-html/directives/unsafe-html';
 import { dataMatcher, hydrateFromDataset } from "../functions/renderPreview";
 import state, { setState } from '../state';
@@ -58,7 +59,7 @@ export default () => {
     </a>
   </toolbar>
 
-  ${
+  ${cache(
     state.showPreview
       ? html`
       <div class=preview>
@@ -74,6 +75,6 @@ export default () => {
       @input=${event=> 
         state.currentDocument.body = event.target.value
       }>${state.currentDocument.body}</textarea>`
-  }
+  )}
 `;
 }

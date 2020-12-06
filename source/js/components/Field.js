@@ -28,7 +28,10 @@ export default ([key, value], fieldIndex, datasetIndex) => {
             title: 'Move field up',
             className: 'icon',
             disabled: fieldIndex == 0,
-            content: Icon(svg`<polyline points="184.69 146.81 108 70.12 31.31 146.81" />`, 'line'),
+            content: Icon({
+              content: svg`<polyline points="184.69 146.81 108 70.12 31.31 146.81" />`, 
+              className: 'line'
+            }),
             action: () => moveField(fieldIndex, -1)
           })
         }
@@ -37,7 +40,10 @@ export default ([key, value], fieldIndex, datasetIndex) => {
             title: 'Move field down',
             className: 'icon',
             disabled: fieldIndex == state.currentDataset.fields.length - 1,
-            content: Icon(svg`<polyline points="184.69 70.12 108 146.81 31.31 70.12" />`, 'line'),
+            content: Icon({
+              content: svg`<polyline points="184.69 70.12 108 146.81 31.31 70.12" />`, 
+              className: 'line'
+            }),
             action: () => moveField(fieldIndex, 1)
           })
         }

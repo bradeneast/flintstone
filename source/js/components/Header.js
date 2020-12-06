@@ -3,6 +3,7 @@ import { html } from "../lit-html/lit-html";
 import state, { setState } from "../state";
 import Button from "./Button";
 
+
 export default () => html`
 <div id=logo>
   <img alt="Flintstone logo" src="logo${state.dark ? '-white' : ''}.svg" />
@@ -39,5 +40,13 @@ export default () => html`
       action: toggleDarkMode
     })
   }
-</nav>
-`;
+  <separator></separator>
+  ${
+    Button({
+      title: state.isLoggedIn ? 'Log Out' : 'Log In',
+      className: 'icon',
+      content: state.isLoggedIn ? '🔓' : '🔒',
+      action: () => netlifyIdentity.open()
+    })
+  }
+</nav>`;
