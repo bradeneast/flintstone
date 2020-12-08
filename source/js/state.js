@@ -1,39 +1,41 @@
-import DocumentsPane from './components/DocumentsPane';
-import DataPane from './components/DataPane';
-import PreviewPane from './components/PreviewPane';
-import { html, render } from './lit-html/lit-html';
+import { html, render } from 'lit-html';
+import auth from './auth';
 import { $, ls } from './utils';
+import Main from './components/Main';
 import Header from './components/Header';
-import StylesPane from './components/StylesPane';
 
 
 // Get local state and default state
-let state = ls('contractly_user') || {};
+let state = ls('flintstone') || {};
 
 export default state;
 export let defaultState = fetch('/defaults.json').then(r => r.json());
 
 
-/**Auto-save to local storage */
+// Auto-save to local storage
 let autoSaveWaiter = setTimeout(() => null, 0);
-export function autoSave() {
 
+export async function autoSave() {
   clearTimeout(autoSaveWaiter);
-
   autoSaveWaiter = setTimeout(() => {
+    ls('flintstone', state);
     state.savedLocally = true;
-    ls('contractly_user', state);
+    auth?.currentUser()?.update(state.currentUser)
   }, 1000);
-
 }
 
 
 /**Render the whole app */
-export function renderAll() {
-  render(Header(), $('header'));
-  render(DocumentsPane(), $('section.left'));
-  render(PreviewPane(), $('section.center'));
-  render(html`${DataPane()}${StylesPane()}`, $('section.right'));
+export function renderAll(contents = Main()) {
+  render(
+    html`
+    <div id=app ?data-dark=${state.dark} ?data-loading=${state.loading}>
+      <header>${Header()}</header>
+      ${contents}
+      <loader></loader>
+    </div>`,
+    document.body
+  );
 }
 
 

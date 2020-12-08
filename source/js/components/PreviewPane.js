@@ -1,7 +1,7 @@
 import renderPreview from "../functions/renderPreview";
-import { html } from "../lit-html/lit-html";
-import {cache} from '../lit-html/directives/cache';
-import { unsafeHTML } from '../lit-html/directives/unsafe-html';
+import { html } from "lit-html";
+import {cache} from 'lit-html/directives/cache';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { dataMatcher, hydrateFromDataset } from "../functions/renderPreview";
 import state, { setState } from '../state';
 import { resolvePromise, sanitizeCSS } from "../utils";

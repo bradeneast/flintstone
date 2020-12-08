@@ -1,8 +1,8 @@
 import state from '../state';
-import purify from '../dom-purify/purify';
-import marked from '../marked/marked';
-import { html } from '../lit-html/lit-html';
-import { unsafeHTML } from '../lit-html/directives/unsafe-html';
+import { sanitize } from 'dompurify'
+import marked from 'marked';
+import { html } from 'lit-html';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 
 
 export function getFieldValue(prop) {
@@ -32,7 +32,7 @@ export default async () => {
     </div>`
 
   let hydrated = state.currentDocument.body.replace(dataMatcher, hydrateFromDataset);
-  let sanitized = purify.sanitize(marked(hydrated));
+  let sanitized = sanitize(marked(hydrated));
   return sanitized
     .split('<hr>')
     .map(pageContent =>

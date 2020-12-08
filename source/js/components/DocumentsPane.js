@@ -1,4 +1,4 @@
-import { html, nothing } from "../lit-html/lit-html";
+import { html, nothing } from "lit-html";
 import state from "../state";
 import addDocument from "../functions/addDocument";
 import removeDocument from "../functions/removeDocument";

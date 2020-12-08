@@ -1,4 +1,4 @@
-import { html, nothing } from "../lit-html/lit-html";
+import { html, nothing } from "lit-html";
 import { adjustments } from "../style_data";
 import state from "../state";
 import { $ } from "../utils";

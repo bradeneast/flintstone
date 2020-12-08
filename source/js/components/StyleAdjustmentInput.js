@@ -1,5 +1,5 @@
 import setPreviewStyle from "../functions/setPreviewStyle";
-import { html } from "../lit-html/lit-html";
+import { html } from "lit-html";
 import state from "../state";
 
 let cleanPropName = string => string.replace(/-+/g, ' ').trim();

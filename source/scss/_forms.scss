@@ -1,3 +1,22 @@
+.form {
+  display: grid;
+  padding: 2em;
+  gap: 1em;
+  border-radius: var(--radius);
+  max-width: 36em;
+  background: var(--g7);
+
+  [type="text"],
+  [type="email"],
+  [type="password"] {
+    width: 16em;
+
+    & + button {
+      margin-top: 1em;
+    }
+  }
+}
+
 .fields {
   li {
     display: grid;

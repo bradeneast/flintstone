@@ -1,15 +1,11 @@
 @media print {
-  html,
-  body {
-    background: none;
-    color: var(--g1);
-  }
-
-  body {
-    padding: 0;
+  #app {
+    display: block;
     overflow: visible;
     height: auto;
-    display: block;
+    background: none;
+    color: var(--g1);
+    padding: 0;
   }
 
   header,

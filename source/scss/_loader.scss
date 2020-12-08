@@ -44,19 +44,3 @@ loader {
     animation-delay: 0.1s;
   }
 }
-
-.loading {
-  * {
-    overflow: hidden;
-  }
-
-  loader {
-    opacity: 1;
-    pointer-events: all;
-
-    &::before,
-    &::after {
-      animation-play-state: running;
-    }
-  }
-}

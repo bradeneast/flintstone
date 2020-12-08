@@ -1,5 +1,5 @@
-import { unsafeHTML } from "./lit-html/directives/unsafe-html";
-import { directive } from "./lit-html/lit-html";
+import { unsafeHTML } from "lit-html/directives/unsafe-html"
+import { directive } from "lit-html";
 
 /**A shorthand for `querySelector`*/
 export let $ = (selector, context = document) => context.querySelector(selector);
@@ -13,18 +13,16 @@ export let $$ = (selector, context = document) => context.querySelectorAll(selec
 export let deepCopy = obj => JSON.parse(JSON.stringify(obj));
 
 
-/**Validates an input */
-export let validate = event => {
+/**Populates one object with the key/value pairs of another object (additive) */
+export let serialize = (fromObject, intoObject) => Object.keys(fromObject).forEach(key =>
+  intoObject[key] = fromObject[key]
+);
 
-  let targetInput = event.target;
-  let currentForm = targetInput.closest('form');
 
-  window.forms = window.forms || {};
-  window.forms[currentForm.id] = window.forms[currentForm.id] || {};
-  window.forms[currentForm.id][targetInput.name] = targetInput.value;
-
-  currentForm.reportValidity();
-}
+/**Ensures properties exist on an object, filling them with an empty object if they do not exist. */
+export let ensureProps = (properties, obj, defaultValue = {}) => properties.forEach(prop =>
+  obj[prop] = obj[prop] || defaultValue
+);
 
 
 /**A shorthand for setting CSS custom properties */

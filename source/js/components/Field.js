@@ -1,4 +1,4 @@
-import { html, svg } from "../lit-html/lit-html";
+import { html, svg } from "lit-html";
 import removeField from "../functions/removeField";
 import renameField from '../functions/renameField';
 import updateFieldValue from '../functions/updateFieldValue';

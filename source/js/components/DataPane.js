@@ -4,7 +4,7 @@ import duplicateDataset from "../functions/duplicateDataset";
 import removeDataset from "../functions/removeDataset";
 import renameDataset from "../functions/renameDataset";
 import setCurrentDataset from "../functions/setCurrentDataset";
-import { html, nothing } from "../lit-html/lit-html";
+import { html, nothing } from "lit-html";
 import state from "../state";
 import Button from "./Button";
 import Field from "./Field";

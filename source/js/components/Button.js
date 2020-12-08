@@ -1,4 +1,4 @@
-import { html } from "../lit-html/lit-html";
+import { html } from "lit-html";
 
 export default ({
   title = '',
