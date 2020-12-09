@@ -1,0 +1,40 @@
+import auth from "../auth";
+import { html } from "lit-html";
+import Button from "./Button";
+import { renderAll, setState } from "../state";
+import Login from "./Login";
+import Modal from "./Modal";
+
+export default () => {
+
+  let email;
+
+  return html`
+  <div class=form>
+    <label>
+      Email
+      <input @input=${e=> email = e.target.value} type=email name=email />
+    </label>
+    ${
+      Button({
+        className: 'primary',
+        content: 'Send Recovery Email',
+        action: () => {
+          setState('loading', true);
+          auth.requestPasswordRecovery(email)
+            .then(() => {
+              setState('loading', false);
+              renderAll(Modal('Recovery email sent. Check your inbox.'));
+          })
+        }
+      })
+    }
+    ${
+      Button({
+        className: 'link',
+        content: 'Back to sign in',
+        action: () => renderAll(Modal(Login()))
+      })
+    }
+  </div>`;
+}

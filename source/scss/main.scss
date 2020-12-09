@@ -42,6 +42,18 @@ $mobile: 960px;
   }
 }
 
+html.dark #app {
+  --g0: #{$g8};
+  --g1: #{$g7};
+  --g2: #{$g6};
+  --g3: #{$g5};
+  --g4: #{$g4};
+  --g5: #{$g3};
+  --g6: #{$g2};
+  --g7: #{$g1};
+  --g8: #{$g0};
+}
+
 #app {
   color: var(--g0);
   background: var(--g8);
@@ -73,18 +85,6 @@ $mobile: 960px;
   --shadow: 0 0.2rem 0.5rem -0.1rem var(--g5);
   --transition: 0.3s cubic-bezier(0.3, 0.6, 0.1, 1);
 
-  &[data-dark] {
-    --g0: #{$g8};
-    --g1: #{$g7};
-    --g2: #{$g6};
-    --g3: #{$g5};
-    --g4: #{$g4};
-    --g5: #{$g3};
-    --g6: #{$g2};
-    --g7: #{$g1};
-    --g8: #{$g0};
-  }
-
   &[data-modal] modal {
     opacity: 1;
     pointer-events: all;
@@ -111,9 +111,10 @@ $mobile: 960px;
 @import "./forms";
 @import "./typography";
 @import "./buttons";
+@import "./header";
+@import "./layout";
 @import "./center-pane";
 @import "./modal";
-@import "./layout";
 @import "./style-editor";
 @import "./preview";
 @import "./mobile";

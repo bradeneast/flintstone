@@ -1,0 +1,47 @@
+header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: var(--headerHeight);
+  overflow: visible;
+  background: var(--g8);
+  border-bottom: var(--border);
+  border-color: var(--g7);
+  padding: 0.5em 1em;
+
+  #logo {
+    height: 80%;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: auto;
+
+    separator {
+      height: 80%;
+      width: var(--borderWidth);
+      background: var(--g6);
+      border-radius: var(--radius);
+      margin: 0 1em;
+    }
+
+    button + button:not(.icon) {
+      margin-left: 1em;
+    }
+  }
+
+  button:hover,
+  button:focus {
+    background: var(--g7);
+  }
+}

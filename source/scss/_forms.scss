@@ -6,14 +6,23 @@
   max-width: 36em;
   background: var(--g7);
 
-  [type="text"],
-  [type="email"],
-  [type="password"] {
-    width: 16em;
+  label {
+    button {
+      align-self: start;
+      display: inline-block;
+      text-align: left;
+      margin-top: 0.5em;
+    }
 
     & + button {
       margin-top: 1em;
     }
+  }
+
+  [type="text"],
+  [type="email"],
+  [type="password"] {
+    width: 16em;
   }
 }
 

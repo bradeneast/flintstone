@@ -3,10 +3,14 @@ import { html } from "lit-html";
 import Button from "./Button";
 import { renderAll, setState } from "../state";
 
-export default () => html`
-<modal class="mount-children">
+export default () => {
+
+  let user = auth.currentUser();
+
+  return html`
   <div class=form>
-    ${Button({
+    ${
+      Button({
         className: 'primary',
         content: 'Sign Out',
         action: () => {
@@ -18,11 +22,12 @@ export default () => html`
         }
       })
     }
-    ${Button({
+    ${
+      Button({
         className: 'link',
-        content: html`Continue as <strong>${auth.currentUser().email}</strong>`,
+        content: html`Continue as <strong>${user.user_metadata.full_name || user.email}</strong>`,
         action: () => renderAll()
       })
     }
-  </div>
-</modal>`;
+  </div>`;
+}

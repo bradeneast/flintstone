@@ -1,9 +1,11 @@
 import auth from "../auth";
-import { html } from "lit-html";
-import state, { renderAll, setState } from "../state";
+import { html, nothing } from "lit-html";
+import state, { preferences, renderAll, setPreference, setState } from "../state";
 import Button from "./Button";
 import Login from './Login';
 import Logout from "./Logout";
+import Modal from "./Modal";
+import Signup from "./Signup";
 
 
 export default () => {
@@ -12,7 +14,7 @@ export default () => {
 
   return html`
   <div id=logo>
-    <img alt="Flintstone logo" src="logo${state.dark ? '-white' : ''}.svg" />
+    <img alt="Flintstone logo" src="logo${preferences.dark ? '-white' : ''}.svg" />
   </div>
   <nav>
     ${
@@ -43,15 +45,24 @@ export default () => {
         title: `Switch to ${state.dark ? 'light' : 'dark'} theme`,
         content: state.dark ? "🌝" : "🌞",
         className: 'icon',
-        action: () => setState('dark', !state.dark)
+        action: () => setPreference('dark', !preferences.dark)
       })
     }
     <separator></separator>
     ${
+      user
+      ? nothing
+      : Button({
+        className: 'primary',
+        content: 'Sign up',
+        action: () => renderAll(Modal(Signup()))
+      })
+    }
+    ${
       Button({
         className: 'link',
-        content: user ? html`Logged in as <strong>${user.email}</strong>` : 'Log in',
-        action: user ? () => renderAll(Logout()) : () => renderAll(Login())
+        content: user ? html`Signed in as <strong>${user.user_metadata.full_name || user.email}</strong>` : 'Sign in',
+        action: user ? () => renderAll(Modal(Logout())) : () => renderAll(Modal(Login()))
       })
     }
   </nav>`;
