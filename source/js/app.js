@@ -1,7 +1,7 @@
 import auth from './auth';
 import AcceptInvite from './components/AuthScreens/AcceptInvite';
-import Modal from './components/Modal';
 import ResetPassword from './components/AuthScreens/ResetPassword';
+import Modal from './components/Modal';
 import renderPreview from './functions/renderPreview';
 import state, { renderAll, autoSave, defaultState, updatePreferenceClasses } from './state';
 import { tags } from './style_data';
@@ -53,7 +53,7 @@ if (location.hash && location.hash.length) {
   location.replace("#");
   // slice off the remaining '#' in HTML5:    
   if (typeof history.replaceState == 'function') {
-    history.replaceState({}, '', window.location.href.slice(0, -1));
+    history.replaceState({}, '', location.href.slice(0, -1));
   }
 
   // Confirm or recover user 
@@ -76,3 +76,7 @@ if (location.hash && location.hash.length) {
       break;
   }
 }
+
+
+
+console.log(auth.currentUser());

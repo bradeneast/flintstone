@@ -5,22 +5,22 @@ import Button from "../Button";
 import Recover from "./Recover";
 import Modal from "../Modal";
 import AuthError from "./AuthError";
+import { handleFormInput } from "../../utils";
 
 
 export default function Login() {
 
-  let email;
-  let password;
+  let formData = {};
 
   return html`
-  <div class=form>
+  <form>
     <label>
       Email
-      <input @input=${e => email = e.target.value} type=email name=email />
+      <input required @input=${event => handleFormInput(event, formData)} type=email name=email />
     </label>
     <label>
       Password
-      <input @input=${e => password = e.target.value} minlength=8 type=password name=password />
+      <input required @input=${event => handleFormInput(event, formData)} type=password name=password />
       ${
         Button({
           className: 'link',
@@ -37,7 +37,7 @@ export default function Login() {
         action: () => {
           setState('loading', true);
           auth
-            .login(email, password, true)
+            .login(formData.email, formData.password, true)
             .then(response => {
               console.log(response);
               setState('loading', false);
@@ -57,5 +57,5 @@ export default function Login() {
         action: () => renderAll()
       })
     }
-  </div>`;
+  </form>`;
 }

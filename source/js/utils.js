@@ -48,3 +48,9 @@ export let resolvePromise = directive(promise => part => {
     part.commit();
   })
 })
+
+
+export let handleFormInput = (event, formData) => {
+  let target = event.target;
+  formData[target.name] = target.value;
+}

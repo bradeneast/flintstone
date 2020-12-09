@@ -21,7 +21,7 @@ export async function autoSave() {
   autoSaveWaiter = setTimeout(() => {
     ls('flintstone_data', state);
     state.savedLocally = true;
-    auth?.currentUser()?.update({ flintstone_data: state.currentUser })
+    auth?.currentUser()?.update({ flintstone_data: 'testing' });
   }, 1000);
 }
 

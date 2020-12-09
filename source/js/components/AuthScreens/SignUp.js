@@ -2,29 +2,19 @@ import { html } from "lit-html";
 import auth from "../../auth";
 import Button from "../Button";
 import { renderAll, setState } from "../../state";
+import Modal from "../Modal";
+import AuthError from "./AuthError";
+import Inputs from "./Inputs";
 
 
 export default () => {
 
-  let full_name;
-  let email;
-  let password;
+  let fields = ['name', 'email', 'password'];
+  let formData = {};
 
   return html`
-  <div class=form>
-    <label>
-      Name
-      <input @input=${e=> full_name = e.target.value} type=text name=full_name />
-    </label>
-    <label>
-      Email
-      <input @input=${e => email = e.target.value} type=email name=email />
-    </label>
-    <label>
-      Password
-      <input @input=${e => password = e.target.value} minlength=8 type=password name=password />
-    </label>
-
+  <form>
+    ${Inputs({ fields, formData })}
     ${
       Button({
         className: 'primary',
@@ -32,7 +22,7 @@ export default () => {
         action: () => {
           setState('loading', true);
           auth
-            .signup(email, password, { full_name: full_name })
+            .signup(formData.email, formData.password, { full_name: formData.name })
             .then(() => {
               setState('loading', false);
               renderAll(Modal('Confirmation email sent. Check your inbox.'));
@@ -52,5 +42,5 @@ export default () => {
         action: () => renderAll()
       })
     }
-  </div>`;
+  </form>`;
 }

@@ -5,17 +5,16 @@ import Button from "../Button";
 import SignIn from "./SignIn";
 import Modal from "../Modal";
 import AuthError from "./AuthError";
+import Inputs from "./Inputs";
 
 export default () => {
 
-  let email;
+  let fields = ['email'];
+  let formData = {};
 
   return html`
-  <div class=form>
-    <label>
-      Email
-      <input @input=${e=> email = e.target.value} type=email name=email />
-    </label>
+  <form>
+    ${Inputs({ fields, formData })}
     ${
       Button({
         className: 'primary',
@@ -23,7 +22,7 @@ export default () => {
         action: () => {
           setState('loading', true);
           auth
-            .requestPasswordRecovery(email)
+            .requestPasswordRecovery(formData.email)
             .then(() => {
               setState('loading', false);
               renderAll(Modal('Recovery email sent. Check your inbox.'));
@@ -43,5 +42,5 @@ export default () => {
         action: () => renderAll(Modal(SignIn()))
       })
     }
-  </div>`;
+  </form>`;
 }

@@ -8,10 +8,10 @@ export default () => {
   let password;
 
   return html`
-  <div class=form>
+  <form>
     <label>
       New Password
-      <input @input=${e => password = e.target.value} minlength=8 type=password name=password />
+      <input required @input=${e => password = e.target.value} minlength=8 type=password name=password />
     </label>
     ${
       Button({
@@ -29,5 +29,5 @@ export default () => {
         }
       })
     }
-  </div>`;
+  </form>`;
 }
