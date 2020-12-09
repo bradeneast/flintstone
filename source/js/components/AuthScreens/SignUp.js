@@ -1,7 +1,7 @@
-import auth from "../auth";
 import { html } from "lit-html";
-import Button from "./Button";
-import { renderAll, setState } from "../state";
+import auth from "../../auth";
+import Button from "../Button";
+import { renderAll, setState } from "../../state";
 
 
 export default () => {

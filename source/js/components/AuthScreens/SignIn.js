@@ -1,9 +1,9 @@
-import auth from "../auth";
 import { html } from "lit-html";
-import Button from "./Button";
-import { renderAll, setState } from "../state";
+import auth from "../../auth";
+import { renderAll, setState } from "../../state";
+import Button from "../Button";
 import Recover from "./Recover";
-import Modal from "./Modal";
+import Modal from "../Modal";
 import AuthError from "./AuthError";
 
 

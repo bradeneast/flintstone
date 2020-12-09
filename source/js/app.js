@@ -1,7 +1,7 @@
 import auth from './auth';
-import AcceptInvite from './components/AcceptInvite';
+import AcceptInvite from './components/AuthScreens/AcceptInvite';
 import Modal from './components/Modal';
-import ResetPassword from './components/ResetPassword';
+import ResetPassword from './components/AuthScreens/ResetPassword';
 import renderPreview from './functions/renderPreview';
 import state, { renderAll, autoSave, defaultState, updatePreferenceClasses } from './state';
 import { tags } from './style_data';
@@ -64,7 +64,9 @@ if (location.hash && location.hash.length) {
         .then(() => renderAll(Modal(ResetPassword())));
       break;
     case 'confirmation_token':
-      auth.confirm(value, true);
+      auth
+        .confirm(value, true)
+        .then(res => console.log(res));
       break;
     case 'invite_token':
       renderAll(Modal(AcceptInvite(value)));

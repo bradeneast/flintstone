@@ -1,7 +1,7 @@
-import auth from "../auth";
 import { html } from "lit-html";
-import Button from "./Button";
-import { setState } from "../state";
+import auth from "../../auth";
+import { setState } from "../../state";
+import Button from "../Button";
 
 export default (token) => {
 

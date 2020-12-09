@@ -1,8 +1,8 @@
 import { html } from "lit-html";
-import { renderAll } from "../state";
-import Button from "./Button";
-import Login from "./Login";
-import Modal from "./Modal";
+import { renderAll } from "../../state";
+import Button from "../Button";
+import SignIn from "./SignIn";
+import Modal from "../Modal";
 
 
 export default () => html`
@@ -12,7 +12,7 @@ export default () => html`
     Button({
       content: 'Try logging in again',
       className: 'link underline',
-      action: () => renderAll(Modal(Login()))
+      action: () => renderAll(Modal(SignIn()))
     })
   }
   or

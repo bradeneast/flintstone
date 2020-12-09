@@ -2,10 +2,10 @@ import auth from "../auth";
 import { html, nothing } from "lit-html";
 import state, { preferences, renderAll, setPreference, setState } from "../state";
 import Button from "./Button";
-import Login from './Login';
-import Logout from "./Logout";
+import SignIn from './AuthScreens/SignIn';
+import SignOut from "./AuthScreens/SignOut";
 import Modal from "./Modal";
-import Signup from "./Signup";
+import SignUp from "./AuthScreens/SignUp";
 
 
 export default () => {
@@ -56,14 +56,14 @@ export default () => {
       : Button({
         className: 'primary',
         content: 'Sign up',
-        action: () => renderAll(Modal(Signup()))
+        action: () => renderAll(Modal(SignUp()))
       })
     }
     ${
       Button({
         className: 'link',
         content: user ? html`Signed in as <strong>${user.user_metadata.full_name || user.email}</strong>` : 'Sign in',
-        action: user ? () => renderAll(Modal(Logout())) : () => renderAll(Modal(Login()))
+        action: user ? () => renderAll(Modal(SignOut())) : () => renderAll(Modal(SignIn()))
       })
     }
   </nav>`;

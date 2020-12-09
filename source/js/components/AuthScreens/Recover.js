@@ -1,9 +1,9 @@
-import auth from "../auth";
 import { html } from "lit-html";
-import Button from "./Button";
-import { renderAll, setState } from "../state";
-import Login from "./Login";
-import Modal from "./Modal";
+import auth from "../../auth";
+import { renderAll, setState } from "../../state";
+import Button from "../Button";
+import SignIn from "./SignIn";
+import Modal from "../Modal";
 import AuthError from "./AuthError";
 
 export default () => {
@@ -40,7 +40,7 @@ export default () => {
       Button({
         className: 'link',
         content: 'Back to sign in',
-        action: () => renderAll(Modal(Login()))
+        action: () => renderAll(Modal(SignIn()))
       })
     }
   </div>`;
