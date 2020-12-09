@@ -78,6 +78,12 @@ button.link {
   text-decoration: underline;
   text-decoration-color: transparent;
 
+  &.underline {
+    text-decoration-color: currentColor;
+    text-decoration: underline;
+    text-decoration-thickness: var(--borderWidth);
+  }
+
   &:hover,
   &:focus {
     background: none;

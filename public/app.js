@@ -5282,6 +5282,23 @@
   // source/js/components/Modal.js
   var Modal_default = (component) => html`<modal class=mount-children>${component}</modal>`;
 
+  // source/js/components/AuthError.js
+  var AuthError_default = () => html`
+<span>
+  Your email or password may be invalid.
+  ${Button_default({
+    content: "Try logging in again",
+    className: "link underline",
+    action: () => renderAll(Modal_default(Login2()))
+  })}
+  or
+  ${Button_default({
+    content: "continue using anonymously.",
+    className: "link underline",
+    action: () => renderAll()
+  })}
+</span>`;
+
   // source/js/components/Recover.js
   var Recover_default = () => {
     let email;
@@ -5299,19 +5316,23 @@
         auth_default.requestPasswordRecovery(email).then(() => {
           setState("loading", false);
           renderAll(Modal_default("Recovery email sent. Check your inbox."));
+        }).catch((err) => {
+          console.log(err);
+          setState("loading", false);
+          renderAll(Modal_default(AuthError_default()));
         });
       }
     })}
     ${Button_default({
       className: "link",
       content: "Back to sign in",
-      action: () => renderAll(Modal_default(Login_default()))
+      action: () => renderAll(Modal_default(Login2()))
     })}
   </div>`;
   };
 
   // source/js/components/Login.js
-  var Login_default = () => {
+  function Login2() {
     let email;
     let password;
     return html`
@@ -5338,6 +5359,10 @@
         auth_default.login(email, password, true).then((response) => {
           console.log(response);
           setState("loading", false);
+        }).catch((err) => {
+          console.log(err);
+          setState("loading", false);
+          renderAll(Modal_default(AuthError_default()));
         });
       }
     })}
@@ -5347,7 +5372,7 @@
       action: () => renderAll()
     })}
   </div>`;
-  };
+  }
 
   // source/js/components/Logout.js
   var Logout_default = () => {
@@ -5451,14 +5476,14 @@
     ${Button_default({
       className: "link",
       content: user ? html`Signed in as <strong>${user.user_metadata.full_name || user.email}</strong>` : "Sign in",
-      action: user ? () => renderAll(Modal_default(Logout_default())) : () => renderAll(Modal_default(Login_default()))
+      action: user ? () => renderAll(Modal_default(Logout_default())) : () => renderAll(Modal_default(Login2()))
     })}
   </nav>`;
   };
 
   // source/js/state.js
-  let state35 = ls("flintstone_data") || {};
-  var state_default = state35;
+  let state36 = ls("flintstone_data") || {};
+  var state_default = state36;
   let defaultState = fetch("/defaults.json").then((r) => r.json());
   let preferences = ls("flintstone_preferences") || {dark: false};
   let autoSaveWaiter = setTimeout(() => null, 0);
@@ -5467,15 +5492,15 @@
       clearTimeout(autoSaveWaiter);
       autoSaveWaiter = setTimeout(() => {
         var _a, _b;
-        ls("flintstone_data", state35);
-        state35.savedLocally = true;
-        (_b = (_a = auth_default) == null ? void 0 : _a.currentUser()) == null ? void 0 : _b.update({flintstone_data: state35.currentUser});
+        ls("flintstone_data", state36);
+        state36.savedLocally = true;
+        (_b = (_a = auth_default) == null ? void 0 : _a.currentUser()) == null ? void 0 : _b.update({flintstone_data: state36.currentUser});
       }, 1e3);
     });
   }
   function renderAll(contents = Main_default()) {
     render(html`
-  <div id=app ?data-loading=${state35.loading}>
+  <div id=app ?data-loading=${state36.loading}>
     <header>${Header_default()}</header>
     ${contents}
     <loader></loader>
@@ -5491,7 +5516,7 @@
     updatePreferenceClasses();
   }
   function setState(key, value) {
-    state35[key] = value;
+    state36[key] = value;
     renderAll();
     autoSave();
   }

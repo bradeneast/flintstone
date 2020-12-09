@@ -4,6 +4,7 @@ import Button from "./Button";
 import { renderAll, setState } from "../state";
 import Login from "./Login";
 import Modal from "./Modal";
+import AuthError from "./AuthError";
 
 export default () => {
 
@@ -21,11 +22,17 @@ export default () => {
         content: 'Send Recovery Email',
         action: () => {
           setState('loading', true);
-          auth.requestPasswordRecovery(email)
+          auth
+            .requestPasswordRecovery(email)
             .then(() => {
               setState('loading', false);
               renderAll(Modal('Recovery email sent. Check your inbox.'));
-          })
+            })
+            .catch(err => {
+              console.log(err);
+              setState('loading', false);
+              renderAll(Modal(AuthError()))
+            })
         }
       })
     }

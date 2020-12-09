@@ -4,9 +4,10 @@ import Button from "./Button";
 import { renderAll, setState } from "../state";
 import Recover from "./Recover";
 import Modal from "./Modal";
+import AuthError from "./AuthError";
 
 
-export default () => {
+export default function Login() {
 
   let email;
   let password;
@@ -40,6 +41,11 @@ export default () => {
             .then(response => {
               console.log(response);
               setState('loading', false);
+            })
+            .catch(err => {
+              console.log(err);
+              setState('loading', false);
+              renderAll(Modal(AuthError()))
             })
         }
       })
