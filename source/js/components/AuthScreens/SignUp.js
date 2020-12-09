@@ -33,10 +33,14 @@ export default () => {
           setState('loading', true);
           auth
             .signup(email, password, { full_name: full_name })
-            .then(() => auth.login(email, password, true))
-            .then(response => {
-              console.log(response);
+            .then(() => {
               setState('loading', false);
+              renderAll(Modal('Confirmation email sent. Check your inbox.'));
+            })
+            .catch(err => {
+              console.log(err);
+              setState('loading', false);
+              renderAll(Modal(AuthError()))
             })
         }
       })
