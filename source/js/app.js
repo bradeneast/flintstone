@@ -37,6 +37,7 @@ else {
   ensureProps(Object.keys(tags), state.styles);
 
   state.loading = false;
+  updatePreferenceClasses();
   renderAll();
   autoSave();
 
@@ -44,12 +45,18 @@ else {
     renderPreview();
 }
 
-updatePreferenceClasses();
 
-
-// Confirm or recover user 
 if (location.hash && location.hash.length) {
+
   let [key, value] = location.hash.slice(1).split('=');
+  // remove fragment as much as it can go without adding an entry in browser history:
+  location.replace("#");
+  // slice off the remaining '#' in HTML5:    
+  if (typeof history.replaceState == 'function') {
+    history.replaceState({}, '', window.location.href.slice(0, -1));
+  }
+
+  // Confirm or recover user 
   switch (key) {
     case 'recovery_token':
       auth

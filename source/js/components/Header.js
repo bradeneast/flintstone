@@ -14,7 +14,8 @@ export default () => {
 
   return html`
   <div id=logo>
-    <img alt="Flintstone logo" src="logo${preferences.dark ? '-white' : ''}.svg" />
+    <img class=show-light alt="Flintstone logo" src="logo.svg" />
+    <img class=show-dark alt="Flintstone logo" src="logo-white.svg" />
   </div>
   <nav>
     ${
@@ -42,8 +43,8 @@ export default () => {
     }
     ${
       Button({
-        title: `Switch to ${state.dark ? 'light' : 'dark'} theme`,
-        content: state.dark ? "🌝" : "🌞",
+        title: `Switch to ${preferences.dark ? 'light' : 'dark'} theme`,
+        content: preferences.dark ? "🌝" : "🌞",
         className: 'icon',
         action: () => setPreference('dark', !preferences.dark)
       })

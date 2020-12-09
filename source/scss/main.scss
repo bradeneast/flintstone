@@ -42,6 +42,10 @@ $mobile: 960px;
   }
 }
 
+.show-dark {
+  display: none;
+}
+
 html.dark #app {
   --g0: #{$g8};
   --g1: #{$g7};
@@ -52,6 +56,14 @@ html.dark #app {
   --g6: #{$g2};
   --g7: #{$g1};
   --g8: #{$g0};
+
+  .show-light {
+    display: none;
+  }
+
+  .show-dark {
+    display: block;
+  }
 }
 
 #app {
