@@ -66,7 +66,10 @@ if (location.hash && location.hash.length) {
     case 'confirmation_token':
       auth
         .confirm(value, true)
-        .then(res => console.log(res));
+        .then(response => {
+          console.log(response);
+          renderAll();
+        });
       break;
     case 'invite_token':
       renderAll(Modal(AcceptInvite(value)));
