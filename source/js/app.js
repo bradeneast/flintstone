@@ -16,8 +16,8 @@ let completeLoading = () => {
   state.savedLocally = state.savedLocally || false;
   state.showPreview = state.showPreview || false;
   state.showStyles = state.showStyles || false;
-  state.currentUser.styles = state.currentUser.styles || {};
   state.expandedAdjustments = state.expandedAdjustments || ["global", "pages"];
+  state.currentUser.styles = state.currentUser.styles || {};
   ensureProps(Object.keys(tags), state.currentUser.styles);
   updatePreferenceClasses();
   state.loading = false;
@@ -29,7 +29,7 @@ let completeLoading = () => {
 if (identityState)
   identityState
     .then(identityState => {
-      serialize(identityState, state.currentUser);
+      state.currentUser = JSON.parse(identityState.user_metadata.flintstone)
       completeLoading();
     })
 else if (state.savedLocally)

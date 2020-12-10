@@ -11,7 +11,7 @@
   "saveAndRun": {
     "commands": [
       {
-        "cmd": "esbuild --target=es6 --bundle --minify ./source/js/app.js --outfile=./public/app.js",
+        "cmd": "esbuild --target=es6 --bundle ./source/js/app.js --outfile=./public/app.js",
         "silent": true,
         "match": ".*source.*.js"
       }
