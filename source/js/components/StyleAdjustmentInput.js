@@ -9,7 +9,7 @@ let cleanPropValue = string => parseFloat(string.replace(/turn|deg|pt|px|rem|em|
 /**Returns a lit-html label and range input */
 export let range = ([tagName, { normieName }], [propName, { min, max, step, unit }]) => {
 
-  let unitValue = state.styles[tagName][propName] || '';
+  let unitValue = state.currentUser.styles[tagName][propName] || '';
   let cleanedValue = cleanPropValue(unitValue);
   let cleanedName = cleanPropName(propName);
 
@@ -40,7 +40,7 @@ export let range = ([tagName, { normieName }], [propName, { min, max, step, unit
 /**Returns a lit-html label and text input */
 export let text = ([tagName, { normieName }], [propName, { placeholder }]) => {
 
-  let unitValue = state.styles[tagName][propName];
+  let unitValue = state.currentUser.styles[tagName][propName];
   let cleanedName = cleanPropName(propName);
 
   return html`
@@ -67,7 +67,7 @@ export let text = ([tagName, { normieName }], [propName, { placeholder }]) => {
 /**Returns a lit-html label and select input */
 export let select = ([tagName, { normieName }], [propName, { options, defaultValue }]) => {
 
-  let unitValue = state.styles[tagName][propName] || defaultValue;
+  let unitValue = state.currentUser.styles[tagName][propName] || defaultValue;
   let cleanedName = cleanPropName(propName);
 
   return html`

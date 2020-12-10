@@ -6,32 +6,37 @@ import auth from './auth';
 
 
 // Get local state and default state
+let user = auth.currentUser();
 let state = ls('flintstone_data') || {
-  currentUser: {},
-  styles: {},
-  expandedAdjustments: [],
+  currentUser: {
+    documents: [{ id: 'New Document', body: '' }],
+    datasets: [{ id: 'New Dataset', fields: [['', '']] }],
+    styles: {}
+  }
 };
 
+let autoSaveWaiter = setTimeout(() => null, 0);
+
+
+
 export default state;
+export let identityState = user?.getUserData();
 export let defaultState = fetch('/defaults.json').then(r => r.json());
 export let preferences = ls('flintstone_preferences') || { dark: false };
 
 
-let autoSaveWaiter = setTimeout(() => null, 0);
+
 export async function autoSave() {
-
-  let user = auth.currentUser();
-  state.savedLocally = true;
-
-  async function save() {
-    ls('flintstone_data', state);
-    if (user)
-      fetch('/.netlify/api/UpdateUser', { method: 'PUT', body: JSON.stringify(state.currentUser) })
-        .then(() => console.log(auth.currentUser()))
-  }
-
   clearTimeout(autoSaveWaiter);
-  autoSaveWaiter = setTimeout(save, 2000);
+
+  autoSaveWaiter = setTimeout(() => {
+    if (user)
+      return user?.update({
+        data: { flintstone: JSON.stringify(state.currentUser) }
+      })
+    state.savedLocally = true;
+    ls('flintstone_data', state);
+  }, 2000);
 }
 
 

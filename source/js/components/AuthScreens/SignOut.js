@@ -18,7 +18,7 @@ export default () => {
           auth
             .currentUser()
             .logout()
-            .then(() => setState('loading', false));
+            .then(() => location = location.href);
         }
       })
     }

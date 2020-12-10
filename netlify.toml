@@ -1,5 +1,4 @@
 [build]
-functions = "api"
 publish = "public/"
 
 [[redirects]]

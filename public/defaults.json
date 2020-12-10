@@ -8,98 +8,6 @@
     "global",
     "pages"
   ],
-  "styles": {
-    ".preview__wrapper": {
-      "font-size": "14px",
-      "line-height": "1.5",
-      "--vertical-space": "18px"
-    },
-    ".preview__page": {
-      "padding-top": "25px",
-      "padding-bottom": "25px",
-      "padding-left": "25px",
-      "padding-right": "25px"
-    },
-    ".preview__wrapper::before": {
-      "content": "{ date }",
-      "font-size": "10px",
-      "text-align": "right"
-    },
-    ".preview__wrapper::after": {
-      "content": "{ service } contract",
-      "text-transform": "capitalize",
-      "font-size": "10px",
-      "text-align": "right"
-    },
-    "h1": {
-      "font-weight": "650",
-      "line-height": "1",
-      "letter-spacing": "1px",
-      "text-transform": "uppercase",
-      "font-size": "20px"
-    },
-    "h2": {
-      "font-weight": "650",
-      "font-size": "30px",
-      "line-height": "1.2",
-      "letter-spacing": "0px"
-    },
-    "h3": {
-      "font-size": "22px",
-      "font-weight": "650",
-      "line-height": "1.2",
-      "letter-spacing": "0px"
-    },
-    "h4": {
-      "letter-spacing": "0px",
-      "font-weight": "650",
-      "font-size": "16px",
-      "line-height": "1.2"
-    },
-    "h5": {
-      "font-size": "14px",
-      "font-weight": "650",
-      "line-height": "1.2",
-      "letter-spacing": "0px",
-      "text-transform": "none"
-    },
-    "h6": {
-      "font-size": "12px",
-      "font-weight": "650",
-      "text-transform": "none",
-      "letter-spacing": "0px",
-      "line-height": "1.2"
-    },
-    "a": {
-      "letter-spacing": "0px",
-      "font-weight": "400",
-      "color": "dodgerblue"
-    },
-    "strong": {
-      "font-weight": "650",
-      "letter-spacing": "0px"
-    },
-    "em": {},
-    "ul": {
-      "padding-left": "18px",
-      "padding-right": "0px"
-    },
-    "ol": {
-      "padding-right": "0px",
-      "padding-left": "18px",
-      "list-style": "decimal"
-    },
-    "del": {
-      "color": "grey"
-    },
-    "blockquote": {
-      "padding-left": "14px",
-      "border-width": "4px",
-      "padding-right": "0px",
-      "border-color": "dodgerblue",
-      "color": "grey"
-    }
-  },
   "currentUser": {
     "datasets": [
       {
@@ -158,6 +66,98 @@
         "id": "Example Contract",
         "body": "# Contract for { service }\n## { provider name } | { client name }\n\n\n-----\n\n\n## Project Agreement\n\n{ client name } and { provider name } agree that { client name } will pay { provider name} { price } via an agreed-upon payment method for the Service of { service }, delivered as specified in this contract.\n\nContract in effect beginning: **{ date }** (or earliest date signed by both parties)\n\n{ provider name } cannot be held liable to { client name } or any third-party for damages, including lost profits, lost savings or other incidental, consequential or special damages.  If any provision of this contract is unlawful, void, or for any reason unenforceable, then that provision will be deemed severable from this contract and will not affect the validity and enforceability of any remaining provisions.\n\n### { client name } agrees to the terms and conditions specified in this document:\n\n- Signature:\n- Printed Name: { client name }\n- Date:\n\n### Accepted:\n\n- Signature:\n- Printed Name: { provider name }\n- Date: { date }"
       }
-    ]
+    ],
+    "styles": {
+      ".preview__wrapper": {
+        "font-size": "14px",
+        "line-height": "1.5",
+        "--vertical-space": "18px"
+      },
+      ".preview__page": {
+        "padding-top": "25px",
+        "padding-bottom": "25px",
+        "padding-left": "25px",
+        "padding-right": "25px"
+      },
+      ".preview__wrapper::before": {
+        "content": "{ date }",
+        "font-size": "10px",
+        "text-align": "right"
+      },
+      ".preview__wrapper::after": {
+        "content": "{ service } contract",
+        "text-transform": "capitalize",
+        "font-size": "10px",
+        "text-align": "right"
+      },
+      "h1": {
+        "font-weight": "650",
+        "line-height": "1",
+        "letter-spacing": "1px",
+        "text-transform": "uppercase",
+        "font-size": "20px"
+      },
+      "h2": {
+        "font-weight": "650",
+        "font-size": "30px",
+        "line-height": "1.2",
+        "letter-spacing": "0px"
+      },
+      "h3": {
+        "font-size": "22px",
+        "font-weight": "650",
+        "line-height": "1.2",
+        "letter-spacing": "0px"
+      },
+      "h4": {
+        "letter-spacing": "0px",
+        "font-weight": "650",
+        "font-size": "16px",
+        "line-height": "1.2"
+      },
+      "h5": {
+        "font-size": "14px",
+        "font-weight": "650",
+        "line-height": "1.2",
+        "letter-spacing": "0px",
+        "text-transform": "none"
+      },
+      "h6": {
+        "font-size": "12px",
+        "font-weight": "650",
+        "text-transform": "none",
+        "letter-spacing": "0px",
+        "line-height": "1.2"
+      },
+      "a": {
+        "letter-spacing": "0px",
+        "font-weight": "400",
+        "color": "dodgerblue"
+      },
+      "strong": {
+        "font-weight": "650",
+        "letter-spacing": "0px"
+      },
+      "em": {},
+      "ul": {
+        "padding-left": "18px",
+        "padding-right": "0px"
+      },
+      "ol": {
+        "padding-right": "0px",
+        "padding-left": "18px",
+        "list-style": "decimal"
+      },
+      "del": {
+        "color": "grey"
+      },
+      "blockquote": {
+        "padding-left": "14px",
+        "border-width": "4px",
+        "padding-right": "0px",
+        "border-color": "dodgerblue",
+        "color": "grey"
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import auth from "../../auth";
-import { renderAll, setState } from "../../state";
+import state, { renderAll, setState } from "../../state";
 import Button from "../Button";
 import Recover from "./Recover";
 import Modal from "../Modal";
@@ -39,8 +39,8 @@ export default function Login() {
           auth
             .login(formData.email, formData.password, true)
             .then(response => {
-              console.log(response);
-              setState('loading', false);
+              console.log('Logged in:', response);
+              location = location.href;
             })
             .catch(err => {
               console.log(err);

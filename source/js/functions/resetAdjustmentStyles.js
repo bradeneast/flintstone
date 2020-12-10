@@ -4,7 +4,7 @@ import { deepCopy } from "../utils";
 export default (tagName) => {
   defaultState
     .then(defaultState => {
-      state.styles[tagName] = deepCopy(defaultState.styles[tagName]);
-      setState('styles', state.styles);
+      state.currentUser.styles[tagName] = deepCopy(defaultState.currentUser.styles[tagName]);
+      setState('currentUser', state.currentUser);
     })
 }

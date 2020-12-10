@@ -21,7 +21,7 @@ export default () => {
 
   let previewStyles = `
   <style>${
-  Object.entries(state.styles)
+  Object.entries(state.currentUser.styles)
     .map(([tagName, prop]) => 
       `.preview ${tagName} {
         ${Object.entries(prop).map(makeStyleRule).join(';')}

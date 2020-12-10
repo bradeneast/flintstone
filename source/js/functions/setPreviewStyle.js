@@ -1,6 +1,6 @@
 import state, { setState } from "../state";
 
 export default (tagName, propName, propValue) => {
-  state.styles[tagName][propName] = propValue;
-  setState('styles', state.styles);
+  state.currentUser.styles[tagName][propName] = propValue;
+  setState('currentUser', state.currentUser);
 }

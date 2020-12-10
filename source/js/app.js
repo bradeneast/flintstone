@@ -3,55 +3,43 @@ import AcceptInvite from './components/AuthScreens/AcceptInvite';
 import ResetPassword from './components/AuthScreens/ResetPassword';
 import Modal from './components/Modal';
 import renderPreview from './functions/renderPreview';
-import state, { renderAll, autoSave, defaultState, updatePreferenceClasses } from './state';
+import state, { renderAll, autoSave, defaultState, updatePreferenceClasses, identityState } from './state';
 import { tags } from './style_data';
 import { ensureProps, serialize } from './utils';
 
+
 state.loading = true;
 
-let user = auth.currentUser();
-let userData = user?.user_metadata?.flintstone_data;
-
 let completeLoading = () => {
-
   state.currentDataset = state.currentUser.datasets[0];
   state.currentDocument = state.currentUser.documents[0];
   state.savedLocally = state.savedLocally || false;
   state.showPreview = state.showPreview || false;
   state.showStyles = state.showStyles || false;
-  state.styles = state.styles || {};
+  state.currentUser.styles = state.currentUser.styles || {};
   state.expandedAdjustments = state.expandedAdjustments || ["global", "pages"];
-
-  ensureProps(Object.keys(tags), state.styles);
+  ensureProps(Object.keys(tags), state.currentUser.styles);
   updatePreferenceClasses();
-
   state.loading = false;
   renderAll();
   autoSave();
   if (state.showPreview) renderPreview();
 }
 
-if (userData) {
-  console.log(userData);
-  serialize(userData, state.currentUser);
+if (identityState)
+  identityState
+    .then(identityState => {
+      serialize(identityState, state.currentUser);
+      completeLoading();
+    })
+else if (state.savedLocally)
   completeLoading();
-}
-
-if (!userData) {
-  console.log('No user data');
-
-  if (state.savedLocally) {
-    completeLoading();
-  }
-
-  if (!state.savedLocally) {
-    defaultState
-      .then(defaultState => {
-        serialize(defaultState, state);
-        completeLoading();
-      })
-  }
-}
+else
+  defaultState
+    .then(defaultState => {
+      serialize(defaultState, state);
+      completeLoading();
+    })
 
 
 if (location.hash && location.hash.length) {
