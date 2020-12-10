@@ -9,21 +9,10 @@ import { ensureProps, serialize } from './utils';
 
 state.loading = true;
 
-if (!state.savedLocally) {
+let user = auth.currentUser();
+let userData = user?.user_metadata?.flintstone_data;
 
-  defaultState
-    .then(defaultState => {
-      serialize(defaultState, state);
-      state.currentDataset = state.currentUser.datasets[0];
-      state.currentDocument = state.currentUser.documents[0];
-      ensureProps(Object.keys(tags), state.styles);
-
-      state.loading = false;
-      renderAll();
-      autoSave();
-    })
-}
-else {
+let completeLoading = () => {
 
   state.currentDataset = state.currentUser.datasets[0];
   state.currentDocument = state.currentUser.documents[0];
@@ -33,28 +22,45 @@ else {
   state.styles = state.styles || {};
   state.expandedAdjustments = state.expandedAdjustments || ["global", "pages"];
 
-  // Serialize user custom styles
   ensureProps(Object.keys(tags), state.styles);
+  updatePreferenceClasses();
 
   state.loading = false;
-  updatePreferenceClasses();
   renderAll();
   autoSave();
+  if (state.showPreview) renderPreview();
+}
 
-  if (state.showPreview)
-    renderPreview();
+if (userData) {
+  serialize(userData, state.currentUser);
+  completeLoading();
+}
+
+if (!userData) {
+  console.log('No user data');
+
+  if (state.savedLocally) {
+    completeLoading();
+  }
+
+  if (!state.savedLocally) {
+    defaultState
+      .then(defaultState => {
+        serialize(defaultState, state);
+        completeLoading();
+      })
+  }
 }
 
 
 if (location.hash && location.hash.length) {
 
   let [key, value] = location.hash.slice(1).split('=');
-  // remove fragment as much as it can go without adding an entry in browser history:
+
+  // Remove hash fragment from url
   location.replace("#");
-  // slice off the remaining '#' in HTML5:    
-  if (typeof history.replaceState == 'function') {
+  if (typeof history.replaceState == 'function')
     history.replaceState({}, '', location.href.slice(0, -1));
-  }
 
   // Confirm or recover user 
   switch (key) {
@@ -76,7 +82,3 @@ if (location.hash && location.hash.length) {
       break;
   }
 }
-
-
-
-console.log(auth.currentUser());

@@ -1,28 +1,35 @@
 import { html, render } from 'lit-html';
-import auth from './auth';
 import { ls } from './utils';
 import Main from './components/Main';
 import Header from './components/Header';
+import auth from './auth';
 
 
 // Get local state and default state
-let state = ls('flintstone_data') || {};
+let state = ls('flintstone_data') || {
+  currentUser: {},
+  styles: {},
+  expandedAdjustments: [],
+};
 
 export default state;
 export let defaultState = fetch('/defaults.json').then(r => r.json());
 export let preferences = ls('flintstone_preferences') || { dark: false };
 
 
-// Auto-save to local storage
 let autoSaveWaiter = setTimeout(() => null, 0);
-
 export async function autoSave() {
-  clearTimeout(autoSaveWaiter);
-  autoSaveWaiter = setTimeout(() => {
+
+  async function save() {
     ls('flintstone_data', state);
     state.savedLocally = true;
-    auth?.currentUser()?.update({ flintstone_data: 'testing' });
-  }, 1000);
+    auth.currentUser()?.update({
+      data: { flintstone_data: state.currentUser }
+    }).then(console.log)
+  }
+
+  clearTimeout(autoSaveWaiter);
+  autoSaveWaiter = setTimeout(save, 2000);
 }
 
 
