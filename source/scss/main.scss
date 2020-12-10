@@ -42,7 +42,12 @@ $mobile: 960px;
   }
 }
 
-.show-dark {
+light,
+dark {
+  display: inline-flex;
+}
+
+dark {
   display: none;
 }
 
@@ -57,12 +62,12 @@ html.dark #app {
   --g7: #{$g1};
   --g8: #{$g0};
 
-  .show-light {
+  light {
     display: none;
   }
 
-  .show-dark {
-    display: block;
+  dark {
+    display: inline-flex;
   }
 }
 
