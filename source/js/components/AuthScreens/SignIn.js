@@ -38,10 +38,7 @@ export default function Login() {
           setState('loading', true);
           auth
             .login(formData.email, formData.password, true)
-            .then(response => {
-              console.log('Logged in:', response);
-              location = location.href;
-            })
+            .then(() => location = location.href)
             .catch(err => {
               console.log(err);
               setState('loading', false);

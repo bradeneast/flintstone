@@ -31,7 +31,7 @@ export async function autoSave() {
 
   autoSaveWaiter = setTimeout(() => {
     if (user)
-      return user?.update({
+      return user.update({
         data: { flintstone: JSON.stringify(state.currentUser) }
       })
     state.savedLocally = true;

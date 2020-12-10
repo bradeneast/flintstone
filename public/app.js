@@ -5366,10 +5366,7 @@
       content: "Sign In",
       action: () => {
         setState("loading", true);
-        auth_default.login(formData.email, formData.password, true).then((response) => {
-          console.log("Logged in:", response);
-          location = location.href;
-        }).catch((err) => {
+        auth_default.login(formData.email, formData.password, true).then(() => location = location.href).catch((err) => {
           console.log(err);
           setState("loading", false);
           renderAll(Modal_default(AuthError_default()));
@@ -5506,7 +5503,7 @@
       clearTimeout(autoSaveWaiter);
       autoSaveWaiter = setTimeout(() => {
         if (user)
-          return user == null ? void 0 : user.update({
+          return user.update({
             data: {flintstone: JSON.stringify(state36.currentUser)}
           });
         state36.savedLocally = true;
@@ -5602,6 +5599,7 @@
   if (identityState)
     identityState.then((identityState2) => {
       state_default.currentUser = JSON.parse(identityState2.user_metadata.flintstone);
+      console.log(state_default.currentUser);
       completeLoading();
     });
   else if (state_default.savedLocally)
@@ -5614,21 +5612,19 @@
   if (location.hash && location.hash.length) {
     let [key, value] = location.hash.slice(1).split("=");
     location.replace("#");
-    if (typeof history.replaceState == "function")
-      history.replaceState({}, "", location.href.slice(0, -1));
-    switch (key) {
-      case "recovery_token":
-        auth_default.recover(value, true).then(() => renderAll(Modal_default(ResetPassword_default())));
-        break;
-      case "confirmation_token":
-        auth_default.confirm(value, true).then((response) => {
-          console.log(response);
-          renderAll();
-        });
-        break;
-      case "invite_token":
-        renderAll(Modal_default(AcceptInvite_default(value)));
-        break;
+    history.replaceState(null, null, location.href.slice(0, -1));
+    if (key && value) {
+      switch (key) {
+        case "recovery_token":
+          auth_default.recover(value, true).then(() => renderAll(Modal_default(ResetPassword_default())));
+          break;
+        case "confirmation_token":
+          auth_default.confirm(value, true).then(() => renderAll());
+          break;
+        case "invite_token":
+          renderAll(Modal_default(AcceptInvite_default(value)));
+          break;
+      }
     }
   }
 })();

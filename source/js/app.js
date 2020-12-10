@@ -10,6 +10,7 @@ import { ensureProps, serialize } from './utils';
 
 state.loading = true;
 
+/** Provide default values for nonessential state properties and render */
 let completeLoading = () => {
   state.currentDataset = state.currentUser.datasets[0];
   state.currentDocument = state.currentUser.documents[0];
@@ -26,10 +27,14 @@ let completeLoading = () => {
   if (state.showPreview) renderPreview();
 }
 
+
+
+// PICK WHICH STATE DATA TO USE //
 if (identityState)
   identityState
     .then(identityState => {
-      state.currentUser = JSON.parse(identityState.user_metadata.flintstone)
+      state.currentUser = JSON.parse(identityState.user_metadata.flintstone);
+      console.log(state.currentUser);
       completeLoading();
     })
 else if (state.savedLocally)
@@ -42,32 +47,23 @@ else
     })
 
 
+
+// HANDLE ONE-TIME AUTH TOKENS //
 if (location.hash && location.hash.length) {
 
   let [key, value] = location.hash.slice(1).split('=');
-
-  // Remove hash fragment from url
   location.replace("#");
-  if (typeof history.replaceState == 'function')
-    history.replaceState({}, '', location.href.slice(0, -1));
+  history.replaceState(null, null, location.href.slice(0, -1));
 
-  // Confirm or recover user 
-  switch (key) {
-    case 'recovery_token':
-      auth
-        .recover(value, true)
-        .then(() => renderAll(Modal(ResetPassword())));
-      break;
-    case 'confirmation_token':
-      auth
-        .confirm(value, true)
-        .then(response => {
-          console.log(response);
-          renderAll();
-        });
-      break;
-    case 'invite_token':
-      renderAll(Modal(AcceptInvite(value)));
-      break;
+  if (key && value) {
+    // Confirm or recover user 
+    switch (key) {
+      case 'recovery_token': auth.recover(value, true).then(() => renderAll(Modal(ResetPassword())));
+        break;
+      case 'confirmation_token': auth.confirm(value, true).then(() => renderAll());
+        break;
+      case 'invite_token': renderAll(Modal(AcceptInvite(value)));
+        break;
+    }
   }
 }
