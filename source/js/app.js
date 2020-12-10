@@ -32,6 +32,7 @@ let completeLoading = () => {
 }
 
 if (userData) {
+  console.log(userData);
   serialize(userData, state.currentUser);
   completeLoading();
 }

@@ -20,12 +20,14 @@ export let preferences = ls('flintstone_preferences') || { dark: false };
 let autoSaveWaiter = setTimeout(() => null, 0);
 export async function autoSave() {
 
+  let user = auth.currentUser();
+  state.savedLocally = true;
+
   async function save() {
     ls('flintstone_data', state);
-    state.savedLocally = true;
-    auth.currentUser()?.update({
-      data: { flintstone_data: state.currentUser }
-    }).then(console.log)
+    if (user)
+      fetch('/.netlify/api/UpdateUser', { method: 'PUT', body: JSON.stringify(state.currentUser) })
+        .then(() => console.log(auth.currentUser()))
   }
 
   clearTimeout(autoSaveWaiter);
