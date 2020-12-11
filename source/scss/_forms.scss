@@ -8,6 +8,10 @@ form,
   max-width: 36em;
   background: var(--g7);
 
+  button {
+    text-align: center;
+  }
+
   label {
     button {
       align-self: start;
@@ -55,8 +59,10 @@ form,
 }
 
 input {
+  text-transform: none;
   background: var(--g8);
   border-radius: var(--radius);
+  padding: var(--buttonPadding);
   width: 100%;
   max-width: none;
 }
@@ -74,22 +80,22 @@ select {
   }
 }
 
-input {
-  padding: var(--buttonPadding);
+label,
+.hint {
+  line-height: 1.2;
+  user-select: none;
+  font-size: 0.8rem;
+  color: var(--g3);
 }
 
 label {
-  line-height: 1.2;
   display: grid;
   align-items: center;
   justify-items: start;
   grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
   gap: 0.2rem;
-  user-select: none;
-  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--g3);
+  letter-spacing: 0.05em;
 
   input,
   select {

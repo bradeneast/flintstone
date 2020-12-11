@@ -23,8 +23,19 @@
     transform: translate3d(0, 0, 0);
   }
 
-  h2 {
-    padding-bottom: 0;
+  &__header {
+    display: flex;
+    align-items: center;
+
+    h2 {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      margin-right: auto;
+    }
+
+    .hint {
+      margin-left: 2em;
+    }
   }
 
   & > * {
@@ -89,6 +100,7 @@
     }
 
     label {
+      justify-items: stretch;
       margin-bottom: 0.5rem;
       transition: var(--transition);
 
