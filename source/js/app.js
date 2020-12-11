@@ -13,6 +13,7 @@ state.loading = true;
 
 /** Provide default values for nonessential state properties and render */
 let completeLoading = () => {
+
   state.currentDataset = state.currentUser.datasets[0];
   state.currentDocument = state.currentUser.documents[0];
   state.savedLocally = state.savedLocally || false;
@@ -22,15 +23,49 @@ let completeLoading = () => {
   state.currentUser.styles = state.currentUser.styles || {};
   ensureProps(Object.keys(tags), state.currentUser.styles);
   updatePreferenceClasses();
-  state.loading = false;
-  renderAll();
-  autoSave(true);
-  if (state.showPreview) renderPreview();
+
+
+  // HANDLE ONE-TIME AUTH TOKENS //
+  if (location.hash && location.hash.length) {
+
+    let [key, value] = location.hash.slice(1).split('=');
+    location.replace("#");
+    history.replaceState(null, null, location.href.slice(0, -1));
+    state.loading = false;
+
+    if (key && value) {
+
+      // Confirm or recover user
+      switch (key) {
+        case 'recovery_token': auth.recover(value, true).then(() =>
+          renderAll(Modal(ResetPassword()))
+        );
+          break;
+        case 'confirmation_token': auth.confirm(value, true).then(() => {
+          renderAll();
+          autoSave(true);
+        });
+          break;
+        case 'invite_token': renderAll(Modal(AcceptInvite(value)));
+          break;
+      }
+    }
+  }
+
+  else {
+    state.loading = false;
+    renderAll();
+    autoSave(true);
+    if (state.showPreview) renderPreview();
+  }
 }
 
 
 
+
 // PICK WHICH STATE DATA TO USE //
+
+// Get state from Netlify Identity
 if (identityState)
   identityState
     .then(identityState => {
@@ -41,8 +76,12 @@ if (identityState)
       console.log(err);
       completeLoading();
     })
+
+// Get state from Local Storage
 else if (state.savedLocally)
   completeLoading();
+
+// Get state from defaults.json
 else
   defaultState
     .then(defaultState => {
@@ -53,28 +92,3 @@ else
       console.log(err);
       renderAll(Modal(AuthError()));
     })
-
-
-
-// HANDLE ONE-TIME AUTH TOKENS //
-if (location.hash && location.hash.length) {
-
-  let [key, value] = location.hash.slice(1).split('=');
-  location.replace("#");
-  history.replaceState(null, null, location.href.slice(0, -1));
-
-  if (key && value) {
-    // Confirm or recover user 
-    switch (key) {
-      case 'recovery_token': auth.recover(value, true).then(() => renderAll(Modal(ResetPassword())));
-        break;
-      case 'confirmation_token': auth.confirm(value, true).then(() => {
-        renderAll();
-        autoSave(true);
-      });
-        break;
-      case 'invite_token': renderAll(Modal(AcceptInvite(value)));
-        break;
-    }
-  }
-}

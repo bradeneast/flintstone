@@ -5600,11 +5600,34 @@
     state_default.currentUser.styles = state_default.currentUser.styles || {};
     ensureProps(Object.keys(tags), state_default.currentUser.styles);
     updatePreferenceClasses();
-    state_default.loading = false;
-    renderAll();
-    autoSave(true);
-    if (state_default.showPreview)
-      renderPreview_default();
+    if (location.hash && location.hash.length) {
+      let [key, value] = location.hash.slice(1).split("=");
+      location.replace("#");
+      history.replaceState(null, null, location.href.slice(0, -1));
+      state_default.loading = false;
+      if (key && value) {
+        switch (key) {
+          case "recovery_token":
+            auth_default.recover(value, true).then(() => renderAll(Modal_default(ResetPassword_default())));
+            break;
+          case "confirmation_token":
+            auth_default.confirm(value, true).then(() => {
+              renderAll();
+              autoSave(true);
+            });
+            break;
+          case "invite_token":
+            renderAll(Modal_default(AcceptInvite_default(value)));
+            break;
+        }
+      }
+    } else {
+      state_default.loading = false;
+      renderAll();
+      autoSave(true);
+      if (state_default.showPreview)
+        renderPreview_default();
+    }
   };
   if (identityState)
     identityState.then((identityState2) => {
@@ -5624,25 +5647,4 @@
       console.log(err);
       renderAll(Modal_default(AuthError_default()));
     });
-  if (location.hash && location.hash.length) {
-    let [key, value] = location.hash.slice(1).split("=");
-    location.replace("#");
-    history.replaceState(null, null, location.href.slice(0, -1));
-    if (key && value) {
-      switch (key) {
-        case "recovery_token":
-          auth_default.recover(value, true).then(() => renderAll(Modal_default(ResetPassword_default())));
-          break;
-        case "confirmation_token":
-          auth_default.confirm(value, true).then(() => {
-            renderAll();
-            autoSave(true);
-          });
-          break;
-        case "invite_token":
-          renderAll(Modal_default(AcceptInvite_default(value)));
-          break;
-      }
-    }
-  }
 })();
