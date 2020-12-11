@@ -3,6 +3,7 @@ import { sanitize } from 'dompurify'
 import marked from 'marked';
 import { html } from 'lit-html';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import { makePageID } from '../components/DocumentTOC';
 
 
 export function getFieldValue(prop) {
@@ -36,7 +37,7 @@ export default () => {
   return sanitized
     .split('<hr>')
     .map((pageContent, index) => html`
-      <div id="page_${index + 1}" class=preview__page>
+      <div id=${makePageID(index)} class=preview__page>
         ${unsafeHTML(pageContent)}
       </div>`
     );
