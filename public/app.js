@@ -5498,17 +5498,21 @@
   let identityState = user == null ? void 0 : user.getUserData();
   let defaultState = fetch("/defaults.json").then((r) => r.json());
   let preferences = ls("flintstone_preferences") || {dark: false};
-  function autoSave() {
+  function autoSave(immediate = false) {
     return __async(this, [], function* () {
+      let timeout = immediate ? 0 : 2e3;
       clearTimeout(autoSaveWaiter);
-      autoSaveWaiter = setTimeout(() => {
-        if (user)
-          return user.update({
-            data: {flintstone: JSON.stringify(state36.currentUser)}
-          });
-        state36.savedLocally = true;
-        ls("flintstone_data", state36);
-      }, 2e3);
+      autoSaveWaiter = setTimeout(save, timeout);
+      function save() {
+        return __async(this, [], function* () {
+          if (auth_default.currentUser())
+            return auth_default.currentUser().update({
+              data: {flintstone: JSON.stringify(state36.currentUser)}
+            });
+          state36.savedLocally = true;
+          ls("flintstone_data", state36);
+        });
+      }
     });
   }
   function renderAll(contents = Main_default()) {
@@ -5599,7 +5603,9 @@
   if (identityState)
     identityState.then((identityState2) => {
       state_default.currentUser = JSON.parse(identityState2.user_metadata.flintstone);
-      console.log(state_default.currentUser);
+      completeLoading();
+    }).catch((err) => {
+      console.log(err);
       completeLoading();
     });
   else if (state_default.savedLocally)
@@ -5608,6 +5614,9 @@
     defaultState.then((defaultState2) => {
       serialize(defaultState2, state_default);
       completeLoading();
+    }).catch((err) => {
+      console.log(err);
+      renderAll(Modal_default(AuthError_default()));
     });
   if (location.hash && location.hash.length) {
     let [key, value] = location.hash.slice(1).split("=");

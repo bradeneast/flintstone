@@ -26,17 +26,24 @@ export let preferences = ls('flintstone_preferences') || { dark: false };
 
 
 
-export async function autoSave() {
-  clearTimeout(autoSaveWaiter);
+export async function autoSave(immediate = false) {
 
-  autoSaveWaiter = setTimeout(() => {
-    if (user)
-      return user.update({
-        data: { flintstone: JSON.stringify(state.currentUser) }
-      })
+  let timeout = immediate ? 0 : 2000;
+  clearTimeout(autoSaveWaiter);
+  autoSaveWaiter = setTimeout(save, timeout);
+
+  async function save() {
+
+    if (auth.currentUser())
+      return auth
+        .currentUser()
+        .update({
+          data: { flintstone: JSON.stringify(state.currentUser) }
+        })
+
     state.savedLocally = true;
     ls('flintstone_data', state);
-  }, 2000);
+  }
 }
 
 

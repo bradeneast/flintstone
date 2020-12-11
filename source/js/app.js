@@ -1,5 +1,6 @@
 import auth from './auth';
 import AcceptInvite from './components/AuthScreens/AcceptInvite';
+import AuthError from './components/AuthScreens/AuthError';
 import ResetPassword from './components/AuthScreens/ResetPassword';
 import Modal from './components/Modal';
 import renderPreview from './functions/renderPreview';
@@ -34,7 +35,10 @@ if (identityState)
   identityState
     .then(identityState => {
       state.currentUser = JSON.parse(identityState.user_metadata.flintstone);
-      console.log(state.currentUser);
+      completeLoading();
+    })
+    .catch(err => {
+      console.log(err);
       completeLoading();
     })
 else if (state.savedLocally)
@@ -44,6 +48,10 @@ else
     .then(defaultState => {
       serialize(defaultState, state);
       completeLoading();
+    })
+    .catch(err => {
+      console.log(err);
+      renderAll(Modal(AuthError()));
     })
 
 
