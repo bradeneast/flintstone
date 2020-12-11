@@ -26,13 +26,13 @@ export let preferences = ls('flintstone_preferences') || { dark: false };
 
 
 
-export async function autoSave(immediate = false) {
+export function autoSave(immediate = false) {
 
   let timeout = immediate ? 0 : 2000;
   clearTimeout(autoSaveWaiter);
   autoSaveWaiter = setTimeout(save, timeout);
 
-  async function save() {
+  function save() {
 
     if (auth.currentUser())
       return auth

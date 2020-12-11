@@ -23,7 +23,7 @@ export function hydrateFromDataset(string) {
 export let dataMatcher = /\{.+?\}/g;
 
 
-export default async () => {
+export default () => {
 
   if (!state.currentDocument.body.length)
     return html`

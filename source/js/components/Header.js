@@ -1,11 +1,12 @@
 import auth from "../auth";
-import { html, nothing } from "lit-html";
+import { html, nothing, svg } from "lit-html";
 import state, { preferences, renderAll, setPreference, setState } from "../state";
 import Button from "./Button";
 import SignIn from './AuthScreens/SignIn';
 import SignOut from "./AuthScreens/SignOut";
 import Modal from "./Modal";
 import SignUp from "./AuthScreens/SignUp";
+import Icon from "./Icon";
 
 
 export default () => {
@@ -21,20 +22,48 @@ export default () => {
       <img alt="Flintstone logo" src="logo-white.svg" />
     </dark>
   </div>
-  <nav>
+  ${
+    user
+    ? nothing
+    : Button({
+      className: 'primary',
+      content: 'Sign up',
+      action: () => renderAll(Modal(SignUp()))
+    })
+  }
+  ${
+    Button({
+      className: 'link',
+      content: user ? html`Signed in as <strong>${user.user_metadata.full_name || user.email}</strong>` : 'Sign in',
+      action: user ? () => renderAll(Modal(SignOut())) : () => renderAll(Modal(SignIn()))
+    })
+  }
+  <separator></separator>
+  ${
+    Button({
+      title: `${state.showMenu ? 'Close' : 'Open'} menu`,
+      content: Icon({
+        content: svg`
+        <line y1="10" x2="100%" y2="10"/>
+        <line y1="50%" x2="100%" y2="50%"/>
+        <line y1="206" x2="100%" y2="206"/>`
+      }),
+      className: 'icon menu-toggle',
+      action: () => setState('showMenu', !state.showMenu)
+    })
+  }
+  <nav ?data-open=${state.showMenu}>
     ${
       Button({
-        title: `${state.showStyles ? 'Close' : 'Open'} style editor`,
-        content: '✨',
         className: 'icon',
+        content: `✨ ${ state.showStyles ? 'Close' : 'Open' } style editor`,
         action: () => setState('showStyles', !state.showStyles)
       })
     }
     ${
       Button({
-        title: "Print the current document",
         className: 'icon',
-        content: '🖨️',
+        content: '🖨️ Print current document',
         action: () => {
           state.loading = true;
           setState('showPreview', true);
@@ -47,27 +76,9 @@ export default () => {
     }
     ${
       Button({
-        title: `Switch to ${preferences.dark ? 'light' : 'dark'} theme`,
-        content: html`<light>🌞</light><dark>🌝</dark>`,
         className: 'icon',
+        content: html`<light>🌞</light><dark>🌝</dark> Switch to <light>dark</light><dark>light</dark> theme`,
         action: () => setPreference('dark', !preferences.dark)
-      })
-    }
-    <separator></separator>
-    ${
-      user
-      ? nothing
-      : Button({
-        className: 'primary',
-        content: 'Sign up',
-        action: () => renderAll(Modal(SignUp()))
-      })
-    }
-    ${
-      Button({
-        className: 'link',
-        content: user ? html`Signed in as <strong>${user.user_metadata.full_name || user.email}</strong>` : 'Sign in',
-        action: user ? () => renderAll(Modal(SignOut())) : () => renderAll(Modal(SignIn()))
       })
     }
   </nav>`;
