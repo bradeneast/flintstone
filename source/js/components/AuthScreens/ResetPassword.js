@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import auth from "../../auth";
-import { setState } from "../../state";
+import { autoSave, setState } from "../../state";
 import Button from "../Button";
 
 export default () => {

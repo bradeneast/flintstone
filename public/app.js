@@ -5501,7 +5501,7 @@
   let identityState = user == null ? void 0 : user.getUserData();
   let defaultState = fetch("/defaults.json").then((r) => r.json());
   let preferences = ls("flintstone_preferences") || {dark: false};
-  function autoSave2(immediate = false) {
+  function autoSave(immediate = false) {
     return __async(this, [], function* () {
       let timeout = immediate ? 0 : 2e3;
       clearTimeout(autoSaveWaiter);
@@ -5538,7 +5538,7 @@
   function setState(key, value) {
     state36[key] = value;
     renderAll();
-    autoSave2();
+    autoSave();
   }
 
   // source/js/components/AuthScreens/AcceptInvite.js
@@ -5602,7 +5602,7 @@
     updatePreferenceClasses();
     state_default.loading = false;
     renderAll();
-    autoSave2(true);
+    autoSave(true);
     if (state_default.showPreview)
       renderPreview_default();
   };
@@ -5636,7 +5636,7 @@
         case "confirmation_token":
           auth_default.confirm(value, true).then(() => {
             renderAll();
-            autoSave2(true);
+            autoSave(true);
           });
           break;
         case "invite_token":
