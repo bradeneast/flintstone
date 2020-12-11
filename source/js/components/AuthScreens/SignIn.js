@@ -38,7 +38,10 @@ export default function Login() {
           setState('loading', true);
           auth
             .login(formData.email, formData.password, true)
-            .then(() => location = location.href)
+            .then(() => {
+              autoSave(true);
+              location = location.href;
+            })
             .catch(err => {
               console.log(err);
               setState('loading', false);

@@ -24,7 +24,7 @@ let completeLoading = () => {
   updatePreferenceClasses();
   state.loading = false;
   renderAll();
-  autoSave();
+  autoSave(true);
   if (state.showPreview) renderPreview();
 }
 
@@ -68,7 +68,10 @@ if (location.hash && location.hash.length) {
     switch (key) {
       case 'recovery_token': auth.recover(value, true).then(() => renderAll(Modal(ResetPassword())));
         break;
-      case 'confirmation_token': auth.confirm(value, true).then(() => renderAll());
+      case 'confirmation_token': auth.confirm(value, true).then(() => {
+        renderAll();
+        autoSave(true);
+      });
         break;
       case 'invite_token': renderAll(Modal(AcceptInvite(value)));
         break;

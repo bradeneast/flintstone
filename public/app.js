@@ -5366,7 +5366,10 @@
       content: "Sign In",
       action: () => {
         setState("loading", true);
-        auth_default.login(formData.email, formData.password, true).then(() => location = location.href).catch((err) => {
+        auth_default.login(formData.email, formData.password, true).then(() => {
+          autoSave(true);
+          location = location.href;
+        }).catch((err) => {
           console.log(err);
           setState("loading", false);
           renderAll(Modal_default(AuthError_default()));
@@ -5498,7 +5501,7 @@
   let identityState = user == null ? void 0 : user.getUserData();
   let defaultState = fetch("/defaults.json").then((r) => r.json());
   let preferences = ls("flintstone_preferences") || {dark: false};
-  function autoSave(immediate = false) {
+  function autoSave2(immediate = false) {
     return __async(this, [], function* () {
       let timeout = immediate ? 0 : 2e3;
       clearTimeout(autoSaveWaiter);
@@ -5535,7 +5538,7 @@
   function setState(key, value) {
     state36[key] = value;
     renderAll();
-    autoSave();
+    autoSave2();
   }
 
   // source/js/components/AuthScreens/AcceptInvite.js
@@ -5550,7 +5553,10 @@
       content: "Create Account & Sign In",
       action: () => {
         setState("loading", true);
-        auth_default.acceptInvite(token, formData.password, true).then((response) => console.log(response)).then(() => auth_default.currentUser().update({full_name: formData.name})).then((response) => {
+        auth_default.acceptInvite(token, formData.password, true).then((response) => console.log(response)).then(() => {
+          auth_default.currentUser().update({full_name: formData.name});
+          autoSave(true);
+        }).then((response) => {
           console.log(response);
           setState("loading", false);
         });
@@ -5574,8 +5580,8 @@
       action: () => {
         setState("loading", true);
         auth_default.currentUser().update({password}).then((response) => {
-          console.log(response);
           setState("loading", false);
+          autoSave(true);
         });
       }
     })}
@@ -5596,7 +5602,7 @@
     updatePreferenceClasses();
     state_default.loading = false;
     renderAll();
-    autoSave();
+    autoSave2(true);
     if (state_default.showPreview)
       renderPreview_default();
   };
@@ -5628,7 +5634,10 @@
           auth_default.recover(value, true).then(() => renderAll(Modal_default(ResetPassword_default())));
           break;
         case "confirmation_token":
-          auth_default.confirm(value, true).then(() => renderAll());
+          auth_default.confirm(value, true).then(() => {
+            renderAll();
+            autoSave2(true);
+          });
           break;
         case "invite_token":
           renderAll(Modal_default(AcceptInvite_default(value)));

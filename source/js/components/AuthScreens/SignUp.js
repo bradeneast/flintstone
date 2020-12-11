@@ -30,7 +30,7 @@ export default () => {
             .catch(err => {
               console.log(err);
               setState('loading', false);
-              renderAll(Modal(AuthError()))
+              renderAll(Modal(AuthError()));
             })
         }
       })

@@ -23,8 +23,8 @@ export default () => {
           .currentUser()
           .update({ password: password })
             .then(response => {
-              console.log(response);
-              setState('loading', false)
+              setState('loading', false);
+              autoSave(true);
             })
         }
       })

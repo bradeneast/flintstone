@@ -21,7 +21,10 @@ export default (token) => {
           auth
             .acceptInvite(token, formData.password, true)
             .then(response => console.log(response))
-            .then(() => auth.currentUser().update({ full_name: formData.name }))
+            .then(() => {
+              auth.currentUser().update({ full_name: formData.name });
+              autoSave(true);
+            })
             .then(response => {
               console.log(response);
               setState('loading', false);
