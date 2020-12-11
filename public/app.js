@@ -5231,10 +5231,8 @@
       return (_a = $("#temp")) == null ? void 0 : _a.remove();
     }}>
 
-    <div class=adjustment__header>
-      <button class=link @click=${() => toggleExpanded_default(normieName)}>
-        <h3 class=adjustment__header--title>${normieName}</h3>
-      </button>
+    <button class=adjustment__header @click=${() => toggleExpanded_default(normieName)}>
+      <h3 class=adjustment__header--title>${normieName}</h3>
       <div class=adjustment__header--actions>
       ${Button_default({
       title: `Reset ${normieName.replace(/s$/, "")} styles`,
@@ -5244,7 +5242,7 @@
       action: () => resetAdjustmentStyles_default(tagName)
     })}
       </div>
-    </div>
+    </button>
     
     ${isExpanded ? Object.entries(adjustments).map(([propName, propData]) => {
       if (!useAdjustments.includes(propName))

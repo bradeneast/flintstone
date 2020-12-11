@@ -22,10 +22,8 @@ export default ([tagName, { normieName, useAdjustments }]) => {
   @mouseleave=${() => $('#temp')?.remove()}
   @touchend=${() => $('#temp')?.remove()}>
 
-    <div class=adjustment__header>
-      <button class=link @click=${() => toggleExpanded(normieName)}>
-        <h3 class=adjustment__header--title>${normieName}</h3>
-      </button>
+    <button class=adjustment__header @click=${() => toggleExpanded(normieName)}>
+      <h3 class=adjustment__header--title>${normieName}</h3>
       <div class=adjustment__header--actions>
       ${
         Button({
@@ -37,14 +35,18 @@ export default ([tagName, { normieName, useAdjustments }]) => {
         })
       }
       </div>
-    </div>
+    </button>
     
     ${
-      isExpanded    
+      isExpanded
         ? Object.entries(adjustments).map(([propName, propData]) => {
+            // Skip properties not included for this adjustment module
             if (!useAdjustments.includes(propName)) return;
+
             let tagArgument = [tagName, { normieName, useAdjustments }];
             let propArgument = [propName, propData];  
+
+            // Return the correct type of input component
             switch (propData.type) {
               case 'range': return range(tagArgument, propArgument);
               case 'text': return text(tagArgument, propArgument);
