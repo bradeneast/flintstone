@@ -17,7 +17,13 @@ export default () => html`
     ? html`
     <div class="selection mount-children">
       <h3 data-active=true>
-        <input type=text .value=${state.currentDocument.id} @input=${event=> renameDocument(event.target.value)} />
+        <input 
+        title="Rename the current document" 
+        type=text 
+        .value=${state.currentDocument.id} 
+        @input=${event => 
+          renameDocument(event.target.value)
+        } />
       </h3>
       ${state.currentDocument.body.length ? DocumentTOC() : nothing}
     </div>

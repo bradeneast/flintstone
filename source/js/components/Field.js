@@ -15,11 +15,24 @@ export default ([key, value], fieldIndex, datasetIndex) => {
   return html`
   <li data-index=${fieldIndex}>
     <key>
-      <input @input=${event => renameField(fieldIndex, event.target.value)} .value=${key} type=text id=${keyID} />
+      <input 
+      title="Rename this field"
+      type=text
+      .value=${key} 
+      id=${keyID}
+      @input=${event => 
+        renameField(fieldIndex, event.target.value)
+      } />
     </key>
     <value>
-      <input @input=${event => updateFieldValue(fieldIndex, event.target.value)} .value=${value} type=text
-      id=${valueID} />
+      <input 
+      title="Change the value this field"
+      type=text
+      .value=${value} 
+      id=${valueID}
+      @input=${event => 
+        updateFieldValue(fieldIndex, event.target.value)
+      } />
     </value>
     <actions>
       <div class=join-buttons>

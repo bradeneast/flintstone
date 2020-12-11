@@ -19,7 +19,13 @@ export default () => html`
     <div class="selection mount-children">
 
       <h3 data-active=true>
-        <input type=text .value=${state.currentDataset.id} @input=${event=> renameDataset(event.target.value)} />
+        <input 
+        title="Rename the current data set"
+        type=text 
+        .value=${state.currentDataset.id} 
+        @input=${event => 
+          renameDataset(event.target.value)
+        } />
       </h3>
 
       <ul class="fields mount-children">

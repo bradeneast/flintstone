@@ -125,11 +125,20 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
       </div>`)};const Ib=a=>{B("currentDataset",k.currentUser.datasets[a]),k.showPreview&&ma()};const Xc=()=>{var e;let a={id:"New Data",fields:[["",""]]};k.currentUser.datasets.push(a),Ib(k.currentUser.datasets.length-1),(e=pa(".data [data-active] input"))==null?void 0:e.focus()};const Yc=()=>{k.currentDataset.fields.push(["",""]),B("currentDataset",k.currentDataset)};const Zc=a=>{let e=k.currentUser.datasets[a],g=cb(e);g.id=e.id+" copy",k.currentUser.datasets.push(g),B("currentUser",k.currentUser),B("currentDataset",g),k.showPreview&&ma()};const _c=a=>{let e=k.currentUser.datasets,g=e[a];if(!confirm(`Are you sure you want to delete ${g.id}?`))return;e.splice(a,1),k.currentUser.datasets=e,B("currentUser",k.currentUser),B("currentDataset",k.currentUser.datasets[0]),k.showPreview&&ma()};const $c=a=>{k.currentDataset.id=a,B("currentDataset",k.currentDataset)};const id=a=>{k.currentDataset.fields.splice(a,1),B("currentDataset",k.currentDataset)};const jd=(a,e)=>{let[g,l]=k.currentDataset.fields[a];k.currentDataset.fields[a]=[e,l],B("currentDataset",k.currentDataset)};const kd=(a,e)=>{let[g,l]=k.currentDataset.fields[a];k.currentDataset.fields[a]=[g,e],B("currentDataset",k.currentDataset)};const bc=(a,e)=>{let g=e>0?"down":"up",l=k.currentDataset.fields[a],u=a+e;k.currentDataset.fields.splice(a,1),k.currentDataset.fields.splice(u,0,l),B("currentDataset",k.currentDataset),pa(`.fields [data-index="${u}"] [title*="${g}"]`).focus()};const ad=([a,e],g,l)=>{let u=`${l}_${g}_key`,K=`${l}_${g}_value`;return F`
   <li data-index=${g}>
     <key>
-      <input @input=${y=>jd(g,y.target.value)} .value=${a} type=text id=${u} />
+      <input 
+      title="Rename this field"
+      type=text
+      .value=${a} 
+      id=${u}
+      @input=${y=>jd(g,y.target.value)} />
     </key>
     <value>
-      <input @input=${y=>kd(g,y.target.value)} .value=${e} type=text
-      id=${K} />
+      <input 
+      title="Change the value this field"
+      type=text
+      .value=${e} 
+      id=${K}
+      @input=${y=>kd(g,y.target.value)} />
     </value>
     <actions>
       <div class=join-buttons>
@@ -146,7 +155,11 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
     <div class="selection mount-children">
 
       <h3 data-active=true>
-        <input type=text .value=${k.currentDataset.id} @input=${a=>$c(a.target.value)} />
+        <input 
+        title="Rename the current data set"
+        type=text 
+        .value=${k.currentDataset.id} 
+        @input=${a=>$c(a.target.value)} />
       </h3>
 
       <ul class="fields mount-children">
@@ -178,7 +191,11 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
   ${k.currentDocument?F`
     <div class="selection mount-children">
       <h3 data-active=true>
-        <input type=text .value=${k.currentDocument.id} @input=${a=>fd(a.target.value)} />
+        <input 
+        title="Rename the current document" 
+        type=text 
+        .value=${k.currentDocument.id} 
+        @input=${a=>fd(a.target.value)} />
       </h3>
       ${k.currentDocument.body.length?cd():la}
     </div>
