@@ -41,15 +41,6 @@ export let ls = (key, value) => value == undefined
   : localStorage.setItem(key, JSON.stringify(value));
 
 
-export let resolvePromise = directive(promise => part => {
-  part.setValue(unsafeHTML('<loader></loader>'));
-  Promise.resolve(promise).then(resolvedValue => {
-    part.setValue(resolvedValue);
-    part.commit();
-  })
-})
-
-
 export let handleFormInput = (event, formData) => {
   let target = event.target;
   formData[target.name] = target.value;

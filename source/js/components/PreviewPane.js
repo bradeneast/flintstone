@@ -59,12 +59,12 @@ export default () => {
     </a>
   </toolbar>
 
-  ${cache(
+  ${
     state.showPreview
       ? html`
       <div class=preview>
         <div class=preview__wrapper>
-          ${resolvePromise(renderPreview())}
+          ${renderPreview()}
         </div>
       </div>
       ${unsafeHTML(previewStyles)}`
@@ -75,6 +75,5 @@ export default () => {
       @input=${event=> 
         state.currentDocument.body = event.target.value
       }>${state.currentDocument.body}</textarea>`
-  )}
-`;
+    }`;
 }
