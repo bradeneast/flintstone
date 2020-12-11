@@ -102,17 +102,19 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
   </ul>
 </div>
 `;const Kb=a=>{C("currentDocument",k.currentUser.documents[a]),k.showPreview&&la()};const bd=()=>{var d;let a={id:"New Document",body:""};k.currentUser.documents.push(a),Kb(k.currentUser.documents.length-1),(d=Aa(".documents [data-active] input"))==null?void 0:d.focus()};const cd=a=>{let d=k.currentUser.documents,g=d[a];if(!confirm(`Are you sure you want to delete ${g.id}?`))return;d.splice(a,1),k.currentUser.documents=d,C("currentUser",k.currentUser),C("currentDocument",k.currentUser.documents[0]),k.showPreview&&la()};const dd=a=>{k.currentDocument.id=a,C("currentDocument",k.currentDocument)};const ed=a=>{let d=k.currentUser.documents[a],g=fb(d);g.id=d.id+" copy",k.currentUser.documents.push(g),C("currentUser",k.currentUser),C("currentDocument",g),k.showPreview&&la()};const ki=Ub(re()),ad=()=>G`
-<h4>Pages</h4>
-<ul class=pages>
-  ${k.currentDocument.body.split(/\n\s*\-{3,}\s*\n/).map((a,d)=>G`
-    <li>
-      <button 
-      class=link
-      @click=${()=>{var g;C("showPreview",!0),(g=Aa(`#page_${d+1}`))==null?void 0:g.focus()}}>
-        ${new DOMParser().parseFromString(ki.default(a.substr(0,100)),"text/html").body.innerText}
-      </button>
-    </li>`)}
-</ul>`;const fd=()=>G`
+<div class=toc-wrapper>
+  <h4>Pages</h4>
+  <ol class=toc>
+    ${k.currentDocument.body.split(/\n\s*\-{3,}\s*\n/).map((a,d)=>G`
+      <li>
+        <button 
+        class=link
+        @click=${()=>{var g;C("showPreview",!0),(g=Aa(`#page_${d+1}`))==null?void 0:g.focus()}}>
+          ${d+1}. ${new DOMParser().parseFromString(ki.default(a.substr(0,100)),"text/html").body.innerText}
+        </button>
+      </li>`)}
+  </ol>
+</div>`;const fd=()=>G`
 <div class="pane documents">
   <h2>Documents</h2>
   ${k.currentDocument?G`
