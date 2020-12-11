@@ -7,6 +7,7 @@ import SignOut from "./AuthScreens/SignOut";
 import Modal from "./Modal";
 import SignUp from "./AuthScreens/SignUp";
 import Icon from "./Icon";
+import toggleMenu from "../functions/toggleMenu";
 
 
 export default () => {
@@ -49,10 +50,10 @@ export default () => {
         <line y1="186" x2="100%" y2="186"/>`
       }),
       className: 'icon menu-toggle',
-      action: () => setState('showMenu', !state.showMenu)
+      action: () => toggleMenu()
     })
   }
-  <nav ?data-open=${state.showMenu}>
+  <nav>
     ${
       Button({
         className: 'icon',

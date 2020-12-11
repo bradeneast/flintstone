@@ -52,12 +52,6 @@ header {
     transition: opacity var(--transition), transform var(--transition);
     pointer-events: none;
 
-    &[data-open] {
-      opacity: 1;
-      transform: scale(1) translate3d(0, 0, 0);
-      pointer-events: all;
-    }
-
     button {
       text-align: right;
     }
@@ -79,4 +73,10 @@ header {
   & > button + button:not(.icon) {
     margin-left: 1em;
   }
+}
+
+html.show-menu nav {
+  opacity: 1;
+  transform: scale(1) translate3d(0, 0, 0);
+  pointer-events: all;
 }

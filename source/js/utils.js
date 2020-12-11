@@ -45,3 +45,6 @@ export let handleFormInput = (event, formData) => {
   let target = event.target;
   formData[target.name] = target.value;
 }
+
+/**A shorthand for toggling a class on the documentElement */
+export let toggleRootClass = (className, force) => document.documentElement.classList.toggle(className, force);

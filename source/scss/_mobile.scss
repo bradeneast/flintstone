@@ -23,6 +23,13 @@
     }
   }
 
+  modal,
+  .styles {
+    position: fixed;
+    top: var(--headerHeight);
+    height: calc(100vh - var(--headerHeight));
+  }
+
   main {
     top: 0;
     height: auto;
@@ -35,12 +42,6 @@
     section.aside {
       padding-top: 4em;
       padding-bottom: 4em;
-    }
-
-    .styles {
-      position: fixed;
-      top: var(--headerHeight);
-      height: calc(100vh - var(--headerHeight));
     }
 
     section.center {
