@@ -39,21 +39,13 @@ main {
     flex: 0;
   }
 
-  &.data {
-    .sets {
-      flex: 1;
-    }
-    .selection {
-      flex: 2;
-    }
-  }
-
   .selection,
   .sets {
     overflow-y: auto;
   }
 
   .selection {
+    flex: 2;
     width: 100%;
     max-width: 32em;
     border-bottom: var(--border);
@@ -67,7 +59,6 @@ main {
       button {
         padding: 0.5em 0;
         width: 100%;
-        text-align: left;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -80,6 +71,8 @@ main {
   }
 
   .sets {
+    flex: 1;
+
     li {
       display: flex;
       align-items: center;
