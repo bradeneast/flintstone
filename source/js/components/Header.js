@@ -44,9 +44,9 @@ export default () => {
       title: `${state.showMenu ? 'Close' : 'Open'} menu`,
       content: Icon({
         content: svg`
-        <line y1="10" x2="100%" y2="10"/>
+        <line y1="30" x2="100%" y2="30"/>
         <line y1="50%" x2="100%" y2="50%"/>
-        <line y1="206" x2="100%" y2="206"/>`
+        <line y1="186" x2="100%" y2="186"/>`
       }),
       className: 'icon menu-toggle',
       action: () => setState('showMenu', !state.showMenu)

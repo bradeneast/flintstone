@@ -6,6 +6,8 @@ import renameDocument from "../functions/renameDocument";
 import setCurrentDocument from "../functions/setCurrentDocument";
 import duplicateDocument from "../functions/duplicateDocument";
 import Button from "./Button";
+import DocumentTOC from "./DocumentTOC";
+
 
 export default () => html`
 <div class="pane documents">
@@ -17,6 +19,7 @@ export default () => html`
       <h3 data-active=true>
         <input type=text .value=${state.currentDocument.id} @input=${event=> renameDocument(event.target.value)} />
       </h3>
+      ${state.currentDocument.body.length ? DocumentTOC() : nothing}
     </div>
     ` : nothing
   }
@@ -51,8 +54,7 @@ export default () => html`
           : nothing
       }
     </li>
-    `)
-    }
+    `)}
     <button @click=${addDocument}>Add Document</button>
   </ul>
 </div>

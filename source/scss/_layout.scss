@@ -59,6 +59,30 @@ main {
     border-bottom: var(--border);
     margin-bottom: 2em;
 
+    .pages {
+      button {
+        padding: 0.5em 0 0.5em 1em;
+        width: 100%;
+        border-radius: 0;
+        text-align: left;
+        border-left: var(--border);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 0;
+          width: 0.5em;
+          height: var(--borderWidth);
+          background: var(--g6);
+          transform: translateY(-50%);
+        }
+      }
+    }
+
     & > :last-child {
       margin-bottom: 2em;
     }

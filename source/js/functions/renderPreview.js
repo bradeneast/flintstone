@@ -35,7 +35,9 @@ export default () => {
   let sanitized = sanitize(marked(hydrated));
   return sanitized
     .split('<hr>')
-    .map(pageContent =>
-      html`<div class=preview__page>${unsafeHTML(pageContent)}</div>`
+    .map((pageContent, index) => html`
+      <div id="page_${index + 1}" class=preview__page>
+        ${unsafeHTML(pageContent)}
+      </div>`
     );
 }
