@@ -92,7 +92,7 @@ button.link {
 
   &:focus {
     border-radius: 0;
-    box-shadow: inset 0 calc(var(--borderWidth) * -1) 0 calc(var(--borderWidth) * -1) currentColor;
+    box-shadow: inset 0 calc(var(--borderWidth) * -1) 0 calc(var(--borderWidth) * -0.5) currentColor;
   }
 }
 
