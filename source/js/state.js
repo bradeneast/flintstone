@@ -29,7 +29,7 @@ export let preferences = ls('flintstone_preferences') || { dark: false };
 
 export function autoSave(immediate = false) {
 
-  let waitAmount = 3000;
+  let waitAmount = 2000;
   let timeout = immediate ? 0 : waitAmount;
   clearTimeout(autoSaveWaiter);
   autoSaveWaiter = setTimeout(save, timeout);

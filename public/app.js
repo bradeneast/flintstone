@@ -311,13 +311,13 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
     
     ${l?Object.entries(qd).map(([s,J])=>{if(!g.includes(s))return;let y=[a,{normieName:e,useAdjustments:g}],r=[s,J];switch(J.type){case"range":return rd(y,r);case"text":return td(y,r);case"select":return sd(y,r)}}):la}
   </div>`};const nd=()=>F`
-<div ?data-active=${k.showStyles} class="styles">
-  <div class=styles__header>
-    ${k.showPreview?la:F`
+<div ?data-active=${k.showStyles} class="styles mount-children">
+  ${k.showPreview?la:F`
+    <div class=styles__header>
       <span class=hint>
         Hint: <button class="link primary" @click=${()=>B("showPreview",!0)}>Show the preview</button> to see your changes.
-      </span>`}
-  </div>
+      </span>
+    </div>`}
   <div class=adjustments>
     ${Object.entries(Ib).map(wd)}
   </div>
@@ -329,7 +329,7 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
     ${bd()}
     ${nd()}
   </section>
-</main>`;let Yd=ca.currentUser(),fb=ub("flintstone_data")||{currentUser:{documents:[{id:"New Document",body:""}],datasets:[{id:"New Dataset",fields:[["",""]]}],styles:{}}},xd=setTimeout(()=>null,0);const k=fb;let ac=Yd==null?void 0:Yd.getUserData(),Hb=fetch("/defaults.json").then(a=>a.json()),sb=ub("flintstone_preferences")||{dark:!1};function na(a=!1){let e=3000,g=a?0:e;clearTimeout(xd),xd=setTimeout(l,g),Na("saving",!0);function l(){if(ca.currentUser())return ca.currentUser().update({data:{flintstone:JSON.stringify(fb.currentUser)}}).then(()=>Na("saving",!1)).catch(s=>Na("save-error",!0));Na("saving",!1),fb.savedLocally=!0,ub("flintstone_data",fb)}}function _(a=od()){pb(F`
+</main>`;let Yd=ca.currentUser(),fb=ub("flintstone_data")||{currentUser:{documents:[{id:"New Document",body:""}],datasets:[{id:"New Dataset",fields:[["",""]]}],styles:{}}},xd=setTimeout(()=>null,0);const k=fb;let ac=Yd==null?void 0:Yd.getUserData(),Hb=fetch("/defaults.json").then(a=>a.json()),sb=ub("flintstone_preferences")||{dark:!1};function na(a=!1){let e=2000,g=a?0:e;clearTimeout(xd),xd=setTimeout(l,g),Na("saving",!0);function l(){if(ca.currentUser())return ca.currentUser().update({data:{flintstone:JSON.stringify(fb.currentUser)}}).then(()=>Na("saving",!1)).catch(s=>Na("save-error",!0));Na("saving",!1),fb.savedLocally=!0,ub("flintstone_data",fb)}}function _(a=od()){pb(F`
   <div id=app ?data-loading=${fb.loading}>
     <header>${tb()}</header>
     ${a}

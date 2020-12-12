@@ -27,9 +27,12 @@
     padding: 1em;
   }
 
+  &__header {
+    padding-bottom: 0;
+  }
+
   .adjustments {
     overflow-y: auto;
-    padding-top: 0;
   }
 
   .adjustment {
