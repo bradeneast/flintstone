@@ -8,30 +8,35 @@ export let pageSplitter = /\n\s*\-{3,}\s*\n/;
 
 export default () => {
 
+  let doc = state.currentDocument.body;
+
   let goToPage = index => {
     setState('showPreview', true);
     $('#' + makePageID(index))?.scrollIntoView();
   }
 
   let getTOCTitle = (pageContent) => {
-    let firstLine = pageContent.substr(0, pageContent.indexOf('\n'));
+    let firstLine = pageContent.match(/.+?(\n|$)/)[0];
     let trimmed = firstLine.trim();
     return trimmed.replace(/[^A-z0-9]*/, '');
   }
+
+  let tocItems = doc.split(pageSplitter);
+  if (!tocItems.length) tocItems = [doc];
 
   return html`
   <div class=toc-wrapper>
     <h4>Pages</h4>
     <ol class=toc>
-      ${state.currentDocument.body
-        .split(pageSplitter)
-        .map((page, index) => html`
+      ${
+        tocItems.map((page, index) => html`
         <li>
           <button class=link @click=${() => goToPage(index)}>
             ${index + 1}. ${getTOCTitle(page)}
           </button>
         </li>`
-      )}
+        )
+      }
     </ol>
   </div>`
 };

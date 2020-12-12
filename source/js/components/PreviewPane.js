@@ -2,7 +2,7 @@ import renderPreview from "../functions/renderPreview";
 import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { dataMatcher, hydrateFromDataset } from "../functions/renderPreview";
-import state, { setState } from '../state';
+import state, { autoSave, setState } from '../state';
 import { sanitizeCSS } from "../utils";
 
 
@@ -72,8 +72,9 @@ export default () => {
       <textarea 
       class=editor 
       placeholder="Start typing when you're ready..."
-      @input=${event=> 
-        state.currentDocument.body = event.target.value
-      }>${state.currentDocument.body}</textarea>`
+      @input=${event => {
+        state.currentDocument.body = event.target.value;
+        autoSave();
+      }}>${state.currentDocument.body}</textarea>`
     }`;
 }

@@ -1,8 +1,9 @@
 import { html, render } from 'lit-html';
-import { ls } from './utils';
+import { ls, toggleRootClass } from './utils';
 import Main from './components/Main';
 import Header from './components/Header';
 import auth from './auth';
+import Button from './components/Button';
 
 
 // Get local state and default state
@@ -28,18 +29,20 @@ export let preferences = ls('flintstone_preferences') || { dark: false };
 
 export function autoSave(immediate = false) {
 
-  let timeout = immediate ? 0 : 2000;
+  let waitAmount = 3000;
+  let timeout = immediate ? 0 : waitAmount;
   clearTimeout(autoSaveWaiter);
   autoSaveWaiter = setTimeout(save, timeout);
+  toggleRootClass('saving', true);
 
   function save() {
 
     if (auth.currentUser())
       return auth
         .currentUser()
-        .update({
-          data: { flintstone: JSON.stringify(state.currentUser) }
-        })
+        .update({ data: { flintstone: JSON.stringify(state.currentUser) } })
+        .then(() => toggleRootClass('saving', false))
+        .catch(err => toggleRootClass('save-error', true))
 
     state.savedLocally = true;
     ls('flintstone_data', state);
@@ -54,6 +57,7 @@ export function renderAll(contents = Main()) {
     <header>${Header()}</header>
     ${contents}
     <loader></loader>
+    <save-message>All changes saved</save-message>
   </div>`,
     document.body
   );
