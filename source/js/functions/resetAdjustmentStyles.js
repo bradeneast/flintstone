@@ -5,6 +5,6 @@ export default (tagName) => {
   defaultState
     .then(defaultState => {
       state.currentUser.styles[tagName] = deepCopy(defaultState.currentUser.styles[tagName]);
-      setState('currentUser', state.currentUser);
+      setState('currentUser', state.currentUser, true);
     })
 }

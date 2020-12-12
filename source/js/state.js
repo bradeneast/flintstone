@@ -43,6 +43,8 @@ export function autoSave(immediate = false) {
         .update({ data: { flintstone: JSON.stringify(state.currentUser) } })
         .then(() => toggleRootClass('saving', false))
         .catch(err => toggleRootClass('save-error', true))
+    else
+      toggleRootClass('saving', false);
 
     state.savedLocally = true;
     ls('flintstone_data', state);
@@ -79,8 +81,8 @@ export function setPreference(key, value) {
 
 
 /**Acts like a proxy to render and save when a stateful value is changed */
-export function setState(key, value) {
+export function setState(key, value, save) {
   state[key] = value;
   renderAll();
-  autoSave();
+  if (save) autoSave();
 }

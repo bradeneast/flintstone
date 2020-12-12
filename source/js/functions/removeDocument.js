@@ -12,7 +12,7 @@ export default (index) => {
   state.currentUser.documents = docs;
 
   setState('currentUser', state.currentUser);
-  setState('currentDocument', state.currentUser.documents[0]);
+  setState('currentDocument', state.currentUser.documents[0], true);
 
   if (state.showPreview)
     renderPreview();

@@ -9,6 +9,6 @@ export default (fieldIndex, amount) => {
   state.currentDataset.fields.splice(fieldIndex, 1);
   state.currentDataset.fields.splice(newIndex, 0, field);
 
-  setState('currentDataset', state.currentDataset);
+  setState('currentDataset', state.currentDataset, true);
   $(`.fields [data-index="${newIndex}"] [title*="${direction}"]`).focus();
 }

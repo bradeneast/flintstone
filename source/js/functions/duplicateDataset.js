@@ -10,7 +10,7 @@ export default (index) => {
   state.currentUser.datasets.push(newSet);
 
   setState('currentUser', state.currentUser);
-  setState('currentDataset', newSet);
+  setState('currentDataset', newSet, true);
 
   if (state.showPreview)
     renderPreview();
