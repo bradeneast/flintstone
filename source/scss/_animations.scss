@@ -32,6 +32,20 @@ save-message {
   text-overflow: clip;
   overflow: hidden;
   transition: var(--transition), transform 0s;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 12%;
+    left: 12%;
+    width: 76%;
+    height: 76%;
+    border: var(--border);
+    border-color: var(--primary);
+    border-radius: var(--radius);
+    opacity: 0;
+    transition: opacity var(--transition), transform 120s linear;
+  }
 }
 
 .saving save-message {
@@ -39,6 +53,12 @@ save-message {
   color: var(--g7);
   box-shadow: none;
   border-color: var(--primary);
-  transform: rotate(9999deg);
-  transition: var(--transition), transform 120s linear;
+  transform: rotate(5555deg);
+  transition: var(--transition), transform 120s 0.2s linear;
+
+  &::after {
+    opacity: 1;
+    transform: rotate(9999deg);
+    transition-delay: 0.2s;
+  }
 }
