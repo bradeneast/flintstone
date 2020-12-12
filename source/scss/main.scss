@@ -11,6 +11,27 @@ $mobile: 960px;
 
 :root {
   font-size: 15px;
+  // VARIABLES
+  --primary: #5768ff;
+  --primary-80: #678bff;
+  --primary-60: #6da0ff;
+  --primary-40: #70b3ff;
+  --g0: #{$g0};
+  --g1: #{$g1};
+  --g2: #{$g2};
+  --g3: #{$g3};
+  --g4: #{$g4};
+  --g5: #{$g5};
+  --g6: #{$g6};
+  --g7: #{$g7};
+  --g8: #{$g8};
+  --headerHeight: 3.4rem;
+  --radius: 0.37rem;
+  --buttonPadding: 0.5rem;
+  --borderWidth: 2px;
+  --border: var(--borderWidth) solid var(--g6);
+  --shadow: 0 0.2rem 0.5rem -0.1rem var(--g5);
+  --transition: 0.3s cubic-bezier(0.3, 0.6, 0.1, 1);
 }
 
 *,
@@ -51,7 +72,8 @@ dark {
   display: none;
 }
 
-html.dark #app {
+html.dark {
+  background: var(--g8);
   --g0: #{$g8};
   --g1: #{$g7};
   --g2: #{$g6};
@@ -79,28 +101,6 @@ html.dark #app {
   height: 100vh;
   height: -webkit-fill-available;
   overflow: hidden;
-
-  // VARIABLES
-  --primary: #5768ff;
-  --primary-80: #678bff;
-  --primary-60: #6da0ff;
-  --primary-40: #70b3ff;
-  --g0: #{$g0};
-  --g1: #{$g1};
-  --g2: #{$g2};
-  --g3: #{$g3};
-  --g4: #{$g4};
-  --g5: #{$g5};
-  --g6: #{$g6};
-  --g7: #{$g7};
-  --g8: #{$g8};
-  --headerHeight: 3.4rem;
-  --radius: 0.37rem;
-  --buttonPadding: 0.5rem;
-  --borderWidth: 2px;
-  --border: var(--borderWidth) solid var(--g6);
-  --shadow: 0 0.2rem 0.5rem -0.1rem var(--g5);
-  --transition: 0.3s cubic-bezier(0.3, 0.6, 0.1, 1);
 
   &[data-modal] modal {
     opacity: 1;
