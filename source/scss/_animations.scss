@@ -52,7 +52,6 @@ save-message {
 .saving save-message {
   width: 2.5em;
   color: var(--g7);
-  box-shadow: none;
   border-color: var(--primary);
   transform: rotate(5555deg);
   transition: var(--transition), transform 120s 0.2s linear;
