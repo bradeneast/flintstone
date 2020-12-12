@@ -26,7 +26,7 @@ export default () => {
 
   return html`
   <div class=toc-wrapper>
-    <h4>Pages</h4>
+    <h3>Pages</h3>
     <ol class=toc>
       ${
         tocItems.map((page, index) => html`

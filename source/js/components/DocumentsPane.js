@@ -11,12 +11,11 @@ import DocumentTOC from "./DocumentTOC";
 
 export default () => html`
 <div class="pane documents">
-  <h2>Documents</h2>
   ${
     state.currentDocument
     ? html`
     <div class="selection mount-children">
-      <h3 data-active=true>
+      <h2 data-active=true>
         <input 
         title="Rename the current document" 
         type=text 
@@ -24,7 +23,7 @@ export default () => html`
         @input=${event => 
           renameDocument(event.target.value)
         } />
-      </h3>
+      </h2>
       ${state.currentDocument.body.length ? DocumentTOC() : nothing}
     </div>
     ` : nothing

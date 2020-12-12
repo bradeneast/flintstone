@@ -106,7 +106,7 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
     ${P({className:"icon",content:F`<light>🌞</light><dark>🌝</dark> Switch to <light>dark</light><dark>light</dark> theme`,action:()=>ld("dark",!rb.dark)})}
   </nav>`};const Lb=a=>{a==void 0?(Na("show-menu",!k.showMenu),k.showMenu=!k.showMenu,ob(sb(),qa("header"))):(Na("show-menu",a),k.showMenu=a,ob(sb(),qa("header")))};let bc=a=>`page_${a+1}`,Td=/\n\s*\-{3,}\s*\n/;const cd=()=>{let a=k.currentDocument.body,e=s=>{var J;B("showPreview",!0),(J=qa("#"+bc(s)))==null?void 0:J.scrollIntoView()},g=s=>{let J=s.match(/.+?(\n|$)/)[0],y=J.trim();return y.replace(/[^A-z0-9]*/,"")},l=a.split(Td);return l.length||(l=[a]),F`
   <div class=toc-wrapper>
-    <h4>Pages</h4>
+    <h3>Pages</h3>
     <ol class=toc>
       ${l.map((s,J)=>F`
         <li>
@@ -149,17 +149,16 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
   </li>
   `};const bd=()=>F`
 <div class="pane data">
-  <h2>Data</h2>
   ${k.currentDataset?F`
     <div class="selection mount-children">
 
-      <h3 data-active=true>
+      <h2 data-active=true>
         <input 
         title="Rename the current data set"
         type=text 
         .value=${k.currentDataset.id} 
         @input=${a=>$c(a.target.value)} />
-      </h3>
+      </h2>
 
       <ul class="fields mount-children">
         <li>
@@ -186,16 +185,15 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
 </div>
 `;const Kb=a=>{B("currentDocument",k.currentUser.documents[a]),k.showPreview&&ma()};const dd=()=>{var e;let a={id:"New Document",body:""};k.currentUser.documents.push(a),Kb(k.currentUser.documents.length-1),na(),(e=qa(".documents [data-active] input"))==null?void 0:e.focus()};const ed=a=>{let e=k.currentUser.documents,g=e[a];if(!confirm(`Are you sure you want to delete ${g.id}?`))return;e.splice(a,1),k.currentUser.documents=e,B("currentUser",k.currentUser),B("currentDocument",k.currentUser.documents[0],!0),k.showPreview&&ma()};const fd=a=>{k.currentDocument.id=a,B("currentDocument",k.currentDocument,!0)};const gd=a=>{let e=k.currentUser.documents[a],g=db(e);g.id=e.id+" copy",k.currentUser.documents.push(g),B("currentUser",k.currentUser),B("currentDocument",g,!0),k.showPreview&&ma()};const hd=()=>F`
 <div class="pane documents">
-  <h2>Documents</h2>
   ${k.currentDocument?F`
     <div class="selection mount-children">
-      <h3 data-active=true>
+      <h2 data-active=true>
         <input 
         title="Rename the current document" 
         type=text 
         .value=${k.currentDocument.id} 
         @input=${a=>fd(a.target.value)} />
-      </h3>
+      </h2>
       ${k.currentDocument.body.length?cd():la}
     </div>
     `:la}
@@ -312,7 +310,6 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
   </div>`};const nd=()=>F`
 <div ?data-active=${k.showStyles} class="styles">
   <div class=styles__header>
-    <h2>Styles</h2>
     ${k.showPreview?la:F`
       <span class=hint>
         Hint: <button class="link primary" @click=${()=>B("showPreview",!0)}>Show the preview</button> to see your changes.

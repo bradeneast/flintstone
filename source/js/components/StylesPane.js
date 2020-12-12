@@ -7,7 +7,6 @@ import StyleAdjustment from "./StyleAdjustment";
 export default () => html`
 <div ?data-active=${state.showStyles} class="styles">
   <div class=styles__header>
-    <h2>Styles</h2>
     ${
       state.showPreview
       ? nothing

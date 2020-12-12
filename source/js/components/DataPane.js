@@ -12,13 +12,12 @@ import Field from "./Field";
 
 export default () => html`
 <div class="pane data">
-  <h2>Data</h2>
   ${
     state.currentDataset
     ? html`
     <div class="selection mount-children">
 
-      <h3 data-active=true>
+      <h2 data-active=true>
         <input 
         title="Rename the current data set"
         type=text 
@@ -26,7 +25,7 @@ export default () => html`
         @input=${event => 
           renameDataset(event.target.value)
         } />
-      </h3>
+      </h2>
 
       <ul class="fields mount-children">
         <li>
