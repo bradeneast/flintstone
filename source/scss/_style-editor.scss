@@ -23,27 +23,13 @@
     transform: translate3d(0, 0, 0);
   }
 
-  &__header {
-    display: flex;
-    align-items: center;
-
-    h2 {
-      padding-bottom: 0;
-      margin-bottom: 0;
-      margin-right: auto;
-    }
-
-    .hint {
-      margin-left: 2em;
-    }
-  }
-
   & > * {
     padding: 1em;
   }
 
   .adjustments {
     overflow-y: auto;
+    padding-top: 0;
   }
 
   .adjustment {

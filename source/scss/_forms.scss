@@ -65,10 +65,6 @@ input {
   padding: var(--buttonPadding);
   width: 100%;
   max-width: none;
-
-  &:hover {
-    border-color: var(--g5);
-  }
 }
 
 input,
@@ -78,6 +74,10 @@ select {
   border: var(--border);
   border-color: transparent;
   transition: var(--transition);
+
+  &:hover {
+    border-color: var(--g5);
+  }
 
   &:focus {
     border-color: currentColor;
