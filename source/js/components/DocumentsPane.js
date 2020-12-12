@@ -11,14 +11,15 @@ import DocumentTOC from "./DocumentTOC";
 
 export default () => html`
 <div class="pane documents">
+  <label for="currentDocumentTitle">Current document</label>
   ${
     state.currentDocument
     ? html`
     <div class="selection mount-children">
       <h2 data-active=true>
         <input 
-        title="Rename the current document" 
         type=text 
+        id=currentDocumentTitle
         .value=${state.currentDocument.id} 
         @input=${event => 
           renameDocument(event.target.value)
@@ -29,6 +30,7 @@ export default () => html`
     ` : nothing
   }
 
+  <label>All documents</label>
   <ul class="sets mount-children">
     ${state.currentUser.documents.map((document, documentIndex) => html`
     <li>
@@ -51,16 +53,15 @@ export default () => html`
       ${
         state.currentUser.documents.length > 1
           ? Button({
-              title: `Delete ${document.id}`,
-              className: 'icon',
-              action: () => removeDocument(documentIndex),
-              content: '🗑️'
-            })
+            title: `Delete ${document.id}`,
+            className: 'icon',
+            action: () => removeDocument(documentIndex),
+            content: '🗑️'
+          })
           : nothing
       }
-    </li>
-    `)}
+    </li>`
+    )}
     <button @click=${addDocument}>Add Document</button>
   </ul>
-</div>
-`
+</div>`;

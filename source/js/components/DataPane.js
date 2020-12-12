@@ -12,6 +12,7 @@ import Field from "./Field";
 
 export default () => html`
 <div class="pane data">
+  <label for="currentDatasetTitle">Current data</label>
   ${
     state.currentDataset
     ? html`
@@ -19,6 +20,7 @@ export default () => html`
 
       <h2 data-active=true>
         <input 
+        id=currentDatasetTitle
         title="Rename the current data set"
         type=text 
         .value=${state.currentDataset.id} 
@@ -44,6 +46,7 @@ export default () => html`
     : nothing
   }
 
+  <label>All data</label>
   <ul class="sets mount-children">
     ${state.currentUser.datasets.map((dataset, datasetIndex) => html`
     <li>

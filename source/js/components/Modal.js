@@ -1,3 +1,4 @@
 import { html } from "lit-html";
+import toggleMenu from "../functions/toggleMenu";
 
-export default (component) => html`<modal class=mount-children>${component}</modal>`;
+export default (component) => html`<modal @click=${()=> toggleMenu(false)} class=mount-children>${component}</modal>`;
