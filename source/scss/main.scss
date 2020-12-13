@@ -30,7 +30,8 @@ $mobile: 960px;
   --buttonPadding: 0.5rem;
   --borderWidth: 2px;
   --border: var(--borderWidth) solid var(--g6);
-  --shadow: 0 0.2rem 0.5rem -0.1rem var(--g5);
+  --shadowColor: rgba(0, 10, 40, 0.2);
+  --shadow: 0 0.37rem 0.63rem -0.1rem var(--shadowColor);
   --transition: 0.3s cubic-bezier(0.3, 0.6, 0.1, 1);
 }
 
@@ -74,6 +75,7 @@ dark {
 
 html.dark {
   background: var(--g8);
+  --shadowColor: rgba(0, 0, 0, 0.63);
   --g0: #{$g8};
   --g1: #{$g7};
   --g2: #{$g6};

@@ -1,6 +1,6 @@
 @media screen and (max-width: $mobile) {
   :root {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   #app {
@@ -40,6 +40,7 @@
     }
 
     section.aside {
+      height: auto;
       padding-top: 4em;
       padding-bottom: 4em;
     }
@@ -51,9 +52,14 @@
 
       .preview,
       .editor {
-        padding: 4em 1em 2em 1em;
+        padding: 4rem 0.5rem 2rem 0.5rem;
         height: calc(100vh - var(--headerHeight));
         width: 100%;
+      }
+
+      .editor {
+        font-size: 16px;
+        border: none;
       }
     }
   }

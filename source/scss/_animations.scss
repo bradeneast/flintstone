@@ -17,6 +17,7 @@
 
 save-message {
   position: fixed;
+  z-index: 99;
   display: grid;
   place-items: center;
   right: 1em;
@@ -26,6 +27,7 @@ save-message {
   background: var(--g7);
   border: var(--border);
   border-radius: var(--radius);
+  box-shadow: var(--shadow);
   color: var(--g3);
   pointer-events: none;
   text-align: center;
@@ -52,6 +54,7 @@ save-message {
 .saving save-message {
   width: 2.5em;
   color: var(--g7);
+  box-shadow: none;
   border-color: var(--primary);
   transform: rotate(5555deg);
   transition: var(--transition), transform 120s 0.2s linear;
