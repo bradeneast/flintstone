@@ -8,10 +8,11 @@ import { html, nothing } from "lit-html";
 import state from "../state";
 import Button from "./Button";
 import Field from "./Field";
+import toggleStyleEditor from "../functions/toggleStyleEditor";
 
 
 export default () => html`
-<div class="pane data">
+<div @click=${() => toggleStyleEditor(false)} class="pane data">
   <label for="currentDatasetTitle">Current data</label>
   ${
     state.currentDataset

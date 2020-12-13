@@ -3,7 +3,6 @@ import { ls, toggleRootClass } from './utils';
 import Main from './components/Main';
 import Header from './components/Header';
 import auth from './auth';
-import Button from './components/Button';
 
 
 // Get local state and default state
@@ -23,7 +22,11 @@ let autoSaveWaiter = setTimeout(() => null, 0);
 export default state;
 export let identityState = user?.getUserData();
 export let defaultState = fetch('/defaults.json').then(r => r.json());
-export let preferences = ls('flintstone_preferences') || { dark: false };
+export let preferences = ls('flintstone_preferences') || {
+  dark: false,
+  showStyles: false,
+  showMenu: false
+};
 
 
 
@@ -68,7 +71,7 @@ export function renderAll(contents = Main()) {
 
 export function updatePreferenceClasses() {
   for (let [key, value] of Object.entries(preferences))
-    document.documentElement.classList.toggle(key, value);
+    toggleRootClass(key, value)
 }
 
 

@@ -36,27 +36,6 @@ header {
     }
   }
 
-  nav {
-    position: absolute;
-    background: var(--g8);
-    border-radius: var(--radius) 0 var(--radius) var(--radius);
-    top: 100%;
-    right: 1em;
-    display: flex;
-    flex-flow: column;
-    box-shadow: var(--shadow);
-    padding: 1em;
-    opacity: 0;
-    transform-origin: top right;
-    transform: scale(0.9) translate3d(0, 0, 0);
-    transition: opacity var(--transition), transform var(--transition);
-    pointer-events: none;
-
-    button {
-      text-align: right;
-    }
-  }
-
   separator {
     height: 80%;
     width: var(--borderWidth);
@@ -75,8 +54,29 @@ header {
   }
 }
 
-html.show-menu nav {
+html.showMenu nav {
   opacity: 1;
   transform: scale(1) translate3d(0, 0, 0);
   pointer-events: all;
+}
+
+nav {
+  position: absolute;
+  background: var(--g8);
+  border-radius: var(--radius) 0 var(--radius) var(--radius);
+  top: 100%;
+  right: 1em;
+  display: flex;
+  flex-flow: column;
+  box-shadow: var(--shadow);
+  padding: 1em;
+  opacity: 0;
+  transform-origin: top right;
+  transform: scale(0.9) translate3d(0, 0, 0);
+  transition: opacity var(--transition), transform var(--transition);
+  pointer-events: none;
+
+  button {
+    text-align: right;
+  }
 }

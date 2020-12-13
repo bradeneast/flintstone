@@ -1,3 +1,13 @@
+html.showStyles .styles {
+  box-shadow: var(--shadow);
+  transform: translate3d(0, 0, 0);
+
+  button {
+    transform: translate3d(0, 0, 0);
+    border-radius: var(--radius);
+  }
+}
+
 .styles {
   z-index: 9;
   position: absolute;
@@ -13,25 +23,30 @@
   background: var(--g7);
   border: var(--border);
   border-right: none;
-  border-radius: var(--radius);
+  border-radius: var(--radius) 0 0 var(--radius);
   transform: translate3d(100%, 0, 0);
   transition: transform var(--transition);
 
-  &[data-active] {
-    font-weight: inherit;
-    box-shadow: var(--shadow);
-    transform: translate3d(0, 0, 0);
-  }
-
   & > * {
-    padding: 1em;
+    padding: 1rem;
   }
 
   &__header {
-    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+
+    .hint {
+      text-align: right;
+    }
+
+    button {
+      margin-right: auto;
+      height: 2.5em;
+    }
   }
 
   .adjustments {
+    padding: 0 1rem;
     overflow-y: auto;
   }
 
@@ -43,7 +58,7 @@
     transition: var(--transition);
 
     &:last-child {
-      margin-bottom: 2em;
+      margin-bottom: 4em;
     }
 
     &:hover,
@@ -54,7 +69,6 @@
 
     &[data-expanded] {
       padding: 1em;
-      margin-bottom: 2em;
       transform: translate3d(0, 0, 0);
 
       .adjustment__header {

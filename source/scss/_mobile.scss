@@ -43,6 +43,14 @@
       height: auto;
       padding-top: 4em;
       padding-bottom: 4em;
+      margin-bottom: 4em;
+      border-bottom: var(--border);
+
+      .pane .set,
+      .pane .selection {
+        margin: 0;
+        border: none;
+      }
     }
 
     section.center {

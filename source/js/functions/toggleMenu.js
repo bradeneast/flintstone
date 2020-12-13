@@ -1,17 +1,15 @@
 import { render } from "lit-html";
 import Header from "../components/Header";
-import state from "../state"
-import { $, toggleRootClass } from "../utils";
+import { preferences, setPreference } from "../state"
+import { $ } from "../utils";
 
 export default (force) => {
   if (force == undefined) {
-    toggleRootClass('show-menu', !state.showMenu);
-    state.showMenu = !state.showMenu;
+    setPreference('showMenu', !preferences.showMenu);
     render(Header(), $('header'));
   }
   else {
-    toggleRootClass('show-menu', force);
-    state.showMenu = force;
+    setPreference('showMenu', force);
     render(Header(), $('header'));
   }
 }

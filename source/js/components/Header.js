@@ -1,6 +1,6 @@
 import auth from "../auth";
 import { html, nothing, svg } from "lit-html";
-import state, { preferences, renderAll, setPreference, setState } from "../state";
+import state, { preferences, renderAll, setPreference } from "../state";
 import Button from "./Button";
 import SignIn from './AuthScreens/SignIn';
 import SignOut from "./AuthScreens/SignOut";
@@ -8,6 +8,8 @@ import Modal from "./Modal";
 import SignUp from "./AuthScreens/SignUp";
 import Icon from "./Icon";
 import toggleMenu from "../functions/toggleMenu";
+import toggleStyleEditor from "../functions/toggleStyleEditor";
+import printDocument from "../functions/printDocument";
 
 
 export default () => {
@@ -57,22 +59,15 @@ export default () => {
     ${
       Button({
         className: 'icon',
-        content: `✨ ${ state.showStyles ? 'Close' : 'Open' } style editor`,
-        action: () => setState('showStyles', !state.showStyles)
+        content: `✨ ${ preferences.showStyles ? 'Close' : 'Open' } style editor`,
+        action: () => toggleStyleEditor()
       })
     }
     ${
       Button({
         className: 'icon',
         content: '🖨️ Print current document',
-        action: () => {
-          state.loading = true;
-          setState('showPreview', true);
-          setTimeout(() => {
-            print();
-            setState('loading', false);
-          }, 500)
-        }
+        action: printDocument
       })
     }
     ${

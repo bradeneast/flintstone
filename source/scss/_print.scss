@@ -1,15 +1,21 @@
 @media print {
+  html,
+  body,
+  #app {
+    background: none !important;
+  }
+
   #app {
     display: block;
     overflow: visible;
     height: auto;
-    background: none;
     color: var(--g1);
     padding: 0;
   }
 
   header,
   save-message,
+  .styles,
   loader,
   toolbar,
   .editor,
