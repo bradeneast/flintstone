@@ -29,8 +29,9 @@ export default () => {
             })
             .catch(err => {
               console.log(err);
+              state.error = err.message;
               setState('loading', false);
-              renderAll(Modal(AuthError()))
+              renderAll(Modal(AuthError(err.message)))
             })
         }
       })

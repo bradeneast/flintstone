@@ -1,7 +1,7 @@
 import { html } from "lit-html";
 import auth from "../../auth";
 import Button from "../Button";
-import { renderAll, setState } from "../../state";
+import state, { renderAll, setState } from "../../state";
 import Modal from "../Modal";
 import AuthError from "./AuthError";
 import Inputs from "./Inputs";
@@ -29,8 +29,9 @@ export default () => {
             })
             .catch(err => {
               console.log(err);
+              state.error = err.message;
               setState('loading', false);
-              renderAll(Modal(AuthError()));
+              renderAll(Modal(AuthError(err.message)));
             })
         }
       })

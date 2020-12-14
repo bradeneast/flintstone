@@ -22,9 +22,15 @@ export default () => {
           auth
           .currentUser()
           .update({ password: password })
-            .then(response => {
+            .then(() => {
               setState('loading', false);
               autoSave(true);
+            })
+            .catch(err => {
+              console.log(err);
+              state.error = err.message;
+              setState('loading', false);
+              renderAll(Modal(AuthError(err.message)));
             })
         }
       })

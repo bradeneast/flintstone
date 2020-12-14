@@ -50,7 +50,7 @@ export function autoSave(immediate = false) {
         })
         .catch(err => {
           console.error(err);
-          state.error = err;
+          state.error = err.message;
           toggleRootClass('error', true);
         })
 
@@ -60,7 +60,7 @@ export function autoSave(immediate = false) {
       toggleRootClass('working', false);
     } catch (err) {
       console.error(err);
-      state.error = err;
+      state.error = err.message;
       toggleRootClass('error', true);
     }
   }
@@ -75,7 +75,7 @@ export function renderAll(contents = Main()) {
     ${contents}
     <loader></loader>
     <status-message>
-      ${state.error ? 'Error saving' : 'All changes saved'}
+      ${state.error ? `Error: ${state.error}` : 'All changes saved'}
     </status-message>
   </div>`,
     document.body

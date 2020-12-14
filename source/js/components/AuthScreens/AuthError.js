@@ -5,9 +5,9 @@ import SignIn from "./SignIn";
 import Modal from "../Modal";
 
 
-export default () => html`
+export default (message = 'Your email or password may be invalid') => html`
 <span>
-  Your email or password may be invalid.
+  ${message}.
   ${
     Button({
       content: 'Try logging in again',

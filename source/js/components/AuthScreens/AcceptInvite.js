@@ -29,6 +29,12 @@ export default (token) => {
               console.log(response);
               setState('loading', false);
             })
+            .catch(err => {
+              console.log(err);
+              state.error = err.message;
+              setState('loading', false);
+              renderAll(Modal(AuthError(err.message)));
+            })
         }
       })
     }
