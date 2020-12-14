@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import auth from "../../auth";
-import { renderAll, setState } from "../../state";
+import state, { renderAll, setState } from "../../state";
 import Button from "../Button";
 import SignIn from "./SignIn";
 import Modal from "../Modal";
