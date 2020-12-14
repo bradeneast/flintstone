@@ -6,11 +6,10 @@
     grid-template-columns: 1fr 1fr 6em;
     gap: 0.4em;
     padding: 0.2em 0;
-    margin-bottom: calc(-2.9em * (1 - var(--scaleY)));
     transform-origin: top;
     place-content: start;
     transition: var(--transition);
-    opacity: var(--scaleY);
+    margin-bottom: calc(-2.9em * (1 - var(--scaleY)));
     transform: scale(calc(0.9 + 0.1 * var(--scaleY))) translate3d(0, calc(100% * var(--translateY)), 0);
 
     actions {

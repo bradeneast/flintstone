@@ -1,4 +1,6 @@
+import UIAnimation from "../animations";
 import state, { setState } from "../state"
+import { $, selectByIndex } from "../utils";
 import renderPreview from "./renderPreview";
 
 export default (index) => {
@@ -8,11 +10,14 @@ export default (index) => {
 
   if (!confirm(`Are you sure you want to delete ${currentSet.id}?`)) return;
 
-  sets.splice(index, 1);
-  state.currentUser.datasets = sets;
+  let targetItem = selectByIndex(index, $('.data .sets'));
+  let anim = new UIAnimation(targetItem, () => {
+    sets.splice(index, 1);
+    state.currentUser.datasets = sets;
+    setState('currentDataset', state.currentUser.datasets[0], true);
+  })
 
-  setState('currentUser', state.currentUser);
-  setState('currentDataset', state.currentUser.datasets[0], true);
+  anim.removed();
 
   if (state.showPreview)
     renderPreview();

@@ -48,9 +48,9 @@ export default () => html`
   }
 
   <label>All data</label>
-  <ul class="sets mount-children">
+  <ul class="sets">
     ${state.currentUser.datasets.map((dataset, datasetIndex) => html`
-    <li>
+    <li data-index=${datasetIndex}>
       ${
         Button({
           title: `Select ${dataset.id}`,

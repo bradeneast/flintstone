@@ -16,14 +16,19 @@ export let serialize = (fromObject, intoObject) => Object.keys(fromObject).forEa
 );
 
 
+/**Selects a list item elemtnt by its data-index attribute */
+export let selectByIndex = (index, context) => $(`[data-index="${index}"]`, context);
+
+
 /**Sets a custom property on an element */
 export let setCustomProp = (elem, prop, value) => elem.style.setProperty(`--${prop}`, value);
 
 
 /**Ensures properties exist on an object, filling them with an empty object if they do not exist. */
-export let ensureProps = (properties, obj, defaultValue = {}) => properties.forEach(prop =>
-  obj[prop] = obj[prop] || defaultValue
-);
+export let ensureProps = (properties, obj, defaultValue = {}) =>
+  properties.forEach(prop =>
+    obj[prop] = obj[prop] || defaultValue
+  );
 
 
 /**A shorthand for setting CSS custom properties */

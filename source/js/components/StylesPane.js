@@ -8,7 +8,7 @@ import StyleAdjustment from "./StyleAdjustment";
 
 
 export default () => html`
-<div class="styles mount-children">
+<div class="styles ">
   <div class=styles__header>
   ${
     state.showPreview

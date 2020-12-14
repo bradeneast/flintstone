@@ -15,7 +15,7 @@ export default () => html`
   ${
     state.currentDocument
     ? html`
-    <div class="selection mount-children">
+    <div class="selection ">
       <h2 data-active=true>
         <input 
         type=text 
@@ -31,9 +31,9 @@ export default () => html`
   }
 
   <label>All documents</label>
-  <ul class="sets mount-children">
+  <ul class="sets ">
     ${state.currentUser.documents.map((document, documentIndex) => html`
-    <li>
+    <li data-index=${documentIndex}>
       ${
         Button({
           title: `Select ${document.id}`,

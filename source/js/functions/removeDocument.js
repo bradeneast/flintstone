@@ -1,4 +1,6 @@
+import UIAnimation from "../animations";
 import state, { setState } from "../state"
+import { $, selectByIndex } from "../utils";
 import renderPreview from "./renderPreview";
 
 export default (index) => {
@@ -8,11 +10,14 @@ export default (index) => {
 
   if (!confirm(`Are you sure you want to delete ${currentDocument.id}?`)) return;
 
-  docs.splice(index, 1);
-  state.currentUser.documents = docs;
+  let targetItem = selectByIndex(index, $('.documents .sets'));
+  let anim = new UIAnimation(targetItem, () => {
+    docs.splice(index, 1);
+    state.currentUser.documents = docs;
+    setState('currentDocument', state.currentUser.documents[0], true);
+  })
 
-  setState('currentUser', state.currentUser);
-  setState('currentDocument', state.currentUser.documents[0], true);
+  anim.removed();
 
   if (state.showPreview)
     renderPreview();
