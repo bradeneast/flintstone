@@ -56,9 +56,14 @@ main {
     }
 
     .toc {
+      li {
+        display: flex;
+        justify-items: flex-start;
+      }
+
       button {
         padding: 0.5em 0;
-        width: 100%;
+        max-width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

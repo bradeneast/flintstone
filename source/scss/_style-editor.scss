@@ -34,14 +34,13 @@ html.showStyles .styles {
   &__header {
     display: grid;
     grid-template-columns: auto auto;
-    gap: 1em;
     align-items: center;
+    justify-items: space-between;
+    gap: 1em;
 
-    & > :last-child {
-      margin-right: auto;
-    }
-
-    button {
+    actions {
+      display: flex;
+      justify-content: flex-end;
       height: 2.5em;
     }
   }

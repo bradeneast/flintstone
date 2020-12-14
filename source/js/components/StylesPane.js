@@ -14,13 +14,22 @@ export default () => html`
     state.showPreview
       ? html`
       <span class=hint>
-        Use these adjustments to change the look and feel of your document.
+        Change the look and feel of your document here.
       </span>`
       : html`
       <span class=hint>
-        <button class="link primary" @click=${()=> setState('showPreview', true)}>Show the preview</button> to see your
+        <button class="link primary" @click=${()=> setState('showPreview', true)}>Show the document preview</button> to see your
         changes.
       </span>`
+  }
+  <actions>
+  ${
+    Button({
+      title: 'Collapse all adjustments',
+      className: 'icon',
+      content: '🌂',
+      action: () => setState('expandedAdjustments', [])
+    })
   }
   ${
     Button({
@@ -33,6 +42,7 @@ export default () => html`
       action: () => toggleStyleEditor(false)
     })
   }
+  </actions>
   </div>
   <div class=adjustments>
     ${Object.entries(tags).map(StyleAdjustment)}

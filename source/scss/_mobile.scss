@@ -1,6 +1,7 @@
 @media screen and (max-width: $mobile) {
   :root {
     font-size: 15px;
+    --buttonPadding: 0.63rem 0.5rem;
   }
 
   #app {
