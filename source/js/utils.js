@@ -1,6 +1,3 @@
-import { unsafeHTML } from "lit-html/directives/unsafe-html"
-import { directive } from "lit-html";
-
 /**A shorthand for `querySelector`*/
 export let $ = (selector, context = document) => context.querySelector(selector);
 
@@ -17,6 +14,10 @@ export let deepCopy = obj => JSON.parse(JSON.stringify(obj));
 export let serialize = (fromObject, intoObject) => Object.keys(fromObject).forEach(key =>
   intoObject[key] = fromObject[key]
 );
+
+
+/**Sets a custom property on an element */
+export let setCustomProp = (elem, prop, value) => elem.style.setProperty(`--${prop}`, value);
 
 
 /**Ensures properties exist on an object, filling them with an empty object if they do not exist. */

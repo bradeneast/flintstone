@@ -17,7 +17,7 @@ export default () => html`
   ${
     state.currentDataset
     ? html`
-    <div class="selection mount-children">
+    <div class="selection">
 
       <h2 data-active=true>
         <input 
@@ -30,7 +30,7 @@ export default () => html`
         } />
       </h2>
 
-      <ul class="fields mount-children">
+      <ul class="fields">
         <li>
           <label>Name</label>
           <label>Value</label>

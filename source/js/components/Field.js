@@ -6,6 +6,12 @@ import Button from "./Button";
 import moveField from "../functions/moveField";
 import Icon from "./Icon";
 import state from "../state";
+import { $ } from "../utils";
+
+
+/**Selects a custom data field by its index */
+export let selectFieldByIndex = index => $(`.fields [data-index="${index}"]`);
+
 
 export default ([key, value], fieldIndex, datasetIndex) => {
 

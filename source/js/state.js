@@ -72,6 +72,7 @@ export function autoSave(immediate = false) {
 
 /**Render the whole app */
 export function renderAll(contents = Main()) {
+
   render(html`
   <div id=app ?data-loading=${state.loading}>
     <header>${Header()}</header>
