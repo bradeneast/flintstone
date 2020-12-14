@@ -1,7 +1,6 @@
 @media screen and (max-width: $mobile) {
   :root {
     font-size: 15px;
-    --buttonPadding: 0.63rem 0.5rem;
   }
 
   #app {
@@ -29,6 +28,11 @@
     position: fixed;
     top: var(--headerHeight);
     height: calc(100vh - var(--headerHeight));
+  }
+
+  button.link {
+    padding-bottom: 0.2em;
+    transform: translateY(0.1em);
   }
 
   main {

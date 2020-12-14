@@ -29,7 +29,7 @@ export default () => {
   if (!state.currentDocument.body.length)
     return html`
     <div class=preview__page>
-      Write something in the editor to see it show up here. 😎
+      Write something in the editor to see it show up here. :)
     </div>`
 
   let hydrated = state.currentDocument.body.replace(dataMatcher, hydrateFromDataset);

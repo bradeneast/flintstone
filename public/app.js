@@ -84,7 +84,7 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
   </form>`};var Va=({content:a,className:d=""})=>Ma`
 <svg class=${d} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216">
   ${a}
-</svg>`;var Na=a=>{a==void 0?(Ra("showStyles",!Ga.showStyles),Y()):(Ra("showStyles",a),Y())};var ud=()=>{m.loading=!0,Y(),setTimeout(()=>{print(),C("loading",!1)},500)};var vb=()=>{let a=ba.currentUser();return G`
+</svg>`;var Na=a=>{a==void 0?(Ra("showStyles",!Ga.showStyles),Y()):(Ra("showStyles",a),Y())};var ud=()=>{m.loading=!0,m.showPreview=!0,Y(),setTimeout(()=>{print(),C("loading",!1)},500)};var vb=()=>{let a=ba.currentUser();return G`
   <div id=logo>
     <light>
       <img alt="Flintstone logo" src="logo.svg" />
@@ -117,7 +117,7 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
     </ol>
   </div>`};const Ai=yc(Lc()),Bi=yc(Xc());function $d(a){for(let[d,f]of m.currentDataset.fields)if(d==a)return f}function sc(a){return $d(a.slice(1,-1).trim(),m.currentDataset.fields)}let rc=/\{.+?\}/g;var ka=()=>{if(!m.currentDocument.body.length)return G`
     <div class=preview__page>
-      Write something in the editor to see it show up here. 😎
+      Write something in the editor to see it show up here. :)
     </div>`;let a=m.currentDocument.body.replace(rc,sc),d=Ai.sanitize(Bi.default(a));return d.split("<hr>").map((f,l)=>G`
       <div id=${pc(l)} class=preview__page>
         ${Gb(f)}
