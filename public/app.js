@@ -90,10 +90,20 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
 </svg>`;var Qa=a=>{a==void 0?(Ua("showStyles",!Ka.showStyles),X()):(Ua("showStyles",a),X())};var xd=()=>{l.loading=!0,l.showPreview=!0,X(),setTimeout(()=>{print(),C("loading",!1)},500)};var yb=()=>{let a=ca.currentUser();return G`
   <div id=logo>
     <light>
-      <img alt="Flintstone logo" src="logo.svg" />
+      <desktop-only>
+        <img alt="Flintstone logo" src="logo.svg" />
+      </desktop-only>
+      <mobile-only>
+        <img alt="Flintstone logo" src="logo-icon.svg" />
+      </mobile-only>
     </light>
     <dark>
-      <img alt="Flintstone logo" src="logo-white.svg" />
+      <desktop-only>
+        <img alt="Flintstone logo" src="logo-light.svg" />
+      </desktop-only>
+      <mobile-only>
+        <img alt="Flintstone logo" src="logo-icon-light.svg" />
+      </mobile-only>
     </dark>
   </div>
   ${a?la:P({className:"primary",content:"Sign up",action:()=>X(fa(gd()))})}

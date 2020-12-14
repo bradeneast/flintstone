@@ -1,4 +1,14 @@
+@media screen and (min-width: $mobile) {
+  mobile-only {
+    display: none;
+  }
+}
+
 @media screen and (max-width: $mobile) {
+  desktop-only {
+    display: none;
+  }
+
   :root {
     font-size: 15px;
   }
@@ -14,8 +24,15 @@
   }
 
   header {
+    flex-flow: row wrap;
+    text-align: right;
+
     #logo {
-      height: 1.5em;
+      width: 2.5em;
+    }
+
+    separator {
+      display: none;
     }
 
     nav {
