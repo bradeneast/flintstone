@@ -9,6 +9,13 @@ modal {
   place-items: center;
   background: var(--g8);
   gap: 1em;
+  padding: 1em;
+  text-align: center;
+
+  form,
+  .form {
+    text-align: left;
+  }
 
   #logo {
     width: 80%;
