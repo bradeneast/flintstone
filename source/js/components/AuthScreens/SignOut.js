@@ -8,7 +8,7 @@ export default () => {
   let user = auth.currentUser();
 
   return html`
-  <div class=form>
+  <form class=mount>
     ${
       Button({
         className: 'primary',
@@ -29,5 +29,5 @@ export default () => {
         action: () => renderAll()
       })
     }
-  </div>`;
+  </form>`;
 }

@@ -1,5 +1,6 @@
+import UIAnimation from "../animations";
 import state, { setState } from "../state"
-import { deepCopy } from "../utils";
+import { $, deepCopy, selectByIndex } from "../utils";
 import renderPreview from "./renderPreview";
 
 export default (index) => {
@@ -11,6 +12,10 @@ export default (index) => {
 
   setState('currentUser', state.currentUser);
   setState('currentDataset', newSet, true);
+
+  let targetItem = selectByIndex(index + 1, $('.data .sets'));
+  let anim = new UIAnimation(targetItem);
+  anim.added();
 
   if (state.showPreview)
     renderPreview();

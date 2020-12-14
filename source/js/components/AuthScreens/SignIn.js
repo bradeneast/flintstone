@@ -13,7 +13,7 @@ export default function Login() {
   let formData = {};
 
   return html`
-  <form>
+  <form class=mount>
     <label>
       Email
       <input required @input=${event => handleFormInput(event, formData)} type=email name=email />

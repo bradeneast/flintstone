@@ -8,7 +8,7 @@ export default () => {
   let password;
 
   return html`
-  <form>
+  <form class=mount>
     <label>
       New Password
       <input required @input=${e => password = e.target.value} minlength=8 type=password name=password />

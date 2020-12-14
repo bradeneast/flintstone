@@ -10,7 +10,7 @@ export default (token) => {
   let formData = {};
 
   return html`
-  <form>
+  <form class=mount>
     ${Inputs({ fields, formData })}
     ${
       Button({
