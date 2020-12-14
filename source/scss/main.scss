@@ -16,6 +16,7 @@ $mobile: 960px;
   --primary-80: #678bff;
   --primary-60: #6da0ff;
   --primary-40: #70b3ff;
+  --error: #ff3448;
   --g0: #{$g0};
   --g1: #{$g1};
   --g2: #{$g2};
@@ -144,4 +145,5 @@ html.dark {
 @import "./preview";
 @import "./mobile";
 @import "./animations";
+@import "./status";
 @import "./print";

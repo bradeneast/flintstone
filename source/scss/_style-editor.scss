@@ -9,7 +9,7 @@ html.showStyles .styles {
 }
 
 .styles {
-  z-index: 9;
+  z-index: 6;
   position: absolute;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -32,15 +32,16 @@ html.showStyles .styles {
   }
 
   &__header {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1em;
     align-items: center;
 
-    .hint {
-      text-align: right;
+    & > :last-child {
+      margin-right: auto;
     }
 
     button {
-      margin-right: auto;
       height: 2.5em;
     }
   }

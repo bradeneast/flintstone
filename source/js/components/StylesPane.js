@@ -11,17 +11,6 @@ export default () => html`
 <div class="styles mount-children">
   <div class=styles__header>
   ${
-    Button({
-      title: 'Close style editor',
-      className: 'icon',
-      content: Icon({
-        content: svg`<path d="M73.67,26.62,155.05,108,73.67,189.38" />`,
-        className: 'line'
-      }),
-      action: () => toggleStyleEditor(false)
-    })
-  }
-  ${
     state.showPreview
       ? html`
       <span class=hint>
@@ -32,6 +21,17 @@ export default () => html`
         <button class="link primary" @click=${()=> setState('showPreview', true)}>Show the preview</button> to see your
         changes.
       </span>`
+  }
+  ${
+    Button({
+      title: 'Close style editor',
+      className: 'icon',
+      content: Icon({
+        content: svg`<path d="M73.67,26.62,155.05,108,73.67,189.38" />`,
+        className: 'line'
+      }),
+      action: () => toggleStyleEditor(false)
+    })
   }
   </div>
   <div class=adjustments>

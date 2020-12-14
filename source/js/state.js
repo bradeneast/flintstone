@@ -36,7 +36,7 @@ export function autoSave(immediate = false) {
   let timeout = immediate ? 0 : waitAmount;
   clearTimeout(autoSaveWaiter);
   autoSaveWaiter = setTimeout(save, timeout);
-  toggleRootClass('saving', true);
+  toggleRootClass('working', true);
 
   function save() {
 
@@ -44,13 +44,25 @@ export function autoSave(immediate = false) {
       return auth
         .currentUser()
         .update({ data: { flintstone: JSON.stringify(state.currentUser) } })
-        .then(() => toggleRootClass('saving', false))
-        .catch(err => toggleRootClass('save-error', true))
-    else
-      toggleRootClass('saving', false);
+        .then(() => {
+          state.error = false;
+          toggleRootClass('working', false);
+        })
+        .catch(err => {
+          console.error(err);
+          state.error = err;
+          toggleRootClass('error', true);
+        })
 
-    state.savedLocally = true;
-    ls('flintstone_data', state);
+    try {
+      state.savedLocally = true;
+      ls('flintstone_data', state);
+      toggleRootClass('working', false);
+    } catch (err) {
+      console.error(err);
+      state.error = err;
+      toggleRootClass('error', true);
+    }
   }
 }
 
@@ -62,7 +74,9 @@ export function renderAll(contents = Main()) {
     <header>${Header()}</header>
     ${contents}
     <loader></loader>
-    <save-message>All changes saved</save-message>
+    <status-message>
+      ${state.error ? 'Error saving' : 'All changes saved'}
+    </status-message>
   </div>`,
     document.body
   );

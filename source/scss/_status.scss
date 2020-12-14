@@ -1,0 +1,54 @@
+status-message {
+  position: fixed;
+  z-index: 7;
+  display: grid;
+  place-items: center;
+  right: 1em;
+  bottom: 1em;
+  height: 2.5em;
+  width: 11em;
+  background: var(--g7);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--g3);
+  pointer-events: none;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: clip;
+  overflow: hidden;
+  transition: var(--transition), transform 0s;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 12%;
+    left: 12%;
+    width: 76%;
+    height: 76%;
+    border: var(--border);
+    border-color: inherit;
+    border-radius: var(--radius);
+    opacity: 0;
+    transition: opacity var(--transition), transform 120s linear;
+  }
+}
+
+.working status-message {
+  width: 2.5em;
+  color: var(--g7);
+  box-shadow: none;
+  border-color: var(--primary);
+  transform: rotate(5555deg);
+  transition: var(--transition), transform 120s 0.2s linear;
+
+  &::after {
+    opacity: 1;
+    transform: rotate(9999deg);
+    transition-delay: 0.2s;
+  }
+}
+
+.error status-message {
+  border-color: var(--error);
+}
