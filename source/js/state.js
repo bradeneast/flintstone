@@ -55,9 +55,12 @@ export function autoSave(immediate = false) {
         })
 
     try {
+
       state.savedLocally = true;
+      state.error = false;
       ls('flintstone_data', state);
       toggleRootClass('working', false);
+
     } catch (err) {
       console.error(err);
       state.error = err.message;
