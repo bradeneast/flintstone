@@ -95,6 +95,11 @@ html.dark {
   }
 }
 
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
 #app {
   color: var(--g0);
   background: var(--g8);
@@ -133,8 +138,9 @@ html.dark {
 @import "./header";
 @import "./layout";
 @import "./center-pane";
-@import "./modal";
+@import "./data-pane";
 @import "./style-editor";
+@import "./modal";
 @import "./preview";
 @import "./mobile";
 @import "./animations";

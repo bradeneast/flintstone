@@ -1,0 +1,29 @@
+.fields {
+  li {
+    --amt: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 6em;
+    gap: 0.4em;
+    padding: 0.2em 0;
+    place-content: start;
+    transition: transform var(--transition);
+    transform: translate3d(0, calc(100% * var(--amt)), 0);
+
+    actions {
+      display: inline-flex;
+    }
+
+    label {
+      grid-template-columns: unset;
+    }
+
+    input,
+    button {
+      height: 2.5em;
+    }
+
+    button {
+      align-self: center;
+    }
+  }
+}

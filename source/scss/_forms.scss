@@ -35,33 +35,6 @@ form,
   }
 }
 
-.fields {
-  li {
-    display: grid;
-    grid-template-columns: 1fr 1fr 6em;
-    gap: 0.4em;
-    padding: 0.2em 0;
-    place-content: start;
-
-    actions {
-      display: inline-flex;
-    }
-
-    label {
-      grid-template-columns: unset;
-    }
-
-    input,
-    button {
-      height: 2.5em;
-    }
-
-    button {
-      align-self: center;
-    }
-  }
-}
-
 input {
   text-transform: none;
   background: var(--g8);
