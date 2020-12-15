@@ -5,6 +5,7 @@ import state, { renderAll, setState } from "../../state";
 import Modal from "../Modal";
 import AuthError from "./AuthError";
 import Inputs from "./Inputs";
+import Welcome from "../Welcome";
 
 
 export default () => {
@@ -40,7 +41,9 @@ export default () => {
       Button({
         className: 'link',
         content: 'Continue using anonymously',
-        action: () => renderAll()
+        action: () => state.savedLocally
+        ? renderAll()
+        : renderAll(Modal(Welcome()))
       })
     }
   </form>`;

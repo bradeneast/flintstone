@@ -1,8 +1,9 @@
 import { html, render } from 'lit-html';
-import { ls, toggleRootClass } from './utils';
+import { ensureProps, ls, toggleRootClass } from './utils';
 import Main from './components/Main';
 import Header from './components/Header';
 import auth from './auth';
+import { tags } from './style_data';
 
 
 // Get local state and default state
@@ -29,11 +30,26 @@ export let preferences = ls('flintstone_preferences') || {
 };
 
 
+export function prepState() {
+  state.currentDataset = state.currentUser.datasets[0];
+  state.currentDocument = state.currentUser.documents[0];
+  state.savedLocally = state.savedLocally || false;
+  state.showPreview = state.showPreview || false;
+  state.showStyles = state.showStyles || false;
+  state.expandedAdjustments = state.expandedAdjustments || ["global", "pages"];
+  state.currentUser.styles = state.currentUser.styles || {};
+  ensureProps(Object.keys(tags), state.currentUser.styles);
+  updatePreferenceClasses();
+}
+
+
 
 export function autoSave(immediate = false) {
 
+  state.savedLocally = true;
   let waitAmount = 2000;
   let timeout = immediate ? 0 : waitAmount;
+
   clearTimeout(autoSaveWaiter);
   autoSaveWaiter = setTimeout(save, timeout);
   toggleRootClass('working', true);
@@ -55,13 +71,11 @@ export function autoSave(immediate = false) {
         })
 
     try {
-
-      state.savedLocally = true;
       state.error = false;
       ls('flintstone_data', state);
       toggleRootClass('working', false);
-
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
       state.error = err.message;
       toggleRootClass('error', true);
@@ -95,9 +109,10 @@ export function updatePreferenceClasses() {
 
 /**Acts like a proxy to set and save UI preferences */
 export function setPreference(key, value) {
+  console.log(key, value, preferences);
   preferences[key] = value;
+  toggleRootClass(key, value);
   ls('flintstone_preferences', preferences);
-  updatePreferenceClasses();
 }
 
 

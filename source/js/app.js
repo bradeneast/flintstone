@@ -1,12 +1,10 @@
 import auth from './auth';
 import AcceptInvite from './components/AuthScreens/AcceptInvite';
-import AuthError from './components/AuthScreens/AuthError';
 import ResetPassword from './components/AuthScreens/ResetPassword';
 import Modal from './components/Modal';
+import Welcome from './components/Welcome';
 import renderPreview from './functions/renderPreview';
-import state, { renderAll, autoSave, defaultState, updatePreferenceClasses, identityState } from './state';
-import { tags } from './style_data';
-import { ensureProps, serialize } from './utils';
+import state, { renderAll, autoSave, identityState, prepState } from './state';
 
 
 state.loading = true;
@@ -14,16 +12,7 @@ state.loading = true;
 /** Provide default values for nonessential state properties and render */
 let completeLoading = () => {
 
-  state.currentDataset = state.currentUser.datasets[0];
-  state.currentDocument = state.currentUser.documents[0];
-  state.savedLocally = state.savedLocally || false;
-  state.showPreview = state.showPreview || false;
-  state.showStyles = state.showStyles || false;
-  state.expandedAdjustments = state.expandedAdjustments || ["global", "pages"];
-  state.currentUser.styles = state.currentUser.styles || {};
-  ensureProps(Object.keys(tags), state.currentUser.styles);
-  updatePreferenceClasses();
-
+  prepState();
 
   // HANDLE ONE-TIME AUTH TOKENS //
   if (location.hash && location.hash.length) {
@@ -81,14 +70,8 @@ if (identityState)
 else if (state.savedLocally)
   completeLoading();
 
-// Get state from defaults.json
-else
-  defaultState
-    .then(defaultState => {
-      serialize(defaultState, state);
-      completeLoading();
-    })
-    .catch(err => {
-      console.log(err);
-      renderAll(Modal(AuthError()));
-    })
+// Render welcome screen
+else {
+  state.loading = false;
+  renderAll(Modal(Welcome()));
+}

@@ -7,13 +7,15 @@ modal {
   display: grid;
   z-index: 8;
   place-items: center;
+  place-content: center;
   background: var(--g8);
-  gap: 1em;
+  gap: 4em;
   padding: 1em;
   text-align: center;
 
   form,
   .form {
+    min-width: 20em;
     text-align: left;
   }
 

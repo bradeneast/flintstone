@@ -31,6 +31,9 @@ export let ensureProps = (properties, obj, defaultValue = {}) =>
   );
 
 
+export let refresh = () => location = location.href;
+
+
 /**A shorthand for setting CSS custom properties */
 export let sanitizeCSS = string => string
   .replace(/</g, '%3C')

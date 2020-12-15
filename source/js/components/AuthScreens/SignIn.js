@@ -5,7 +5,8 @@ import Button from "../Button";
 import Recover from "./Recover";
 import Modal from "../Modal";
 import AuthError from "./AuthError";
-import { handleFormInput } from "../../utils";
+import { handleFormInput, refresh } from "../../utils";
+import Welcome from "../Welcome";
 
 
 export default function Login() {
@@ -40,7 +41,7 @@ export default function Login() {
             .login(formData.email, formData.password, true)
             .then(() => {
               autoSave(true);
-              location = location.href;
+              refresh();
             })
             .catch(err => {
               console.log(err);
@@ -55,7 +56,9 @@ export default function Login() {
       Button({
         className: 'link',
         content: 'Continue using anonymously',
-        action: () => renderAll()
+        action: () => state.savedLocally
+          ? renderAll()
+          : renderAll(Modal(Welcome()))
       })
     }
   </form>`;

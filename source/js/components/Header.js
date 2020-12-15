@@ -51,19 +51,21 @@ export default () => {
       action: user ? () => renderAll(Modal(SignOut())) : () => renderAll(Modal(SignIn()))
     })
   }
-  <separator></separator>
+  ${state.savedLocally ? html`<separator></separator>` : nothing}
   ${
-    Button({
-      title: `${state.showMenu ? 'Close' : 'Open'} menu`,
-      content: Icon({
-        content: svg`
-        <line y1="30" x2="100%" y2="30"/>
-        <line y1="50%" x2="100%" y2="50%"/>
-        <line y1="186" x2="100%" y2="186"/>`
-      }),
-      className: 'icon menu-toggle',
-      action: () => toggleMenu()
-    })
+    state.savedLocally
+      ? Button({
+          title: `${state.showMenu ? 'Close' : 'Open'} menu`,
+          content: Icon({
+            content: svg`
+            <line y1="30" x2="100%" y2="30"/>
+            <line y1="50%" x2="100%" y2="50%"/>
+            <line y1="186" x2="100%" y2="186"/>`
+          }),
+          className: 'icon menu-toggle',
+          action: () => toggleMenu()
+        })
+      : nothing
   }
   <nav>
     ${
