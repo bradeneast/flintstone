@@ -16,13 +16,16 @@ ${
   Button({
     content: 'Start from scratch',
     className: 'primary',
-    action: () => {
-      state.savedLocally = true;
-      state.loading = false;
-      prepState();
-      renderAll();
-      autoSave(true);
-    }
+    action: () => defaultState
+      .then(defaultState => {
+        state.savedLocally = true;
+        state.loading = false;
+        state.currentUser.styles = defaultState.currentUser.styles;
+        prepState();
+        renderAll();
+        autoSave(true);
+        console.log(state.currentUser.styles);
+    })
   })
 }
 ${

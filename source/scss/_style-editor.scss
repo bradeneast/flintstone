@@ -20,7 +20,7 @@ html.showStyles .styles {
   height: 100%;
   top: 0;
   right: 0;
-  background: var(--g7);
+  background: var(--g8);
   border: var(--border);
   border-right: none;
   border-radius: var(--radius) 0 0 var(--radius);
@@ -55,6 +55,8 @@ html.showStyles .styles {
     padding: 0.5em 1em;
     margin-bottom: 0.5em;
     border: var(--border);
+    background: var(--g7);
+    border-color: var(--g7);
     transition: var(--transition);
 
     &:last-child {
@@ -63,12 +65,13 @@ html.showStyles .styles {
 
     &:hover,
     &:focus-within {
-      box-shadow: var(--shadow);
       border-color: var(--primary-60);
     }
 
     &[data-expanded] {
       padding: 1em;
+      border-color: var(--g6);
+      background: var(--g8);
       transform: translate3d(0, 0, 0);
 
       .adjustment__header {
@@ -107,6 +110,11 @@ html.showStyles .styles {
       margin-bottom: 0.5rem;
       transition: var(--transition);
 
+      input[type="text"],
+      select {
+        background: var(--g7);
+      }
+
       .label {
         display: flex;
 
@@ -114,8 +122,8 @@ html.showStyles .styles {
           font-family: Consolas, monospace;
           position: absolute;
           right: 0;
-          background: var(--g7);
-          box-shadow: -0.63em 0 0.63em 0.37em var(--g7);
+          background: var(--g8);
+          box-shadow: -0.63em 0 0.63em 0.37em var(--g8);
         }
       }
 

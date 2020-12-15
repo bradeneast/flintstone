@@ -122,3 +122,8 @@ table {
     background: var(--g7);
   }
 }
+
+::selection {
+  color: var(--g8);
+  background: var(--primary-80);
+}

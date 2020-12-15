@@ -72,7 +72,10 @@ export default () => {
       Button({
         className: 'icon',
         content: `✨ ${ preferences.showStyles ? 'Close' : 'Open' } style editor`,
-        action: () => toggleStyleEditor()
+        action: () => {
+          toggleMenu(false);
+          toggleStyleEditor();
+        }
       })
     }
     ${

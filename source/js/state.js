@@ -9,6 +9,7 @@ import { tags } from './style_data';
 // Get local state and default state
 let user = auth.currentUser();
 let state = ls('flintstone_data') || {
+  expandedAdjustments: [],
   currentUser: {
     documents: [{ id: 'New Document', body: '' }],
     datasets: [{ id: 'New Dataset', fields: [['', '']] }],

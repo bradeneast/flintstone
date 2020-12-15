@@ -1,4 +1,4 @@
-import { html, nothing, svg } from "lit-html";
+import { html, svg } from "lit-html";
 import toggleStyleEditor from "../functions/toggleStyleEditor";
 import state, { setState } from "../state";
 import { tags } from "../style_data";
@@ -23,16 +23,6 @@ export default () => html`
       </p>`
   }
   <actions>
-  ${
-    state.expandedAdjustments.length
-      ? Button({
-        title: 'Collapse all adjustments',
-        className: 'icon',
-        content: '🌂',
-        action: () => setState('expandedAdjustments', [])
-      })
-      : nothing
-  }
   ${
     Button({
       title: 'Close style editor',
