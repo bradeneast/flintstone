@@ -41,14 +41,14 @@ h6 {
 }
 
 h1 {
-  font-weight: bold;
+  font-weight: 800;
   font-size: 3em;
   letter-spacing: -0.03em;
   color: var(--primary-80);
 }
 
 h2 {
-  font-weight: bold;
+  font-weight: $bold;
   color: var(--g3);
   font-size: 1.37em;
   margin-bottom: 1rem;
@@ -59,7 +59,7 @@ h3 {
 }
 
 h4 {
-  font-weight: bold;
+  font-weight: $bold;
   font-size: 1em;
 }
 
