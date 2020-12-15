@@ -1,5 +1,4 @@
-import state, { setState } from "../state"
-import renderPreview from "./renderPreview";
+import state, { setState } from "../state";
 
 export default index => {
   setState('currentDocument', state.currentUser.documents[index]);

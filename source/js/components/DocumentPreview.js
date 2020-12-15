@@ -1,4 +1,4 @@
-import state from '../state';
+import state, { setState } from '../state';
 import { sanitize } from 'dompurify'
 import marked from 'marked';
 import { html } from 'lit-html';
@@ -29,7 +29,11 @@ export default () => {
   if (!state.currentDocument.body.length)
     return html`
     <div class=preview__page>
-      Write something in the editor to see it show up here. :)
+      <p>
+        Write something in <a class=link @click=${()=> setState('showPreview', false)}>the editor</a> to see it
+        show
+        up here.
+      </p>
     </div>`
 
   let hydrated = state.currentDocument.body.replace(dataMatcher, hydrateFromDataset);

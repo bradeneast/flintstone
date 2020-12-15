@@ -1,8 +1,8 @@
 import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import renderPreview, { dataMatcher, hydrateFromDataset } from "../functions/renderPreview";
 import state, { autoSave, setState } from '../state';
 import { sanitizeCSS } from "../utils";
+import DocumentPreview, { dataMatcher, hydrateFromDataset } from "./DocumentPreview";
 
 
 export default () => {
@@ -63,7 +63,7 @@ export default () => {
       ? html`
       <div class=preview>
         <div class=preview__wrapper>
-          ${renderPreview()}
+          ${DocumentPreview()}
         </div>
       </div>
       ${unsafeHTML(previewStyles)}`

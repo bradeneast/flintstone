@@ -3,7 +3,6 @@ import AcceptInvite from './components/AuthScreens/AcceptInvite';
 import ResetPassword from './components/AuthScreens/ResetPassword';
 import Modal from './components/Modal';
 import Welcome from './components/Welcome';
-import renderPreview from './functions/renderPreview';
 import state, { renderAll, autoSave, identityState, prepState } from './state';
 
 

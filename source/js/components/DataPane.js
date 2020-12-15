@@ -31,15 +31,20 @@ export default () => html`
       </h2>
 
       <ul class="fields">
-        <li>
-          <label>Name</label>
-          <label>Value</label>
-          <span></span>
-        </li>
-        ${state.currentDataset.fields.map((field, index) =>
-        Field(field, index, state.currentDataset.id)
-        )
-        }
+      ${
+        state.currentDataset.fields.length
+          ? html`
+          <li>
+            <label>Name</label>
+            <label>Value</label>
+            <span></span>
+          </li>`
+          : nothing
+      }
+      ${
+        state.currentDataset.fields
+          .map((field, index) => Field(field, index, state.currentDataset.id))
+      }
         <button @click=${addField}>Add Field</button>
       </ul>
 

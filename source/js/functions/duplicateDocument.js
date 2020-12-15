@@ -1,7 +1,6 @@
 import UIAnimation from "../animations";
 import state, { setState } from "../state"
 import { $, deepCopy, selectByIndex } from "../utils";
-import renderPreview from "./renderPreview";
 
 export default (index) => {
 
