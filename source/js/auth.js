@@ -4,5 +4,5 @@ import GoTrue from 'gotrue-js';
 export default new GoTrue({
   APIUrl: 'https://flintstone.app/.netlify/identity',
   audience: '',
-  setCookie: false,
+  setCookie: true,
 });

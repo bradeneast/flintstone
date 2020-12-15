@@ -16,7 +16,4 @@ export default (index) => {
   let targetItem = selectByIndex(state.currentUser.documents.length - 1, $('.documents .sets'));
   let anim = new UIAnimation(targetItem);
   anim.added();
-
-  if (state.showPreview)
-    renderPreview();
 }

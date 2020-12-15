@@ -64,8 +64,6 @@ select {
 label,
 .hint {
   line-height: 1.2;
-  user-select: none;
-  font-size: 0.8rem;
   color: var(--g3);
 }
 
@@ -75,6 +73,8 @@ label {
   justify-items: start;
   grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
   gap: 0.2rem;
+  user-select: none;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 

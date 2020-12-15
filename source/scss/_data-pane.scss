@@ -3,7 +3,7 @@
     --translateY: 0;
     --scaleY: 1;
     display: grid;
-    grid-template-columns: 1fr 1fr 6em;
+    grid-template-columns: 1fr 1fr calc(6em + var(--borderWidth));
     gap: 0.4em;
     padding: 0.2em 0;
     transform-origin: top;

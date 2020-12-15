@@ -109,7 +109,6 @@ export function updatePreferenceClasses() {
 
 /**Acts like a proxy to set and save UI preferences */
 export function setPreference(key, value) {
-  console.log(key, value, preferences);
   preferences[key] = value;
   toggleRootClass(key, value);
   ls('flintstone_preferences', preferences);

@@ -16,7 +16,4 @@ export default (index) => {
   let targetItem = selectByIndex(index + 1, $('.data .sets'));
   let anim = new UIAnimation(targetItem);
   anim.added();
-
-  if (state.showPreview)
-    renderPreview();
 }

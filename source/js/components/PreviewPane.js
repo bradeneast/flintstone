@@ -1,7 +1,6 @@
-import renderPreview from "../functions/renderPreview";
 import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { dataMatcher, hydrateFromDataset } from "../functions/renderPreview";
+import renderPreview, { dataMatcher, hydrateFromDataset } from "../functions/renderPreview";
 import state, { autoSave, setState } from '../state';
 import { sanitizeCSS } from "../utils";
 

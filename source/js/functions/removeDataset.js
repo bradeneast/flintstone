@@ -18,7 +18,4 @@ export default (index) => {
   })
 
   anim.removed();
-
-  if (state.showPreview)
-    renderPreview();
 }

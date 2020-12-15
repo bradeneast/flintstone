@@ -45,7 +45,6 @@ let completeLoading = () => {
     state.loading = false;
     renderAll();
     autoSave(true);
-    if (state.showPreview) renderPreview();
   }
 }
 
