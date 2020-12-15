@@ -10,7 +10,11 @@
   }
 
   :root {
-    font-size: 15px;
+    font-size: 13px;
+  }
+
+  input[type="range"] {
+    height: 2em;
   }
 
   #app {
