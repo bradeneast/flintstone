@@ -82,6 +82,7 @@ button.link {
   padding: 0;
   text-decoration: underline;
   text-decoration-color: transparent;
+  cursor: pointer;
 
   &.underline {
     text-decoration-color: currentColor;
