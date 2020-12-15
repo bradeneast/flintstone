@@ -340,13 +340,13 @@ ${M({content:"Use the starter template",className:"link",action:()=>Ub.then(a=>{
 <div class="styles">
   <div class=styles__header>
   ${m.showPreview?C`
-      <span class=hint>
+      <p class=hint>
         Change the look and feel of your document here.
-      </span>`:C`
-      <span class=hint>
+      </p>`:C`
+      <p class=hint>
         <button class="link primary" @click=${()=>B("showPreview",!0)}>Show the document preview</button> to see your
         changes.
-      </span>`}
+      </p>`}
   <actions>
   ${m.expandedAdjustments.length?M({title:"Collapse all adjustments",className:"icon",content:"🌂",action:()=>B("expandedAdjustments",[])}):ha}
   ${M({title:"Close style editor",className:"icon",content:Ya({content:Oa`<path d="M73.67,26.62,155.05,108,73.67,189.38" />`,className:"line"}),action:()=>Pa(!1)})}
