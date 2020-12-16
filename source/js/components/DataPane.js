@@ -9,7 +9,6 @@ import state from "../state";
 import Button from "./Button";
 import Field from "./Field";
 import toggleStyleEditor from "../functions/toggleStyleEditor";
-import { createDownload } from "../utils";
 
 
 export default () => {
@@ -33,7 +32,6 @@ export default () => {
             .value=${current.id} 
             @input=${event => renameDataset(event.target.value)} />
           </h2>
-          <a class="button icon" title="Export this data" href=${createDownload(current)} download=${current.id}>🚚</a>
         </div>
 
         <ul class="fields">

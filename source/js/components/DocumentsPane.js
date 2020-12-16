@@ -7,7 +7,6 @@ import setCurrentDocument from "../functions/setCurrentDocument";
 import duplicateDocument from "../functions/duplicateDocument";
 import Button from "./Button";
 import DocumentTOC from "./DocumentTOC";
-import { createDownload } from "../utils";
 
 
 export default () => {
@@ -32,7 +31,6 @@ export default () => {
               renameDocument(event.target.value)
             } />
           </h2>
-          <a class="button icon" title="Export this data" href=${createDownload(current)} download=${current.id}>🚚</a>
         </div>
         
         ${current.body.length ? DocumentTOC() : nothing}
