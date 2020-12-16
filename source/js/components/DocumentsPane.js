@@ -7,61 +7,72 @@ import setCurrentDocument from "../functions/setCurrentDocument";
 import duplicateDocument from "../functions/duplicateDocument";
 import Button from "./Button";
 import DocumentTOC from "./DocumentTOC";
+import { createDownload } from "../utils";
 
 
-export default () => html`
-<div class="pane documents">
-  <label for="currentDocumentTitle">Current document</label>
-  ${
-    state.currentDocument
-    ? html`
-    <div class="selection">
-      <h2 data-active=true>
-        <input 
-        type=text 
-        id=currentDocumentTitle
-        .value=${state.currentDocument.id} 
-        @input=${event => 
-          renameDocument(event.target.value)
-        } />
-      </h2>
-      ${state.currentDocument.body.length ? DocumentTOC() : nothing}
-    </div>
-    ` : nothing
-  }
+export default () => {
 
-  <label>All documents</label>
-  <ul class="sets">
-    ${state.currentUser.documents.map((document, documentIndex) => html`
-    <li data-index=${documentIndex}>
-      ${
-        Button({
-          title: `Select ${document.id}`,
-          className: 'link',
-          action: () => setCurrentDocument(documentIndex),
-          content: html`<h4>${document.id}</h4>`
-        })
-      }
-      ${
-        Button({
-          title: `Duplicate ${document.id}`,
-          className: 'icon',
-          action: () => duplicateDocument(documentIndex),
-          content: '📄'
-        })
-      }
-      ${
-        state.currentUser.documents.length > 1
-          ? Button({
-            title: `Delete ${document.id}`,
-            className: 'icon',
-            action: () => removeDocument(documentIndex),
-            content: '🗑️'
+  let current = state.currentDocument;
+
+  return html`
+  <div class="pane documents">
+    <label for="currentDocumentTitle">Current document</label>
+    ${
+    current
+      ? html`
+      <div class="selection">
+
+        <div class="selection__header">
+          <h2 data-active=true>
+            <input 
+            type=text 
+            id=currentDocumentTitle
+            .value=${current.id} 
+            @input=${event => 
+              renameDocument(event.target.value)
+            } />
+          </h2>
+          <a class="button icon" title="Export this data" href=${createDownload(current)} download=${current.id}>🚚</a>
+        </div>
+        
+        ${current.body.length ? DocumentTOC() : nothing}
+      </div>
+      ` : nothing
+    }
+
+    <label>All documents</label>
+    <ul class="sets">
+      ${state.currentUser.documents.map((document, documentIndex) => html`
+      <li data-index=${documentIndex}>
+        ${
+          Button({
+            title: `Select ${document.id}`,
+            className: 'link',
+            action: () => setCurrentDocument(documentIndex),
+            content: html`<h4>${document.id}</h4>`
           })
-          : nothing
-      }
-    </li>`
-    )}
-    <button @click=${addDocument}>Add Document</button>
-  </ul>
-</div>`;
+        }
+        ${
+          Button({
+            title: `Duplicate ${document.id}`,
+            className: 'icon',
+            action: () => duplicateDocument(documentIndex),
+            content: '📄'
+          })
+        }
+        ${
+          state.currentUser.documents.length > 1
+            ? Button({
+              title: `Delete ${document.id}`,
+              className: 'icon',
+              action: () => removeDocument(documentIndex),
+              content: '🗑️'
+            })
+            : nothing
+        }
+      </li>`
+      )}
+      <button @click=${addDocument}>Add Document</button>
+    </ul>
+  </div>`;
+}

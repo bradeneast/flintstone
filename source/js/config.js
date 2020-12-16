@@ -5,7 +5,7 @@ export let initial_state = {
   expandedAdjustments: [],
   currentUser: {
     documents: [{ id: 'New Document', body: '' }],
-    datasets: [{ id: 'New Dataset', fields: [['', '']] }],
+    datasets: [{ id: 'New Data', fields: [['', '']] }],
     styles: {}
   }
 };

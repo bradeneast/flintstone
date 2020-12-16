@@ -51,6 +51,11 @@ main {
     border-bottom: var(--border);
     margin-bottom: 2em;
 
+    &__header {
+      display: flex;
+      align-items: center;
+    }
+
     .toc-wrapper {
       padding: 2em 0;
     }

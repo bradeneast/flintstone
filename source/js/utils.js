@@ -31,7 +31,15 @@ export let ensureProps = (properties, obj, defaultValue = {}) =>
   );
 
 
+/**Refreshes the window */
 export let refresh = () => location = location.href;
+
+
+/**Stringifies an object and returns a temporary blob url */
+export let createDownload = (item) => {
+  let blob = new Blob([JSON.stringify(item)], { type: 'application/json' });
+  return URL.createObjectURL(blob);
+}
 
 
 /**A shorthand for setting CSS custom properties */
