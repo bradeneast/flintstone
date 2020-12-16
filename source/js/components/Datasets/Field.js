@@ -1,11 +1,11 @@
 import { html, svg } from "lit-html";
-import removeField from "../functions/removeField";
-import renameField from '../functions/renameField';
-import updateFieldValue from '../functions/updateFieldValue';
-import Button from "./Button";
-import moveField from "../functions/moveField";
-import Icon from "./Icon";
-import state from "../state";
+import removeField from "../../functions/removeField";
+import renameField from '../../functions/renameField';
+import updateFieldValue from '../../functions/updateFieldValue';
+import Button from "../Button";
+import moveField from "../../functions/moveField";
+import Icon from "../Icon";
+import state from "../../state";
 
 
 export default ([key, value], fieldIndex, datasetIndex) => {

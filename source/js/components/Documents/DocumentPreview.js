@@ -1,9 +1,9 @@
-import state, { setState } from '../state';
+import state, { setState } from '../../state';
 import { sanitize } from 'dompurify'
 import marked from 'marked';
 import { html } from 'lit-html';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { makePageID } from '../components/DocumentTOC';
+import { makePageID } from './DocumentTOC';
 
 
 export function getFieldValue(prop) {

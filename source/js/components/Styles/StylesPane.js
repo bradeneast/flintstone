@@ -1,9 +1,9 @@
 import { html, svg } from "lit-html";
-import toggleStyleEditor from "../functions/toggleStyleEditor";
-import state, { setState } from "../state";
-import { tags } from "../style_data";
-import Button from "./Button";
-import Icon from "./Icon";
+import toggleStyleEditor from "../../functions/toggleStyleEditor";
+import state, { setState } from "../../state";
+import { tags } from "../../style_data";
+import Button from "../Button";
+import Icon from "../Icon";
 import StyleAdjustment from "./StyleAdjustment";
 
 

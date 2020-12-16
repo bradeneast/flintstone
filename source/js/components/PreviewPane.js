@@ -2,7 +2,7 @@ import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import state, { autoSave, setState } from '../state';
 import { sanitizeCSS } from "../utils";
-import DocumentPreview, { dataMatcher, hydrateFromDataset } from "./DocumentPreview";
+import DocumentPreview, { dataMatcher, hydrateFromDataset } from "./Documents/DocumentPreview";
 
 
 export default () => {

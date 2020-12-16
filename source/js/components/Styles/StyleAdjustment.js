@@ -1,12 +1,12 @@
 import { html, nothing } from "lit-html";
-import { adjustments } from "../style_data";
-import state from "../state";
-import { $ } from "../utils";
-import Button from "./Button";
+import { adjustments } from "../../style_data";
+import state from "../../state";
+import { $ } from "../../utils";
+import Button from "../Button";
 import { range, select, text } from "./StyleAdjustmentInput";
-import highlightElements from "../functions/highlightElements";
-import resetAdjustmentStyles from "../functions/resetAdjustmentStyles";
-import toggleExpanded from "../functions/toggleExpanded";
+import highlightElements from "../../functions/highlightElements";
+import resetAdjustmentStyles from "../../functions/resetAdjustmentStyles";
+import toggleExpanded from "../../functions/toggleExpanded";
 
 
 export default ([tagName, { normieName, useAdjustments }]) => {

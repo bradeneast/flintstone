@@ -1,11 +1,11 @@
 import { html, nothing } from "lit-html";
-import state from "../state";
-import addDocument from "../functions/addDocument";
-import removeDocument from "../functions/removeDocument";
-import renameDocument from "../functions/renameDocument";
-import setCurrentDocument from "../functions/setCurrentDocument";
-import duplicateDocument from "../functions/duplicateDocument";
-import Button from "./Button";
+import state from "../../state";
+import addDocument from "../../functions/addDocument";
+import removeDocument from "../../functions/removeDocument";
+import renameDocument from "../../functions/renameDocument";
+import setCurrentDocument from "../../functions/setCurrentDocument";
+import duplicateDocument from "../../functions/duplicateDocument";
+import Button from "../Button";
 import DocumentTOC from "./DocumentTOC";
 
 

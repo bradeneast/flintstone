@@ -125,7 +125,7 @@ ${M({content:"Use the starter template",className:"link",action:()=>Cb.then(a=>{
     ${M({className:"icon",content:`✨ ${Ka.showStyles?"Close":"Open"} style editor`,action:()=>{Za(!1),Qa()}})}
     ${M({className:"icon",content:"🖨️ Print current document",action:Ad})}
     ${M({className:"icon",content:B`<light>🌞</light><dark>🌝</dark> Switch to <light>dark</light><dark>light</dark> theme`,action:()=>Ua("dark",!Ka.dark)})}
-  </nav>`};var Za=a=>{a==void 0?(Ua("showMenu",!Ka.showMenu),kb(Bb(),$("header"))):(Ua("showMenu",a),kb(Bb(),$("header")))};class ja{constructor(a,c=()=>null){this.elements=Array.isArray(a)?a:[a],this.modifier=c,this.duration=300}added(){let a=this.elements[0];a.style.transition="none",a.style.opacity=0,Ja(a,"translateY",1),Ja(a,"scaleY",0),setTimeout(()=>{a.style.transition="",a.style.opacity=1,Ja(a,"translateY",0),Ja(a,"scaleY",1)},10)}removed(){let{elements:a,duration:c,modifier:f}=this,j=a[0];j.style.opacity=0,Ja(j,"scaleY",0),setTimeout(()=>{f(),j.style.transition="none",j.style.opacity=1,Ja(j,"scaleY",1),setTimeout(()=>j.style.transition="",c)},c)}swapped(a){let[c,f]=this.elements;Ja(c,"translateY",a),Ja(f,"translateY",a*-1),this.elements.map(j=>j.style.transition="none"),setTimeout(()=>{this.elements.map(j=>{j.style.transition="",Ja(j,"translateY",0)}),this.modifier()},10)}}var Tb=a=>{G("currentDataset",m.currentUser.datasets[a])};var jd=()=>{var q;let a={id:"New Data",fields:[["",""]]},c=m.currentUser.datasets.length;m.currentUser.datasets.push(a),Tb(c);let f=ha(c,$(".data .sets")),j=new ja(f);j.added(),(q=$(".data [data-active] input"))==null||q.focus(),na()};var kd=()=>{m.currentDataset.fields.push(["",""]),G("currentDataset",m.currentDataset,!0);let a=ha(m.currentDataset.fields.length-1,$(".fields"));new ja(a).added()};var ld=a=>{let c=m.currentUser.datasets[a],f=qb(c);f.id=c.id+" copy",m.currentUser.datasets.push(f),G("currentUser",m.currentUser),G("currentDataset",f,!0);let j=ha(a+1,$(".data .sets")),q=new ja(j);q.added()};var md=a=>{let c=m.currentUser.datasets,f=c[a];if(!confirm(`Are you sure you want to delete ${f.id}?`))return;let j=ha(a,$(".data .sets")),q=new ja(j,()=>{c.splice(a,1),m.currentUser.datasets=c,G("currentDataset",m.currentUser.datasets[0],!0)});q.removed()};var nd=a=>{m.currentDataset.id=a,G("currentDataset",m.currentDataset,!0)};var xd=a=>{let c=ha(a,$(".fields")),f=new ja(c,()=>{m.currentDataset.fields.splice(a,1),G("currentDataset",m.currentDataset,!0)});f.removed()};var yd=(a,c)=>{let[f,j]=m.currentDataset.fields[a];m.currentDataset.fields[a]=[c,j],G("currentDataset",m.currentDataset,!0)};var zd=(a,c)=>{let[f,j]=m.currentDataset.fields[a];m.currentDataset.fields[a]=[f,c],G("currentDataset",m.currentDataset,!0)};var wc=(a,c)=>{document.activeElement.blur();let f=c>0?"down":"up",j=m.currentDataset.fields[a],q=a+c,D=$(".fields"),p=ha(a,D),A=ha(q,D);m.currentDataset.fields.splice(a,1),m.currentDataset.fields.splice(q,0,j),G("currentDataset",m.currentDataset,!0);let K=new ja([p,A],()=>$(`[title*="${f}"]`,A).focus());K.swapped(c)};var od=([a,c],f,j)=>{let q=`${j}_${f}_key`,D=`${j}_${f}_value`;return B`
+  </nav>`};var Za=a=>{a==void 0?(Ua("showMenu",!Ka.showMenu),kb(Bb(),$("header"))):(Ua("showMenu",a),kb(Bb(),$("header")))};class ja{constructor(a,c=()=>null){this.elements=Array.isArray(a)?a:[a],this.modifier=c,this.duration=300}added(){let a=this.elements[0];a.style.transition="none",a.style.opacity=0,Ja(a,"translateY",1),Ja(a,"scaleY",0),setTimeout(()=>{a.style.transition="",a.style.opacity=1,Ja(a,"translateY",0),Ja(a,"scaleY",1)},10)}removed(){let{elements:a,duration:c,modifier:f}=this,j=a[0];j.style.opacity=0,Ja(j,"scaleY",0),setTimeout(()=>{f(),j.style.transition="none",j.style.opacity=1,Ja(j,"scaleY",1),setTimeout(()=>j.style.transition="",c)},c)}swapped(a){let[c,f]=this.elements;Ja(c,"translateY",a),Ja(f,"translateY",a*-1),this.elements.map(j=>j.style.transition="none"),setTimeout(()=>{this.elements.map(j=>{j.style.transition="",Ja(j,"translateY",0)}),this.modifier()},10)}}var Tb=a=>{G("currentDataset",m.currentUser.datasets[a])};var jd=()=>{var q;let a={id:"New Data",fields:[["",""]]},c=m.currentUser.datasets.length;m.currentUser.datasets.push(a),Tb(c);let f=ha(c,$(".data .sets")),j=new ja(f);j.added(),(q=$(".data [data-active] input"))==null||q.focus(),na()};var kd=()=>{m.currentDataset.fields.push(["",""]),G("currentDataset",m.currentDataset,!0);let a=ha(m.currentDataset.fields.length-1,$(".fields"));new ja(a).added()};var ld=a=>{let c=m.currentUser.datasets[a],f=qb(c);f.id=c.id+" copy",m.currentUser.datasets.push(f),G("currentUser",m.currentUser),G("currentDataset",f,!0);let j=ha(a+1,$(".data .sets")),q=new ja(j);q.added()};var md=a=>{let c=m.currentUser.datasets,f=c[a];if(!confirm(`Are you sure you want to delete ${f.id}?`))return;let j=ha(a,$(".data .sets")),q=new ja(j,()=>{c.splice(a,1),m.currentUser.datasets=c,G("currentDataset",m.currentUser.datasets[0],!0)});q.removed()};var nd=a=>{m.currentDataset.id=a,G("currentDataset",m.currentDataset,!0)};var qd=a=>{let c=ha(a,$(".fields")),f=new ja(c,()=>{m.currentDataset.fields.splice(a,1),G("currentDataset",m.currentDataset,!0)});f.removed()};var rd=(a,c)=>{let[f,j]=m.currentDataset.fields[a];m.currentDataset.fields[a]=[c,j],G("currentDataset",m.currentDataset,!0)};var sd=(a,c)=>{let[f,j]=m.currentDataset.fields[a];m.currentDataset.fields[a]=[f,c],G("currentDataset",m.currentDataset,!0)};var tc=(a,c)=>{document.activeElement.blur();let f=c>0?"down":"up",j=m.currentDataset.fields[a],q=a+c,D=$(".fields"),p=ha(a,D),A=ha(q,D);m.currentDataset.fields.splice(a,1),m.currentDataset.fields.splice(q,0,j),G("currentDataset",m.currentDataset,!0);let K=new ja([p,A],()=>$(`[title*="${f}"]`,A).focus());K.swapped(c)};var od=([a,c],f,j)=>{let q=`${j}_${f}_key`,D=`${j}_${f}_value`;return B`
   <li data-index=${f}>
     <key>
       <input 
@@ -133,7 +133,7 @@ ${M({content:"Use the starter template",className:"link",action:()=>Cb.then(a=>{
       type=text
       .value=${a} 
       id=${q}
-      @input=${p=>yd(f,p.target.value)} />
+      @input=${p=>rd(f,p.target.value)} />
     </key>
     <value>
       <input 
@@ -141,14 +141,14 @@ ${M({content:"Use the starter template",className:"link",action:()=>Cb.then(a=>{
       type=text
       .value=${c} 
       id=${D}
-      @input=${p=>zd(f,p.target.value)} />
+      @input=${p=>sd(f,p.target.value)} />
     </value>
     <actions>
       <div class=join-buttons>
-        ${M({title:"Move field up",className:"icon",disabled:f==0,content:Ya({content:Pa`<polyline points="184.69 146.81 108 70.12 31.31 146.81" />`,className:"line"}),action:()=>wc(f,-1)})}
-        ${M({title:"Move field down",className:"icon",disabled:f==m.currentDataset.fields.length-1,content:Ya({content:Pa`<polyline points="184.69 70.12 108 146.81 31.31 70.12" />`,className:"line"}),action:()=>wc(f,1)})}
+        ${M({title:"Move field up",className:"icon",disabled:f==0,content:Ya({content:Pa`<polyline points="184.69 146.81 108 70.12 31.31 146.81" />`,className:"line"}),action:()=>tc(f,-1)})}
+        ${M({title:"Move field down",className:"icon",disabled:f==m.currentDataset.fields.length-1,content:Ya({content:Pa`<polyline points="184.69 70.12 108 146.81 31.31 70.12" />`,className:"line"}),action:()=>tc(f,1)})}
       </div>
-      ${M({title:"Delete field",className:"icon",content:"🗑️",action:()=>xd(f)})}
+      ${M({title:"Delete field",className:"icon",content:"🗑️",action:()=>qd(f)})}
     </actions>
   </li>
   `};var pd=()=>{let a=m.currentDataset;return B`
@@ -188,11 +188,10 @@ ${M({content:"Use the starter template",className:"link",action:()=>Cb.then(a=>{
         ${M({title:`Select ${c.id}`,className:"link",action:()=>Tb(f),content:B`<h4>${c.id}</h4>`})}
         ${M({title:`Duplicate ${c.id}`,className:"icon",action:()=>ld(f),content:"📄"})}
         ${m.currentUser.datasets.length>1?M({title:`Delete ${c.id}`,className:"icon",action:()=>md(f),content:"🗑️"}):ia}
-      </li>
-      `)}
+      </li>`)}
       <button @click=${jd}>Add Data</button>
     </ul>
-  </div>`};var Ub=a=>{G("currentDocument",m.currentUser.documents[a])};var sd=()=>{var q;let a={id:"New Document",body:""},c=m.currentUser.documents.length;m.currentUser.documents.push(a),Ub(c);let f=ha(c,$(".documents .sets")),j=new ja(f);j.added(),(q=$(".documents [data-active] input"))==null||q.focus(),na()};var td=a=>{let c=m.currentUser.documents,f=c[a];if(!confirm(`Are you sure you want to delete ${f.id}?`))return;let j=ha(a,$(".documents .sets")),q=new ja(j,()=>{c.splice(a,1),m.currentUser.documents=c,G("currentDocument",m.currentUser.documents[0],!0)});q.removed()};var ud=a=>{m.currentDocument.id=a,G("currentDocument",m.currentDocument,!0)};var vd=a=>{let c=m.currentUser.documents[a],f=qb(c);f.id=c.id+" copy",m.currentUser.documents.push(f),G("currentUser",m.currentUser),G("currentDocument",f,!0);let j=ha(m.currentUser.documents.length-1,$(".documents .sets")),q=new ja(j);q.added()};let tc=a=>`page_${a+1}`,ie=/\n\s*\-{3,}\s*\n/;var rd=()=>{let a=m.currentDocument.body,c=q=>{var D;G("showPreview",!0),(D=$("#"+tc(q)))==null||D.scrollIntoView()},f=q=>{let D=q.match(/.+?(\n|$)/)[0],p=D.trim();return p.replace(/[^A-z0-9]*/,"")},j=a.split(ie);return j.length||(j=[a]),B`
+  </div>`};var Ub=a=>{G("currentDocument",m.currentUser.documents[a])};var vd=()=>{var q;let a={id:"New Document",body:""},c=m.currentUser.documents.length;m.currentUser.documents.push(a),Ub(c);let f=ha(c,$(".documents .sets")),j=new ja(f);j.added(),(q=$(".documents [data-active] input"))==null||q.focus(),na()};var wd=a=>{let c=m.currentUser.documents,f=c[a];if(!confirm(`Are you sure you want to delete ${f.id}?`))return;let j=ha(a,$(".documents .sets")),q=new ja(j,()=>{c.splice(a,1),m.currentUser.documents=c,G("currentDocument",m.currentUser.documents[0],!0)});q.removed()};var xd=a=>{m.currentDocument.id=a,G("currentDocument",m.currentDocument,!0)};var yd=a=>{let c=m.currentUser.documents[a],f=qb(c);f.id=c.id+" copy",m.currentUser.documents.push(f),G("currentUser",m.currentUser),G("currentDocument",f,!0);let j=ha(m.currentUser.documents.length-1,$(".documents .sets")),q=new ja(j);q.added()};let uc=a=>`page_${a+1}`,ie=/\n\s*\-{3,}\s*\n/;var ud=()=>{let a=m.currentDocument.body,c=q=>{var D;G("showPreview",!0),(D=$("#"+uc(q)))==null||D.scrollIntoView()},f=q=>{let D=q.match(/.+?(\n|$)/)[0],p=D.trim();return p.replace(/[^A-z0-9]*/,"")},j=a.split(ie);return j.length||(j=[a]),B`
   <div class=toc-wrapper>
     <h3>Pages</h3>
     <ol class=toc>
@@ -203,7 +202,7 @@ ${M({content:"Use the starter template",className:"link",action:()=>Cb.then(a=>{
           </button>
         </li>`)}
     </ol>
-  </div>`};var wd=()=>{let a=m.currentDocument;return B`
+  </div>`};var zd=()=>{let a=m.currentDocument;return B`
   <div class="pane documents">
     <label for="currentDocumentTitle">Current document</label>
     ${a?B`
@@ -215,11 +214,11 @@ ${M({content:"Use the starter template",className:"link",action:()=>Cb.then(a=>{
             type=text 
             id=currentDocumentTitle
             .value=${a.id} 
-            @input=${c=>ud(c.target.value)} />
+            @input=${c=>xd(c.target.value)} />
           </h2>
         </div>
         
-        ${a.body.length?rd():ia}
+        ${a.body.length?ud():ia}
       </div>
       `:ia}
 
@@ -228,22 +227,22 @@ ${M({content:"Use the starter template",className:"link",action:()=>Cb.then(a=>{
       ${m.currentUser.documents.map((c,f)=>B`
       <li data-index=${f}>
         ${M({title:`Select ${c.id}`,className:"link",action:()=>Ub(f),content:B`<h4>${c.id}</h4>`})}
-        ${M({title:`Duplicate ${c.id}`,className:"icon",action:()=>vd(f),content:"📄"})}
-        ${m.currentUser.documents.length>1?M({title:`Delete ${c.id}`,className:"icon",action:()=>td(f),content:"🗑️"}):ia}
+        ${M({title:`Duplicate ${c.id}`,className:"icon",action:()=>yd(f),content:"📄"})}
+        ${m.currentUser.documents.length>1?M({title:`Delete ${c.id}`,className:"icon",action:()=>wd(f),content:"🗑️"}):ia}
       </li>`)}
-      <button @click=${sd}>Add Document</button>
+      <button @click=${vd}>Add Document</button>
     </ul>
-  </div>`};const Vc=new WeakMap(),Nb=cc(a=>c=>{if(!(c instanceof Sa))throw new Error("unsafeHTML can only be used in text bindings");const f=Vc.get(c);if(f!==void 0&&ib(a)&&a===f.value&&c.value===f.fragment)return;const j=document.createElement("template");j.innerHTML=a;const q=document.importNode(j.content,!0);c.setValue(q),Vc.set(c,{value:a,fragment:q})});const Eg=Ec(Rc()),Fg=Ec(bd());function he(a){for(let[c,f]of m.currentDataset.fields)if(c==a)return f}function uc(a){return he(a.slice(1,-1).trim(),m.currentDataset.fields)}let vc=/\{.+?\}/g;var qd=()=>{if(!m.currentDocument.body.length)return B`
+  </div>`};const Vc=new WeakMap(),Nb=cc(a=>c=>{if(!(c instanceof Sa))throw new Error("unsafeHTML can only be used in text bindings");const f=Vc.get(c);if(f!==void 0&&ib(a)&&a===f.value&&c.value===f.fragment)return;const j=document.createElement("template");j.innerHTML=a;const q=document.importNode(j.content,!0);c.setValue(q),Vc.set(c,{value:a,fragment:q})});const Ng=Ec(Rc()),Og=Ec(bd());function he(a){for(let[c,f]of m.currentDataset.fields)if(c==a)return f}function vc(a){return he(a.slice(1,-1).trim(),m.currentDataset.fields)}let wc=/\{.+?\}/g;var td=()=>{if(!m.currentDocument.body.length)return B`
     <div class=preview__page>
       <p>
         Write something in <a class=link @click=${()=>G("showPreview",!1)}>the editor</a> to see it
         show
         up here.
       </p>
-    </div>`;let a=m.currentDocument.body.replace(vc,uc),c=Eg.sanitize(Fg.default(a));return c.split("<hr>").map((f,j)=>B`
-      <div id=${tc(j)} class=preview__page>
+    </div>`;let a=m.currentDocument.body.replace(wc,vc),c=Ng.sanitize(Og.default(a));return c.split("<hr>").map((f,j)=>B`
+      <div id=${uc(j)} class=preview__page>
         ${Nb(f)}
-      </div>`)};var Bd=()=>{let a=([f,j])=>{if(/content|font-family/i.test(f))if(j.length)j='"'+j.replace(/"/g,'\\"')+'"';else return;return j=j.replace(vc,uc),[f,Ed(j)].join(":")},c=`\r
+      </div>`)};var Bd=()=>{let a=([f,j])=>{if(/content|font-family/i.test(f))if(j.length)j='"'+j.replace(/"/g,'\\"')+'"';else return;return j=j.replace(wc,vc),[f,Ed(j)].join(":")},c=`\r
   <style>${Object.entries(m.currentUser.styles).map(([f,j])=>`.preview ${f} {\r
         ${Object.entries(j).map(a).join(";")}\r
       }`).join("")}</style>`;return B`
@@ -276,7 +275,7 @@ ${M({content:"Use the starter template",className:"link",action:()=>Cb.then(a=>{
   ${m.showPreview?B`
       <div class=preview>
         <div class=preview__wrapper>
-          ${qd()}
+          ${td()}
         </div>
       </div>
       ${Nb(c)}`:B`
@@ -361,7 +360,7 @@ ${M({content:"Use the starter template",className:"link",action:()=>Cb.then(a=>{
   </div>
 </div>`;var Dd=()=>B`
 <main @click=${()=>Za(!1)}>
-  <section @click=${()=>Qa(!1)} class="aside left">${wd()}</section>
+  <section @click=${()=>Qa(!1)} class="aside left">${zd()}</section>
   <section @click=${()=>Qa(!1)} class="center">${Bd()}</section>
   <section class="aside right">
     ${pd()}

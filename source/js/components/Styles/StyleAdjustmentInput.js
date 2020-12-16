@@ -1,6 +1,6 @@
-import setPreviewStyle from "../functions/setPreviewStyle";
+import setPreviewStyle from "../../functions/setPreviewStyle";
 import { html } from "lit-html";
-import state from "../state";
+import state from "../../state";
 
 let cleanPropName = string => string.replace(/-+/g, ' ').trim();
 let cleanPropValue = string => parseFloat(string.replace(/turn|deg|pt|px|rem|em|ch|in|vw|vh|%/g, '').trim());

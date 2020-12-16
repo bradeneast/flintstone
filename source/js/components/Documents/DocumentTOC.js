@@ -1,6 +1,6 @@
 import { html } from "lit-html";
-import state, { setState } from "../state";
-import { $ } from "../utils";
+import state, { setState } from "../../state";
+import { $ } from "../../utils";
 
 
 export let makePageID = index => `page_${index + 1}`;
