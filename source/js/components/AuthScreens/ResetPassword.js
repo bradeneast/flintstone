@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import auth from "../../auth";
-import state, { autoSave, setState } from "../../state";
+import { autoSave, handleError, setState } from "../../state";
 import Button from "../Button";
 
 export default () => {
@@ -27,9 +27,7 @@ export default () => {
               autoSave(true);
             })
             .catch(err => {
-              console.log(err);
-              state.error = err.message;
-              setState('loading', false);
+              handleError(err);
               renderAll(Modal(AuthError(err.message)));
             })
         }

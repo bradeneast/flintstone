@@ -1,7 +1,7 @@
 import { html } from "lit-html";
 import auth from "../../auth";
 import Button from "../Button";
-import state, { renderAll, setState } from "../../state";
+import state, { handleError, renderAll, setState } from "../../state";
 import Modal from "../Modal";
 import AuthError from "./AuthError";
 import Inputs from "./Inputs";
@@ -29,9 +29,7 @@ export default () => {
               renderAll(Modal('Confirmation email sent. Check your inbox.'));
             })
             .catch(err => {
-              console.log(err);
-              state.error = err.message;
-              setState('loading', false);
+              handleError(err);
               renderAll(Modal(AuthError(err.message)));
             })
         }

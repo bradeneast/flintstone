@@ -4,19 +4,11 @@ import Main from './components/Main';
 import Header from './components/Header';
 import auth from './auth';
 import { tags } from './style_data';
+import { local_key, local_preferences_key, initial_state, initial_preferences } from './config';
 
 
-// Get local state and default state
 let user = auth.currentUser();
-let state = ls('flintstone_data') || {
-  expandedAdjustments: [],
-  currentUser: {
-    documents: [{ id: 'New Document', body: '' }],
-    datasets: [{ id: 'New Dataset', fields: [['', '']] }],
-    styles: {}
-  }
-};
-
+let state = ls(local_key) || initial_state;
 let autoSaveWaiter = setTimeout(() => null, 0);
 
 
@@ -24,11 +16,7 @@ let autoSaveWaiter = setTimeout(() => null, 0);
 export default state;
 export let identityState = user?.getUserData();
 export let defaultState = fetch('/defaults.json').then(r => r.json());
-export let preferences = ls('flintstone_preferences') || {
-  dark: false,
-  showStyles: false,
-  showMenu: false
-};
+export let preferences = ls(local_preferences_key) || initial_preferences;
 
 
 export function prepState() {
@@ -43,6 +31,13 @@ export function prepState() {
   updatePreferenceClasses();
 }
 
+
+export function handleError(err) {
+  console.error(err);
+  state.error = err.message;
+  state.loading = false;
+  toggleRootClass('error', true);
+}
 
 
 export function autoSave(immediate = false) {
@@ -65,21 +60,15 @@ export function autoSave(immediate = false) {
           state.error = false;
           toggleRootClass('working', false);
         })
-        .catch(err => {
-          console.error(err);
-          state.error = err.message;
-          toggleRootClass('error', true);
-        })
+        .catch(handleError)
 
     try {
       state.error = false;
-      ls('flintstone_data', state);
+      ls(local_key, state);
       toggleRootClass('working', false);
     }
     catch (err) {
-      console.error(err);
-      state.error = err.message;
-      toggleRootClass('error', true);
+      handleError(err)
     }
   }
 }
@@ -112,7 +101,7 @@ export function updatePreferenceClasses() {
 export function setPreference(key, value) {
   preferences[key] = value;
   toggleRootClass(key, value);
-  ls('flintstone_preferences', preferences);
+  ls(local_preferences_key, preferences);
 }
 
 

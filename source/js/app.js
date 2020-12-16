@@ -22,18 +22,24 @@ let completeLoading = () => {
     state.loading = false;
 
     if (key && value) {
-
-      // Confirm or recover user
       switch (key) {
-        case 'recovery_token': auth.recover(value, true).then(() =>
-          renderAll(Modal(ResetPassword()))
-        );
+
+        // Confirm user
+        case 'recovery_token': auth
+          .recover(value, true)
+          .then(() => renderAll(Modal(ResetPassword())));
           break;
-        case 'confirmation_token': auth.confirm(value, true).then(() => {
-          renderAll();
-          autoSave(true);
-        });
+
+        // Recover user
+        case 'confirmation_token': auth
+          .confirm(value, true)
+          .then(() => {
+            renderAll();
+            autoSave(true);
+          });
           break;
+
+        // Render acceptance modal
         case 'invite_token': renderAll(Modal(AcceptInvite(value)));
           break;
       }

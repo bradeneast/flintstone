@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import auth from "../../auth";
-import state, { autoSave, setState } from "../../state";
+import { handleError, setState } from "../../state";
 import Button from "../Button";
 import Inputs from "./Inputs";
 
@@ -20,19 +20,12 @@ export default (token) => {
           setState('loading', true);
           auth
             .acceptInvite(token, formData.password, true)
-            .then(response => console.log(response))
             .then(() => {
               auth.currentUser().update({ full_name: formData.name });
-              autoSave(true);
-            })
-            .then(response => {
-              console.log(response);
               setState('loading', false);
             })
             .catch(err => {
-              console.log(err);
-              state.error = err.message;
-              setState('loading', false);
+              handleError(err);
               renderAll(Modal(AuthError(err.message)));
             })
         }

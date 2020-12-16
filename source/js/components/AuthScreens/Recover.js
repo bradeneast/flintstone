@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import auth from "../../auth";
-import state, { renderAll, setState } from "../../state";
+import { handleError, renderAll, setState } from "../../state";
 import Button from "../Button";
 import SignIn from "./SignIn";
 import Modal from "../Modal";
@@ -28,9 +28,7 @@ export default () => {
               renderAll(Modal('Recovery email sent. Check your inbox.'));
             })
             .catch(err => {
-              console.log(err);
-              state.error = err.message;
-              setState('loading', false);
+              handleError(err);
               renderAll(Modal(AuthError(err.message)))
             })
         }

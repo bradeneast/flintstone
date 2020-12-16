@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import auth from "../../auth";
-import state, { autoSave, renderAll, setState } from "../../state";
+import state, { autoSave, handleError, renderAll, setState } from "../../state";
 import Button from "../Button";
 import Recover from "./Recover";
 import Modal from "../Modal";
@@ -44,9 +44,7 @@ export default function Login() {
               refresh();
             })
             .catch(err => {
-              console.log(err);
-              state.error = err.message;
-              setState('loading', false);
+              handleError(err);
               renderAll(Modal(AuthError(err.message)))
             })
         }

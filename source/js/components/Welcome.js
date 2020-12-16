@@ -1,5 +1,5 @@
 import { html } from "lit-html";
-import state, { autoSave, defaultState, prepState, renderAll } from "../state";
+import state, { autoSave, defaultState, handleError, prepState, renderAll } from "../state";
 import { serialize } from "../utils";
 import AuthError from "./AuthScreens/AuthError";
 import Button from "./Button";
@@ -42,8 +42,7 @@ ${
         autoSave(true);
       })
       .catch(err => {
-        console.log(err);
-        state.error = err.message;
+        handleError(err);
         renderAll(Modal(AuthError(err.message)));
       })
   })
