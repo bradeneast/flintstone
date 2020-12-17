@@ -116,6 +116,7 @@ html.showStyles .styles {
       }
 
       .label {
+        text-transform: inherit;
         display: flex;
 
         &__value {
