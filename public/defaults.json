@@ -79,13 +79,12 @@
         "padding-right": "25px"
       },
       ".preview__wrapper::before": {
-        "content": "{ date }",
+        "content": "This is the header",
         "font-size": "10px",
         "text-align": "right"
       },
       ".preview__wrapper::after": {
-        "content": "{ service } contract",
-        "text-transform": "capitalize",
+        "content": "This is the footer",
         "font-size": "10px",
         "text-align": "right"
       },
