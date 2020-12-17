@@ -102,6 +102,12 @@ html.dark {
   pointer-events: none;
 }
 
+.flex {
+  display: flex;
+  align-items: center;
+  justify-items: flex-start;
+}
+
 #app {
   color: var(--g0);
   background: var(--g8);

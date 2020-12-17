@@ -65,6 +65,7 @@ a.button {
 
   &[disabled] {
     cursor: default;
+    pointer-events: none;
     color: var(--g5);
 
     &:hover,
@@ -97,7 +98,6 @@ button.link {
   }
 
   &:focus {
-    border-radius: 0;
     box-shadow: inset 0 calc(var(--borderWidth) * -1) 0 calc(var(--borderWidth) * -0.5) currentColor;
   }
 }

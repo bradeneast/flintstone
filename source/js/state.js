@@ -1,7 +1,7 @@
 import { html, render } from 'lit-html';
 import { ensureProps, ls, toggleRootClass } from './utils';
 import Main from './components/Main';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import auth from './auth';
 import { tags } from './style_data';
 import { local_key, local_preferences_key, initial_state, initial_preferences } from './config';

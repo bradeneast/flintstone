@@ -43,6 +43,47 @@ input {
   padding: var(--buttonPadding);
   width: 100%;
   max-width: none;
+
+  &[type="checkbox"],
+  &[type="radio"] {
+    --scale: 0;
+    --size: 1.2rem;
+    cursor: pointer;
+    appearance: none;
+    padding: 0;
+    width: var(--size);
+    height: var(--size);
+    border-color: var(--g6);
+    flex-shrink: 0;
+    transform: translateY(-0.1rem);
+    margin-right: 0.2rem;
+
+    &:checked {
+      --scale: 0.72;
+
+      & + * {
+        color: var(--g0);
+      }
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: inherit;
+      transition: transform var(--transition);
+      transform: scale(var(--scale));
+      background: var(--primary);
+    }
+  }
+
+  &[type="radio"] {
+    border-radius: 50%;
+  }
 }
 
 input,
@@ -78,6 +119,10 @@ label {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+
+  * {
+    text-transform: none;
+  }
 
   input,
   select {

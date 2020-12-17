@@ -15,3 +15,5 @@ export let initial_preferences = {
   showStyles: false,
   showMenu: false
 };
+
+export let portables = ['documents', 'datasets'];
