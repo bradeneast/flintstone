@@ -8,7 +8,7 @@ export default (data, key, type) => html`
 ${
   Object.keys(data[key])?.length
     ? html`
-    <label style="margin: .5rem 0;">${key}</label>
+    <label style="margin-bottom: .5rem;">${key}</label>
       ${data[key].map((item, index) => {
         if (type == 'import')
           return ImportCheckbox(item, index, key)

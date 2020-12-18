@@ -113,7 +113,7 @@ ${M({content:"Use the starter template",className:"link",action:()=>Eb.then(a=>{
   </label>`};const Ub=(a,d,f)=>{var j;return x`
 <div style="width: 100%">
 ${((j=Object.keys(a[d]))==null?void 0:j.length)?x`
-    <label style="margin: .5rem 0;">${d}</label>
+    <label style="margin-bottom: .5rem;">${d}</label>
       ${a[d].map((n,C)=>{if(f=="import")return td(n,C,d);if(f=="export")return rd(n,C,d)})}`:ia}
 </div>`};const Tb=()=>x`
 <form class=mount>
