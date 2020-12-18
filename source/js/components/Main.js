@@ -18,9 +18,9 @@ export default () => html`
   renderAll(Modal(ImportDialogue()))
 }
 @dragover=${event => event.preventDefault()}>
-  <section @click=${()=> toggleStyleEditor(false)} class="aside left">${DocumentsPane()}</section>
-  <section @click=${()=> toggleStyleEditor(false)} class="center">${PreviewPane()}</section>
-  <section class="aside right">
+  <section @click=${()=> toggleStyleEditor(false)} class="aside left mount">${DocumentsPane()}</section>
+  <section @click=${()=> toggleStyleEditor(false)} class="center mount">${PreviewPane()}</section>
+  <section class="aside right mount">
     ${DataPane()}
     ${StylesPane()}
   </section>

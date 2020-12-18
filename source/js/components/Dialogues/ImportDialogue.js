@@ -6,13 +6,7 @@ import Button from "../Button";
 import PortableSelectionList from "./PortableSelectionList";
 
 
-export default () => html`
-<input 
-type=file 
-accept=".json"
-@input=${handleImport}
-@drop=${handleImport} />
-${Object.keys(state.forImport).length
+export default () => Object.keys(state.forImport).length
   ? html`
   <form class=mount>
     ${portables.map(key => 
@@ -38,5 +32,6 @@ ${Object.keys(state.forImport).length
       })
     }
   </form>`
-  : html`<h3>Click or drop a file to import it.</h3>`
-}`;
+  : html`
+  <input class=mount type=file accept=".json" @input=${handleImport} @dragleave=${event => { event.preventDefault(); renderAll() }} @drop=${handleImport} />
+  <h3 class=mount style="pointer-events: none;">Click or drop a file to import it.</h3>`
