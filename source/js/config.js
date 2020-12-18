@@ -3,6 +3,8 @@ export let local_preferences_key = 'flintstone_preferences';
 
 export let initial_state = {
   expandedAdjustments: [],
+  exportSelection: {},
+  forImport: {},
   currentUser: {
     documents: [{ id: 'New Document', body: '' }],
     datasets: [{ id: 'New Data', fields: [['', '']] }],

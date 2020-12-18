@@ -2,7 +2,7 @@ import { html } from "lit-html";
 import state, { renderAll } from "../../state";
 import { deepCopy } from "../../utils";
 import Modal from "../Modal";
-import ExportDialogue from "./ExportDialogue";
+import ImportDialogue from "./ImportDialogue";
 
 
 export default (item, itemIndex, itemType) => {
@@ -11,14 +11,14 @@ export default (item, itemIndex, itemType) => {
 
   let handleCheckboxInput = (event) => {
     event.target.checked
-      ? state.exportSelection[itemType].push(deepCopy(item))
-      : state.exportSelection[itemType] = state.exportSelection[itemType].filter(i => i.id != item.id);
-    renderAll(Modal(ExportDialogue()))
+      ? state.importSelection[itemType].push(deepCopy(item))
+      : state.importSelection[itemType] = state.importSelection[itemType].filter(i => i.id != item.id);
+    renderAll(Modal(ImportDialogue()));
   }
 
   return html`
   <label class=flex style="margin-bottom: .5rem">
-    <input name=${inputName} type=checkbox @input=${handleCheckboxInput} />
+    <input checked name=${inputName} type=checkbox @input=${handleCheckboxInput} />
     <h3>${item.id}</h3>
   </label>`;
 }

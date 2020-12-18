@@ -9,7 +9,7 @@ import { local_key, local_preferences_key, initial_state, initial_preferences } 
 
 let user = auth.currentUser();
 let state = ls(local_key) || initial_state;
-let autoSaveWaiter = setTimeout(() => null, 0);
+let autoSaveWaiter = setTimeout(() => 0, 0);
 
 
 
@@ -76,16 +76,15 @@ export function autoSave(immediate = false) {
 
 /**Render the whole app */
 export function renderAll(contents = Main()) {
-
   render(html`
-  <div id=app ?data-loading=${state.loading}>
-    <header>${Header()}</header>
-    ${contents}
-    <loader></loader>
-    <status-message>
-      ${state.error ? `Error: ${state.error}` : 'All changes saved'}
-    </status-message>
-  </div>`,
+    <div id=app ?data-loading=${state.loading}>
+      <header>${Header()}</header>
+      ${contents}
+      <loader></loader>
+      <status-message>
+        ${state.error ? `Error: ${state.error}` : 'All changes saved'}
+      </status-message>
+    </div>`,
     document.body
   );
 }

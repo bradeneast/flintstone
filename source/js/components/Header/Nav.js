@@ -7,6 +7,7 @@ import Modal from "../Modal";
 import ExportDialogue from "../Dialogues/ExportDialogue";
 import { portables } from "../../config";
 import toggleMenu from "../../functions/toggleMenu";
+import ImportDialogue from "../Dialogues/ImportDialogue";
 
 
 export default () => html`
@@ -31,10 +32,17 @@ ${
 ${
   Button({
     className: 'icon',
+    content: '⛵ Start an import',
+    action: () => renderAll(Modal(ImportDialogue()))
+  })
+}
+${
+  Button({
+    className: 'icon',
     content: '🚚 Start an export',
     action: () => {
-      state.forExport = {};
-      portables.map(key => state.forExport[key] = []);
+      state.exportSelection = {};
+      portables.map(key => state.exportSelection[key] = []);
       renderAll(Modal(ExportDialogue()))
     }
   })

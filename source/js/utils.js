@@ -35,6 +35,10 @@ export let ensureProps = (properties, obj, defaultValue = {}) =>
 export let refresh = () => location = location.href;
 
 
+/**Dedupes an array */
+export let dedupe = arr => [...new Set(arr)];
+
+
 /**Stringifies an object and returns a temporary blob url */
 export let createDownload = (item) => {
   let blob = new Blob([JSON.stringify(item)], { type: 'application/json' });
