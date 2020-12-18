@@ -21,7 +21,7 @@ export default () => {
     ${
     current
       ? html`
-      <div class="selection">
+      <div class="selection mount">
 
         <div class="selection__header">
           <h2 data-active=true>
@@ -57,7 +57,7 @@ export default () => {
     }
 
     <label>All data</label>
-    <ul class="sets">
+    <ul class="sets mount">
       ${state.currentUser.datasets.map((dataset, datasetIndex) => html`
       <li data-index=${datasetIndex}>
         ${

@@ -189,7 +189,7 @@ ${M({className:"icon",content:x`<light>🌞</light><dark>🌝</dark> Switch to <
   <div @click=${()=>Ta(!1)} class="pane data">
     <label for="currentDatasetTitle">Current data</label>
     ${a?x`
-      <div class="selection">
+      <div class="selection mount">
 
         <div class="selection__header">
           <h2 data-active=true>
@@ -216,7 +216,7 @@ ${M({className:"icon",content:x`<light>🌞</light><dark>🌝</dark> Switch to <
       </div>`:ia}
 
     <label>All data</label>
-    <ul class="sets">
+    <ul class="sets mount">
       ${l.currentUser.datasets.map((d,f)=>x`
       <li data-index=${f}>
         ${M({title:`Select ${d.id}`,className:"link",action:()=>Sb(f),content:x`<h4>${d.id}</h4>`})}
@@ -240,7 +240,7 @@ ${M({className:"icon",content:x`<light>🌞</light><dark>🌝</dark> Switch to <
   <div class="pane documents">
     <label for="currentDocumentTitle">Current document</label>
     ${a?x`
-      <div class="selection">
+      <div class="selection mount">
 
         <div class="selection__header">
           <h2 data-active=true>
@@ -257,7 +257,7 @@ ${M({className:"icon",content:x`<light>🌞</light><dark>🌝</dark> Switch to <
       `:ia}
 
     <label>All documents</label>
-    <ul class="sets">
+    <ul class="sets mount">
       ${l.currentUser.documents.map((d,f)=>x`
       <li data-index=${f}>
         ${M({title:`Select ${d.id}`,className:"link",action:()=>Vb(f),content:x`<h4>${d.id}</h4>`})}
@@ -393,14 +393,14 @@ ${M({className:"icon",content:x`<light>🌞</light><dark>🌝</dark> Switch to <
     ${Object.entries(qb).map(Od)}
   </div>
 </div>`;const Gd=()=>x`
-<main 
+<main
 @click=${()=>Xa(!1)} 
 @dragleave=${K} 
 @dragenter=${()=>K(X(Wa()))}
 @dragover=${a=>a.preventDefault()}>
-  <section @click=${()=>Ta(!1)} class="aside left mount">${Ad()}</section>
-  <section @click=${()=>Ta(!1)} class="center mount">${Ed()}</section>
-  <section class="aside right mount">
+  <section @click=${()=>Ta(!1)} class="aside left">${Ad()}</section>
+  <section @click=${()=>Ta(!1)} class="center">${Ed()}</section>
+  <section class="aside right">
     ${nd()}
     ${Fd()}
   </section>

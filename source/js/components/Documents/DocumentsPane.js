@@ -19,7 +19,7 @@ export default () => {
     ${
     current
       ? html`
-      <div class="selection">
+      <div class="selection mount">
 
         <div class="selection__header">
           <h2 data-active=true>
@@ -39,7 +39,7 @@ export default () => {
     }
 
     <label>All documents</label>
-    <ul class="sets">
+    <ul class="sets mount">
       ${state.currentUser.documents.map((document, documentIndex) => html`
       <li data-index=${documentIndex}>
         ${

@@ -11,16 +11,16 @@ import StylesPane from './Styles/StylesPane';
 
 
 export default () => html`
-<main 
+<main
 @click=${() => toggleMenu(false)} 
 @dragleave=${renderAll} 
 @dragenter=${() => 
   renderAll(Modal(ImportDialogue()))
 }
 @dragover=${event => event.preventDefault()}>
-  <section @click=${()=> toggleStyleEditor(false)} class="aside left mount">${DocumentsPane()}</section>
-  <section @click=${()=> toggleStyleEditor(false)} class="center mount">${PreviewPane()}</section>
-  <section class="aside right mount">
+  <section @click=${()=> toggleStyleEditor(false)} class="aside left">${DocumentsPane()}</section>
+  <section @click=${()=> toggleStyleEditor(false)} class="center">${PreviewPane()}</section>
+  <section class="aside right">
     ${DataPane()}
     ${StylesPane()}
   </section>
