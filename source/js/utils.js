@@ -39,6 +39,14 @@ export let refresh = () => location = location.href;
 export let dedupe = arr => [...new Set(arr)];
 
 
+/**Alternative to String.indexOf() that accepts a Regular Expression*/
+export let indexOfExp = (str, exp) => str.split(exp)[0].length;
+
+
+/**Alternative to String.indexOf() that accepts a Regular Expression*/
+export let lastIndexOfExp = (str, exp) => str.lastIndexOf(str.match(new RegExp(exp, 'g')).pop());
+
+
 /**Stringifies an object and returns a temporary blob url */
 export let createDownload = (item) => {
   let blob = new Blob([JSON.stringify(item)], { type: 'application/json' });

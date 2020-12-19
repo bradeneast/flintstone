@@ -139,7 +139,8 @@
       "em": {},
       "ul": {
         "padding-left": "18px",
-        "padding-right": "0px"
+        "padding-right": "0px",
+        "list-style": "disc"
       },
       "ol": {
         "padding-right": "0px",

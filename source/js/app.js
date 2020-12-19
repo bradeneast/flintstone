@@ -3,6 +3,8 @@ import AcceptInvite from './components/AuthScreens/AcceptInvite';
 import ResetPassword from './components/AuthScreens/ResetPassword';
 import Modal from './components/Modal';
 import Welcome from './components/Welcome';
+import { shortcutPrefixes } from './config';
+import shortcuts from './shortcuts';
 import state, { renderAll, autoSave, identityState, prepState } from './state';
 
 
@@ -79,3 +81,23 @@ else {
   state.loading = false;
   renderAll(Modal(Welcome()));
 }
+
+
+
+
+// HANDLE KEYBOARD SHORTCUTS //
+
+addEventListener('keydown', event => {
+  if (shortcutPrefixes.some(prefix => prefix == event.key))
+    state.shortcutReady = true;
+  else if (state.shortcutReady && shortcuts[event.key]) {
+    event.preventDefault();
+    shortcuts[event.key]?.call();
+  }
+});
+
+// Reset keyboard shortcut ready state
+addEventListener('keyup', event => {
+  if (shortcutPrefixes.some(prefix => prefix == event.key))
+    state.shortcutReady = false;
+});

@@ -11,9 +11,9 @@ import StylesPane from './Styles/StylesPane';
 
 
 export default () => html`
-<main
-@click=${() => toggleMenu(false)} 
-@dragleave=${renderAll} 
+<main 
+@click=${() => toggleMenu(false)}
+@dragleave=${renderAll}
 @dragenter=${() => 
   renderAll(Modal(ImportDialogue()))
 }
