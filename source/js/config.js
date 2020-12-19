@@ -27,5 +27,3 @@ export let initial_preferences = {
 };
 
 export let portables = ['documents', 'datasets'];
-
-export let shortcutPrefixes = ['Shift', 'Control'];

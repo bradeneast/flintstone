@@ -1,11 +1,34 @@
 import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import suggestData from "../functions/suggestData";
+import shortcuts from "../shortcuts";
 import state, { autoSave, setState } from '../state';
 import { sanitizeCSS } from "../utils";
 import DocumentPreview, { dataMatcher, hydrateFromDataset } from "./Documents/DocumentPreview";
 
 
 export default () => {
+
+  let handleEditorKeydown = event => {
+
+    if (event.key == '{')
+      state.suggestionsReady = true;
+    else if (state.suggestionsReady)
+      suggestData()
+
+    if (event.key == 'Control')
+      state.shortcutReady = true;
+    else if (state.shortcutReady && shortcuts[event.key]) {
+      event.preventDefault();
+      shortcuts[event.key]?.call();
+    }
+  }
+
+
+  let handleEditorKeyup = event => {
+    if (event.key == 'Control')
+      state.shortcutReady = false;
+  }
 
   /**Generate preview styles based on user settings or defaults */
   let makeStyleRule = ([propName, propValue]) => {
@@ -71,6 +94,8 @@ export default () => {
       <textarea 
       class=editor 
       placeholder="Start typing when you're ready..."
+      @keydown=${handleEditorKeydown}
+      @keyup=${handleEditorKeyup}
       @input=${event => {
         state.currentDocument.body = event.target.value;
         autoSave();
