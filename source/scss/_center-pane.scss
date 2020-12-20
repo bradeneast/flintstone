@@ -60,6 +60,39 @@
     line-height: 1.5;
   }
 
+  intellisense {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: auto;
+    max-width: 20rem;
+    padding: 1em;
+    opacity: 0;
+    pointer-events: none;
+    border-radius: var(--radius);
+    background: var(--g7);
+    box-shadow: var(--shadow);
+
+    &[data-active] {
+      opacity: 1;
+      pointer-events: all;
+      transition: transform var(--transition), opacity var(--transition);
+    }
+  }
+
+  .intellisense-mapper {
+    width: auto;
+    height: auto;
+    position: absolute;
+    z-index: -1;
+    padding-right: 0;
+    padding-bottom: 0;
+    opacity: 0;
+    top: 0;
+    left: 0;
+  }
+
   .preview {
     padding-top: 4em;
   }

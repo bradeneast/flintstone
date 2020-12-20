@@ -4,18 +4,13 @@ import suggestData from "../functions/suggestData";
 import shortcuts from "../shortcuts";
 import state, { autoSave, setState } from '../state';
 import { sanitizeCSS } from "../utils";
+import Button from "./Button";
 import DocumentPreview, { dataMatcher, hydrateFromDataset } from "./Documents/DocumentPreview";
 
 
 export default () => {
 
   let handleEditorKeydown = event => {
-
-    if (event.key == '{')
-      state.suggestionsReady = true;
-    else if (state.suggestionsReady)
-      suggestData()
-
     if (event.key == 'Control')
       state.shortcutReady = true;
     else if (state.shortcutReady && shortcuts[event.key]) {
@@ -83,6 +78,7 @@ export default () => {
 
   ${
     state.showPreview
+    
       ? html`
       <div class=preview>
         <div class=preview__wrapper>
@@ -90,6 +86,7 @@ export default () => {
         </div>
       </div>
       ${unsafeHTML(previewStyles)}`
+
       : html`
       <textarea 
       class=editor 
@@ -99,6 +96,13 @@ export default () => {
       @input=${event => {
         state.currentDocument.body = event.target.value;
         autoSave();
-      }}>${state.currentDocument.body}</textarea>`
+      }}>${state.currentDocument.body}</textarea>
+      <span class="editor intellisense-mapper"></span>
+      <intellisense ?data-active=${state.suggestions?.length}>
+        ${state.suggestions.map(([key, value]) => Button({
+          content: key + ': ' + value,
+          className: 'link',
+        }))}
+      </intellisense>`
     }`;
 }

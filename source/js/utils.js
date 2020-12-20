@@ -24,6 +24,10 @@ export let selectByIndex = (index, context) => $(`[data-index="${index}"]`, cont
 export let setCustomProp = (elem, prop, value) => elem.style.setProperty(`--${prop}`, value);
 
 
+/**A shorthand for toggling a class on the documentElement */
+export let toggleRootClass = (className, force) => document.documentElement.classList.toggle(className, force);
+
+
 /**Ensures properties exist on an object, filling them with an empty object if they do not exist. */
 export let ensureProps = (properties, obj, defaultValue = {}) =>
   properties.forEach(prop =>
@@ -75,5 +79,24 @@ export let handleFormInput = (event, formData) => {
   formData[target.name] = target.value;
 }
 
-/**A shorthand for toggling a class on the documentElement */
-export let toggleRootClass = (className, force) => document.documentElement.classList.toggle(className, force);
+
+/**Gets the selection or selection word from an element */
+export let getSelectionData = (inputOrTextareaElement) => {
+
+  let wordBoundary = /\s/;
+  let { selectionEnd, selectionStart, value } = inputOrTextareaElement;
+  let before = value.substr(0, selectionStart);
+  let after = value.substr(selectionEnd);
+
+  let selection = selectionEnd - selectionStart
+    ? value.substring(selectionStart, selectionEnd)
+    : before.split(wordBoundary).pop() + after.split(wordBoundary).shift();
+
+  return {
+    selection,
+    selectionStart,
+    selectionEnd,
+    before,
+    after
+  }
+}

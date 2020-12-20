@@ -1,51 +1,45 @@
 import state, { autoSave } from "../state";
-import { $, indexOfExp, lastIndexOfExp } from "../utils";
+import { $, getSelectionData, indexOfExp, lastIndexOfExp } from "../utils";
 
 
 export default (char) => {
 
   let editor = $('.editor');
   if (document.activeElement != editor) return;
-  let { selectionStart, selectionEnd } = editor;
-  let body = state.currentDocument.body;
+  let { selection, selectionStart, selectionEnd, before, after } = getSelectionData(editor);
   let charLength = char.length;
   let minusCharLength = charLength * -1;
   let wordBoundary = /\s/;
   let wasFormatted = false;
 
-  let selection = body.substring(selectionStart, selectionEnd);
-  let beforeSelection = body.substr(0, selectionStart);
-  let afterSelection = body.substr(selectionEnd);
-
   // Format the selected text
-  if (selection.length) {
+  if (selectionEnd - selectionStart > 0) {
 
-    let formattingBefore = beforeSelection.slice(minusCharLength) == char;
-    let formattingAfter = afterSelection.slice(0, charLength) == char;
+    let formattingBefore = before.slice(minusCharLength) == char;
+    let formattingAfter = after.slice(0, charLength) == char;
     wasFormatted = formattingBefore && formattingAfter;
 
     if (wasFormatted)
-      state.currentDocument.body = beforeSelection.slice(0, minusCharLength) + selection + afterSelection.slice(charLength);
+      state.currentDocument.body = before.slice(0, minusCharLength) + selection + after.slice(charLength);
 
     if (!wasFormatted)
-      state.currentDocument.body = beforeSelection + char + selection + char + afterSelection;
+      state.currentDocument.body = before + char + selection + char + after;
   }
 
   // Format the word at the current cursor position if there is no selection
-  if (!selection.length) {
+  if (selectionEnd - selectionStart == 0) {
 
-    let selectionWord = beforeSelection.split(wordBoundary).pop() + afterSelection.split(wordBoundary).shift();
-    let beforeSelectionWord = beforeSelection.substr(0, lastIndexOfExp(beforeSelection, wordBoundary) + 1);
-    let afterSelectionWord = afterSelection.substr(indexOfExp(afterSelection, wordBoundary));
-    let formattingBefore = selectionWord.slice(0, charLength) == char;
-    let formattingAfter = selectionWord.slice(minusCharLength) == char;
+    let beforeWord = before.substr(0, lastIndexOfExp(before, wordBoundary) + 1);
+    let afterWord = after.substr(indexOfExp(after, wordBoundary));
+    let formattingBefore = selection.slice(0, charLength) == char;
+    let formattingAfter = selection.slice(minusCharLength) == char;
     wasFormatted = formattingBefore && formattingAfter;
 
-    selectionWord = wasFormatted
-      ? selectionWord.slice(charLength, minusCharLength)
-      : char + selectionWord + char;
+    selection = wasFormatted
+      ? selection.slice(charLength, minusCharLength)
+      : char + selection + char;
 
-    state.currentDocument.body = beforeSelectionWord + selectionWord + afterSelectionWord;
+    state.currentDocument.body = beforeWord + selection + afterWord;
   }
 
 

@@ -6,7 +6,7 @@ import DataPane from './Datasets/DataPane';
 import ImportDialogue from './Dialogues/ImportDialogue';
 import DocumentsPane from './Documents/DocumentsPane';
 import Modal from './Modal';
-import PreviewPane from './PreviewPane';
+import CenterPane from './CenterPane';
 import StylesPane from './Styles/StylesPane';
 
 
@@ -19,7 +19,7 @@ export default () => html`
 }
 @dragover=${event => event.preventDefault()}>
   <section @click=${()=> toggleStyleEditor(false)} class="aside left">${DocumentsPane()}</section>
-  <section @click=${()=> toggleStyleEditor(false)} class="center">${PreviewPane()}</section>
+  <section @click=${()=> toggleStyleEditor(false)} class="center">${CenterPane()}</section>
   <section class="aside right">
     ${DataPane()}
     ${StylesPane()}
