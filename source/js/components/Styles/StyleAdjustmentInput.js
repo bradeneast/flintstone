@@ -14,7 +14,7 @@ export let range = ([tagName, { normieName }], [propName, { min, max, step, unit
   let cleanedName = cleanPropName(propName);
 
   return html`
-  <label>
+  <label class="smol light">
     <span class=label>
       <span class=label__name>${cleanedName}</span>
       <span class=label__value>${unitValue || ''}</span>
@@ -44,7 +44,7 @@ export let text = ([tagName, { normieName }], [propName, { placeholder }]) => {
   let cleanedName = cleanPropName(propName);
 
   return html`
-  <label>
+  <label class="smol light">
     <span class=label>
       <span class=label__name>${cleanedName}</span>
     </span>
@@ -71,7 +71,7 @@ export let select = ([tagName, { normieName }], [propName, { options, defaultVal
   let cleanedName = cleanPropName(propName);
 
   return html`
-  <label>
+  <label class="smol light">
     <span class=label>
       <span class=label__name>${cleanedName}</span>
     </span>

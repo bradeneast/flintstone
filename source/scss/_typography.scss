@@ -11,6 +11,31 @@ body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Nueue", sans-serif;
 }
 
+.smol {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  & > * {
+    text-transform: none;
+  }
+
+  input,
+  select {
+    letter-spacing: 0;
+    color: var(--g3);
+    font-size: 1rem;
+
+    &:focus {
+      color: var(--g0);
+    }
+  }
+}
+
+.light {
+  color: var(--g3);
+}
+
 h1,
 h2,
 h3,

@@ -17,7 +17,7 @@ export default (item, itemIndex, itemType) => {
   }
 
   return html`
-  <label class=flex style="margin-bottom: .5rem">
+  <label class="flex" style="margin-bottom: .5rem">
     <input name=${inputName} type=checkbox @input=${handleCheckboxInput} />
     <h3>${item.id}</h3>
   </label>`;

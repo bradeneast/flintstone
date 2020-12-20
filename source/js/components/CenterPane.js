@@ -98,11 +98,13 @@ export default () => {
         autoSave();
       }}>${state.currentDocument.body}</textarea>
       <span class="editor intellisense-mapper"></span>
-      <intellisense ?data-active=${state.suggestions?.length}>
-        ${state.suggestions.map(([key, value]) => Button({
-          content: key + ': ' + value,
-          className: 'link',
-        }))}
+      <intellisense ?data-active=${state.typingSuggestions?.length}>
+        ${state.typingSuggestions.map(([key, value]) => 
+          Button({
+            content: key + ': ' + value,
+            className: 'link',
+          })
+        )}
       </intellisense>`
     }`;
 }

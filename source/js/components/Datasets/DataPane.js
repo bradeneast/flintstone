@@ -17,7 +17,7 @@ export default () => {
 
   return html`
   <div @click=${() => toggleStyleEditor(false)} class="pane data">
-    <label for="currentDatasetTitle">Current data</label>
+    <label class="smol light" for="currentDatasetTitle">Current data</label>
     ${
     current
       ? html`
@@ -39,8 +39,8 @@ export default () => {
           current.fields.length
             ? html`
             <li>
-              <label>Name</label>
-              <label>Value</label>
+              <label class="smol light">Name</label>
+              <label class="smol light">Value</label>
               <span></span>
             </li>`
             : nothing
@@ -56,7 +56,7 @@ export default () => {
       : nothing
     }
 
-    <label>All data</label>
+    <label class="smol light">All data</label>
     <ul class="sets mount">
       ${state.currentUser.datasets.map((dataset, datasetIndex) => html`
       <li data-index=${datasetIndex}>

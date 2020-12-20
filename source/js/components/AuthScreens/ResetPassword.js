@@ -9,7 +9,7 @@ export default () => {
 
   return html`
   <form class=mount>
-    <label>
+    <label class="smol light">
       New Password
       <input required @input=${e => password = e.target.value} minlength=8 type=password name=password />
     </label>

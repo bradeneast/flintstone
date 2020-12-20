@@ -13,11 +13,11 @@ export default () => html`
   ${
     state.showPreview
       ? html`
-      <p class=hint>
+      <p class=light>
         Change the look and feel of your document here.
       </p>`
       : html`
-      <p class=hint>
+      <p class=light>
         <button class="link primary" @click=${()=> setState('showPreview', true)}>Show the document preview</button> to see your
         changes.
       </p>`

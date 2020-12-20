@@ -15,11 +15,11 @@ export default function Login() {
 
   return html`
   <form class=mount>
-    <label>
+    <label class="smol light">
       Email
       <input required @input=${event => handleFormInput(event, formData)} type=email name=email />
     </label>
-    <label>
+    <label class="smol light">
       Password
       <input required @input=${event => handleFormInput(event, formData)} type=password name=password />
       ${

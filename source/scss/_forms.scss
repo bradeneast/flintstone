@@ -112,12 +112,6 @@ select {
   }
 }
 
-label,
-.hint {
-  line-height: 1.2;
-  color: var(--g3);
-}
-
 label {
   display: grid;
   align-items: center;
@@ -125,24 +119,7 @@ label {
   grid-template-columns: repeat(auto-fit, minmax(12em, 1fr));
   gap: 0.2rem;
   user-select: none;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-
-  & > * {
-    text-transform: none;
-  }
-
-  input,
-  select {
-    letter-spacing: 0;
-    color: var(--g3);
-    font-size: 1rem;
-
-    &:focus {
-      color: var(--g0);
-    }
-  }
+  line-height: 1.2;
 }
 
 select {

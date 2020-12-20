@@ -15,7 +15,7 @@ export default () => {
 
   return html`
   <div class="pane documents">
-    <label for="currentDocumentTitle">Current document</label>
+    <label class="smol light" for="currentDocumentTitle">Current document</label>
     ${
     current
       ? html`
@@ -38,7 +38,7 @@ export default () => {
       ` : nothing
     }
 
-    <label>All documents</label>
+    <label class="smol light">All documents</label>
     <ul class="sets mount">
       ${state.currentUser.documents.map((document, documentIndex) => html`
       <li data-index=${documentIndex}>
