@@ -1,0 +1,51 @@
+import suggestData from "../functions/suggestData";
+import shortcuts from "../shortcuts";
+import state from "../state";
+import { isCharacterKey } from "../utils";
+
+
+export let handleEditorKeydown = event => {
+
+  let key = event.key;
+
+  if (key == 'Control')
+    state.shortcutReady = true;
+
+  if (state.shortcutReady && shortcuts[key]) {
+    event.preventDefault();
+    shortcuts[key]?.call();
+    state.shortcutReady = false;
+  }
+}
+
+
+export let handleEditorKeyup = event => {
+
+  let sense = state.intellisense;
+  let key = event.key;
+
+  if (event.key == 'Control')
+    state.shortcutReady = false;
+
+  switch (key) {
+    case 'Backspace':
+      sense.logger = sense.logger.slice(0, -1);
+      return;
+    case '{':
+      sense.ready = true;
+      sense.logger += key;
+      return;
+    case '}':
+      sense.ready = false;
+      sense.logger = '';
+      return;
+  }
+
+  console.log(event);
+
+  if (sense.ready) {
+    if (isCharacterKey(event))
+      sense.logger += key;
+    suggestData();
+  }
+}

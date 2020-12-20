@@ -6,13 +6,17 @@ export let initial_state = {
   expandedAdjustments: [],
   /** Keeps track if control key is pressed */
   shortcutReady: false,
-  typingSuggestions: [],
   /** Selected items for exporting */
   exportSelection: {},
   /** All importable items from an uploaded file */
   forImport: {},
   /** Selected items for importing */
   importSelection: {},
+  intellisense: {
+    ready: false,
+    logger: '',
+    suggestions: [],
+  },
   /** User data that actually gets saved */
   currentUser: {
     documents: [{ id: 'New Document', body: '' }],

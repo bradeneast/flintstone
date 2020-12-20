@@ -1,21 +1,27 @@
 import state, { setState } from "../state"
-import { $, getSelectionData } from "../utils"
+import { $, escapeRegExp, getSelectionData } from "../utils"
 
 export default () => {
 
-  let box = $('intellisense');
-  let editor = $('.editor');
+  let sense = state.intellisense;
+  let box = $('.intellisense');
   let mapper = $('.intellisense-mapper');
+  let editor = $('.editor');
 
-  mapper.textContent = editor.value;
+  let { before } = getSelectionData(editor);
+  let allLines = before.split(/\n/);
+  let currentLine = allLines.pop();
+  let source = before.split('{').pop().trim();
+  let tester = new RegExp(escapeRegExp(source), 'i');
 
-  let { selection, before, after } = getSelectionData(editor);
-  let tester = new RegExp(selection, 'i');
+  mapper.innerText = allLines.slice(0, -1).join('\n').replace(/[A-z0-9]+/g, '') + '\n' + currentLine;
 
   let { offsetHeight, offsetWidth, offsetLeft, offsetTop } = mapper;
-  let posY = offsetTop + offsetHeight / 2;
+  let posY = offsetTop + offsetHeight;
   let posX = offsetLeft + offsetWidth;
-  box.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
 
-  setState('suggestions', state.currentDataset.fields.filter(f => tester.test(f.key)))
+  box.style.transform = `translate3d(${posX}px, ${posY}px, 0)`;
+  sense.suggestions = state.currentDataset.fields.filter(f => tester.test(f[0]));
+
+  setState('intellisense', sense);
 }

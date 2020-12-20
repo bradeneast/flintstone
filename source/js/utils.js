@@ -47,6 +47,14 @@ export let dedupe = arr => [...new Set(arr)];
 export let indexOfExp = (str, exp) => str.split(exp)[0].length;
 
 
+/**Escape string for use in Regular Expression */
+export let escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+
+/**Figures out if a keydown/keyup event was a character-producing key */
+export let isCharacterKey = event => event.which && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey && event.which != 8;
+
+
 /**Alternative to String.indexOf() that accepts a Regular Expression*/
 export let lastIndexOfExp = (str, exp) => str.lastIndexOf(str.match(new RegExp(exp, 'g')).pop());
 

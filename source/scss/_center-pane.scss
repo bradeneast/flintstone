@@ -40,13 +40,18 @@
   }
 
   .preview,
+  .editor,
+  .intellisense-mapper {
+    padding: 2em;
+  }
+
+  .preview,
   .editor {
     resize: none;
     overflow-y: auto;
     border: var(--border);
     border-color: transparent;
     background: var(--g8);
-    padding: 2em;
     height: 100%;
 
     &:focus,
@@ -55,13 +60,19 @@
     }
   }
 
-  .editor {
+  .preview {
+    padding-top: 4em;
+  }
+
+  .editor,
+  .intellisense-mapper {
     font-size: calc(0.6rem + 50%);
     line-height: 1.5;
   }
 
-  intellisense {
+  .intellisense {
     position: absolute;
+    display: grid;
     top: 0;
     left: 0;
     z-index: 2;
@@ -74,26 +85,33 @@
     background: var(--g7);
     box-shadow: var(--shadow);
 
+    &-mapper {
+      width: auto;
+      height: auto;
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+      top: 0;
+      left: 0;
+    }
+
+    li {
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    button {
+      padding: 0.2em;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &[data-active] {
       opacity: 1;
       pointer-events: all;
       transition: transform var(--transition), opacity var(--transition);
     }
-  }
-
-  .intellisense-mapper {
-    width: auto;
-    height: auto;
-    position: absolute;
-    z-index: -1;
-    padding-right: 0;
-    padding-bottom: 0;
-    opacity: 0;
-    top: 0;
-    left: 0;
-  }
-
-  .preview {
-    padding-top: 4em;
   }
 }
