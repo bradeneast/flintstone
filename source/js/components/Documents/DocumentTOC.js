@@ -18,7 +18,7 @@ export default () => {
   let getTOCTitle = (pageContent) => {
     let firstLine = pageContent.match(/.+?(\n|$)/)[0];
     let trimmed = firstLine.trim();
-    return trimmed.replace(/^[^A-z0-9]*|[^A-z0-9]*$/g, '');
+    return trimmed.replace(/^[^A-z0-9]*|[^A-z0-9\{\}]*$/g, '');
   }
 
   let tocItems = doc.split(pageSplitter);

@@ -1,7 +1,7 @@
 import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import applyFormatting from "../functions/applyFormatting";
-import { handleEditorKeydown, handleEditorKeyup } from "../functions/editorHandlers";
+import { handleEditorFocusOut, handleEditorKeydown, handleEditorKeyup } from "../functions/editorHandlers";
 import makePreviewStyles from "../functions/makePreviewStyles";
 import state, { autoSave, setState } from '../state';
 import { $, getSelectionData } from "../utils";
@@ -52,6 +52,7 @@ ${
     placeholder="Start typing when you're ready..."
     @keydown=${handleEditorKeydown}
     @keyup=${handleEditorKeyup}
+    @focusout=${handleEditorFocusOut}
     @input=${event => {
       state.currentDocument.body = event.target.value;
       autoSave();

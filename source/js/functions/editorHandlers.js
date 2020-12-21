@@ -4,6 +4,13 @@ import state from "../state";
 import { isCharacterKey } from "../utils";
 
 
+export let handleEditorFocusOut = event => {
+  state.shortcutReady = false;
+  state.intellisense.ready = false;
+  state.intellisense.logger = '';
+}
+
+
 export let handleEditorKeydown = event => {
 
   let key = event.key;
@@ -14,7 +21,6 @@ export let handleEditorKeydown = event => {
   if (state.shortcutReady && shortcuts[key]) {
     event.preventDefault();
     shortcuts[key]?.call();
-    state.shortcutReady = false;
   }
 }
 
