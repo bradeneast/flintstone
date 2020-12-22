@@ -10,6 +10,6 @@ export default ({
   disabled = false,
 }) =>
   html`
-<button type=${type} ?disabled=${disabled} title=${title} class=${className} @click=${action}>
+<button type=${type} ?disabled=${disabled} title=${title} ?data-has-icon=${icon} class=${className} @click=${action}>
   ${icon ? html`${icon} ${content}` : content}
 </button>`;

@@ -56,16 +56,19 @@ a.button {
   }
 
   &.link {
-    display: inline-flex;
-    align-items: center;
     border: none;
     padding: 0;
     text-decoration: underline;
     text-decoration-color: transparent;
     cursor: pointer;
 
-    svg {
-      margin-right: 0.2em;
+    &[data-has-icon] {
+      display: inline-flex;
+      align-items: center;
+
+      svg {
+        margin-right: 0.2em;
+      }
     }
 
     &.underline {
