@@ -40,6 +40,7 @@ a.button {
   }
 
   &.icon {
+    line-height: 1;
     text-align: center;
     padding-left: 0.2em;
     padding-right: 0.2em;
@@ -55,6 +56,12 @@ a.button {
     }
   }
 
+  &[data-has-icon] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &.link {
     border: none;
     padding: 0;
@@ -62,13 +69,8 @@ a.button {
     text-decoration-color: transparent;
     cursor: pointer;
 
-    &[data-has-icon] {
-      display: inline-flex;
-      align-items: center;
-
-      svg {
-        margin-right: 0.2em;
-      }
+    svg {
+      margin-right: 0.2em;
     }
 
     &.underline {
