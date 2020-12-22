@@ -1,6 +1,13 @@
-import state, { preferences, renderAll, setPreference } from "../state";
+import state, { autoSave, preferences, renderAll, setPreference } from "../state";
 import { isCharacterKey } from "../utils";
+import suggestData from "./suggestData";
 
+
+export let handleEditorInput = event => {
+  state.currentDocument.body = event.target.value;
+  suggestData();
+  autoSave();
+}
 
 export let handleEditorFocusOut = event => {
   state.shortcutReady = false;
