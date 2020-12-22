@@ -71,6 +71,5 @@ export default ([key, value], fieldIndex, datasetIndex) => {
         })
       }
     </actions>
-  </li>
-  `;
+  </li>`;
 }

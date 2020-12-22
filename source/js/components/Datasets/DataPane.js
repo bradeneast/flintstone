@@ -45,11 +45,14 @@ export default () => {
             </li>`
             : nothing
         }
+        ${current.fields.map((field, index) => Field(field, index, current.id))}
         ${
-          current.fields
-            .map((field, index) => Field(field, index, current.id))
+          Button({
+            action: addField,
+            className: 'link',
+            content: '+ Add Field'
+          })
         }
-          <button @click=${addField}>Add Field</button>
         </ul>
 
       </div>`
