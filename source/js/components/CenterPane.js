@@ -2,6 +2,7 @@ import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { handleEditorFocusOut, handleEditorKeydown, handleEditorKeyup } from "../functions/editorHandlers";
 import makePreviewStyles from "../functions/makePreviewStyles";
+import suggestData from "../functions/suggestData";
 import state, { autoSave, setState } from '../state';
 import { $, getSelectionData } from "../utils";
 import Button from "./Button";
@@ -54,10 +55,14 @@ ${
     @focusout=${handleEditorFocusOut}
     @input=${event => {
       state.currentDocument.body = event.target.value;
+      if (state.intellisense.ready) suggestData();
       autoSave();
     }}>${state.currentDocument.body}</textarea>
 
-    <span class=intellisense-mapper></span>
+    <div class='intellisense-mapper'>
+      <span class='first-lines'></span>
+      <span class='last-line'></span>
+    </div>
     
     <ul class=intellisense ?data-active=${state.intellisense.suggestions?.length}>
       ${state.intellisense.suggestions.map(([key, value]) => html`
@@ -66,15 +71,20 @@ ${
             content: html`<strong>${key}</strong> <span class="light">(${value})</span>`,
             className: 'link',
             action: () => {
+              
               let editor = $('.editor');
               let { before, after } = getSelectionData(editor);
-              before = before.replace(/\{.*?$/, '');
-              editor.value = before + '{ ' + key + ' }' + after;
+              let throughKey = before.replace(/\{(.(?!\{))*?$/, '') + '{ ' + key + ' }';
+
+              editor.value = throughKey + after;
+              state.currentDocument.body = editor.value;
               state.intellisense = { logger: '', suggestions: [], ready: false };
-              setState('intellisense', state.intellisense);
+              setState('intellisense', state.intellisense, true);
+
+              editor.focus();
+              editor.setSelectionRange(throughKey.length, throughKey.length);
             }
           })
-      }</li>`
-      )}
+      }</li>`)}
     </ul>`
-  }`;
+}`;

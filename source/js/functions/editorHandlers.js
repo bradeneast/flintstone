@@ -33,25 +33,20 @@ export let handleEditorKeyup = event => {
   if (event.key == 'Control')
     state.shortcutReady = false;
 
+  if (sense.ready && isCharacterKey(event))
+    sense.logger += key;
+
   switch (key) {
     case 'Backspace':
       sense.logger = sense.logger.slice(0, -1);
-      return;
+      break;
     case '{':
       sense.ready = true;
       sense.logger += key;
-      return;
+      break;
     case '}':
       sense.ready = false;
       sense.logger = '';
-      return;
-  }
-
-  console.log(event);
-
-  if (sense.ready) {
-    if (isCharacterKey(event))
-      sense.logger += key;
-    suggestData();
+      break;
   }
 }

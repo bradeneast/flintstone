@@ -97,7 +97,8 @@ input {
 
 input,
 textarea,
-select {
+select,
+.intellisense-mapper {
   font-family: Consolas, monospace;
   border: var(--border);
   border-color: transparent;
