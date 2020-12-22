@@ -4,11 +4,13 @@ import duplicateDataset from "../../functions/duplicateDataset";
 import removeDataset from "../../functions/removeDataset";
 import renameDataset from "../../functions/renameDataset";
 import setCurrentDataset from "../../functions/setCurrentDataset";
-import { html, nothing } from "lit-html";
+import { html, nothing, svg } from "lit-html";
 import state from "../../state";
 import Button from "../Button";
 import Field from "./Field";
 import toggleStyleEditor from "../../functions/toggleStyleEditor";
+import Icon from "../Icon";
+import Icons from "../Icons";
 
 
 export default () => {
@@ -50,7 +52,8 @@ export default () => {
           Button({
             action: addField,
             className: 'link',
-            content: '+ Add Field'
+            icon: Icons.add,
+            content: 'Add Field'
           })
         }
         </ul>
@@ -76,7 +79,7 @@ export default () => {
             title: `Duplicate ${dataset.id}`,
             className: 'icon',
             action: () => duplicateDataset(datasetIndex),
-            content: '📄'
+            icon: Icons.duplicate,
           })
         }
         ${
@@ -85,7 +88,7 @@ export default () => {
               title: `Delete ${dataset.id}`,
               className: 'icon',
               action: () => removeDataset(datasetIndex),
-              content: '🗑️'
+              icon: Icons.delete
             })
             : nothing
         }

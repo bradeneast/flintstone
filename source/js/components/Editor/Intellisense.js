@@ -15,9 +15,7 @@ export default () => html`
   <li>${
       Button({
         content: html`<strong>${key}</strong> <span class="light">(${value})</span>`,
-        className: 'link',
         action: () => {
-          
           let editor = $('.editor');
           let { before, after } = getSelectionData(editor);
           let throughKey = before.replace(/\{(.(?!\{))*?$/, '') + '{ ' + key + ' }';

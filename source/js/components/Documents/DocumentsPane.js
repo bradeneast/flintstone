@@ -7,6 +7,7 @@ import setCurrentDocument from "../../functions/setCurrentDocument";
 import duplicateDocument from "../../functions/duplicateDocument";
 import Button from "../Button";
 import DocumentTOC from "./DocumentTOC";
+import Icons from "../Icons";
 
 
 export default () => {
@@ -55,7 +56,7 @@ export default () => {
             title: `Duplicate ${document.id}`,
             className: 'icon',
             action: () => duplicateDocument(documentIndex),
-            content: '📄'
+            icon: Icons.duplicate
           })
         }
         ${
@@ -64,7 +65,7 @@ export default () => {
               title: `Delete ${document.id}`,
               className: 'icon',
               action: () => removeDocument(documentIndex),
-              content: '🗑️'
+              icon: Icons.delete
             })
             : nothing
         }

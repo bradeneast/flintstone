@@ -4,6 +4,7 @@ import state, { setState } from "../../state";
 import { tags } from "../../style_data";
 import Button from "../Button";
 import Icon from "../Icon";
+import Icons from "../Icons";
 import StyleAdjustment from "./StyleAdjustment";
 
 
@@ -27,10 +28,7 @@ export default () => html`
     Button({
       title: 'Close style editor',
       className: 'icon',
-      content: Icon({
-        content: svg`<path d="M73.67,26.62,155.05,108,73.67,189.38" />`,
-        className: 'line'
-      }),
+      icon: Icons.right,
       action: () => toggleStyleEditor(false)
     })
   }

@@ -7,6 +7,7 @@ import { range, select, text } from "./StyleAdjustmentInput";
 import highlightElements from "../../functions/highlightElements";
 import resetAdjustmentStyles from "../../functions/resetAdjustmentStyles";
 import toggleExpanded from "../../functions/toggleExpanded";
+import Icons from "../Icons";
 
 
 export default ([tagName, { normieName, useAdjustments }]) => {
@@ -30,7 +31,7 @@ export default ([tagName, { normieName, useAdjustments }]) => {
           title: `Reset ${normieName.replace(/s$/, '')} styles`,
           className: 'icon',
           disabled: !isExpanded,
-          content: '↩',
+          icon: Icons.reset,
           action: () => resetAdjustmentStyles(tagName),
         })
       }

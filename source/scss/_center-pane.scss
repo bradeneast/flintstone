@@ -38,80 +38,82 @@
       }
     }
   }
+}
 
-  .preview,
-  .editor,
-  .intellisense-mapper {
-    padding: 2em;
+.preview,
+.editor,
+.intellisense-mapper {
+  padding: 2em;
+}
+
+.preview,
+.editor {
+  resize: none;
+  overflow-y: auto;
+  border: var(--border);
+  border-color: transparent;
+  background: var(--g8);
+  height: 100%;
+
+  &:focus,
+  &:focus-within {
+    border-color: currentColor;
   }
+}
 
-  .preview,
-  .editor {
-    resize: none;
-    overflow-y: auto;
-    border: var(--border);
-    border-color: transparent;
-    background: var(--g8);
-    height: 100%;
+.preview {
+  padding-top: 4em;
+}
 
-    &:focus,
-    &:focus-within {
-      border-color: currentColor;
-    }
-  }
+.editor,
+.intellisense-mapper {
+  font-size: calc(0.6rem + 50%);
+  line-height: 1.5;
+}
 
-  .preview {
-    padding-top: 4em;
-  }
+.intellisense {
+  position: absolute;
+  display: grid;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: auto;
+  max-width: 20rem;
+  opacity: 0;
+  padding: 0;
+  pointer-events: none;
+  border-radius: var(--radius);
+  background: var(--g7);
+  box-shadow: var(--shadow);
+  border: var(--border);
+  overflow: hidden;
 
-  .editor,
-  .intellisense-mapper {
-    font-size: calc(0.6rem + 50%);
-    line-height: 1.5;
-  }
-
-  .intellisense {
+  &-mapper {
+    width: auto;
+    height: auto;
     position: absolute;
-    display: grid;
+    z-index: -1;
+    opacity: 0;
     top: 0;
     left: 0;
-    z-index: 2;
-    width: auto;
-    max-width: 20rem;
-    padding: 1em;
-    opacity: 0;
-    pointer-events: none;
-    border-radius: var(--radius);
-    background: var(--g7);
-    box-shadow: var(--shadow);
+  }
 
-    &-mapper {
-      width: auto;
-      height: auto;
-      position: absolute;
-      z-index: -1;
-      opacity: 0;
-      top: 0;
-      left: 0;
-    }
+  li {
+    max-width: 100%;
+    overflow: hidden;
+  }
 
-    li {
-      max-width: 100%;
-      overflow: hidden;
-    }
+  button {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-color: transparent;
+  }
 
-    button {
-      padding: 0.2em;
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    &[data-active] {
-      opacity: 1;
-      pointer-events: all;
-      transition: transform var(--transition), opacity var(--transition);
-    }
+  &[data-active] {
+    opacity: 1;
+    pointer-events: all;
+    transition: transform var(--transition), opacity var(--transition);
   }
 }

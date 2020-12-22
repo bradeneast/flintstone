@@ -1,11 +1,6 @@
 html.showStyles .styles {
   box-shadow: var(--shadow);
   transform: translate3d(0, 0, 0);
-
-  button {
-    transform: translate3d(0, 0, 0);
-    border-radius: var(--radius);
-  }
 }
 
 .styles {
