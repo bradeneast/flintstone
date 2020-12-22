@@ -1,6 +1,5 @@
 import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import applyFormatting from "../functions/applyFormatting";
 import { handleEditorFocusOut, handleEditorKeydown, handleEditorKeyup } from "../functions/editorHandlers";
 import makePreviewStyles from "../functions/makePreviewStyles";
 import state, { autoSave, setState } from '../state';
