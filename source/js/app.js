@@ -77,5 +77,6 @@ else if (state.savedLocally)
 // Render welcome screen
 else {
   state.loading = false;
+  prepState();
   renderAll(Modal(Welcome()));
 }

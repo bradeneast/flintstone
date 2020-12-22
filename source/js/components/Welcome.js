@@ -19,7 +19,6 @@ ${
     action: () => defaultState
       .then(defaultState => {
         state.savedLocally = true;
-        state.loading = false;
         state.currentUser.styles = defaultState.currentUser.styles;
         prepState();
         renderAll();
@@ -36,7 +35,6 @@ ${
       .then(defaultState => {
         serialize(defaultState, state);
         state.savedLocally = true;
-        state.loading = false;
         prepState();
         renderAll();
         autoSave(true);
