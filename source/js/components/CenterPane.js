@@ -1,6 +1,6 @@
 import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { handleEditorFocusOut, handleEditorKeydown, handleEditorKeyup } from "../functions/editorHandlers";
+import { handleEditorFocusOut, handleEditorKeyup } from "../functions/editorHandlers";
 import makePreviewStyles from "../functions/makePreviewStyles";
 import suggestData from "../functions/suggestData";
 import state, { autoSave, setState } from '../state';
@@ -50,7 +50,6 @@ ${
     <textarea 
     class=editor 
     placeholder="Start typing when you're ready..."
-    @keydown=${handleEditorKeydown}
     @keyup=${handleEditorKeyup}
     @focusout=${handleEditorFocusOut}
     @input=${event => {

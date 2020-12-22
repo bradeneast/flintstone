@@ -14,7 +14,7 @@ export default ([key, value], fieldIndex, datasetIndex) => {
   let valueID = `${datasetIndex}_${fieldIndex}_value`;
 
   return html`
-  <li data-index=${fieldIndex}>
+  <li class=field data-index=${fieldIndex}>
     <key>
       <input 
       title="Rename this field"
