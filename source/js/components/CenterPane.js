@@ -55,7 +55,7 @@ ${
     @focusout=${handleEditorFocusOut}
     @input=${event => {
       state.currentDocument.body = event.target.value;
-      if (state.intellisense.ready) suggestData();
+      suggestData();
       autoSave();
     }}>${state.currentDocument.body}</textarea>
 
@@ -78,7 +78,7 @@ ${
 
               editor.value = throughKey + after;
               state.currentDocument.body = editor.value;
-              state.intellisense = { logger: '', suggestions: [], ready: false };
+              state.intellisense = { logger: '', suggestions: [] };
               setState('intellisense', state.intellisense, true);
 
               editor.focus();

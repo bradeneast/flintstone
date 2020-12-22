@@ -1,7 +1,7 @@
 import { html } from 'lit-html';
 import toggleMenu from '../functions/toggleMenu';
 import toggleStyleEditor from '../functions/toggleStyleEditor';
-import { renderAll } from '../state';
+import { preferences, renderAll } from '../state';
 import DataPane from './Datasets/DataPane';
 import ImportDialogue from './Dialogues/ImportDialogue';
 import DocumentsPane from './Documents/DocumentsPane';
@@ -12,6 +12,7 @@ import StylesPane from './Styles/StylesPane';
 
 export default () => html`
 <main 
+?data-zen=${preferences.zen}
 @click=${() => toggleMenu(false)}
 @dragleave=${renderAll}
 @dragenter=${() => 

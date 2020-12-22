@@ -13,7 +13,6 @@ export let initial_state = {
   /** Selected items for importing */
   importSelection: {},
   intellisense: {
-    ready: false,
     logger: '',
     suggestions: [],
   },

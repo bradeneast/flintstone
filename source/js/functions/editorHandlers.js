@@ -1,13 +1,15 @@
-import suggestData from "../functions/suggestData";
 import shortcuts from "../shortcuts";
-import state from "../state";
+import state, { preferences, renderAll, setPreference } from "../state";
 import { isCharacterKey } from "../utils";
 
 
 export let handleEditorFocusOut = event => {
   state.shortcutReady = false;
-  state.intellisense.ready = false;
   state.intellisense.logger = '';
+  if (preferences.zen) {
+    setPreference('zen', false);
+    renderAll();
+  }
 }
 
 
@@ -33,7 +35,7 @@ export let handleEditorKeyup = event => {
   if (event.key == 'Control')
     state.shortcutReady = false;
 
-  if (sense.ready && isCharacterKey(event))
+  if (isCharacterKey(event))
     sense.logger += key;
 
   switch (key) {
@@ -41,11 +43,9 @@ export let handleEditorKeyup = event => {
       sense.logger = sense.logger.slice(0, -1);
       break;
     case '{':
-      sense.ready = true;
       sense.logger += key;
       break;
     case '}':
-      sense.ready = false;
       sense.logger = '';
       break;
   }

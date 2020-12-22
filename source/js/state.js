@@ -25,7 +25,7 @@ export function prepState() {
   state.savedLocally = state.savedLocally || false;
   state.showPreview = state.showPreview || false;
   state.showStyles = state.showStyles || false;
-  state.intellisense = state.intellisense || { ready: false, suggestions: [], logger: '' };
+  state.intellisense = state.intellisense || { suggestions: [], logger: '' };
   state.expandedAdjustments = state.expandedAdjustments || ["global", "pages"];
   state.currentUser.styles = state.currentUser.styles || {};
   ensureProps(Object.keys(tags), state.currentUser.styles);

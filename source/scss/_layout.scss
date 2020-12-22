@@ -1,12 +1,26 @@
 main {
-  top: var(--headerHeight);
   display: flex;
+  top: var(--headerHeight);
   background: var(--g7);
+  transition: background var(--transition);
+
+  &[data-zen] {
+    background: var(--g8);
+
+    section:not(.center) {
+      opacity: 0;
+    }
+
+    .editor:focus {
+      border-color: transparent;
+    }
+  }
 
   section {
     display: flex;
     flex-direction: column;
     height: calc(100vh - var(--headerHeight));
+    transition: opacity var(--transition);
 
     &.aside {
       padding: 1em;
