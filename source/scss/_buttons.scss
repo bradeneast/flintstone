@@ -12,13 +12,14 @@ a.button {
   transition: var(--transition);
 
   svg {
-    height: 1.25rem;
-    vertical-align: middle;
+    height: 1.2rem;
+    vertical-align: text-bottom;
+    transition: var(--transition);
 
     &.line {
+      stroke: var(--g4);
       stroke-width: 20px;
       fill: none;
-      stroke: var(--g4);
       stroke-linecap: round;
       stroke-linejoin: round;
     }
@@ -28,6 +29,11 @@ a.button {
   &:focus {
     background: var(--g8);
     border-color: var(--primary);
+
+    svg.line {
+      --color: currentColor;
+      stroke: var(--color);
+    }
   }
 
   &:hover {
@@ -70,7 +76,7 @@ a.button {
     cursor: pointer;
 
     svg {
-      margin-right: 0.2em;
+      margin-right: 0.25rem;
     }
 
     &.underline {

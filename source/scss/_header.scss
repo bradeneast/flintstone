@@ -76,8 +76,9 @@ nav {
   transition: opacity var(--transition), transform var(--transition);
   pointer-events: none;
 
-  button,
-  button.icon {
+  button {
+    display: block !important;
+    border-color: transparent !important;
     text-align: left;
   }
 }

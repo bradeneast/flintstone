@@ -8,14 +8,15 @@ import ExportDialogue from "../Dialogues/ExportDialogue";
 import { portables } from "../../config";
 import toggleMenu from "../../functions/toggleMenu";
 import ImportDialogue from "../Dialogues/ImportDialogue";
+import Icons from "../Icons";
 
 
 export default () => html`
 <nav>
 ${
   Button({
-    className: 'icon',
-    content: `✨ ${ preferences.showStyles ? 'Close' : 'Open' } style editor`,
+    content: `${ preferences.showStyles ? 'Close' : 'Open' } style editor`,
+    icon: Icons.adjust,
     action: () => {
       toggleMenu(false);
       toggleStyleEditor();
@@ -24,22 +25,22 @@ ${
 }
 ${
   Button({
-    className: 'icon',
-    content: '🖨️ Print current document',
+    content: 'Print current document',
+    icon: Icons.print,
     action: printDocument
   })
 }
 ${
   Button({
-    className: 'icon',
-    content: '⛵ Start an import',
+    content: 'Start an import',
+    icon: Icons.import,
     action: () => renderAll(Modal(ImportDialogue()))
   })
 }
 ${
   Button({
-    className: 'icon',
-    content: '🚚 Start an export',
+    content: 'Start an export',
+    icon: Icons.export,
     action: () => {
       state.exportSelection = {};
       portables.map(key => state.exportSelection[key] = []);
@@ -49,8 +50,8 @@ ${
 }
 ${
   Button({
-    className: 'icon',
-    content: html`<light>🌞</light><dark>🌝</dark> Switch to <light>dark</light><dark>light</dark> theme`,
+    icon: Icons.theme,
+    content: html`Switch to <light>dark</light><dark>light</dark> theme`,
     action: () => setPreference('dark', !preferences.dark)
   })
 }
