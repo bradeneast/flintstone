@@ -26,7 +26,7 @@ export default () => {
       <div class="selection mount">
 
         <div class="selection__header">
-          <h2 data-active=true>
+          <h2>
             <input 
             id=currentDatasetTitle
             title="Rename the current data set"

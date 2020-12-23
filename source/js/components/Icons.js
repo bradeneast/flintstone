@@ -61,4 +61,14 @@ export default {
     content: svg`<path d="M158.2,173,108,195.41,57.8,173"/><rect x="31" y="97.95" width="154" height="48.28"/><polyline points="57.8 70.34 57.8 29.34 158.21 29.34 158.21 70.34"/>`,
     color: 'primary-80'
   }),
+
+  preview: Icon({
+    content: svg`<path d="M37.41,135.13H93.55m29.17,0h56.15M37.28,179.07H179M37.28,36.93H179V91.19H37.28Z"/>`,
+    color: 'purple'
+  }),
+
+  edit: Icon({
+    content: svg`<path d="M131.68,55,161,25.6,190.4,55,161,84.32ZM25.6,190.4l35.89-6.54L161,84.32,131.68,55,32.14,154.51Zm79,3.6H194V104.59M111.41,22H22v89.41"/>`,
+    color: 'green'
+  })
 }

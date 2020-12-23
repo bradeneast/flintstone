@@ -27,7 +27,7 @@
         background: var(--g7);
       }
 
-      &[data-active] {
+      &.active {
         opacity: 1;
         border-color: var(--g6);
         background: var(--g8);

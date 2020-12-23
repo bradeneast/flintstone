@@ -116,7 +116,7 @@ li {
     color: inherit;
   }
 
-  &[data-active],
+  &.active,
   &:focus-within {
     color: var(--g0);
     border-color: var(--primary);

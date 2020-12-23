@@ -2,26 +2,30 @@ import { html } from "lit-html";
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import makePreviewStyles from "../functions/makePreviewStyles";
 import state, { setState } from '../state';
+import Button from "./Button";
 import DocumentPreview from "./Documents/DocumentPreview";
 import Editor from "./Editor/Editor";
+import Icons from "./Icons";
 
 
 export default () => html`
 <toolbar>
-  <button 
-  ?data-active=${!state.showPreview} 
-  title="Show editor" 
-  class=icon
-  @click=${()=> setState('showPreview', false)}>
-    ✍️
-  </button>
-  <button 
-  ?data-active=${state.showPreview} 
-  title="Show preview" 
-  class=icon
-  @click=${() => setState('showPreview', true)}>
-    👀
-  </button>
+  ${
+    Button({
+      title: 'Show Editor',
+      className: 'icon' + (state.showPreview ? '' : ' active'),
+      action: () => setState('showPreview', false),
+      icon: Icons.edit
+    })
+  }
+  ${
+    Button({
+      title: 'Show Preview',
+      className: 'icon' + (state.showPreview ? ' active' : ''),
+      action: () => setState('showPreview', true),
+      icon: Icons.preview
+    })
+  }
   <a 
   title="Format your text like a pro with the Markdown cheatsheet."
   class="button icon" 
