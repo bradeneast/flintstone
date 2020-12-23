@@ -36,5 +36,6 @@ export default () => Object.keys(state.forImport).length
   <input class=mount type=file accept=".json" @input=${handleImport} @dragleave=${event => { event.preventDefault(); renderAll() }} @drop=${handleImport} />
   <div class=mount>
     <h3 style="pointer-events: none;">Click or drop a file to import it.</h3>
+    <br />
     ${Button({ className: 'link', content: 'Cancel Import', action: () => renderAll() })}
   </div>`;

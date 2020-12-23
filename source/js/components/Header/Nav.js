@@ -9,6 +9,7 @@ import { portables } from "../../config";
 import toggleMenu from "../../functions/toggleMenu";
 import ImportDialogue from "../Dialogues/ImportDialogue";
 import Icons from "../Icons";
+import KeyboardShortcuts from "../Dialogues/KeyboardShortcuts";
 
 
 export default () => html`
@@ -53,6 +54,13 @@ ${
     icon: Icons.theme,
     content: html`Switch to <light>dark</light><dark>light</dark> theme`,
     action: () => setPreference('dark', !preferences.dark)
+  })
+}
+${
+  Button({
+    icon: Icons.keyboard,
+    content: html`Keyboard shortcuts`,
+    action: () => renderAll(Modal(KeyboardShortcuts()))
   })
 }
 </nav>`;

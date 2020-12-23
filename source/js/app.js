@@ -52,7 +52,7 @@ let completeLoading = () => {
     if (event.key == 'Control')
       state.shortcutReady = true;
     if (state.shortcutReady && shortcuts[event.key])
-      shortcuts[event.key]?.call(this, event);
+      shortcuts[event.key]?.action?.call(this, event);
   })
 
   addEventListener('keyup', event => {

@@ -5,10 +5,12 @@
   font-display: swap;
 }
 
+$fontFamily: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Nueue", sans-serif;
+
 body {
   line-height: 1;
   color: var(--g1);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Nueue", sans-serif;
+  font-family: $fontFamily;
 }
 
 .smol {
@@ -124,6 +126,7 @@ li {
 }
 
 table {
+  font-family: "Consolas", monospace;
   text-align: left;
   border-collapse: collapse;
   min-width: 100%;
@@ -134,17 +137,18 @@ table {
   }
 
   thead {
-    padding: 1em 0;
+    font-family: $fontFamily;
+    font-weight: $bold;
     border-bottom: var(--border);
+    padding: 1em 0;
   }
 
-  td,
-  th {
-    padding: 0.37em;
+  td {
+    padding: var(--buttonPadding);
   }
 
   tr:nth-of-type(2n) {
-    background: var(--g7);
+    background: var(--g8);
   }
 }
 

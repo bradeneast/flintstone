@@ -24,32 +24,76 @@ let handlFieldShortcut = (event, direction) => {
 }
 
 const shortcuts = {
-  "b": event => applyEditorShortcut(event, '**'),
-  "i": event => applyEditorShortcut(event, '_'),
-  "`": event => applyEditorShortcut(event, '`'),
-  "Delete": event => applyEditorShortcut(event, '~'),
-  "Z": () => {
-    setPreference('zen', !preferences.zen);
-    renderAll();
+  "b": {
+    action: event => applyEditorShortcut(event, '**'),
+    description: "format selection as bold",
+    prefix: "ctrl"
   },
-  "E": event => {
-    event.preventDefault();
-    renderAll(Modal(ExportDialogue()));
+  "i": {
+    action: event => applyEditorShortcut(event, '_'),
+    description: "format selection as italics",
+    prefix: "ctrl"
   },
-  "M": event => {
-    event.preventDefault();
-    renderAll(Modal(ImportDialogue()));
+  "`": {
+    action: event => applyEditorShortcut(event, '`'),
+    description: "format selection as source code",
+    prefix: "ctrl"
   },
-  "N": event => {
-    event.preventDefault();
-    addDocument();
+  "Delete": {
+    action: event => applyEditorShortcut(event, '~'),
+    description: "format selection as strikethrough",
+    prefix: "ctrl"
   },
-  "S": event => {
-    event.preventDefault();
-    autoSave();
+  "Z": {
+    action: () => {
+      setPreference('zen', !preferences.zen);
+      renderAll();
+    },
+    description: "toggle zen mode",
+    prefix: "ctrl+shift"
   },
-  "ArrowUp": event => handlFieldShortcut(event, -1),
-  "ArrowDown": event => handlFieldShortcut(event, 1)
+  "E": {
+    action: event => {
+      event.preventDefault();
+      renderAll(Modal(ExportDialogue()));
+    },
+    description: "start an export",
+    prefix: "ctrl+shift"
+  },
+  "M": {
+    action: event => {
+      event.preventDefault();
+      renderAll(Modal(ImportDialogue()));
+    },
+    description: "start an import",
+    prefix: "ctrl+shift"
+  },
+  "N": {
+    action: event => {
+      event.preventDefault();
+      addDocument();
+    },
+    description: "add a new document",
+    prefix: "ctrl+shift"
+  },
+  "S": {
+    action: event => {
+      event.preventDefault();
+      autoSave();
+    },
+    description: "trigger a save",
+    prefix: "ctrl+shift"
+  },
+  "ArrowUp": {
+    action: event => handlFieldShortcut(event, -1),
+    description: "move the current field up",
+    prefix: "ctrl"
+  },
+  "ArrowDown": {
+    action: event => handlFieldShortcut(event, 1),
+    description: "move the current field down",
+    prefix: "ctrl"
+  }
 }
 
 export default shortcuts;
