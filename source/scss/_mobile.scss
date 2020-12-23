@@ -86,12 +86,18 @@
       order: 10;
 
       .preview,
+      .editor,
+      .intellisense-mapper {
+        padding: 4rem 1rem 2rem 1rem;
+      }
+
+      .preview,
       .editor {
-        padding: 4rem 0.5rem 2rem 0.5rem;
         height: calc(100vh - var(--headerHeight));
         width: 100%;
       }
 
+      .intellisense-mapper,
       .editor {
         font-size: 16px;
         border: none;
