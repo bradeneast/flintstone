@@ -1,9 +1,8 @@
-import { html, svg } from "lit-html";
-import toggleStyleEditor from "../../functions/toggleStyleEditor";
+import { html } from "lit-html";
+import togglePane from "../../functions/togglePane";
 import state, { setState } from "../../state";
 import { tags } from "../../style_data";
 import Button from "../Button";
-import Icon from "../Icon";
 import Icons from "../Icons";
 import StyleAdjustment from "./StyleAdjustment";
 
@@ -28,8 +27,8 @@ export default () => html`
     Button({
       title: 'Close style editor',
       className: 'icon',
-      icon: Icons.right,
-      action: () => toggleStyleEditor(false)
+      icon: html`<mobile-only>${Icons.down}</mobile-only><desktop-only>${Icons.right}</desktop-only>`,
+      action: () => togglePane('styles', false)
     })
   }
   </actions>

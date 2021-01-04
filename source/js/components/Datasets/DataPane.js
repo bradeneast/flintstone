@@ -4,12 +4,10 @@ import duplicateDataset from "../../functions/duplicateDataset";
 import removeDataset from "../../functions/removeDataset";
 import renameDataset from "../../functions/renameDataset";
 import setCurrentDataset from "../../functions/setCurrentDataset";
-import { html, nothing, svg } from "lit-html";
+import { html, nothing } from "lit-html";
 import state from "../../state";
 import Button from "../Button";
 import Field from "./Field";
-import toggleStyleEditor from "../../functions/toggleStyleEditor";
-import Icon from "../Icon";
 import Icons from "../Icons";
 
 
@@ -18,7 +16,7 @@ export default () => {
   let current = state.currentDataset;
 
   return html`
-  <div @click=${() => toggleStyleEditor(false)} class="pane data">
+  <div class="pane data">
     <label class="smol light" for="currentDatasetTitle">Current data</label>
     ${
     current

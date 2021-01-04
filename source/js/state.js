@@ -1,10 +1,11 @@
 import { html, render } from 'lit-html';
-import { ensureProps, ls, toggleRootClass } from './utils';
+import { ensureProps, ls, setRootAttribute } from './utils';
 import Main from './components/Main';
 import Header from './components/Header/Header';
 import auth from './auth';
 import { tags } from './style_data';
 import { local_key, local_preferences_key, initial_state, initial_preferences } from './config';
+import MobileNav from './components/MobileNav';
 
 
 let user = auth.currentUser();
@@ -37,7 +38,7 @@ export function handleError(err) {
   console.error(err);
   state.error = err.message;
   state.loading = false;
-  toggleRootClass('error', true);
+  setRootAttribute('error', true);
 }
 
 
@@ -49,7 +50,7 @@ export function autoSave(immediate = false) {
 
   clearTimeout(autoSaveWaiter);
   autoSaveWaiter = setTimeout(save, timeout);
-  toggleRootClass('working', true);
+  setRootAttribute('working', true, true);
 
   function save() {
 
@@ -59,14 +60,14 @@ export function autoSave(immediate = false) {
         .update({ data: { flintstone: JSON.stringify(state.currentUser) } })
         .then(() => {
           state.error = false;
-          toggleRootClass('working', false);
+          setRootAttribute('working', false, false);
         })
         .catch(handleError)
 
     try {
       state.error = false;
       ls(local_key, state);
-      toggleRootClass('working', false);
+      setRootAttribute('working', false, false);
     }
     catch (err) {
       handleError(err)
@@ -82,9 +83,8 @@ export function renderAll(contents = Main()) {
       <header>${Header()}</header>
       ${contents}
       <loader></loader>
-      <status-message>
-        ${state.error ? `Error: ${state.error}` : 'All changes saved'}
-      </status-message>
+      <status-message>${state.error ? `Error: ${state.error}` : 'All changes saved'}</status-message>
+      <mobile-only>${MobileNav()}</mobile-only>
     </div>`,
     document.body
   );
@@ -93,14 +93,14 @@ export function renderAll(contents = Main()) {
 
 export function updatePreferenceClasses() {
   for (let [key, value] of Object.entries(preferences))
-    toggleRootClass(key, value)
+    setRootAttribute(key, value, value)
 }
 
 
 /**Acts like a proxy to set and save UI preferences */
 export function setPreference(key, value) {
   preferences[key] = value;
-  toggleRootClass(key, value);
+  setRootAttribute(key, value, value);
   ls(local_preferences_key, preferences);
 }
 

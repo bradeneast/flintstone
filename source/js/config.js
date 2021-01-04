@@ -26,8 +26,8 @@ export let initial_state = {
 
 export let initial_preferences = {
   dark: false,
-  showStyles: false,
-  showMenu: false
+  open_pane: undefined,
+  show_header_nav: false
 };
 
 export let portables = ['documents', 'datasets'];

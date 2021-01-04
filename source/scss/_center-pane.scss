@@ -117,3 +117,11 @@
     transition: transform var(--transition), opacity var(--transition);
   }
 }
+
+@media screen and (max-width: $mobile) {
+  .preview,
+  .editor {
+    padding: 0.5em;
+    height: calc(100% - var(--headerHeight));
+  }
+}

@@ -4,7 +4,7 @@ status-message {
   display: grid;
   place-items: center;
   right: 1em;
-  bottom: 1em;
+  bottom: calc(1em + var(--headerHeight));
   height: 2.5em;
   width: 11em;
   background: var(--g7);
@@ -34,7 +34,8 @@ status-message {
   }
 }
 
-.working status-message {
+html[working] status-message {
+  opacity: 1;
   width: 2.5em;
   color: var(--g7);
   box-shadow: none;
@@ -51,4 +52,11 @@ status-message {
 
 .error status-message {
   border-color: var(--error);
+}
+
+@media screen and (max-width: $mobile) {
+  status-message {
+    transition: 0s, width var(--transition), opacity var(--transition) 0.5s;
+    opacity: 0;
+  }
 }

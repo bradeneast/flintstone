@@ -4,7 +4,7 @@ header {
   align-items: center;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 30;
   width: 100%;
   height: var(--headerHeight);
   overflow: visible;
@@ -54,13 +54,13 @@ header {
   }
 }
 
-html.showMenu nav {
+html[show_header_nav] .header-nav {
   opacity: 1;
   transform: scale(1) translate3d(0, 0, 0);
   pointer-events: all;
 }
 
-nav {
+.header-nav {
   position: absolute;
   background: var(--g8);
   border-radius: var(--radius) 0 var(--radius) var(--radius);
@@ -80,5 +80,25 @@ nav {
     display: block !important;
     border-color: transparent !important;
     text-align: left;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  header {
+    flex-flow: row wrap;
+    text-align: right;
+
+    #logo {
+      width: 2.5em;
+    }
+
+    separator {
+      background: none;
+      margin: 0.2em;
+    }
+
+    .header-nav {
+      right: 0;
+    }
   }
 }

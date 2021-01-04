@@ -4,10 +4,10 @@ $g2: #34383f;
 $g3: #5a6677;
 $g4: #828b9c;
 $g5: #9faabd;
-$g6: #c5cacf;
-$g7: #ecedf0;
+$g6: #c7ccd1;
+$g7: #f1f2f5;
 $g8: white;
-$mobile: 960px;
+$mobile: 58rem;
 $bold: 700;
 
 :root {
@@ -78,7 +78,7 @@ dark {
   display: none;
 }
 
-html.dark {
+html[dark] {
   background: var(--g8);
   --shadowColor: rgba(0, 0, 0, 0.63);
   --g0: #{$g8};
@@ -114,16 +114,6 @@ html.dark {
 #app {
   color: var(--g0);
   background: var(--g8);
-  display: grid;
-  grid-template-rows: auto 1fr;
-  height: 100vh;
-  height: -webkit-fill-available;
-  overflow: hidden;
-
-  &[data-modal] modal {
-    opacity: 1;
-    pointer-events: all;
-  }
 
   &[data-loading] {
     * {
@@ -142,6 +132,18 @@ html.dark {
   }
 }
 
+@media screen and (min-width: $mobile) {
+  mobile-only {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  desktop-only {
+    display: none;
+  }
+}
+
 @import "./loader";
 @import "./animations";
 @import "./forms";
@@ -152,8 +154,8 @@ html.dark {
 @import "./center-pane";
 @import "./data-pane";
 @import "./style-editor";
+@import "./mobile";
 @import "./modal";
 @import "./preview";
-@import "./mobile";
 @import "./status";
 @import "./print";

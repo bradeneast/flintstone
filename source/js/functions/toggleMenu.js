@@ -6,11 +6,11 @@ import { $ } from "../utils";
 
 export default (force) => {
   if (force == undefined) {
-    setPreference('showMenu', !preferences.showMenu);
+    setPreference('show_header_nav', !preferences.show_header_nav);
     render(Header(), $('header'));
   }
   else {
-    setPreference('showMenu', force);
+    setPreference('show_header_nav', force);
     render(Header(), $('header'));
   }
 }

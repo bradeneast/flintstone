@@ -1,4 +1,3 @@
-import toggleStyleEditor from "../../functions/toggleStyleEditor";
 import printDocument from "../../functions/printDocument";
 import state, { preferences, renderAll, setPreference } from "../../state";
 import Button from '../Button';
@@ -10,20 +9,23 @@ import toggleMenu from "../../functions/toggleMenu";
 import ImportDialogue from "../Dialogues/ImportDialogue";
 import Icons from "../Icons";
 import KeyboardShortcuts from "../Dialogues/KeyboardShortcuts";
+import togglePane from "../../functions/togglePane";
 
 
 export default () => html`
-<nav>
-${
-  Button({
-    content: `${ preferences.showStyles ? 'Close' : 'Open' } style editor`,
-    icon: Icons.adjust,
-    action: () => {
-      toggleMenu(false);
-      toggleStyleEditor();
-    }
-  })
-}
+<nav class=header-nav>
+  <desktop-only>
+  ${
+    Button({
+      content: `${ preferences.showStyles ? 'Close' : 'Open' } style editor`,
+      icon: Icons.adjust,
+      action: () => {
+        toggleMenu(false);
+        togglePane('styles');
+      }
+    })
+  }
+  </desktop-only>
 ${
   Button({
     content: 'Print current document',

@@ -1,6 +1,6 @@
 import auth from "../../auth";
 import { html, nothing, svg } from "lit-html";
-import state, { renderAll } from "../../state";
+import state, { preferences, renderAll } from "../../state";
 import Button from "../Button";
 import SignIn from '../AuthScreens/SignIn';
 import SignOut from "../AuthScreens/SignOut";
@@ -38,7 +38,7 @@ export default () => {
   ${
     state.savedLocally
       ? Button({
-          title: `${state.showMenu ? 'Close' : 'Open'} menu`,
+          title: `${preferences.show_header_nav ? 'Close' : 'Open'} menu`,
           content: Icon({
             content: svg`
             <line y1="30" x2="100%" y2="30"/>

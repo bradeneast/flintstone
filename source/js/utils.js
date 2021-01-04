@@ -28,6 +28,22 @@ export let setCustomProp = (elem, prop, value) => elem.style.setProperty(`--${pr
 export let toggleRootClass = (className, force) => document.documentElement.classList.toggle(className, force);
 
 
+/**A shorthand for toggling an attribute on the documentElement */
+export let setRootAttribute = (name, value = '', forceToggle) => {
+  let doc = document.documentElement;
+
+  if (forceToggle == undefined) {
+    doc.getAttribute(name)
+      ? doc.setAttribute(name, value)
+      : doc.removeAttribute(name)
+    return;
+  }
+
+  if (forceToggle) doc.setAttribute(name, value);
+  if (!forceToggle) doc.removeAttribute(name);
+}
+
+
 /**Ensures properties exist on an object, filling them with an empty object if they do not exist. */
 export let ensureProps = (properties, obj, defaultValue = {}) =>
   properties.forEach(prop =>

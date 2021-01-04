@@ -1,107 +1,75 @@
-@media screen and (min-width: $mobile) {
-  mobile-only {
-    display: none;
+.mobile-nav {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  justify-items: space-around;
+  height: var(--headerHeight);
+  position: fixed;
+  z-index: 29;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  box-shadow: var(--shadow);
+  border-top: var(--border);
+  border-color: var(--g7);
+  background: var(--g8);
+}
+
+[open_pane="data"] button[title*="data"],
+[open_pane="documents"] button[title*="documents"],
+[open_pane="styles"] button[title*="styles"] {
+  background: var(--g7);
+  border-radius: 0;
+
+  svg.line {
+    stroke: var(--color);
   }
 }
 
 @media screen and (max-width: $mobile) {
-  desktop-only {
-    display: none;
+  .styles,
+  section {
+    max-width: $mobile / 2;
   }
 
-  :root {
-    font-size: 13px;
+  section.aside.right,
+  section.aside.left {
+    padding: 2em 1em 1em 1em;
+    background: var(--g7);
   }
 
-  input[type="range"] {
-    height: 2em;
+  .selection {
+    margin-top: 1em;
   }
 
-  #app {
-    padding: 0;
-    height: auto;
-    display: block;
-
-    & > loader {
-      position: fixed;
-    }
-  }
-
-  header {
-    flex-flow: row wrap;
-    text-align: right;
-
-    #logo {
-      width: 2.5em;
-    }
-
-    separator {
-      background: none;
-      margin: 0.2em;
-    }
-
-    nav {
-      right: 0;
-    }
-  }
-
-  modal,
-  .styles {
+  .styles,
+  section.aside.right,
+  section.aside.left {
     position: fixed;
-    top: var(--headerHeight);
-    height: calc(100vh - var(--headerHeight));
+    z-index: 20;
+    border-radius: 1em 1em 0 0;
+    top: auto;
+    right: auto;
+    left: 0;
+    bottom: var(--headerHeight);
+    width: 100vw;
+    border: var(--border);
+    border-bottom: none;
+    box-shadow: var(--shadow);
+    height: calc(100% - (var(--headerHeight) * 2) - 2em);
+    transform: translate3d(0, 100%, 0);
+    transition: transform var(--transition);
   }
 
-  button.link {
-    padding-bottom: 0.2em;
-    transform: translateY(0.1em);
+  html[open_pane="data"] section.aside.right {
+    transform: translate3d(0, 0, 0);
   }
 
-  main {
-    top: 0;
-    height: auto;
-    flex-flow: column;
+  html[open_pane="documents"] section.aside.left {
+    transform: translate3d(0, 0, 0);
+  }
 
-    & > section:first-child {
-      top: var(--headerHeight);
-    }
-
-    section.aside {
-      height: auto;
-      padding-top: 4em;
-      padding-bottom: 4em;
-      margin-bottom: 4em;
-      border-bottom: var(--border);
-
-      .pane .set,
-      .pane .selection {
-        margin: 0;
-        border: none;
-      }
-    }
-
-    section.center {
-      padding: 0;
-      margin: 0;
-      order: 10;
-
-      .preview,
-      .editor,
-      .intellisense-mapper {
-        padding: 4rem 1rem 2rem 1rem;
-      }
-
-      .preview,
-      .editor {
-        height: calc(100vh - var(--headerHeight));
-        width: 100%;
-      }
-
-      .intellisense-mapper,
-      .editor {
-        font-size: 16px;
-        border: none;
-      }
-    }
+  html[open_pane="styles"] .styles {
+    transform: translate3d(0, 0, 0);
   }
 }

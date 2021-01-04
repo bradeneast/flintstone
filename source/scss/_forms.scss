@@ -211,17 +211,15 @@ input[type="range"] {
 
 @media screen and (max-width: $mobile) {
   input[type="range"] {
-    margin-top: 0.5em;
-
     &::-webkit-slider-thumb {
-      @include thumb(1.5em);
+      @include thumb(1.2em);
       margin-top: -0.6em;
     }
     &::-moz-range-thumb {
-      @include thumb(1.5em);
+      @include thumb(1.2em);
     }
     &::-ms-thumb {
-      @include thumb(1.5em);
+      @include thumb(1.2em);
     }
   }
 }

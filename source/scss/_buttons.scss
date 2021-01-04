@@ -139,3 +139,10 @@ a.button {
     border-radius: var(--radius) 0 0 var(--radius);
   }
 }
+
+@media screen and (max-width: $mobile) {
+  button.link {
+    padding-bottom: 0.2em;
+    transform: translateY(0.1em);
+  }
+}
