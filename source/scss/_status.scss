@@ -4,7 +4,7 @@ status-message {
   display: grid;
   place-items: center;
   right: 1em;
-  bottom: calc(1em + var(--headerHeight));
+  bottom: 1em;
   height: 2.5em;
   width: 11em;
   background: var(--g7);
@@ -56,6 +56,7 @@ html[working] status-message {
 
 @media screen and (max-width: $mobile) {
   status-message {
+    bottom: calc(1em + var(--headerHeight));
     transition: 0s, width var(--transition), opacity var(--transition) 0.5s;
     opacity: 0;
   }
