@@ -139,6 +139,10 @@ html[dark] {
 }
 
 @media screen and (max-width: $mobile) {
+  :root {
+    font-size: 14px;
+  }
+
   desktop-only {
     display: none;
   }
