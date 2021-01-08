@@ -40,10 +40,11 @@ export default ([tagName, { normieName, useAdjustments }]) => {
     
     ${
       isExpanded
-        ? Object.entries(adjustments).map(([propName, propData]) => {
-            // Skip properties not included for this adjustment module
-            if (!useAdjustments.includes(propName)) return;
-
+        ? Object
+          .entries(adjustments)
+          // Filter out properties not included for this adjustment module
+          .filter(([propName]) => useAdjustments.includes(propName))
+          .map(([propName, propData]) => {
             let tagArgument = [tagName, { normieName, useAdjustments }];
             let propArgument = [propName, propData];  
 
