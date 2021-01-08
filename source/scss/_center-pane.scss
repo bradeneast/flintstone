@@ -68,7 +68,7 @@
 .editor,
 .intellisense-mapper {
   font-size: calc(0.6rem + 50%);
-  line-height: 1.5;
+  line-height: $tall;
 }
 
 .intellisense {
@@ -121,7 +121,15 @@
 @media screen and (max-width: $mobile) {
   .preview,
   .editor {
-    padding: 0.5em;
     height: calc(100% - var(--headerHeight));
+  }
+
+  .preview {
+    padding: 0.5em;
+  }
+
+  .intellisense-mapper,
+  .editor {
+    padding: 1em;
   }
 }

@@ -15,6 +15,13 @@
   background: var(--g8);
 }
 
+[open-pane="undefined"],
+[open-pane=""] {
+  section.center {
+    pointer-events: none;
+  }
+}
+
 [open_pane="data"] button[title*="data"],
 [open_pane="documents"] button[title*="documents"],
 [open_pane="styles"] button[title*="styles"] {
@@ -29,7 +36,7 @@
 @media screen and (max-width: $mobile) {
   .styles,
   section {
-    max-width: $mobile / 2;
+    max-width: none;
   }
 
   section.aside.right,
@@ -46,29 +53,23 @@
   section.aside.right,
   section.aside.left {
     position: fixed;
-    z-index: 20;
+    z-index: 22;
     border-radius: 1em 1em 0 0;
     top: auto;
-    right: auto;
+    right: 0;
     left: 0;
     bottom: var(--headerHeight);
-    width: 100vw;
+    height: calc(100% - var(--headerHeight) * 2);
+    width: 100%;
     border: var(--border);
     border-bottom: none;
     box-shadow: var(--shadow);
-    height: calc(100% - (var(--headerHeight) * 2) - 2em);
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, calc(100% + var(--headerHeight)), 0);
     transition: transform var(--transition);
   }
 
-  html[open_pane="data"] section.aside.right {
-    transform: translate3d(0, 0, 0);
-  }
-
-  html[open_pane="documents"] section.aside.left {
-    transform: translate3d(0, 0, 0);
-  }
-
+  html[open_pane="documents"] section.aside.left,
+  html[open_pane="data"] section.aside.right,
   html[open_pane="styles"] .styles {
     transform: translate3d(0, 0, 0);
   }

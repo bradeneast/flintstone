@@ -1,7 +1,7 @@
 .preview {
   // MAIN
   --vertical-space: 1em;
-  --line-height: 1.5;
+  --line-height: $tall;
   font-size: 16px;
   line-height: var(--line-height);
   font-size: var(--font-size);

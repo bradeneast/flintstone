@@ -7,11 +7,11 @@ modal {
   display: grid;
   z-index: 8;
   place-items: center;
-  place-content: center;
   background: var(--g8);
   gap: 4em;
   padding: 1em;
   text-align: center;
+  overflow-y: auto;
 
   form,
   .form {
@@ -21,5 +21,12 @@ modal {
 
   #logo {
     width: 80%;
+  }
+}
+
+@media screen and (max-width: $mobile) {
+  modal {
+    height: calc(100vh - var(--headerHeight) * 2);
+    top: var(--headerHeight);
   }
 }
