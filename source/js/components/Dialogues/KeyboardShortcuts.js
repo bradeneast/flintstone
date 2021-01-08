@@ -4,7 +4,7 @@ import { renderAll } from "../../state";
 import Button from "../Button";
 
 export default () => html`
-<form>
+<div class=form>
   <table>
     <thead>
       <td>Shortcut</td>
@@ -27,4 +27,4 @@ export default () => html`
       action: () => renderAll(),
     })
   }
-</form>`;
+</div>`;
