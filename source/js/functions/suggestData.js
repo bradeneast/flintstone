@@ -20,8 +20,12 @@ export default () => {
   mapperLastLine.innerText = currentLine;
 
   let { offsetHeight, offsetWidth, offsetLeft, offsetTop } = mapperLastLine;
+  let { scrollWidth } = box;
   let posY = offsetTop + offsetHeight;
   let posX = offsetLeft + offsetWidth;
+
+  if (posX + scrollWidth > innerWidth)
+    posX = posX - scrollWidth;
 
   box.style.transform = `translate3d(${posX}px, ${posY - editor.scrollTop}px, 0)`;
   sense.suggestions = state.currentDataset.fields.filter(f => tester.test(f[0]));
