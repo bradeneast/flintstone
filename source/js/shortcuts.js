@@ -4,6 +4,7 @@ import Modal from "./components/Modal";
 import addDocument from "./functions/addDocument";
 import applyFormatting from "./functions/applyFormatting";
 import moveField from "./functions/moveField";
+import printDocument from "./functions/printDocument";
 import { autoSave, preferences, renderAll, setPreference } from "./state";
 import { $ } from "./utils";
 
@@ -23,7 +24,7 @@ let handlFieldShortcut = (event, direction) => {
   }
 }
 
-const shortcuts = {
+export default {
   "b": {
     action: event => applyEditorShortcut(event, '**'),
     description: "format selection as bold",
@@ -76,13 +77,21 @@ const shortcuts = {
     description: "add a new document",
     prefix: "ctrl+shift"
   },
-  "S": {
+  "s": {
     action: event => {
       event.preventDefault();
       autoSave();
     },
     description: "trigger a save",
     prefix: "ctrl+shift"
+  },
+  "p": {
+    action: event => {
+      event.preventDefault();
+      printDocument();
+    },
+    description: "print your document",
+    prefix: "ctrl"
   },
   "ArrowUp": {
     action: event => handlFieldShortcut(event, -1),
@@ -95,5 +104,3 @@ const shortcuts = {
     prefix: "ctrl"
   }
 }
-
-export default shortcuts;
