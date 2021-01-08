@@ -26,17 +26,16 @@ let completeLoading = () => {
     if (key && value) {
       switch (key) {
         // Confirm user
-        case 'recovery_token': auth
-          .recover(value, true)
-          .then(() => renderAll(Modal(ResetPassword())));
+        case 'recovery_token':
+          auth.recover(value, true).then(() => renderAll(Modal(ResetPassword())));
           break;
         // Recover user
-        case 'confirmation_token': auth
-          .confirm(value, true)
-          .then(() => { renderAll(); autoSave(true) });
+        case 'confirmation_token':
+          auth.confirm(value, true).then(() => { renderAll(); autoSave(true) });
           break;
         // Render acceptance modal
-        case 'invite_token': renderAll(Modal(AcceptInvite(value)));
+        case 'invite_token':
+          renderAll(Modal(AcceptInvite(value)));
           break;
       }
     }
