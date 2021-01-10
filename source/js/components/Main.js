@@ -1,6 +1,5 @@
 import { html } from 'lit-html';
 import toggleMenu from '../functions/toggleMenu';
-import togglePane from '../functions/togglePane';
 import { preferences, renderAll } from '../state';
 import DataPane from './Datasets/DataPane';
 import ImportDialogue from './Dialogues/ImportDialogue';
@@ -19,8 +18,8 @@ export default () => html`
   renderAll(Modal(ImportDialogue()))
 }
 @dragover=${event => event.preventDefault()}>
-  <section @click=${() => togglePane('styles', false)} class="aside left">${DocumentsPane()}</section>
-  <section @click=${() => togglePane('styles', false)} class="center">${CenterPane()}</section>
-  <section @click=${() => togglePane('styles', false)} class="aside right">${DataPane()}</section>
+  <section class="aside left">${DocumentsPane()}</section>
+  <section class="center">${CenterPane()}</section>
+  <section class="aside right">${DataPane()}</section>
   ${StylesPane()}
 </main>`;
