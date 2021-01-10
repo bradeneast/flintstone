@@ -10,7 +10,7 @@ export default () => html`
     Button({
       title: 'Open documents',
       className: 'icon',
-      icon: Icons.edit,
+      icon: Icons.documents,
       action: () => togglePane('documents', preferences.open_pane != 'documents')
     })
   }
@@ -18,7 +18,7 @@ export default () => html`
     Button({
       title: 'Open data',
       className: 'icon',
-      icon: Icons.export,
+      icon: Icons.data,
       action: () => togglePane('data', preferences.open_pane != 'data')
     })
   }

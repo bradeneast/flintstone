@@ -74,5 +74,15 @@ export default {
 
   keyboard: Icon({
     content: svg`<path d="M51.81,94.22H67.05m35.06,0h62.36m-112.66,40H96.52m37.06,0h30.89M15.8,55.63H200.48V172.81H15.8Z"/>`
-  })
+  }),
+
+  documents: Icon({
+    content: svg`<path d="M185,65.16V203.22H33V13.78H133.65ZM133.65,13.78V65.16H185ZM68.3,64.35h32.32M68.3,154.49h81.79M68.3,109.42h81.79"/>`,
+    color: 'purple'
+  }),
+
+  data: Icon({
+    content: svg`<rect x="143.48" y="18.99" width="52.53" height="52.53" rx="13.53"/><rect x="126.11" y="131.48" width="52.53" height="52.53" rx="13.53"/><rect x="34.99" y="131.48" width="52.53" height="52.53" rx="13.53"/><rect x="34.99" y="40.36" width="52.53" height="52.53" rx="13.53"/>`,
+    color: 'primary-80',
+  }),
 }
