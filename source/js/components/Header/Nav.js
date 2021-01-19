@@ -17,7 +17,7 @@ export default () => html`
   <desktop-only>
   ${
     Button({
-      content: `${ preferences.showStyles ? 'Close' : 'Open' } style editor`,
+      content: `${ preferences.open_pane == 'styles' ? 'Close' : 'Open' } style editor`,
       icon: Icons.adjust,
       action: () => {
         toggleMenu(false);

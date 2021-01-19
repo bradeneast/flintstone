@@ -1,8 +1,16 @@
-import { renderAll, setPreference } from "../state";
+import { preferences, renderAll, setPreference } from "../state";
 
 export default (pane, force) => {
-  force || force == undefined
-    ? setPreference('open_pane', pane)
-    : setPreference('open_pane', undefined);
+
+  if (force == undefined)
+    pane == preferences.open_pane
+      ? setPreference('open_pane', undefined)
+      : setPreference('open_pane', pane);
+
+  else
+    force
+      ? setPreference('open_pane', pane)
+      : setPreference('open_pane', undefined);
+
   renderAll();
 }

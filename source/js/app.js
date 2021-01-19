@@ -4,7 +4,7 @@ import ResetPassword from './components/AuthScreens/ResetPassword';
 import Modal from './components/Modal';
 import Welcome from './components/Welcome';
 import shortcuts from "./shortcuts";
-import state, { renderAll, autoSave, identityState, prepState } from './state';
+import state, { renderAll, autoSave, identityState, prepState, preferences, setPreference } from './state';
 
 
 state.loading = true;
