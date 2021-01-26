@@ -114,10 +114,13 @@ Please report this to https://github.com/markedjs/marked.`;if(i.silent)return"<p
     ${E({className:"link",content:"Back to editing",action:()=>G()})}
   </form>`:t`
   <input class=mount type=file accept=".json" @input=${Ec} @dragleave=${a=>{a.preventDefault(),G()}} @drop=${Ec} />
-  <div class=mount>
-    <h3 style="pointer-events: none;">Click or drop a file to import it.</h3>
-    <br />
-    ${E({className:"link",content:"Back to editing",action:()=>G()})}
+
+  <h3 style="pointer-events: none;">
+    Click or drop a file to import it.
+  </h3>
+
+  <div style="position: absolute; bottom: 2em;">
+  ${E({className:"link",content:"Back to editing",action:()=>G()})}
   </div>`;var Kd=(a,b,d)=>{let j=`${a.id}_${b}`,o=u=>{u.target.checked?k.importSelection[d].push(Da(a)):k.importSelection[d]=k.importSelection[d].filter(n=>n.id!=a.id),G(V(Ra()))};return t`
   <label class=flex style="margin-bottom: .5rem">
     <input checked name=${j} type=checkbox @input=${o} />
