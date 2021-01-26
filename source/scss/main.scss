@@ -133,6 +133,13 @@ html[dark] {
   }
 }
 
+mobile-only,
+desktop-only {
+  button {
+    width: 100%;
+  }
+}
+
 @media screen and (min-width: $mobile) {
   mobile-only {
     display: none;
