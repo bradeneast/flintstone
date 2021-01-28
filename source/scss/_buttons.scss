@@ -106,6 +106,10 @@ a.button {
     pointer-events: none;
     color: var(--g5);
 
+    svg.line {
+      stroke: var(--g6);
+    }
+
     &:hover,
     &:focus {
       color: var(--g5);
