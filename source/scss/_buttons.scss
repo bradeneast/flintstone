@@ -33,6 +33,7 @@ a.button {
     svg.line {
       --color: currentColor;
       stroke: var(--color);
+      stroke-width: 24px;
     }
   }
 
