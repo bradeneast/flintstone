@@ -1,8 +1,8 @@
-let headingAdjustments = ['font-family', 'font-size', 'font-weight', 'line-height', 'letter-spacing', 'text-transform', 'text-align', 'color'];
+let headingAdjustments = ['font-family', 'font-size', 'font-weight', 'line-height', 'letter-spacing', 'text-transform', 'text-align', 'color', 'margin-top', 'margin-bottom'];
 let inlineElementAdjustments = ['font-weight', 'text-transform', 'color'];
 let headerFooterAdjustments = ['content', 'color', 'font-size', 'font-weight', 'text-transform', 'letter-spacing', 'text-align'];
-let listAdjustments = ['padding-left', 'padding-right', 'color', 'list-style'];
-let tableAdjustments = ['font-size', 'font-weight', 'text-transform', 'text-align', 'color'];
+let listAdjustments = ['padding-left', 'padding-right', 'color', 'list-style', 'margin-top', 'margin-bottom'];
+let tableAdjustments = ['font-size', 'font-weight', 'text-transform', 'text-align', 'color', 'margin-top', 'margin-bottom'];
 
 
 export let tags = {
@@ -130,7 +130,7 @@ export let adjustments = {
     placeholder: '{ date }',
   }),
   'font-family': new Text({
-    placeholder: 'Helvetica'
+    placeholder: 'Inter'
   }),
   'font-size': new Range({
     min: 8,
@@ -228,6 +228,18 @@ export let adjustments = {
     unit: 'px'
   }),
   'padding-right': new Range({
+    min: 0,
+    max: 56,
+    step: 1,
+    unit: 'px'
+  }),
+  'margin-top': new Range({
+    min: 0,
+    max: 56,
+    step: 1,
+    unit: 'px'
+  }),
+  'margin-bottom': new Range({
     min: 0,
     max: 56,
     step: 1,
