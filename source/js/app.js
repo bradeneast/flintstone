@@ -19,6 +19,7 @@ let completeLoading = () => {
   if (location.hash && location.hash.length) {
 
     let [key, value] = location.hash.slice(1).split('=');
+    // Clear url hash
     location.replace("#");
     history.replaceState(null, null, location.href.slice(0, -1));
     state.loading = false;

@@ -45,7 +45,7 @@ export default {
     description: "format selection as strikethrough",
     prefix: "ctrl"
   },
-  "Z": {
+  "k": {
     action: () => {
       setPreference('zen', !preferences.zen);
       renderAll();
@@ -53,7 +53,7 @@ export default {
     description: "toggle zen mode",
     prefix: "ctrl+shift"
   },
-  "E": {
+  "e": {
     action: event => {
       event.preventDefault();
       renderAll(Modal(ExportDialogue()));
@@ -61,7 +61,7 @@ export default {
     description: "start an export",
     prefix: "ctrl+shift"
   },
-  "M": {
+  "m": {
     action: event => {
       event.preventDefault();
       renderAll(Modal(ImportDialogue()));
@@ -69,7 +69,7 @@ export default {
     description: "start an import",
     prefix: "ctrl+shift"
   },
-  "N": {
+  "n": {
     action: event => {
       event.preventDefault();
       addDocument();
