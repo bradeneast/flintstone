@@ -1,4 +1,5 @@
 [build]
+ignore = 'if [[ {git --format=%s -1 $COMMIT_REF} == *"tag"* ]]; then exit 0'
 publish = "public/"
 
 [[redirects]]
