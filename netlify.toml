@@ -1,5 +1,5 @@
 [build]
-ignore = 'if [[ {git --format=%s -1 $COMMIT_REF} == *"tag"* ]]; then exit 0'
+ignore = 'MSG=$(git log --format=%s -1 $COMMIT_REF); if [[ $MSG == *"tag"* ]]; then exit 0'
 publish = "public/"
 
 [[redirects]]
