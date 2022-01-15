@@ -1,6 +1,6 @@
 import state, { setState } from '../../state';
 import { sanitize } from 'dompurify'
-import marked from 'marked';
+import { marked } from 'marked';
 import { html } from 'lit-html';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { makePageID } from './DocumentTOC';
@@ -30,7 +30,7 @@ export default () => {
     return html`
     <div class=preview__page>
       <p>
-        Write something in <a class=link @click=${()=> setState('showPreview', false)}>the editor</a> to see it
+        Write something in <a class=link @click=${() => setState('showPreview', false)}>the editor</a> to see it
         show
         up here.
       </p>

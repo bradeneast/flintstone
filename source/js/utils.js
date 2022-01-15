@@ -85,7 +85,7 @@ export let createDownload = (item) => {
 /**A shorthand for setting CSS custom properties */
 export let sanitizeCSS = string => string
   .replace(/</g, '%3C')
-  .replace(/{/g, '\007B')
+  .replace(/{/g, '\0o7B')
   .replace(/expression\(.+?\)/g, '');
 
 
